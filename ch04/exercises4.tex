@@ -1,0 +1,66 @@
+\newpage
+\section{Exercises: Signals and Systems}
+\begin{enumerate}
+
+\item Consider the following signal $V(t)$, which describes the electric potential of a circuit as a function of time. The instantaneous power flowing through this circuit is given by the following equation:
+\begin{equation*}
+    P(t)=R^{-1}[V(t)]^2.
+\end{equation*}
+It is possible to consider the function $R^{-1}[\cdot]^2$ that converts electric potential into power as a system in signal processing terminology.
+\begin{enumerate}[a)]
+\item Is this system linear?
+\item Is this system time invariant?
+\end{enumerate}
+Prove your result.
+
+\item A discrete-time system is defined as:
+\begin{equation}
+  y[n]= \frac{1}{5}\sum_{k=0}^{4} x[n-k].
+\end{equation}
+  \begin{enumerate}[a)]
+  \item Explain in words what this system does to input signal $x[n]$.
+  \item Is this system linear?
+  \item Is this system time-invariant?
+  \end{enumerate}
+Use the tests for linearity and time-invariance to justify your result. 
+
+\item A time scaling system adjusts the scaling of the independent variable: $y(t) = x(\alpha t)$,
+when $x(t)$ is the signal fed into the system and $y(t)$ is the output.
+
+\begin{enumerate}[a)]
+\item What is the effect on the signal when $0<\alpha<1$?
+\item What about $\alpha>1$?
+\item Is this system linear?
+\item time-invariant?
+\end{enumerate}
+
+\item Prove that the time derivative operator $y(t) = \mathcal{T}\{x(t)\} = \frac{d}{dt} x(t)$
+is a linear time-invariant system.
+
+\item The following system is defined as the average of the previous
+value of the output signal $y[n-1]$ and the current value of the
+input signal $x[n]$:
+$$y[n]=\frac{1}{2}y[n-1]+\frac{1}{2}x[n].$$
+Is this a linear system? In order to show this, you can assume that the input is zero $x[n]=0$ when $n<0$ and that the output $y[n]=0$ when $n=-\infty$. Hint: Try evaluating the value of the values of $y[n]$.
+
+\item The guitar amplifier system given in Equation \ref{clipamp} is not a linear system. Prove this. Hint: you can use proof by example, by finding a case where the requirement of linearity is not met.
+
+\item Is the guitar amplifier system given in Equation \ref{clipamp} a time-invariant system? Prove your result by using the formal test for time-invariance.
+
+\item The code in Listing \ref{lst:audio} implements a linear amplifier system for an audio signal:
+\begin{equation}
+y(t) = \alpha x(t)
+\end{equation}
+where the input signal is $x(t)$, the output signal is $y(t)$, and the
+amplification is $\alpha$. You can find the code and audio file on
+Github.
+\lstinputlisting[language=Python,caption={\texttt{003\_guitar/amplifier.py}},label=lst:audio]{ch04/code/amplifier.py}
+Run this code and verify that the audio signal stored in
+file \verb|guitar_amp.wav| is amplified. You will need to do this by inspecting a before and after amplification plot of the audio signal, as the example code will normalize the amplitude of the signal before storing it to file.
+
+You can use this script as a basis for experimenting with audio signal
+processing later on during this course.
+
+\item Change the code in Listing \ref{lst:audio} is such a way that it implements a clipping amplifier as shown in Equation: \ref{clipamp}. Figure out suitable values for $\alpha$ and $\beta$ that make the guitar sound distorted.
+
+\end{enumerate}

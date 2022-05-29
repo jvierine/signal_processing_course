@@ -1,0 +1,128 @@
+\documentclass{tufte-book} 
+
+% setup what chapters are rendered
+\input{chapter_config.tex}
+
+% all the settings are here
+\input{preamble.tex}
+
+\begin{document}
+\frontmatter
+%----------------------------------------------------------------------------------------
+%	EPIGRAPH
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+
+\maketitle % Print the title page
+
+%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+%----------------------------------------------------------------------------------------
+
+\newpage
+\begin{fullwidth}
+~\vfill
+\thispagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+Copyright \copyright\ \the\year\ \thanklessauthor
+
+\par\smallcaps{Published as lecture notes.}% \thanklesspublisher}
+
+\par\smallcaps{\url{http://kaira.uit.no/fys2006}}
+
+%\par License information.\index{license}
+
+\par\textit{\monthyear}
+\end{fullwidth}
+
+%----------------------------------------------------------------------------------------
+
+\tableofcontents % Print the table of contents
+
+%----------------------------------------------------------------------------------------
+
+%\listoffigures % Print a list of figures
+
+%----------------------------------------------------------------------------------------
+
+%\listoftables % Print a list of tables
+
+%\lstlistoflistings
+
+%----------------------------------------------------------------------------------------
+%	DEDICATION PAGE
+%----------------------------------------------------------------------------------------
+
+%\if 0
+\cleardoublepage
+~\vfill
+\begin{doublespace}
+\noindent\fontsize{10}{10}\selectfont\itshape
+\nohyphenation
+I'd like to thank the following people\sidenote{or their aliases, as
+some may have not chosen to use their real name when participating in
+the course commentary on Perusall.} for corrections and suggestions
+that have improved these lecture notes over the years: Björn
+Gustavsson, Patrick Guio,
+%(2020)
+Mikkel Isak Gaup, Adrian Sletten,
+Rikke Bjarnesen Andresen, Jostein Henriksen, Daniel Nordajl Jørgensen,
+Ivan Mikheev, Oskar Marthinussen, Iver Martinsen, Marit Breimo, Sigurd
+Haugse, Ragnar Helgaas, Sondre Thomassen, Sofie Svenøe, Sigurd Yngvar
+Ekern, Vetle Hofsøy-Woie, Øyvind Alexander Larssen, Erlend
+Thorkildsen, Amalie Gjelsvik, Tommy Ryan, Eivind Dragset, Attiqa
+Abrar, Daniel Breiland Teigen, Sigrid Holm, Åse Fauske, Yvonne
+Johansen, Frank Martin Fossland, Runar Folke-Olsen, Morten Paulsen,
+Teodor Skotnes,
+%(2021)
+Martin Stave, Kristine Rein, Anna Odh, Vegar
+Einarsen, Christian Salomonsen, Jonas Riise, Jørn Jensen, Anton
+Zyranov, Nikolai Anfeltmo, Håkon Johansen, Kian Sadeghi, Johannes
+Bjørnhaug, Ines Seeliger, Dana King, Emil Jettli, Sigurd Hanssen, Liza
+Liz, Sebastian Iversen, Daniel Johansen, Tobias W. Tobiassen, and
+Johanna Mankova Buseth. I'd also like to thank countless others whose
+names I have forgot to mention. All mistakes are purely mine.
+\end{doublespace}
+\vfill
+\vfill
+%\fi
+
+
+
+
+
+\cleardoublepage
+
+
+%----------------------------------------------------------------------------------------
+%	This is where the bulk of the content is
+%       Use \if 0 and \fi to comment out the parts that you don't need to compile
+%----------------------------------------------------------------------------------------
+\ifSpIntro
+  \chapter{Introduction}
+  \input{ch01/text1.tex}
+\fi
+
+\ifSpPython
+\chapter{Python} 
+\input{ch02/text2.tex}
+\input{ch02/exercises2}
+\fi
+
+\ifSpComplex
+\chapter{Complex Algebra}
+\input{ch03/text3}
+\input{ch03/exercises3}
+\fi
+
+\ifSpSigSys
+\chapter{Signals and Systems}
+\input{ch04/text4}
+\input{ch04/exercises4}
+\fi
+
+
+
+\end{document}
