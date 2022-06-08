@@ -73,9 +73,7 @@
  \node at (axis cs:0.8,-0.20) [right, rotate=-90, font={\footnotesize}]{$-A\sin(\theta)$};
  
  \node at (axis cs:0.9,1.45) {$z= A e^{i\theta}$};
-
  \node at (axis cs:0.9,-1.4) {$z^* = A e^{-i\theta}$};
-
  \node at (axis cs:0.25,0.7) [font={\footnotesize}]{$A$};
 
 \end{axis}
@@ -109,14 +107,20 @@ A e^{i\theta} = A e^{i(\theta + 2\pi k)}
 This is due to the fact that $e^{i2\pi k} = 1$, where
 $k \in \mathbb{Z}$ is an arbitrary integer. 
 
-The term $i$ in Equation \ref{eq:eulerintro} is the imaginary number, which has the following properties: $i=\sqrt{-1}$ and $i^2 = -1$. In engineering and programming, the symbol $j$ is also often used for the
-imaginary number instead of $i$. I'll use $i$, but you can use whichever notation you prefer yourself.
+The term $i$ in Equation \ref{eq:eulerintro} is the imaginary number, which has the following properties: $i=\sqrt{-1}$ and $i^2 = -1$. In engineering and programming, the symbol $j$ is also often used for the imaginary number instead of $i$. I'll use $i$, but you can use whichever notation you prefer yourself.
 
 The geometric representation of a complex number is shown in
 Figure \ref{fig:polar_euler}, which shows the real and imaginary
-components of a complex number in a two-dimensional coordinate system
--- the complex plane.
+components of a complex number in a two-dimensional coordinate system-- the complex plane.
 
+The complex exponential obey the same exponentiation rules as the real exponential function:
+\begin{equation}
+\boxed{
+e^{z_{1}}e^{z_{2}} = e^{z_{1}+z_{2}}
+}\,\,.
+\label{eq:complexexponentiation}
+\end{equation}
+for all complex numbers $z_{1},z_{2}\in\mathbb{C}$, moreover $(e^{z_{1}})^{z_{2}}=e^{z_{1}z_{2}}$. 
 
 \newthought{The conjugate $z^*$} of complex number $z$ is defined as:
 \begin{align}
@@ -127,11 +131,9 @@ z^* &= x - iy \\
 \end{align}
 The conjugation operation flips the sign of the imaginary
 component. The geometric interpretation of the complex conjugate is
-shown in Figure \ref{fig:polar_euler}.  We'll use the superscript star
-notation to denote the conjugation operator.
+shown in Figure \ref{fig:polar_euler}.  We'll use the superscript star notation to denote the conjugation operator.
 
-\newthought{The complex conjugate can be used to obtain the magnitude of the
-complex number}: $|z| = \sqrt{z z^*}$ as $zz^*=(x+iy)(x-iy)=x^2+y^2$
+\newthought{The complex conjugate can be used to obtain the magnitude of the complex number}: $|z| = \sqrt{z z^*}$ as $zz^*=(x+iy)(x-iy)=x^2+y^2$
 or $zz^* = |z|e^{i\theta}|z|e^{-i\theta}=|z|^2$.
 
 \newthought{A complex conjugate can be used to select the real and imaginary
@@ -166,13 +168,11 @@ When multiplying two numbers, the resulting angle is a sum of the two angles $\t
 \label{fig:spirals}
 \end{figure}
 
-\newthought{Raising a complex number to the $n$th power} can be seen
-as exponential scaling and rotation. Consider a complex number
+\newthought{Raising a complex number to the $n$th power} can be seen as exponential scaling and rotation. Consider a complex number
 \begin{equation}
   z = A e^{i\theta}
 \end{equation}
-where $A \in \mathbb{R}_{\ge 0}$ and $\theta \in \mathbb{R}$. If we raise this
-to the $n$th power, we get:
+where $A \in \mathbb{R}_{\ge 0}$ and $\theta \in \mathbb{R}$. If we raise this to the $n$th power, we get:
 \begin{equation}
   z^n = A^n e^{i\theta n} = A^n [\cos(\theta n) + i \sin(\theta n)]\,\,.
 \end{equation}

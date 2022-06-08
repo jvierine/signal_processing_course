@@ -1,0 +1,81 @@
+\section{Solutions to exercises for discrete-time signals}
+
+\begin{enumerate}
+  \item Given the continuous-time sinusoid $y_1[n] = 2 \cos(0.67 \pi n) + \cos(0.33 \pi n)$.
+  \begin{enumerate}[a)]
+    \item Using Euler's formula to first rewrite $y[n]$ on polar form:\\
+    	\[y_1[n] = e^{i0.67\pi n} + e^{-i0.67\pi n} + \frac{1}{2}e^{i0.33\pi n} + \frac{1}{2}e^{-i0.33\pi n}\]
+    	and then plot the spectrum (Figure \ref{fig:ex1}):\\
+		\begin{marginfigure}
+		  \begin{center}
+			\begin{tikzpicture}
+			  \begin{axis}[
+			    width=7cm,height=6cm,ymin=0,ymax=1.3,xmin=-3.1,xmax=3.2,  
+			    ytick={0.5,1}, yticklabels={,$1$}, 
+			    xtick={-3,...,3},
+			    xticklabels={$-3\pi$,$-2\pi$,$-\pi$,$0$,$\pi$,$2\pi$,$3\pi$}, 
+			    ylabel={$y[n]$}, 
+			    xlabel={$\hat{\omega}$}, axis lines = center]
+			    
+				\addplot+[ycomb,mark=*,mark color=skyblue1, solid,
+						color=skyblue1] plot coordinates {(-2.6,1)(2.6,1)};
+			  	\node at (axis cs:-2.67,1)[above,
+			  				font={\footnotesize}]{$e^{-i2.67\pi}$};
+			  	\node at (axis cs:2.67,1)[below,
+			  				font={\footnotesize}]{$e^{i2.67\pi}$};
+			  	
+				\addplot+[ycomb,mark=*,mark color=scarletred1, solid,
+						color=scarletred1] plot coordinates {(-2.33,0.5)(2.33,0.5)};
+			  	\node at (axis cs:-2.33,0.5)[above,
+			  				font={\footnotesize}]{$\frac{1}{2}e^{-i2.33\pi}$};
+			  	\node at (axis cs:2.33,0.5)[below,
+			  				font={\footnotesize}]{$\frac{1}{2}e^{i2.33\pi}$};
+			  	
+				\addplot+[ycomb,mark=*,mark color=scarletred1, solid,
+						color=scarletred1] plot coordinates {(-1.67,0.5)(1.67,0.5)};
+			  	\node at (axis cs:-1.67,0.5)[below,
+			  				font={\footnotesize}]{$\frac{1}{2}e^{-i1.67\pi}$};
+			  	\node at (axis cs:1.67,0.5)[above,
+			  				font={\footnotesize}]{$\frac{1}{2}e^{i1.67\pi}$};
+			  	
+				\addplot+[ycomb,mark=*,mark color=skyblue1, solid,
+						color=skyblue1] plot coordinates {(-1.33,1)(1.33,1)};
+			  	\node at (axis cs:-1.33,1)[below,
+			  				font={\footnotesize}]{$e^{-i1.33\pi}$};
+			  	\node at (axis cs:1.33,1)[above,
+			  				font={\footnotesize}]{$e^{i1.33\pi}$};
+			  	
+			  	\addplot+[ycomb,mark=*,mark color=blue, solid,
+						color=blue] plot coordinates {(-0.67,1)(0.67,1)};
+			  	\node at (axis cs:-0.67,1)[above,
+			  				font={\footnotesize}]{$e^{-i0.67\pi}$};
+			  	\node at (axis cs:0.67,1)[below,
+			  				font={\footnotesize}]{$e^{i0.67\pi}$};
+			  	
+				\addplot+[ycomb,mark=*,mark color=red, solid,
+						color=red] plot coordinates {(-0.33,0.5)(0.33,0.5)};
+			  	\node at (axis cs:-0.33,0.5)[above,
+			  				font={\footnotesize}]{$\frac{1}{2}e^{-i0.33\pi}$};
+			  	\node at (axis cs:0.33,0.5)[below,
+			  				font={\footnotesize}]{$\frac{1}{2}e^{i0.33\pi}$};
+			  	
+			  \end{axis}
+			\end{tikzpicture}
+		  \end{center}
+		\caption{Spectrum for 1.a): \\ $y_1[n] = 2 \cos(0.67 \pi n) + \cos(0.33 \pi n)$ \\ Shown only frequency components from principal up to 2nd alias.}
+		\label{fig:ex1}
+		\end{marginfigure}
+    
+    \item For the changed signal $y_2[n] = 2 \cos(2.67 \pi n) + \cos(0.33 \pi n)$, the spectrum will stay unchanged because $\cos(2.67 \pi n) = \cos(0.67 \pi n)$.
+  \end{enumerate}
+  
+  \item A sampling rate of 24 fps equals 1440 frames per minute.
+  \begin{enumerate}[a)]
+    \item When the disc speed equals the camera's sampling rate at 1440 rpm, the red spot will be recorded at the same position for every frame, and thus appears to be standing still.
+    \item When the disc speed gets larger than the Shannon-Nyquist sampling theorem, $v_{rot} > f_s / 2 > 720$ rpm, aliasing starts to occur. Within the speed range of $720 < v_{rot} < 1440$ rpm, the phase of the alias has the opposite sign than the phase of the real rotation, and so the red spot seems to rotate counter-clockwise with decreasing speed as $v_{rot}$ increases.
+    \item Aliasing in the interval with opposite phase sign is called \emph{folding}.
+    \item When $1440 < v_{rot} < 2880$, there is no folding, and the corresponding alias of the red spot will have speed $0 < v_{rot} < 1440$ rpm.
+  \end{enumerate}
+  \item .
+	
+\end{enumerate}

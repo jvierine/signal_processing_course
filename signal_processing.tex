@@ -1,9 +1,5 @@
 \documentclass{tufte-book} 
-
-% setup what chapters are rendered
-\input{chapter_config.tex}
-
-% all the settings are here
+\input{chapter_config.tex} 
 \input{preamble.tex}
 
 \begin{document}
@@ -101,8 +97,8 @@ names I have forgot to mention. All mistakes are purely mine.
 %       Use \if 0 and \fi to comment out the parts that you don't need to compile
 %----------------------------------------------------------------------------------------
 \ifSpIntro
-  \chapter{Introduction}
-  \input{ch01/text1.tex}
+\chapter{Introduction}
+\input{ch01/text1.tex}
 \fi
 
 \ifSpPython
@@ -115,14 +111,53 @@ names I have forgot to mention. All mistakes are purely mine.
 \chapter{Complex Algebra}
 \input{ch03/text3}
 \input{ch03/exercises3}
+\input{ch03/solutions3}
 \fi
 
 \ifSpSigSys
 \chapter{Signals and Systems}
 \input{ch04/text4}
 \input{ch04/exercises4}
+\input{ch04/solutions4}
 \fi
 
+\ifSpElSig
+\chapter{Elementary Signals}
+\input{ch05/text5}
+\input{ch05/exercises5}
+\input{ch05/solutions5}
+\fi
+
+\ifSpSin
+\chapter{Sinusoidal Signals}
+\input{ch06/text6}
+\input{ch06/exercises6}
+\input{ch06/solutions6}
+\fi
+
+\ifSpFourierSer
+\chapter{Fourier Series}
+\input{ch07/text7}
+\input{ch07/exercises7}
+\input{ch07/solutions7}
+\fi
+
+\ifSpFourierTra
+\chapter{Fourier Transform}
+\input{ch08/text8}
+\input{ch08/exercises8}
+\input{ch08/solutions8}
+\fi
+
+\ifSpDT
+\chapter{Discrete-time Signals}
+\input{ch09/text9}
+\input{ch09/exercises9}
+\input{ch09/solutions9}
+\fi
+
+\bibliographystyle{alpha}
+\bibliography{bibliography}
 
 
 \end{document}

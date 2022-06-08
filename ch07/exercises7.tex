@@ -1,0 +1,86 @@
+\newpage
+\section{Exercises: Fourier Series}
+
+\begin{enumerate}
+\item A signal is defined as:
+\begin{equation}
+    x(t) = 7 \sin(3 \pi t + 0.2\pi) + 3 \cos(7 \pi t + 0.5\pi)  
+\end{equation}
+The independent variable $t$ is in units of seconds. 
+\begin{enumerate}[a)]
+    \item Express this signal in the form of Equation \ref{eq:general_spectrum}. What are the values of the coefficients $c_k \in \mathbb{C}$ and angular frequencies $\omega_k \in \mathbb{R}$?
+    \item The coefficients $c_{k}$, satisfy $c_{-k}=c_{k}^{*}$, why?
+    \item Show that this signal is periodic by showing that the frequencies of the individual frequency components are commensurable.
+    \item Use Euclid's algorithm to find the fundamental angular frequency $\omega$. What is the fundamental frequency in units of hertz and rad/s?
+    \item What is the fundamental period $T$ of this signal in seconds?
+    \item We delay the signal $x(t)$ by 0.5 seconds $y(t) = x(t-\frac{1}{2})$. Write $y(t)$ in the following format:
+\begin{equation}
+    y(t) = 7 \sin(3\pi t + \phi_0) + 3 \cos(7\pi t + \phi_1)
+\end{equation}
+What are the values $\phi_0$ and $\phi_1$?
+\item We create a new signal $z(t) = x(t) + e^{i \sqrt{2} t + 13}$. Why is the signal $z(t)$ no longer periodic with a finite period? Is the signal $z(t)$ real valued?
+\end{enumerate}
+
+\item A signal is defined as:
+  \begin{equation}
+    x(t) = e^{-i (6\pi  t + 0.3)}  + 4e^{i (60\pi  t + 0.42)} + 4e^{-i (60\pi t + 0.42)}  + e^{i (6\pi t + 0.3)} 
+  \end{equation}
+  The independent variable $t$ is in units of seconds. 
+  \begin{enumerate}[a)]
+%  \item Make a plot of the frequency components of the signal, similar to the one in Figure \ref{fig:exspecsin}.
+  \item Why is this signal real valued?
+    \item Is this signal periodic? If so, what is the fundamental angular frequency $\omega$ and the fundamental period $T$?
+   \end{enumerate}
+
+
+\item The Fourier series coefficients for a pulsed signal $x(t)$ with
+  a fundamental period $T=1$ is described as:
+  \begin{equation}
+    c_k = \left\{\begin{array}{ccc}
+    \frac{1}{10} & \mathrm{when} & k=0 \\
+    \frac{1}{\pi k}e^{-i\frac{\pi}{10}  k }\sin\left(\frac{\pi}{10} k  \right) & \mathrm{otherwise}
+    \end{array}
+    \right.
+  \end{equation}
+  See Equations \ref{eq:pulsecoeff0} and \ref{eq:pulsecoeff1} for the derivation of the Fourier coefficients.
+  \begin{enumerate}[a)]
+  \item Plot the partial sum $x_N(t)$ of the Fourier series using $N=101$. You can use Listing \ref{lst:fourier_square_code} to help you out.
+  \item What are the Fourier series coefficients for a signal delayed in time by $0.2$ seconds. Plot the partial sum to verify.
+  \item What are the Fourier series coefficients for $y(t)=\frac{d}{dt}x(t)$? Make a plot to verify.
+  \end{enumerate}
+  
+\end{enumerate}
+
+
+\if 0
+\section{Programming Exercise 1}
+
+\begin{itemize}
+\item[a)] 
+Using Equation \ref{eq:dirac_comb_coeff}, implement a program that
+calculates a partial sum approximation of a Dirac comb with
+period of $T=0.5$ seconds. Use $N=50$ as the number of complex
+exponential signals to include in the partial sum. Evaluate the signal
+from t=0 to t=4 seconds at 10 kHz sample rate. Here's some partial
+code, which almost does the job.
+\begin{lstlisting}[language=Python,numbers=none]
+# define the sample rate (Hz)
+sample_rate=10000.0
+# create time array 0 to 4 seconds
+t=n.arange(4.0*sample_rate)/sample_rate
+# initialize empty vector to hold Fourier series
+sig=n.zeros(len(t),dtype=n.complex64)
+N=50
+for k in range(-N,N):
+    sig+=...# complete this line
+    
+plt.plot(sig.real)
+plt.plot(sig.imag)
+plt.show()
+\end{lstlisting}
+
+\item[b)] Delay the signal by 0.1 seconds by applying an adjustment to the complex coefficients $c_k$. Use Equation \ref{eq:time_shift_phasor}. Plot the non-delayed and delayed signals in the same plot and verify that the signal is delayed by the right amount.
+\end{itemize}
+
+
+\fi

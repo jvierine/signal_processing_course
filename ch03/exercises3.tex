@@ -3,7 +3,7 @@
 
 \begin{enumerate}
 \item Prove $e^{i\pi}+1=0$ using Euler's formula. 
-\item Use Euler's formula to write $1/i$ into polar form $Ae^{i\phi}$. What is the phase angle $\phi$?
+\item Use Euler's formula to write $1/i$ into polar form $Ae^{i\phi}$ with $A,\phi\in\mathbb{R}$. What is the phase angle $\phi$?
 \item Show that $i^{i}$ is real valued using Euler's formula. 
 \item Use Euler's formula to show that de Moivre's formula is valid for $n\in\mathbb{Z}$:
 $$[\cos(x)+i\sin(x)]^{n}=\cos(nx)+i\sin(nx)$$
@@ -18,6 +18,13 @@ Provide a general formula that gives $n$ unique values of $z$ that
 satisfy Equation \ref{ch03:eq_unity}. How many unique solutions of $z$ are there
 for each value of $n$? Hint: remember that $e^{i 2\pi k} = 1$ where
 $k$ is an integer. 
+\item Consider the equation $z^{5}=1$, where $z\in\mathbb{C}$. 
+\begin{itemize}
+    \item[a)] Find the five solutions $w_{k}$ for $k=0,1,2,3,4$ to the equation $z^{5}=1$. 
+    \item[b)] Create a Python program to plot the solutions to this equation in the complex plane. Add lines to your plot such that the point $w_{k}$ is connected to $w_{k-1}$ mod $5$. What is the shape drawn?
+    \item[c)] Add the unit circle to the plot you found in b). 
+\end{itemize}
+
 \item Use the inverse Euler formula to convert $(1-i) e^{-i \omega t} + (1+i) e^{i
   \omega t}$ into the following form:
 \begin{equation*}
