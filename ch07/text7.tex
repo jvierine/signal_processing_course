@@ -559,7 +559,7 @@ We have used: the inverse Euler's formula for the $\sin(\cdot)$ signal, the fact
 
 \begin{marginfigure}
 \begin{center}
-\includegraphics[width=\textwidth]{ch07/figures/square_python.png}
+\includegraphics[width=\textwidth]{code/009_square_wave/square_wave.png}
 \end{center}
 \caption{Fourier series approximation of a square wave evaluated with the Python script \texttt{009\_square\_wave/square\_wave.py}.}
 \label{fig:square_wave_python}
@@ -576,7 +576,7 @@ program to visualize the Fourier series approximation of this
 function. The Python code is found in
 Listing \ref{lst:fourier_square_code}. The output of this program is shown in Figure \ref{fig:square_wave_python}.
 
-\lstinputlisting[language=Python,caption={\texttt{009\_square\_wave/square\_wave.py}},label=lst:fourier_square_code]{ch07/code/square_wave.py}
+\lstinputlisting[language=Python,caption={\texttt{009\_square\_wave/square\_wave.py}},label=lst:fourier_square_code]{code/009_square_wave/square_wave.py}
 
 \if 0
 \begin{center}
@@ -792,12 +792,12 @@ Here $c[k]$ is the complex amplitude corresponding to a spectral component with 
 
 You can think of an FFT as a discrete-time equivalent of the Fourier series analysis equation, which finds the Fourier series coefficients for a periodic discrete-time signal. We will cover the discrete Fourier transform and discrete-time signals in more detail later on, I just wanted to already expose you to the FFT algorithm at this point.
 
-\lstinputlisting[language=Python,caption={\texttt{013\_audio\_spec/audio\_spec.py}},label=lst:audio_spec]{ch07/code/audio_spec.py}
+\lstinputlisting[language=Python,caption={\texttt{013\_audio\_spec/audio\_spec.py}},label=lst:audio_spec]{code/013_audio_spec/audio_spec.py}
 
 \begin{figure}
 \begin{center}
 %\includegraphics[width=0.67\textwidth]{ch03/guitar_str.png}
-\includegraphics[width=\textwidth]{ch07/figures/audio_spec.png}
+\includegraphics[width=\textwidth]{code/013_audio_spec/audio_spec.png}
 \end{center}
 \caption{The spectral components of an audio signal (guitar string plucked). Left: time domain signal $x(t)$, Right: The magnitude of the spectral components in decibel scale: $10\log_{10}(|c_k|^2)$.}
 \label{fig:audio_spec}

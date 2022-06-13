@@ -2,17 +2,19 @@
 
 ## Main structure of the project
 Structure of the repository has been changed. The notes have been divided into chapters. These being:
-| Directory     | Description           | Status |
-----------------|-----------------------|--------|
-| ch01          | Introduction          | Done   |
-| ch02          | Python                | Done   |
-| ch03          | Complex Algebra       | Done*  |
-| ch04          | Signals and Systems   | Done*  |
-| ch05          | Elementary Signals    | Done*  |
-| ch06          | Sinusodial Signals    | Done*  |
-| ch07          | Fourier series        | Read*  |
-| ch08          | Fourier Transform     | Read*  |
-| ch09          | Discrete-time Signals | N/A    |
+| Directory     | Description                   | Status |
+----------------|-------------------------------|--------|
+| ch01          | Introduction                  | Done   |
+| ch02          | Python                        | Done   |
+| ch03          | Complex Algebra               | Done*  |
+| ch04          | Signals and Systems           | Done*  |
+| ch05          | Elementary Signals            | Done*  |
+| ch06          | Sinusodial Signals            | Done*  |
+| ch07          | Fourier series                | Read*  |
+| ch08          | Fourier Transform             | Read*  |
+| ch09          | Discrete-time Signals         | Read*  |
+| ch10          | Linear Time-invariant Systems | Read*  |
+| ch11          | Frequency Response            | Done*  |
 
 Furthermore, each directory has the following structure
 | Directory     | Contains                                                           |
@@ -28,14 +30,17 @@ Furthermore, each directory has the following structure
 - Causality has been removed from ch04 and all the exercises refering to this has been removed
 - Added some details on time-invariant systems
 - Exercise 3.9 has been rewritten. Added a new programming exercise
-- Exercise 4.1, 4.6, 4.7, 4.8 and 4.9 have been removed
+- Chapter 4 has been rewritten to make time-invariant systems easier and shorter
+- Chapter 4 solutions has been changed to account for this
+- Exercise 4.1, 4.6, 4.7, 4.8 and 4.9 have been removed; also infinite impulse exercise has been removed
+- Exercise 5 from the Fourier transform chapter have been moved to ch10 as exercise 1
 - Frequency response has been removed from the Fourier transform chapter
 - Overall typos have been fixed. 
 
 ## To do
 - Add a new programming exercise on signals and systems
-- Fix the electromagnetic wave image in ch04 (remove the code examples and git clone https://github.com/jvierine/signal_processing into the code directory). The code examples in the notes repo are no longer up to date. Some of the figures are also from there. 
-- Fix Python listing ch07 (add comments)
+- remove the code examples and git clone https://github.com/jvierine/signal_processing into the code directory. The code examples in the notes repo are no longer up to date. Some of the figures are also from there. 
+- Fix the rectangular signal exercise
 - Read through Python code and comment it
 - Try to find a heat equation exercise
 
@@ -86,3 +91,12 @@ Furthermore, each directory has the following structure
     - That the Fourier series can be shown as a special case of the Fourier transform
     - Plancherel's theorem and Parseval's theorem
     - Convolution theorem
+
+#### Discrete-time Signals
+    - Converting a signal from continuous-time to discrete-time (discritization)
+    - Sample-rate and sample-spacing; how these relate to discrete-time angular frequency
+    - Sampling of complex sinusoids and real signals
+    - Aliasing and folding
+    - Nyquist zones, the principal spectrum
+    - Shannon-sampling theorem and the sampling criteria
+    - Reconstruction of signals from the samples; the ideal reconstruction filter

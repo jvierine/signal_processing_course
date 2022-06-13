@@ -10,7 +10,7 @@ Here's an example of a discrete-time system that you might use to smooth a noisy
 What does this system do? It averages together 15 neighboring values of input signal $x[n]$. Figure \ref{fig:avg_filter} shows a demonstration of this system in action. The blue line indicates a noisy input signal $x[n]$, and the orange line depicts the output $y[n]$ of the running mean filter given in Equation \ref{eq:running_mean}. As you might expect, the output of the system is a smoother version of the input signal.
 \begin{figure}
   \begin{center}
-    \includegraphics[width=\textwidth]{ch10/figures/smoothing.png}
+    \includegraphics[width=\textwidth]{code/016_smoothing/smoothing.png}
   \end{center}
   \caption{A running average filter is often used to smooth a noisy
     signal. You can find the Python code used to produce this example
