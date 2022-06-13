@@ -2,23 +2,22 @@
 \subsection{Suggested Solutions: Signals and Systems}
 \begin{enumerate}
 \item
-\item[a)] Let's check the linearity of this system. Have that
-$$c_{1}\mathcal{T}\{V_{1}(t)\}+c_{2}\mathcal{T}\{V_{2}(t)\}=c_{1}R^{-1}[V_{1}(t)]^{2}+c_{2}R^{-1}[V_{2}(t)]^{2}.$$
-This is not linear, since
-$$\mathcal{T}\{c_{1}V_{1}(t)+c_{2}V_{2}(t)\}=R^{-1}[c_{1}V_{1}(t)+c_{2}V_{2}(t)]^{2},$$
-and therefore
-$$c_{1}\mathcal{T}\{V_{1}(t)\}+c_{2}\mathcal{T}\{V_{2}(t)\}\neq\mathcal{T}\{c_{1}V_{1}(t)+c_{2}V_{2}(t)\},$$
-since 
-$$c_{1}R^{-1}[V_{1}(t)]^{2}+c_{2}R^{-1}[V_{2}(t)]^{2}\neq R^{-1}[c_{1}V_{1}(t)+c_{2}V_{2}(t)]^{2}.$$
 
-\item[b)]
-Let's check time-invariance for this system. 
+\begin{enumerate}[a)]
+\item To check linearity of a system we check Equation \ref{def:linear_sys}:
 \begin{align*}
-    P(t)&=\mathcal{T}\{V(t)\}=R^{-1}[V(t)]^{2}, \\
-    P_{1}(t)&=\mathcal{T}\{\mathcal{D}(V(t))\}=\mathcal{T}\{V(t-\tau)\}=R^{-1}[V(t-\tau)]^{2}, \\
-    P_{2}(t)&=\mathcal{D}\{\mathcal{T}\{V(t)\}\}=\mathcal{D}\{R^{-1}[V(t)]^{2}\}=R^{-1}[V(t-\tau)]^{2}.
+    \mathcal{T}\{c_{1}x_{1}(t)+c_{2}x_{2}(t)\}&=R^{-1}[c_{1}x_{1}(t)+c_{2}x_{2}(t)], \\
+    c_{1}\mathcal{T}\{x_{1}(t)\}+c_{2}\mathcal{T}\{x_{2}(t)\} &=c_{1}R^{-1}[V_{1}(t)]^{2} + c_{2}R^{-1}[V_{2}(t)]^{2},
 \end{align*}
-We get that $P_{1}(t)=P_{2}(t)$, so the system is time-invariant. 
+these are not equal so the system is not a linear system. 
+
+\item To check time-invariance for this system verify Equation \ref{def:timeinv}:
+\begin{align*}
+    \mathcal{T}\{\mathcal{D}(V(t))\}&=\mathcal{T}\{V(t-\tau)\}=R^{-1}[V(t-\tau)]^{2}, \\
+    \mathcal{D}\{\mathcal{T}\{V(t)\}\}&=\mathcal{D}\{R^{-1}[V(t)]^{2}\}=R^{-1}[V(t-\tau)]^{2}.
+\end{align*}
+Here we get that the outputs are equal, hence the system is time-invariant. 
+\end{enumerate}
 
 \item
 Consider the discrete-time system defined as
@@ -27,82 +26,55 @@ $$y[n]=\frac{1}{5}\sum_{k=0}^{4}x[n-k].$$
 \item[a)]
 This system averages the past four values of $x[n]$, including $x[n]$ itself. 
 
-\item[b)]
-Have that
-$$c_{1}\mathcal{T}\{x_{1}[n]\}+c_{2}\mathcal{T}\{x_{2}[n]\}=c_{1}\frac{1}{5}\sum_{i=0}^{4}x_{1}[n-i]+c_{2}\frac{1}{5}\sum_{j=0}^{4}x_{2}[n-j]=\frac{1}{5}\sum_{k=0}^{4}c_{1}x_{1}[n-k]+c_{2}x_{2}[n-k].$$
-In the last step the two sums was combined into one and the index was renamed to $k$. While 
-$$\mathcal{T}\{c_{1}x_{1}[n]+c_{2}x_{2}[n]\}=\frac{1}{5}\sum_{k=0}^{4}c_{1}x_{1}[n-k]+c_{2}x_{2}[n-k],$$
-hence 
-$$c_{1}\mathcal{T}\{x_{1}[n]\}+c_{2}\mathcal{T}\{x_{2}[n]\}=\mathcal{T}\{c_{1}x_{1}[n]+c_{2}x_{2}[n]\},$$
-so the system is linear. 
-
-\item[c)]
-To check time-invariance we calculate
+\item[b)] Have that
 \begin{align*}
-    y[n]&=\mathcal{T}\{x[n]\}, \\
-    y_{1}[n]&=\mathcal{T}\{x[n-\tau]\}=\frac{1}{5}\sum_{k=0}^{4}x[(n-\tau)-k], \\
-    y_{2}[n]&=\mathcal{D}\left\{\frac{1}{5}\sum_{k=0}^{4}x[n-k]\right\}=\frac{1}{5}\sum_{k=0}^{4}x[(n-k)-\tau].
+    \mathcal{T}\{c_{1}x_{1}[n]+c_{2}x_{2}[n]\} &= \frac{1}{5}\sum_{k=0}^{4}[c_{1}x_{1}[n-k]+c_{2}x_{2}[n-k]] \\
+    c_{1}\mathcal{T}\{x_{1}[n]\}+c_{2}\mathcal{T}\{x_{2}[n]\}&=c_{1}\frac{1}{5}\sum_{i=0}^{4}x_{1}[n-i]+c_{2}\frac{1}{5}\sum_{j=0}^{4}x_{2}[n-j]=\frac{1}{5}\sum_{k=0}^{4}[c_{1}x_{1}[n-k]+c_{2}x_{2}[n-k]]
 \end{align*}
-Have that $y_{1}[n]=y_{2}[n]$ when rearranging the parenthesis, hence $\mathcal{T}\{\cdot\}$ is time-invariant. 
+In the last step the two sums was combined into one and the index was renamed to $k$. From this we can see that the output are equal so the system is linear. 
+
+\item[c)] To check time-invariance we calculate
+\begin{align*}
+    \mathcal{T}\{\mathcal{D}\{x[n]\}\}&=\mathcal{T}\{x[n-\tau]\}=\frac{1}{5}\sum_{k=0}^{4}x[(n-\tau)-k], \\
+    \mathcal{D}\{\mathcal{T}\{x[n]\}\}&=\mathcal{D}\left\{\frac{1}{5}\sum_{k=0}^{4}x[n-k]\right\}=\frac{1}{5}\sum_{k=0}^{4}x[(n-k)-\tau].
+\end{align*}
+These are equal upon rearranging the parenthesis, hence $\mathcal{T}\{\cdot\}$ is time-invariant. 
 
 \item Consider a time-scaling system of the form $y(t)=x(\alpha t)$, where $x(t)$ is the input signal to the system. 
 
-\item[a)]
-If $0<\alpha<1$, the output signal gets stretched becoming wider. In effect, it reduces the frequency of the original signal. To see this compare $\sin(t)$ with $\sin(0.5t)$ as an example. 
+\begin{enumerate}[a)]
+\item If $0<\alpha<1$, the output signal gets stretched becoming wider. In effect, it reduces the frequency of the original signal. To see this compare $\sin(t)$ with $\sin(0.5t)$ as an example. 
 
-\item[b)]
-If $\alpha>1$, the original frequencies are increased by a factor of $\alpha$, giving more oscillations in the signal. Again, compare $\sin(t)$ with $\sin(2t)$ as an example.
+\item If $\alpha>1$, the original frequencies are increased by a factor of $\alpha$, giving more oscillations in the signal. Again, compare $\sin(t)$ with $\sin(2t)$ as an example.
 
-\item[c)]
-Let's check if the system is linear. Have that
-$$c_{1}\mathcal{T}\{x_{1}(t)\}+c_{2}\mathcal{T}\{x_{2}(t)\}=c_{1}x_{1}(\alpha t)+c_{2}x_{2}(\alpha t).$$
-On the other hand
-$$\mathcal{T}\{c_{1}x_{1}(t)+c_{2}x_{2}(t)\}=c_{1}x_{1}(\alpha t)+c_{2}x_{2}(\alpha t).$$
-Have that
-$$\mathcal{T}\{c_{1}x_{1}(t)+c_{2}x_{2}(t)\}=c_{1}\mathcal{T}\{x_{1}(t)\}+c_{2}\mathcal{T}\{x_{2}(t)\},$$
-so the system is linear. 
-
-\item[d)]
-Checking time-invariance
+\item Let's check if the system is linear. Have that
 \begin{align*}
-    y_{1}(t)&=\mathcal{T}\{x(t-\tau)\}=x(\alpha(t-\tau)), \\
-    y_{2}(t)&=\mathcal{D}\{x(\alpha t)\}=x(\alpha(t-\tau)).
+    \mathcal{T}\{c_{1}x_{1}(t)+c_{2}x_{2}(t)\}&= c_{1}x_{1}(\alpha t) + c_{2}x_{2}(\alpha t) \\
+    c_{1}\mathcal{T}\{x_{1}(t)\}+c_{2}\mathcal{T}\{x_{2}(t)\}&=c_{1}x_{1}(\alpha t)+c_{2}x_{2}(\alpha t)
 \end{align*}
-The system is time-invariant as $y_{1}(t)=y_{2}(t)$.
+so the system is linear as these are equal.
+
+\item Checking time-invariance
+\begin{align*}
+    \mathcal{T}\{\mathcal{D}\{x(t)\}\}&=\mathcal{T}\{x(t-\tau)\}=x(\alpha(t-\tau)), \\
+    \mathcal{D}\{\mathcal{T}\{x(t)\}\}&=\mathcal{D}\{x(\alpha t)\}=x(\alpha(t-\tau)).
+\end{align*}
+The system is time-invariant as these satisfy Equation \ref{def:timeinv}.
+\end{enumerate}
 
 \item Consider the derivative as a system $\mathcal{T}\{x(t)\}=\frac{d}{dt}x(t)$. This system is time-invariant and linear. It is linear since
-$$c_{1}\mathcal{T}\{x_{1}(t)\}+c_{2}\mathcal{T}\{x_{2}(t)\}=c_{1}\frac{d}{dt}x_{1}(t)+c_{2}\frac{d}{dt}x_{2}(t),$$
-and
-$$\mathcal{T}\{c_{1}x_{1}(t)+c_{2}x_{2}(t)\}=\frac{d}{dt}(c_{1}x_{1}(t)+c_{2}x_{2}(t))=c_{1}\frac{d}{dt}x_{1}(t)+c_{2}\frac{d}{dt}x_{2}(t),$$
-are equal by linearity of the derivative operator. \\
-For time-invariance we check the condition
 \begin{align*}
-    y_{1}(t)&=\mathcal{T}\{x(t-\tau)\}=\frac{d}{dt}x(t-\tau), \\
-    y_{2}(t)&=\mathcal{D}\left\{\frac{d}{dt}x(t)\right\}=\frac{d}{dt}x(t-\tau).
+    \mathcal{T}\{c_{1}x_{1}(t)+c_{2}x_{2}(t)\}&=c_{1}\frac{d}{dt}x_{1}(t) + c_{2}\frac{d}{dt}x_{2}(t) \\
+    c_{1}\mathcal{T}\{x_{1}(t)\}+c_{2}\mathcal{T}\{x_{2}(t)\}&=c_{1}\frac{d}{dt}x_{1}(t) + c_{2}\frac{d}{dt}x_{2}(t)
 \end{align*}
-Showing that $y_{1}(t)=y_{2}(t)$, hence the system is time-invariant. 
+are equal, which follows from linearity of the differential operator.
 
-\item Let $y[n]$ and $x[n]$ be discrete-time signals and consider the system 
-$$y[n]=\frac{1}{2}y[n-1]+\frac{1}{2}x[n].$$
-We assume $x[n]=0$ for $n<0$. By assumption $y[n]$ for $n=-\infty$ so the first nonzero output values are 
+For time-invariance we check the condition in Equation \ref{def:timeinv}:
 \begin{align*}
-    y[0]&=\frac{1}{2}x[0], \\
-    y[1]&=\frac{1}{2}y[0]+\frac{1}{2}x[1], \\
-    y[2]&=\frac{1}{2}y[1]+\frac{1}{2}x[2], \\
-    \vdots \\
-    y[n]&=\frac{1}{2}y[n-1]+\frac{1}{2}x[n].
+    \mathcal{T}\{\mathcal{D}\{x(t)\}\}&=\mathcal{T}\{x(t-\tau)\}=\frac{d}{dt}x(t-\tau), \\
+    \mathcal{D}\{\mathcal{T}\{x(t)\}\}&=\mathcal{D}\left\{\frac{d}{dt}x(t)\right\}=\frac{d}{dt}x(t-\tau).
 \end{align*}
-This gives
-\begin{align*}
-    y[0]&=\frac{1}{2}x[0], \\
-    y[1]&=\frac{1}{2}\left(\frac{1}{2}x[0]\right)+\frac{1}{2}x[1], \\
-    y[2]&=\frac{1}{2}\left(\frac{1}{2}\left(\frac{1}{2}x[0]\right)+\frac{1}{2}x[1]\right)+\frac{1}{2}x[2], \\
-    \vdots \\
-    y[n]&=\sum_{j=0}^{n}\frac{1}{2^{j+1}}x[n-j].
-\end{align*}
-The system can therefore be represented as
-$$y[n]=\mathcal{T}\{x[n]\}=\sum_{j=0}^{n}\frac{1}{2^{j+1}}x[n-j],$$
-by linearity of sums the system is linear. 
+Showing that Equation \ref{def:timeinv} holds, hence the system is time-invariant. 
 
 \item The guitar amplifier is a system of the form
 $$y(t)=\begin{cases}
@@ -128,12 +100,12 @@ y_d(t) = \left\{
 \end{equation*}
 Have that
 \begin{align*}
-    y_{1}&= \mathcal{T}\{\mathcal{D}\{x(t)\}\}=\mathcal{T}\{x(t-\tau)\}=\begin{cases}
+    \mathcal{T}\{\mathcal{D}\{x(t)\}\}&=\mathcal{T}\{x(t-\tau)\}=\begin{cases}
         -\beta, \quad \text{for}\ \alpha x(t-\tau)<-\beta,\\
         \alpha x(t-\tau), \quad \text{for}\ |\alpha x(t-\tau)|\le \beta,\\
         \beta, \quad \text{for}\ \alpha x(t-\tau)>\beta.
     \end{cases} \\
-    y_{2}&=\mathcal{D}\{\mathcal{T}\{x(t)\}\}=\mathcal{D}\left\{\begin{cases}
+    \mathcal{D}\{\mathcal{T}\{x(t)\}\}&=\mathcal{D}\left\{\begin{cases}
         -\beta, \quad \text{for}\ \alpha x(t)<-\beta,\\
         \alpha x(t), \quad \text{for}\ |\alpha x(t)|\le \beta,\\
         \beta, \quad \text{for}\ \alpha x(t)>\beta.

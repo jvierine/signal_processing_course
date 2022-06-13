@@ -9,7 +9,7 @@
 \newthought{What is a signal and what is a system?} By
 a \emph{\index{signal}{signal}}, we mean an information carrying mathematical function. Any function that has a value as a function of one or more variables is in essence a signal. By a \emph{\index{system}{system}}, we denote a mathematical operation that modifies a signal. A system consists of the precise mathematical description of how a signal fed into a system is modified by the system to produce an output signal.
 
-The definitions of signals and systems are merely abstract concepts, which have gained acceptance in the engineering community. In the context of mathematics, signals could also be called functions or vectors. Systems would be called functions or operators. In computer science, signals are often treated as arrays of numbers in the memory of a computer and systems are algorithms and computer programs that operate on these arrays.
+The definition of signals and systems are merely abstract concepts, which have gained acceptance in the engineering community. In the context of mathematics, signals could also be called functions or vectors. Systems would be called functions or operators. In computer science, signals are often treated as arrays of numbers in the memory of a computer and systems are algorithms and computer programs that operate on these arrays.
 
 \section{Signals}
 \index{signal}
@@ -362,6 +362,7 @@ A system is linear, if a linear combination of inputs fed into the system yields
 \begin{equation}
 \boxed{
 \spop[c_1 x_1(t) + c_2 x_2(t)] = c_1 \spop[x_1(t)] + c_2 \spop[ x_2(t) ]}
+\label{def:linear_sys}
 \end{equation}
 for arbitrary constants $c_1 \in \mathbb{C}$ and $c_2 \in \mathbb{C}$ and arbitrary input signals $x_1(t)$ and $x_2(t)$. This property is highly useful, and appears throughout signal processing.
 
@@ -460,41 +461,28 @@ Let us first define a delay system $\mathcal{D}\{x(t)\} = x(t-\tau)$. Let us ass
 \begin{equation}
 \boxed{
 \mathcal{T}\{\mathcal{D}\{x(t)\}\} = \mathcal{D}\{\mathcal{T}\{x(t)\}\}
+\label{def:timeinv}
 }
 \end{equation}
-In other words, it does not matter if the signal is delayed before or
-after the system $\mathcal{T}\{\cdot\}$.
+In other words, it does not matter if the signal is delayed before or after the system $\mathcal{T}\{\cdot\}$. To check time-invariance we need to verify Equation \ref{def:timeinv}. 
 
-Time-invariance can be formally tested by using this equation and
-comparing the output of a system for a time-shifted input $y_1(t) =
-\spop[\mathcal{D}\{x(t)\}]$ to a time-shifted output signal $y_{2}(t)
-= \mathcal{D}\{\mathcal{T}\{x(t)\}\}$:
-\begin{align}
-y(t) &= \spop[x(t)] \\
-y_1(t) &= \spop[\mathcal{D}\{x(t)\}] = \spop[x(t-\tau)]\\
-y_2(t) &= \mathcal{D}\{\mathcal{T}\{x(t)\}\} = y(t-\tau).
-\end{align}
-If $y_1(t) = y_2(t)$, the system is time-invariant. Otherwise not. The
-test for time-invariance is illustrated as a block diagram in Figure \ref{fig:time_inv_block}. If you want, you could think of a time-invariant system as a system that satisfy
+The test for time-invariance is illustrated as a block diagram in Figure \ref{fig:time_inv_block}. If you want, you could think of a time-invariant system as a system that satisfy
 $$[\mathcal{T},\mathcal{D}]x(t)=0,$$
 where $[\mathcal{T},\mathcal{D}]=\mathcal{T}\mathcal{D}-\mathcal{D}\mathcal{T}$ is the commutator of two operators. Thus, a time-invariant system $\mathcal{T}$ is a system that commutes with the time-delay operator $[\mathcal{T},\mathcal{D}]=0$. 
 
 \newthought{An example of a time-invariant system} is the system that returns the absolute value of the input signal $y(t)=|x(t)|$. We can see this by evaluating:
 \begin{align}
-y(t) &= |x(t)|\\
-y_1(t) &= |x(t-\tau)|\\
-y_2(t) &= y(t-\tau) = |x(t-\tau)|
+\mathcal{T}\{\mathcal{D}\{x(t)\}\} &= \mathcal{T}\{x(t-\tau)\}=|x(t-\tau)|\\
+\mathcal{D}\{\mathcal{T}\{x(t)\}\} &= \mathcal{D}\{|x(t)|\}=|x(t-\tau)|
 \end{align}
-Time-invariance holds, because it is easy to see that
-$y_1(t)=y_2(t)$. It doesn't matter if a time-delay is applied to the signal before or after obtaining the absolute value of the input signal.
+Time-invariance holds as the outputs are equal. It doesn't matter if a time-delay is applied to the signal before or after obtaining the absolute value of the input signal.
 
-\newthought{An example of a case that is not time-invariant} is $y(t) = t + x(t)$. We can immediately see that the system directly depends on $t$, not only through the input. The formal test also shows that time-invariance is not met:
+\newthought{An example of a case that is not time-invariant} is $y(t) = \mathcal{T}\{x(t)\} = t + x(t)$. We can immediately see that the system directly depends on $t$, not only through the input. The formal test also shows that time-invariance is not met:
 \begin{align}
-y(t) &= t + x(t)\\
-y_1(t) &= t + x(t-\tau)\\
-y_2(t) &= y(t-\tau) = t - \tau + x(t-\tau)
+\mathcal{T}\{\mathcal{D}\{x(t)\}\} &= \mathcal{T}\{x(t-\tau)\}=t+x(t-\tau) \\
+\mathcal{D}\{\mathcal{T}\{x(t)\}\} &= \mathcal{D}\{t + x(t)\}=(t-\tau)+x(t-\tau)
 \end{align}
-In this case $y_1(t) \ne y_2(t)$.
+In this case $\mathcal{T}\{\mathcal{D}\{x(t)\}\}\neq\mathcal{D}\{\mathcal{T}\{x(t)\}\}$ so the system is not time-invariant.
 
 \section{Example: Overdriven amplifier}
 \begin{marginfigure}
