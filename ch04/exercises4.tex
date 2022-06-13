@@ -37,13 +37,7 @@ when $x(t)$ is the signal fed into the system and $y(t)$ is the output.
 \item Prove that the time derivative operator $y(t) = \mathcal{T}\{x(t)\} = \frac{d}{dt} x(t)$
 is a linear time-invariant system.
 
-\item The following system is defined as the average of the previous
-value of the output signal $y[n-1]$ and the current value of the
-input signal $x[n]$:
-$$y[n]=\frac{1}{2}y[n-1]+\frac{1}{2}x[n].$$
-Is this a linear system? In order to show this, you can assume that the input is zero $x[n]=0$ when $n<0$ and that the output $y[n]=0$ when $n=-\infty$. Hint: Try evaluating the value of the values of $y[n]$.
-
-\item The guitar amplifier system given in Equation \ref{clipamp} is not a linear system. Prove this. Hint: you can use proof by example, by finding a case where the requirement of linearity is not met.
+\item The guitar amplifier system given in Equation \ref{clipamp} is not a linear system. Prove this. Hint: you can use proof by example, by finding a case where the requirement of linearity is not met. 
 
 \item Is the guitar amplifier system given in Equation \ref{clipamp} a time-invariant system? Prove your result by using the formal test for time-invariance.
 
@@ -51,15 +45,12 @@ Is this a linear system? In order to show this, you can assume that the input is
 \begin{equation}
 y(t) = \alpha x(t)
 \end{equation}
-where the input signal is $x(t)$, the output signal is $y(t)$, and the
-amplification is $\alpha$. You can find the code and audio file on
-Github.
+where the input signal is $x(t)$, the output signal is $y(t)$, and the amplification is $\alpha$. You can find the code and audio file on Github.
 \lstinputlisting[language=Python,caption={\texttt{003\_guitar/amplifier.py}},label=lst:audio]{ch04/code/amplifier.py}
 Run this code and verify that the audio signal stored in
 file \verb|guitar_amp.wav| is amplified. You will need to do this by inspecting a before and after amplification plot of the audio signal, as the example code will normalize the amplitude of the signal before storing it to file.
 
-You can use this script as a basis for experimenting with audio signal
-processing later on during this course.
+You can use this script as a basis for experimenting with audio signal processing later on during this course.
 
 \item Change the code in Listing \ref{lst:audio} is such a way that it implements a clipping amplifier as shown in Equation: \ref{clipamp}. Figure out suitable values for $\alpha$ and $\beta$ that make the guitar sound distorted.
 
