@@ -39,7 +39,6 @@ Furthermore, each directory has the following structure
 
 ## To do
 - Add a new programming exercise on signals and systems
-- remove the code examples and git clone https://github.com/jvierine/signal_processing into the code directory. The code examples in the notes repo are no longer up to date. Some of the figures are also from there. 
 - Fix the rectangular signal exercise
 - Read through Python code and comment it
 - Try to find a heat equation exercise
