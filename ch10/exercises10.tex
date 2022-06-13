@@ -1,0 +1,121 @@
+\newpage
+\section*{Exercises: Linear Time-invariant Systems}
+\begin{enumerate}
+\item The impulse response of an LTI system is defined as:
+\begin{equation}
+    h(t) = \frac{42\sin(\omega_c t)}{\pi t}.
+    \label{eq:ir_42rect}
+\end{equation}
+The input to the LTI system is a periodic signal with a fundamental period $T=1$:
+\begin{equation}
+    x(t) = \sum_{n=-\infty}^{\infty}\delta(t-n).
+\end{equation}
+When signal $x(t)$ is fed into an LTI system, the output signal is given by a convolution of the input signal with the output signal:
+\begin{equation}
+    y(t) = \int_{-\infty}^{\infty} h(t-\tau)x(\tau) d\tau.
+\end{equation}
+\begin{enumerate}[a)]
+\item Determine the Fourier transform $\hat{x}(\omega)$ of the input signal. Plot $\hat{x}(\omega)$ over the range of angular frequencies $-7\pi < \omega < 7\pi$. Hint: It might help if you start by expressing signal $x(t)$ using a Fourier series representation first, and then apply Equation \ref{eq:fsftgen}.
+\item Determine the frequency response $\mathcal{H}(\omega)$ of the LTI system. In other words, Fourier transform the impulse response signal given in Equation \ref{eq:ir_42rect}. It should be a fairly simple function. Make a plot of $|\mathcal{H}(\omega)|$ on the same graph as $\hat{x}(\omega)$ using $\omega_c = 5\pi$.
+\item Use your plot in b) to determine $y(t)$, the output of the LTI system characterized using $h(t)$ when $\omega_c=5\pi$. Hint: use property that convolution in time domain is multiplication in frequency domain.
+\item What values of $\omega_c$ will result in a non-zero constant output $y(t)=c$. What is the constant $c$?
+\end{enumerate}
+
+\item A running average system is defined as:
+  \begin{equation}
+    y[n] = \mathcal{T}\{x[n]\} = \frac{1}{L}\sum_{k=0}^{L-1} x[n-k]
+  \end{equation}
+
+  \begin{enumerate}[a)]
+    \item Show that the running average system is a linear time
+      invariant system using the test for linearity and time
+      invariance.
+    \item What is the impulse response $h[n] =
+      \mathcal{T}\{\delta[n]\}$ of the running average system?
+    \item How many non-zero values does the impulse response $h[n]$ have?
+    \item We feed a discrete-time complex sinusoidal signal
+      $x[n]=e^{i\hat{\omega}_0 n}$ into the system. Show that the
+      output is of the form $y[n]=A e^{i\phi} e^{i\hat{\omega}_0 n}$,
+      in other words, a discrete-time complex sinusoidal signal with
+      the same frequency as the input signal.
+      \item Continue with task d). Let us assume that
+        $L=4$. What is the amplitude of the output signal $A$ when we
+        have a normalized angular frequency of:
+        \begin{enumerate}
+        \item $\hat{\omega}_0 = 0$ radians per sample?
+        \item $\hat{\omega}_0 = \pi$ radians per sample?
+        \item $\hat{\omega}_0 = 0.5\pi$ radians per sample?          
+        \end{enumerate}
+      
+    \item Show that system $y_2[n]=\mathcal{T}\{ \mathcal{T}\{x[n]\} \}$ is also an LTI system.
+    \item What is the impulse response $h_2[n]=\mathcal{T}\{\mathcal{T}\{\delta[n]\}\}$? Sketch a plot of the non-zero values $h_2[n]$.
+  \end{enumerate}
+  
+  \item Obtain the demonstration code that implements a reverb effect
+    using a convolution operation:
+    \begin{equation}
+      y[n]=h[n]*x[n],
+      \end{equation}
+    where $x[n]$ is the input signal, $h[n]$ is the impulse response
+    of a room, and $y[n]$ is the output signal with the reverb
+    effect. Download \verb|7na.wav| from the course github examples
+    \url{https://github.com/jvierine/signal_processing/tree/master/018_reverb}
+    or alternatively use your own audio file.
+
+\begin{enumerate}[a)]
+
+\item Run the example code and verify that the filtered signal indeed sounds like it
+is played in a large room by playing \verb|7na.wav| and the file \verb|reverb.wav|
+produced by the script.
+
+\item Find the part in the code where a convolution between the audio
+  signal and the impulse response is evaluated. Plot the impulse
+  response of the FIR filter applied to the input signal.
+
+\item Figure out how to increase and reduce the amount of reverb, i.e.,
+to make it sound like the audio signal is played in a large or small
+room with many surfaces that reflect sound waves. What does the
+impulse response for a large room and a small room look like?
+
+\item Now try to create an impulse response of an echo from a distance
+  of 1000 meters using the following impulse response
+  $h[n]=\delta[n]+0.5\delta[n-n_0]$. Assuming that the propagation velocity of
+  sound is 343 $\frac{\mathrm{m}}{\mathrm{s}}$, determine a suitable value for $n_0$.
+
+\item Implement several different length running average filters to
+  the audio signal (e.g., Equation \ref{eq:running_mean}), which
+  average together 4, 8, 16, and 100 samples. Can you detect
+  with your ear what happens to the low and high frequency components
+  of the signal as a result of the operation?
+
+\item Come up with your own model of the acoustics of some space. Try to figure
+out at what propagation delays and amplitudes you expect to receive scattered sound
+in that space. Implement it and try out how it sounds like!
+\end{enumerate}
+
+
+\item You can use the sound card on your computer to implement a
+  sonar\sidenote{This last exercise is technically a bit more
+    challenging, so this is only intended for those who want to
+    explore practical applications. There is a good chance that you
+    will need to do a lot of trial and error testing before you get
+    this to work. I will try to demonstrate this in class.}. All you need to do is to emit an audio signal
+  consisting of a train of short pulses (Dirac comb) with a speaker
+  connected to your computer. By using a suitable pulse spacing (e.g.,
+  0.2 seconds), you can probe your surroundings for acoustic
+  scattering. Use the audio example programs to create an audio file
+  that you can play with your computer.
+
+Record sounds with a microphone with a program such as audacity
+simultaneously while you play the audio signal with pulses. Analyze
+the resulting audio file and determine the impulse response of your
+surroundings.
+
+You can use a large flat surface (e.g., a piece of cardboard) as an
+acoustic reflector to test your sonar. You can move the piece of
+cardboard closer or further away from your computer to test if a
+spike-like feature of the impulse response corresponds to your
+acoustic reflector.
+
+
+\end{enumerate}
