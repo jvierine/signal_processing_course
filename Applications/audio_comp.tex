@@ -1,0 +1,52 @@
+\section{Audio Compression Example}
+In this application example, I'll show you how to estimate the
+spectral components of an audio signal and how this can be used for
+audio compression. I won't go very deep into either of these
+topics. The main idea is to expose you to these concepts.
+
+\newthought{Example: audio compression algorithms often use a sparse spectral
+representation of an audio signal}.  The sounds produced by musical
+instruments when playing a single note are often good examples of
+periodic signals that occur in our daily life. Of course, real signals
+are typically not exactly periodic, but for short intervals this
+approximation is good.
+
+A good example of this is the signal shown in
+Figure \ref{fig:audio_spec}, which depicts the sound signal (instantaneous
+relative air pressure at the microphone) emitted by a guitar when one
+string is plucked.
+
+A Fourier series approximation of an audio signal is often used in
+audio compression, as it is often possible to approximate an audio
+signal relatively accurately with relatively few non-zero Fourier
+series coefficients. This is the basic idea behind the MP3 audio
+compression algorithm\sidenote[][0em]{Yes, there is more to it. Note, that
+real world compression algorithms use a lot more tricks, such as
+psychoacoustics -- not storing spectral components that humans cannot
+hear very well in music. These are outside the scope of this basic
+course on signal processing though. However, it is already possible to
+achieve significant compression just using the simple idea of
+representing the signal only using the $N$ largest amplitude spectral
+components. I would wager that most of the compression is achieved
+with the sparse spectral representation.}.
+
+The Python code in Listing \ref{lst:audio_compression} demonstrates
+audio compression in practice. Understanding the program may require
+you to be somewhat familiar with analyzing what computer programs
+do. If you are just starting with programming, feel free to skip going
+through this program example.
+
+The audio compression example program relies on the discrete Fourier
+transform (FFT), which we haven't covered yet. Just think of
+the \verb|numpy.fft.fft| operation as the analysis step of the Fourier
+series, which gives you the phase and amplitude of each frequency
+component $c_k$. We'll cover the discrete Fourier transform in more
+detail at a later part of this course.
+
+\lstinputlisting[language=Python,caption={\texttt{010\_audio\_compression/audio\_compression.py}},label=lst:audio_compression]{code/010_audio_compression/audio_compression.py}
+
+The algorithm discards weak spectral components of the signal and
+stores the strong ones. This can result in significant savings in
+storage space. In this example, the amount of storage required is only
+5\% of the original audio signal!
+
