@@ -2,19 +2,20 @@
 
 ## Main structure of the project
 Structure of the repository has been changed. The notes have been divided into chapters. These being:
-| Directory     | Description                   | Status |
-----------------|-------------------------------|--------|
-| ch01          | Introduction                  | Done   |
-| ch02          | Python                        | Done   |
-| ch03          | Complex Algebra               | Done*  |
-| ch04          | Signals and Systems           | Done*  |
-| ch05          | Elementary Signals            | Done*  |
-| ch06          | Sinusodial Signals            | Done*  |
-| ch07          | Fourier series                | Read*  |
-| ch08          | Fourier Transform             | Read*  |
-| ch09          | Discrete-time Signals         | Read*  |
-| ch10          | Linear Time-invariant Systems | Read*  |
-| ch11          | Frequency Response            | Done*  |
+| Directory     | Description                            | Status |
+----------------|----------------------------------------|--------|
+| ch01          | Introduction                           | Done   |
+| ch02          | Python                                 | Done   |
+| ch03          | Complex Algebra                        | Done*  |
+| ch04          | Signals and Systems                    | Done*  |
+| ch05          | Elementary Signals                     | Done*  |
+| ch06          | Sinusodial Signals                     | Done*  |
+| ch07          | Fourier series                         | Done*  |
+| ch08          | Fourier Transform                      | Done*  |
+| ch09          | Discrete-time Signals                  | Done*  |
+| ch10          | Linear Time-invariant Systems          | Read*  |
+| ch11          | Frequency Response                     | Done*  |
+| ch12          | Discrete-time Fourier Transform (DTFT) | Done*  |
 
 Furthermore, each directory has the following structure
 | Directory     | Contains                                                           |
@@ -36,6 +37,8 @@ Furthermore, each directory has the following structure
 - Exercise 5 from the Fourier transform chapter have been moved to ch10 as exercise 1
 - Frequency response has been removed from the Fourier transform chapter
 - Overall typos have been fixed. 
+- Applications have been added to one 
+- All source code has been added and is up to date
 
 ## To do
 - Add a new programming exercise on signals and systems
