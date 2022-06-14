@@ -306,3 +306,474 @@ The frequency response is therefore the Fourier transform of the impulse respons
 }
 \end{equation}
 The absolute value $|\Hiw|$ is called the \index{magnitude response} magnitude response, and the phase angle $\angle \Hiw$ is called the \index{phase response} phase response. These determine how the LTI system modifies the amplitude and phase of each spectral component of the signal.
+
+\newpage
+\section{Convolution}
+
+A convolution operation is defined for both continuous-time and
+discrete-time signals. As we just saw, a convolution operation can be
+interpreted as an LTI system applied to a signal.
+
+The continuous-time convolution is defined as an integral:
+\begin{equation}
+\boxed{
+  a(t)*b(t) = \int_{-\infty}^{\infty}a(\tau)b(t-\tau)d\tau\,\,.
+}
+\end{equation}
+The discrete-time convolution is defined as a sum:
+\begin{equation}
+\boxed{
+  a[n]*b[n] = \sum_{k=-\infty}^{\infty}a[k]b[n-k]\,\,.
+}
+\end{equation}
+
+\section{Properties of a convolution}
+
+The unit impulse is \emph{identity}:
+\begin{equation}
+  \boxed{
+    a[n] = a[n]*\delta[n]\,\,.
+    } 
+\end{equation}
+Convolution is \emph{commutative}:
+\begin{equation}
+  \boxed{
+    a[n]*b[n] = b[n]*a[n]\,\,,
+    }
+\end{equation}
+\emph{associative}:
+\begin{equation}
+    \boxed{
+      (a[n]*b[n])*c[n] = a[n]*(b[n]*c[n])\,\,,
+      }
+\end{equation}
+and \emph{distributive}:
+\begin{equation}
+    \boxed{
+      a[n]*(b[n]+c[n]) = a[n]*b[n] + a[n]*c[n]\,\,.
+      }
+\end{equation}
+The same properties also exist for the continuous-time convolution
+operation.
+
+
+\subsection{Identity and time-shift}
+
+When convolving a signal with the unit impulse, the result of this
+operation is the input signal.
+\begin{equation}
+x[n]*\delta[n]=x[n]\,\,.
+\end{equation}
+When convolving signal $x[n]$ with a time delayed unit impulse
+$\delta[n-n_0]$ the result is a time shifted version of $x[n]$:
+\begin{equation}
+x[n]*\delta[n-n_0]=x[n-n_0]\,\,.
+\end{equation}
+The time-shifted unit-impulse is therefore the impulse response of a
+time-shifting system $y[n] = x[n-n_0]$.
+
+\subsection{Commutative}
+
+You can change the order of the signals that are being convolved without changing the result: 
+\begin{equation}
+y[n] = a[n]*b[n] = b[n]*a[n]\,\,.
+\end{equation}
+The ordering of $a[n]$ and $b[n]$ is interchangeable. The proof is as follows:
+\begin{equation}
+y[n] = a[n]*b[n] = \sum_{k=-\infty}^{\infty} a[k]b[n-k]\,\,. 
+\end{equation}
+Using a change of variable $\ell=n-k$:
+\begin{equation}
+  \sum_{k=-\infty}^{\infty} a[k]b[n-k] = \sum_{\ell=-\infty}^{\infty} b[\ell] a[n-\ell] = y[n]\,\,.
+  \label{eq:commutative_convolution_proof}
+\end{equation}
+
+\subsection{Associative}
+
+You can change the order of execution of binary convolution operation without changing the result:
+\begin{equation}
+(a[n]*b[n])*c[n] = a[n]*(b[n]*c[n])\,\,.
+\end{equation}
+The proof is as follows:
+\begin{align}
+(a[n]*b[n])*c[n] &= \sum_{k}\underbrace{\left(\sum_\ell a[\ell]b[k-\ell]\right)}_{a[k]*b[k]} c[n-k]\,\,.
+\end{align}
+For the other ordering
+\begin{align}
+a[n]*(b[n]*c[n]) &= \sum_{\ell} a[\ell] \underbrace{\left(\sum_m b[m]c[(n-m)-\ell]\right)}_{b[n]*c[n]}\\
+                 &= \sum_{\ell} \sum_m a[\ell] b[m]c[(n-m)-\ell]\,\,.
+\end{align}
+If we now substitute: $m=k-\ell$, then $n-m-\ell=n-k$ and thus
+\begin{align}
+a[n]*(b[n]*c[n]) &= \sum_{k} \underbrace{\left(\sum_{\ell} a[\ell] b[k-\ell]\right)}_{a[k]*b[k]} c[n-k]\,\,.
+\end{align}
+Here we make use of the the fact that 
+\begin{equation}
+\sum_{k-l=-\infty}^{\infty} \equiv \sum_{k=-\infty+l}^{\infty+l} \equiv \sum_{k=-\infty}^{\infty}\,\,. 
+\end{equation}
+
+
+\begin{marginfigure}
+
+\begin{center}
+  \begin{tikzpicture}[node distance=3cm,auto,>=latex']
+
+    \node [int] (a) {LTI $(h_1[n])$};
+    \node [above of=a, node distance=1cm] (in) {$x[n]$};
+    \node [int, below of=a, node distance=1cm] (b) {LTI $(h_2[n])$};
+    \node [below of=b, node distance=1cm] (out) {$y[n]$};
+    \path[->] (a) -> (b);
+    \draw[->] (a) -> (b);
+    \path[->] (in) -> (a);
+    \draw[->] (in) -> (a);
+    \path[->] (b) -> (out);
+    \draw[->] (b) -> (out);
+    
+    \node [int, right of=a,node distance=2cm] (a3) {LTI $(h_3[n])$};
+    \node [above of=a3, node distance=1cm] (in3) {$x[n]$};
+    \node [below of=a3, node distance=1cm] (out3) {$y[n]$};
+    \path[->] (in3) -> (a3);
+    \draw[->] (in3) -> (a3);
+    \path[->] (a3) -> (out3);
+    \draw[->] (a3) -> (out3);
+    
+\end{tikzpicture}
+\end{center}
+\caption{A consequence of the associative property of convolution is
+  that two LTI systems characterized with $h_1[n]$ and $h_2[n]$ can be
+  combined as a single LTI system with impulse response
+  $h_3[n]=h_1[n]*h_2[n]$.}
+\label{fig:cascade_lti}
+\end{marginfigure}
+
+
+
+A consequence of the associative property is that if we have two LTI
+systems that are applied to an input signal $x[n]$ in series, we can
+come up with a single LTI system that is equivalent to two \index{chained 
+LTI system} chained LTI systems:
+\begin{equation}
+  y[n] = (x[n]*h_1[n])*h_2[n] = x[n]*h_3[n]\,\,.
+\end{equation}
+Here $h_3[n]=h_1[n]*h_2[n]$. This is depicted in Figure
+\ref{fig:cascade_lti}. This property can be extended to an arbitrary
+number of systems that are connected together in series.
+
+\subsection{Distributive}
+
+\begin{marginfigure}
+
+\begin{center}
+  \begin{tikzpicture}[node distance=3cm,auto,>=latex']
+
+    \node [draw,shape=circle](p) {$+$};
+    \node [int, above left of=p,node distance=1.5cm] (a1) {LTI $(h[n])$};
+    \node [int, above right of=p,node distance=1.5cm] (a2) {LTI $(h[n])$};
+    \node [above of=a1,node distance=1cm] (i1) {$x_1[n]$};
+    \node [above of=a2,node distance=1cm] (i2) {$x_2[n]$};
+    \node [below of=p,node distance=1cm] (o1) {$y[n]$};
+
+    \path[->] (i1) -> (a1);
+    \draw[->] (i1) -> (a1);
+    \path[->] (i2) -> (a2);
+    \draw[->] (i2) -> (a2);
+    
+    \path[->] (a1) -> (p);
+    \draw[->] (a1) -> (p);
+    \path[->] (a2) -> (p);
+    \draw[->] (a2) -> (p);
+    \path[->] (p) -> (o1);
+    \draw[->] (p) -> (o1);
+    
+    
+    \node [int, right of=a2,node distance=2cm] (a3) {LTI $(h[n])$};
+    \node [above of=a3, node distance=1cm] (in3) {$x_1[n]+x_2[n]$};
+    \node [below of=a3, node distance=1cm] (out3) {$y[n]$};
+    \path[->] (in3) -> (a3);
+    \draw[->] (in3) -> (a3);
+    \path[->] (a3) -> (out3);
+    \draw[->] (a3) -> (out3);
+    
+\end{tikzpicture}
+\end{center}
+\caption{A consequence of the distributive property is linearity.}
+\label{fig:sum_lti}
+\end{marginfigure}
+
+The convolution is distributive:
+\begin{equation}
+a[n]*(b[n]+c[n]) = a[n]*b[n] + a[n]*c[n]\,\,.
+\end{equation}
+Proof:
+\begin{align}
+a[n]*(b[n]+c[n]) & = \sum_{k=-\infty}^{\infty} a[k](b[n-k]+c[n-k]) \\
+ & = \sum_{k=-\infty}^{\infty} a[k]b[n-k]+ \sum_{k=-\infty}^{\infty} a[k]c[n-k]\,\,.
+\end{align}
+\begin{marginfigure}
+\begin{center}
+        \begin{tikzpicture}
+        \begin{axis}[width=6cm,height=4cm,ymin=0,xmin=-2,ymax=1.3,xmax=2, 
+                ytick={0,1},
+        yticklabels={0,1},
+        xtick={0.5},
+             xticklabels={$1$},
+    xlabel=$\tau$, axis lines = center]
+
+\addplot[color=blue,thick] plot coordinates {(-3,0) (0.00001,0) (0.0,1.0) (0.5,1.0) (0.5,0.0) (10,0.0) };
+\node at (axis cs:-0.45,0.8) [below, font={\footnotesize}]{$h(\tau)$};
+
+\end{axis}
+        \end{tikzpicture}
+\end{center}
+\begin{center}
+        \begin{tikzpicture}
+        \begin{axis}[width=6cm,height=4cm,ymin=0,xmin=-2,ymax=1.3,xmax=2, 
+                ytick={0,1},
+        yticklabels={0,1},
+        xtick={1.0},
+             xticklabels={$T$},
+    xlabel=$\tau$, axis lines = center]
+
+\addplot[color=red,thick] plot coordinates {(-3,0) (0.00001,0) (0.0,1.0) (1.0,1.0) (1.0,0.0) (10,0.0) };
+\node at (axis cs:-0.45,0.8) [below, font={\footnotesize}]{$x(\tau)$};
+
+\end{axis}
+        \end{tikzpicture}
+\end{center}
+\caption{Two rectangle functions.}
+\label{fig:rectangles}
+\end{marginfigure}
+An example application of this property is shown in Figure
+\ref{fig:sum_lti}. Signals $x_1[n]$ and $x_2[n]$ fed into an identical
+LTI systems separately and then added together is equivalent to the
+sum of the signals fed into a single LTI system.
+
+
+\section{Example: Convolution animations}
+
+Animations of the convolution operation for various example systems
+can be found here: \url{http://kaira.uit.no/juha/fir_animation/}. The
+code for creating such animations can be obtained from github:
+\url{https://github.com/jvierine/signal_processing/tree/master/017_fir_animation}.
+
+
+
+\section{Example: convolution of two rectangle functions}
+
+
+
+
+Consider the following two continuous-time signals:
+\begin{align}
+h(t) &= u(t)-u(t-1) \\
+x(t) &= u(t)-u(t-T)\,\,.
+\end{align}
+with $T>1$. These signals are shown in Figure \ref{fig:rectangles}.
+
+The convolution equation includes a term $h(\tau)$ and a term $x(t-\tau)$:
+\begin{equation}
+y(t)=\int_{-\infty}^{\infty}h(\tau)x(t-\tau)d\tau
+\end{equation}
+where $x(t-\tau)$ is a time-shifted and time-reversed version of
+$x(\tau)$.
+
+The integral can be divided into five different regions with different behaviours.
+
+\noindent \textbf{When $t<0$:}
+
+There is no overlap between $h(\tau)$ and $x(t-\tau)$. The integral is $0$ when $t<0$:
+\begin{equation}
+y(t) = \int_{-\infty}^{\infty} h(\tau)x(t-\tau)d\tau = 0\,\,.
+\end{equation}
+
+\begin{marginfigure}
+\if 0
+  \begin{center}
+        \begin{tikzpicture}
+        \begin{axis}[width=7cm,height=3.5cm,ymin=0,xmin=-2,ymax=1.3,xmax=2, 
+                ytick={0,1},
+        yticklabels={0,1},
+        xtick={0.1,1.1},
+             xticklabels={$t-T$,$t$},
+    xlabel=$\tau$, axis lines = center]
+
+\addplot[color=red,thick] plot coordinates {(-3,0) (0.1,0) (0.1,1) (1.1,1.0) (1.1,0.0) (10,0.0) };
+
+%\addplot[color=red] plot coordinates {(-1,0) (-0.251,0.0) (-0.25,2.0)(0.25,2.0) (0.251,0.0) (1,0)};
+
+\node at (axis cs:0.5,1.0) [below, font={\footnotesize}]{$x(t-\tau)$};
+
+\end{axis}
+        \end{tikzpicture}
+  \end{center}
+  \fi
+\begin{center}
+        \begin{tikzpicture}
+        \begin{axis}[width=7cm,height=3.5cm,ymin=0,xmin=-2,ymax=1.3,xmax=2, 
+                ytick={0,1},
+        yticklabels={0,1},
+        xtick={-1.2,-0.2,0.5},
+             xticklabels={$t-T$,$t$,$1$},
+    xlabel=$\tau$, axis lines = center]
+
+\addplot[color=red,thick] plot coordinates {(-3,0) (-1.2,0) (-1.2,1) (-0.2,1.0) (-0.2,0.0) (10,0.0) };
+
+\node at (axis cs:-1.5,1.0) [below, font={\footnotesize}]{$x(t-\tau)$};
+
+\addplot[color=blue,thick] plot coordinates {(-3,0) (0.00001,0) (0.0,1.0) (0.5,1.0) (0.5,0.0) (10,0.0) };
+
+\node at (axis cs:0.25,1.0) [below, font={\footnotesize}]{$h(\tau)$};
+
+\end{axis}
+        \end{tikzpicture}
+\end{center}
+\begin{center}
+        \begin{tikzpicture}
+        \begin{axis}[width=7cm,height=3.5cm,ymin=0,xmin=-2,ymax=1.3,xmax=2, 
+                ytick={0,1},
+        yticklabels={0,1},
+        xtick={-0.9,0.1,0.5},
+             xticklabels={$t-T$,$t$,$1$},
+    xlabel=$\tau$, axis lines = center]
+
+\addplot[color=red,thick] plot coordinates {(-3,0) (-0.9,0) (-0.9,1) (0.1,1.0) (0.1,0.0) (10,0.0) };
+
+\node at (axis cs:-0.5,1.3) [below, font={\footnotesize}]{$x(t-\tau)$};
+
+\addplot[color=blue,thick] plot coordinates {(-3,0) (0.00001,0) (0.0,1.0) (0.5,1.0) (0.5,0.0) (10,0.0) };
+
+\node at (axis cs:0.25,1.3) [below, font={\footnotesize}]{$h(\tau)$};
+
+\end{axis}
+        \end{tikzpicture}
+\end{center}
+\begin{center}
+        \begin{tikzpicture}
+        \begin{axis}[width=7cm,height=3.5cm,ymin=0,xmin=-1,ymax=1.3,xmax=2, 
+                ytick={0,1},
+        yticklabels={0,1},
+        xtick={-0.2,0.8,0.5},
+             xticklabels={$t-T$,$t$,$1$},
+    xlabel=$\tau$, axis lines = center]
+
+\addplot[color=red,thick] plot coordinates {(-3,0) (-0.2,0) (-0.2,1) (0.8,1.0) (0.8,0.0) (10,0.0) };
+
+\node at (axis cs:-0.5,1.3) [below, font={\footnotesize}]{$x(t-\tau)$};
+
+\addplot[color=blue,thick] plot coordinates {(-3,0) (0.00001,0) (0.0,1.0) (0.5,1.0) (0.5,0.0) (10,0.0) };
+
+\node at (axis cs:0.25,1.3) [below, font={\footnotesize}]{$h(\tau)$};
+
+\end{axis}
+        \end{tikzpicture}
+\end{center}
+\begin{center}
+        \begin{tikzpicture}
+        \begin{axis}[width=7cm,height=3.5cm,ymin=0,xmin=-1,ymax=1.3,xmax=2, 
+                ytick={0,1},
+        yticklabels={0,1},
+        xtick={0.2,1.2,0.5},
+             xticklabels={$t-T$,$t$,$1$},
+    xlabel=$\tau$, axis lines = center]
+
+\addplot[color=red,thick] plot coordinates {(-3,0) (0.2,0) (0.2,1) (1.2,1.0) (1.2,0.0) (10,0.0) };
+
+\node at (axis cs:1.0,1.3) [below, font={\footnotesize}]{$x(t-\tau)$};
+
+\addplot[color=blue,thick] plot coordinates {(-3,0) (0.00001,0) (0.0,1.0) (0.5,1.0) (0.5,0.0) (10,0.0) };
+
+\node at (axis cs:0.25,1.3) [below, font={\footnotesize}]{$h(\tau)$};
+
+\end{axis}
+        \end{tikzpicture}
+\end{center}
+\begin{center}
+        \begin{tikzpicture}
+        \begin{axis}[width=7cm,height=3.5cm,ymin=0,xmin=-1,ymax=1.3,xmax=2, 
+                ytick={0,1},
+        yticklabels={0,1},
+        xtick={0.8,1.8,0.5},
+             xticklabels={$t-T$,$t$,$1$},
+    xlabel=$\tau$, axis lines = center]
+
+\addplot[color=red,thick] plot coordinates {(-3,0) (0.8,0) (0.8,1) (1.8,1.0) (1.8,0.0) (10,0.0) };
+
+\node at (axis cs:1.0,1.3) [below, font={\footnotesize}]{$x(t-\tau)$};
+
+\addplot[color=blue,thick] plot coordinates {(-3,0) (0.00001,0) (0.0,1.0) (0.5,1.0) (0.5,0.0) (10,0.0) };
+
+\node at (axis cs:0.25,1.3) [below, font={\footnotesize}]{$h(\tau)$};
+
+\end{axis}
+        \end{tikzpicture}
+\end{center}
+\caption{Different cases for a convolution of two rectangular functions.}
+\label{fig:convolution_example}
+\end{marginfigure}
+
+\noindent \textbf{When $0\le t < 1$:}
+
+There is overlap between $h(\tau)$ and $x(t-\tau)$.
+\begin{equation}
+y(t) = \int_0^{t} d\tau = t\,\,.
+\end{equation}
+
+\noindent \textbf{When $1 \le t < T$:}
+
+There is full overlap between $h(\tau)$ and $x(t-\tau)$.
+\begin{equation}
+y(t) = \int_0^{1} d\tau = 1\,\,.
+\end{equation}
+
+
+\noindent \textbf{When $T \le t \le T+1$:}
+
+There is partial overlap.
+\begin{equation}
+y(t) = \int_{t-T}^{1}  d\tau = 1-(t-T)\,\,.
+\end{equation}
+
+
+\noindent \textbf{When $t > T+1$:}
+
+There is no overlap.
+\begin{equation}
+y(t) = 0\,\,.
+\end{equation}
+
+\begin{marginfigure}
+\begin{center}
+        \begin{tikzpicture}
+        \begin{axis}[width=7cm,height=3.5cm,ymin=0,xmin=-1,ymax=1.3,xmax=2, 
+                ytick={0,1},
+        yticklabels={0,1},
+        xtick={0.5,1.0,1.5},
+             xticklabels={$1$,$T$,$T+1$},
+    xlabel=$t$, axis lines = center]
+
+
+\addplot[color=black,thick] plot coordinates {(-3,0) (0,0) (0.5,1.0) (1.0,1.0) (1.5,0.0) (10,0) };
+
+\node at (axis cs:0.5,1.3) [below, font={\footnotesize}]{$y(t)$};
+
+\end{axis}
+        \end{tikzpicture}
+\end{center}
+\caption{The result of the convolution operation.}
+\label{fig:convolution_example2}
+\end{marginfigure}
+
+\noindent \textbf{Combined}
+\begin{equation*}
+y(t) = \left\{ \begin{array}{lcc}
+    0 & & t<0  \\
+    t & & 0 \le t < 1\\
+    1 & & 1 \le t < T\\
+    1-(t-T) & & T \le t \le T+1\\
+    0 & & t > T+1\\
+\end{array}
+\right.
+\end{equation*}
+This is shown in Figure \ref{fig:convolution_example2}.
+
+
