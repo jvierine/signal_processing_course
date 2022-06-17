@@ -328,9 +328,9 @@ h[n] = \left\{\begin{array}{cc}
 \caption{The impulse response $h[n]$ of a discrete-time low-pass filter.}
 \label{fig:lp_ex}
 \end{marginfigure}
-\noindent Another way we can specify the impulse response is using an ordered list notation:
+\noindent Another way we can specify the impulse response is using unit impulses:
 \begin{equation}
-\{h[n]\}_{n=0}^{2} = \{1,2,1\} \,\,.
+h[n] = \delta[n] + 2\delta[n-1] + \delta[n-2] \,\,.
 \end{equation}
 The impulse response of the filter is shown in Figure \ref{fig:lp_ex}.
 
