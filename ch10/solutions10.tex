@@ -26,7 +26,10 @@ $$\mathcal{H}(\omega)=\mathcal{F}\{h(t)\}=\int_{-\infty}^{\infty}\frac{42\sin(\o
 Figure \ref{diractrain} shows the frequency response in green.
 
 
-\item The output of the LTI system can be found by convolution in time domain, that is $y(t)=h(t)*x(t)$, thus, in frequency domain we have multiplication by the convolution theorem. By Figure \ref{diractrain} the frequencies inside $(-5\pi,5\pi)$ remain after multiplication, but the frequencies outside $(-5\pi,5\pi)$ gets mapped to $0$. In other words, the LTI system is a low pass-filter. 
+\item The output of the LTI system can be found by convolution in time domain, that is $y(t)=h(t)*x(t)$, thus, 
+in frequency domain we have multiplication by the convolution theorem. By Figure \ref{diractrain} the frequencies 
+inside $(-5\pi,5\pi)$ remain after multiplication, but the frequencies outside $(-5\pi,5\pi)$ gets mapped to $0$. 
+In other words, the LTI system is a low pass-filter. 
 
 \item If $y(t)=c$ then $\hat{y}(\omega)=2\pi c\delta(\omega)$ so the frequency response must then be such that
 $$2\pi c\delta(\omega)=\hat{x}(\omega)\mathcal{H}(\omega)=2\pi\sum_{n=-\infty}^{\infty}\delta(\omega-2\pi n)42[u(\omega+\omega_{c})-u(\omega-\omega_{c})]=2\pi42\delta(\omega)$$
@@ -49,7 +52,7 @@ For time-invariance we have
     \mathcal{T}\{\mathcal{D}\{x[n]\}\}&=\mathcal{T}\{x[n-\tau]\}=\frac{1}{L}\sum_{k=0}^{L-1}x[n-\tau-k] \\
     \mathcal{D}\{\mathcal{T}\{x[n]\}\}&=\mathcal{D}\left\{\frac{1}{L}\sum_{k=0}^{L-1}x[n-k]\right\}=\frac{1}{L}\sum_{k=0}^{L-1}x[n-\tau-k].
 \end{align*}
-both are equal so the system is time-invariant. 
+both are equal, so the system is time-invariant. 
 
 \item The impulse response can be determined by $h[n]=\mathcal{T}\{\delta[n]\}$, doing this yields
 $$h[n]=\frac{1}{L}\sum_{k=0}^{L-1}\delta[n-k].$$
@@ -87,7 +90,7 @@ $$y_{2}[n]=\mathcal{T}\{\mathcal{T}\{x[n]\}\}=\mathcal{T}\{h[n]*x[n]\}=h[n]*(h[n
 We've used associativity of convolution in the final step. Then the system can be described as $y_{2}[n]=h_{2}[n]*x[n]$, where $h_{2}[n]=h[n]*h[n]$, hence $y_{2}[n]$ is an LTI system as all LTI system are fully determined by convolution with an impulse response. 
 
 \item Have that $h_{2}[n]=\mathcal{T}\{\mathcal{T}\{\delta[n]\}\}=h[n]*h[n]$, so
-$$h_{2}[n]=\sum_{k=-\infty}^{\infty} h[k]h[n-k]=h[0]h[n]+h[1]h[n-1]+h[2]h[n-2]+h[3]h[n-3]+h[4]h[n-4]$$
+$$h_{2}[n]=\sum_{k=-\infty}^{\infty} h[k]h[n-k]=h[0]h[n]+h[1]h[n-1]+h[2]h[n-2]+h[3]h[n-3]+h[4]h[n-4].$$
 Terms with $n<0$ are dropped as these will be $0$ due to $h[n]=0$ for $n<0$. Let's evaluate the values of $h_{2}[n]$ with $L=4$:
 \begin{align*}
     h_{2}[0]&=h[0]h[0]+h[1]h[-1]+h[2]h[-2]+h[3]h[-3]+h[4]h[-4] = \frac{1}{L^{2}} \\
@@ -107,7 +110,7 @@ $$h_{2}[n]=\begin{cases}
     0, \quad \text{otherwise}.
 \end{cases}$$
 
-To draw the impulse response function we write a little program to do it. The program is shown in Listing \ref{code12_1}. The impulse response is $0$ for all values of $n$ not shown. 
+To draw the impulse response function, we write a little program to do it. The program is shown in Listing \ref{code12_1}. The impulse response is $0$ for all values of $n$ not shown. 
 \begin{lstlisting}[language=Python, caption=Simple convolution,label=code12_1]
 import numpy as n
 import matplotlib.pyplot as plt
