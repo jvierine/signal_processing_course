@@ -55,6 +55,19 @@ Furthermore, each directory has the following structure
 - Shorten Gaussian derivation of Fourier transform
 - Shorten convolution property discussion and derivation
 - Finish solution for ch18
+- Ch 11 (Convolution and Frequency response)
+  - Make proof of the commutative property an exercise (CT and DT)
+  - Make a table or diagram of the convolution properties, figure out how to provide properties for CT and DT in a nice way.
+  - Remove convolution of two CT rectangles
+  - Remove example: convolution of two rectangle functions,
+  - Make radar and sonar equation a separate application example chapter, like FFT image and FFT audio. 
+  - Remove sonar exercise
+  - Move frequency response to Ch12 (or remove completely)
+  - remove juha's shitty notation from ex 2a solution
+  - move ch11 exercise 1 to ch12. 
+  - make ex 2 ex 1
+- Ch 12 (DTFT)
+- Look through exam questions to see if there are interesting ones to add as exercises.
 
 ### Everything you need to know
 #### Complex Algebra:
