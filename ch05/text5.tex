@@ -10,7 +10,8 @@
 
 \newthought{The unit impulse function $\delta(t)$} is a special distribution function\footnote{The unit impulse function is also known as the \emph{\index{Dirac delta function}{Dirac delta function}}, after physicist Paul Dirac, who used this function for modeling the distribution of electrical point-charges (e.g., electrons and protons)}, which is infinitely narrow, non-zero valued only at $t=0$. And when you integrate over this function, the result will be 1.
 
-It is possible to define $\delta(t)$ in several different ways as a limit of functions with a well defined area and width $\sigma$. I'll use the Gaussian density function:
+It is possible to define $\delta(t)$ in several ways as a limit of functions with a well-defined area and width $\sigma$. 
+I'll use the Gaussian density function:
 \begin{equation}
 \delta_\sigma(t) = \frac{1}{\sqrt{2\pi \sigma^2}}e^{-\frac{t^2}{2\sigma^2}}\,\,.
 \end{equation}
@@ -71,7 +72,7 @@ when the width parameter approaches zero $\sigma \rightarrow 0$.}
 \end{marginfigure}
 
 As a result of how the function is defined, an integral over
-$\delta_{\sigma}(t)$ is always unity. This is perhaps not a surprise
+$\delta_{\sigma}(t)$ is always unity. This is perhaps not a surprise,
 as this function is used in statistics as a probability density
 function:
 \begin{equation}
@@ -83,7 +84,7 @@ The Dirac delta function $\delta(t)$ can be thought of as the limit when the sta
 \end{equation}
 It is hopefully not difficult to convince yourself that the integral
 evaluates to unity even as $\sigma \rightarrow 0$. But what does the
-function $\delta(t)$ look like? First of all, it is infinitely narrow, with only one non-zero value at zero:
+function $\delta(t)$ look like? It is infinitely narrow, with only one non-zero value at zero:
 \begin{equation}
 \delta(t) = \left\{ \begin{array}{ccc}
 \infty & \mathrm{when} & t=0\\
@@ -133,11 +134,13 @@ When plotting this function, it is customary to utilize an up arrow, as shown in
 \label{fig:udensdisc}
 \end{marginfigure}
 
-The main application of the unit impulse function in signal processing is selecting or ``sampling'' a value of a signal. This is also sometimes referred to as the \emph{\index{sifting}{sifting}} property. Consider a function $x(t)$ which has the value $x(\tau) = a$. If we integrate over the function $x(t)\delta(t-\tau)$, we obtain:
+The main application of the unit impulse function in signal processing is selecting or ``sampling'' a value of a signal. This is also sometimes referred to as the \emph{\index{sifting}{sifting}} property. 
+Consider a function $x(t)$ which has the value $x(\tau) = a$. If we integrate over the function $x(t)\delta(t-\tau)$, we obtain:
 \begin{equation}
 \int_{-\infty}^{\infty}x(t)\delta(t-\tau) dt = x(\tau) = a\,\,.
 \end{equation}
-This type of integral will often appear when relating a continuous-time theory to a discrete-time theory. If you are still having a difficult time convincing yourself why the integral above results in the value it does, try thinking about it through the limit:
+This type of integral will often appear when relating a continuous-time theory to a discrete-time theory. 
+If you are still having a difficult time convincing yourself why the integral above results in the value it does, try thinking about it through the limit:
 \begin{equation}
 \lim_{\sigma\rightarrow 0}\int_{-\infty}^{\infty}x(t)\delta_{\sigma}(t-\tau) dt = x(\tau) = a\,\,.
 \end{equation}
@@ -235,7 +238,7 @@ impulse serves a similar function as its continuous-time equivalent.
 \newthought{The unit step function} can be defined as
 follows\footnote{This function is also called the
   \index{Heaviside-function}{Heaviside-function}, after Oliver
-  Heaviside who used this function to model signals used in
+  Heaviside, who used this function to model signals used in
   telecommunications.}:
 \begin{equation}
 u(t) = \left\{\begin{array}{cl}
@@ -256,7 +259,7 @@ certain length. Here are two ways that this can be done:
 &= u(t) u(L-t) \,\,.
 \end{align*}
 Figure \ref{fig:rect_fun} shows a plot of the rectangular
-function. This type of a function appears e.g., when dealing with
+function. This type of function appears, e.g., when dealing with
 ideal filters that only select spectral components that lie within a
 specific band of frequencies.
 \begin{marginfigure}[-5cm]
@@ -271,7 +274,7 @@ specific band of frequencies.
     xlabel=$t$, 
         axis y line=middle, axis x line=bottom]
 
-\addplot[color=blue] plot coordinates {(-3,0) (0.00001,0) (0.0,1.0) (1.0,1) (1.0,0) (10,0.0) };
+\addplot[color=blue] plot coordinates {(-3,0) (0.00001,0) (0.0,1.0) (1.0,1) (1.0,0) (10,0.0)};
 %\addplot+[only marks,mark=o,color=blue] plot coordinates {(0,0) (0.0,1)};
 %\addplot[color=red] plot coordinates {(-1,0) (-0.251,0.0) (-0.25,2.0)(0.25,2.0) (0.251,0.0) (1,0)};
 \end{axis}
@@ -314,7 +317,7 @@ u_{\Delta}(t) = \left\{\begin{array}{cl}
                      axis x line=bottom,
                      xlabel=$t$]
 
-\addplot[color=blue] plot coordinates {(-3,0) (0,0.0) (0.5,1.0) (5,1.0) };
+\addplot[color=blue] plot coordinates {(-3,0) (0,0.0) (0.5,1.0) (5,1.0)};
 %\addplot[color=red] plot coordinates {(-1,0) (-0.251,0.0) (-0.25,2.0)(0.25,2.0) (0.251,0.0) (1,0)};
 
 \node at (axis cs:0.2,1.0) [below, font={\footnotesize}]{$u_{\sigma}(t)$};

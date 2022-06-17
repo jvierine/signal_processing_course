@@ -13,9 +13,15 @@ Structure of the repository has been changed. The notes have been divided into c
 | ch07          | Fourier series                         | Done*  |
 | ch08          | Fourier Transform                      | Done*  |
 | ch09          | Discrete-time Signals                  | Done*  |
-| ch10          | Linear Time-invariant Systems          | Read*  |
+| ch10          | Linear Time-invariant Systems          | Done*  |
 | ch11          | Frequency Response                     | Done*  |
 | ch12          | Discrete-time Fourier Transform (DTFT) | Done*  |
+| ch13          | Ideal and Tapered Filters              | Done*  |
+| ch14          | Time-frequency Uncertainty Principle   | Done*  |
+| ch15          | Discrete Fourier Transform             | Done*  |
+| ch16          | Spectral Analysis                      | Done*  |
+| ch17          | Arbitrary Frequency Response Filters   | Done*  |
+| ch18          | Z-transform                            | Read   |
 
 Furthermore, each directory has the following structure
 | Directory     | Contains                                                           |
@@ -36,15 +42,19 @@ Furthermore, each directory has the following structure
 - Exercise 4.1, 4.6, 4.7, 4.8 and 4.9 have been removed; also infinite impulse exercise has been removed
 - Exercise 5 from the Fourier transform chapter have been moved to ch10 as exercise 1
 - Frequency response has been removed from the Fourier transform chapter
-- Overall typos have been fixed. 
+- Overall typos have been fixed and grammar has been improved
 - Applications have been added to one 
 - All source code has been added and is up to date
+- Ordered lists have been removed (ch11)
 
 ## To do
 - Add a new programming exercise on signals and systems
 - Fix the rectangular signal exercise
 - Read through Python code and comment it
 - Try to find a heat equation exercise
+- Shorten Gaussian derivation of Fourier transform
+- Shorten convolution property discussion and derivation
+- Finish solution for ch18
 
 ### Everything you need to know
 #### Complex Algebra:
@@ -102,3 +112,5 @@ Furthermore, each directory has the following structure
     - Nyquist zones, the principal spectrum
     - Shannon-sampling theorem and the sampling criteria
     - Reconstruction of signals from the samples; the ideal reconstruction filter
+
+#### Linear Time-invariant Systems

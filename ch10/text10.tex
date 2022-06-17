@@ -1,5 +1,6 @@
 \index{Linear time-invariant systems}{Linear time-invariant systems}
-(LTI) are an important class of systems that can be analyzed easily in frequency domain. An LTI system is equivalent to \emph{\index{convolution}{convolution}} of the \emph{impulse response} of the system. The focus of this chapter is to learn more about what these concepts are. 
+(LTI) are an important class of systems that can be analyzed easily in frequency domain. An LTI system is equivalent to \emph{\index{convolution}{convolution}} of the \emph{impulse response} of the system. 
+The focus of this chapter is to learn more about what these concepts are. 
 
 \section{Example: Running average filter}
 Here's an example of a discrete-time system that you might use to smooth a noisy signal:
@@ -7,7 +8,9 @@ Here's an example of a discrete-time system that you might use to smooth a noisy
   y[n] = \frac{1}{15}\sum_{k=-7}^{7} x[n-k]\,\,.
   \label{eq:running_mean}
 \end{equation}
-What does this system do? It averages together 15 neighboring values of input signal $x[n]$. Figure \ref{fig:avg_filter} shows a demonstration of this system in action. The blue line indicates a noisy input signal $x[n]$, and the orange line depicts the output $y[n]$ of the running mean filter given in Equation \ref{eq:running_mean}. As you might expect, the output of the system is a smoother version of the input signal.
+What does this system do? It averages together 15 neighboring values of input signal $x[n]$. Figure \ref{fig:avg_filter} shows a demonstration of this system in action. 
+The blue line indicates a noisy input signal $x[n]$, and the orange line depicts the output $y[n]$ of the running mean filter given in Equation \ref{eq:running_mean}. 
+As you might expect, the output of the system is a smoother version of the input signal.
 \begin{figure}
   \begin{center}
     \includegraphics[width=\textwidth]{code/016_smoothing/smoothing.png}
@@ -41,14 +44,17 @@ What does this system do? It averages together 15 neighboring values of input si
 \caption{Discrete-time LTI systems are characterized by an impulse response $h[n]$, which is the response of the LTI system to a unit impulse signal.}
 \end{marginfigure}
 
-The previous system shown in Equation \ref{eq:running_mean} is a special case of a more general type of a discrete-time LTI system, known as a Finite Impulse Response (FIR) filter. This type of signal is often used in digital signal processing. An FIR filter is defined as follows:
+The previous system shown in Equation \ref{eq:running_mean} is a special case of a more general type of discrete-time LTI system, 
+known as a Finite Impulse Response (FIR) filter. This type of signal is often used in digital signal processing. 
+An FIR filter is defined as follows:
 \begin{equation}
   \boxed{
     y[n] = \sum_{k=-M}^{N} b_k x[n-k]\,\,.
   }
   \label{eq:fir_filter}
 \end{equation}
-The coefficients $b_k \in \mathbb{C}$ here are constant valued coefficients. As the name implies, there is a finite number of non-zero coefficients $b_k$. In the case of the running average filter in Equation \ref{eq:running_mean}, there would be 15 coefficients, which are all $b_k=1/15$.
+The coefficients $b_k \in \mathbb{C}$ here are constant valued coefficients. As the name implies, there is a finite number of non-zero coefficients $b_k$. 
+In the case of the running average filter in Equation \ref{eq:running_mean}, there would be 15 coefficients, which are all $b_k=1/15$.
 
 \section{General discrete-time LTI system}
 What if we allow there to be infinitely many coefficients for the system given in Equation \ref{eq:fir_filter}? We get the following:
@@ -98,7 +104,8 @@ A linear system $\mathcal{T}\{\cdot\}$\footnote{If linearity applies for two inp
 \end{equation}
 Here $\alpha_k \in \mathbb{C}$ are arbitrary constants and $s_k[n]$ are arbitrary signals.
 
-Time-invariance of system $\mathcal{T}\{\cdot\}$ on the other hand implies that for any time shift $k$ in input, the output is correspondingly time shifted. This is valid for any input signal $x[n]$:
+Time-invariance of $\mathcal{T}\{\cdot\}$, on the other hand, implies that for any time shift $k$ in the input, the output is correspondingly time shifted. 
+This is valid for any input signal $x[n]$:
 \begin{equation}
 y[n-k] = \mathcal{T}\{x[n-k]\}\,\,,
 \end{equation}
@@ -184,7 +191,8 @@ $x[n]$ can be expressed using the impulse response $h[n]$ as follows:
   y[n] = \sum_{k=-\infty}^{\infty} x[k]h[n-k].
   \label{eq:convolution_intro}
 \end{equation}
-This type of an equation is known as a discrete-time convolution sum. We have now shown that any discrete-time LTI system can be represented with such a convolution sum. Note that Equation \ref{eq:convolution_intro} isn't quite yet the same as Equation \ref{eq:conv_dlti}. We will later show in Equation \ref{eq:commutative_convolution_proof} that the convolution sum is commutative, i.e., that
+This type of equation is known as a discrete-time convolution sum. We have now shown that any discrete-time LTI system can be represented with such a convolution sum. 
+Note that Equation \ref{eq:convolution_intro} isn't quite yet the same as Equation \ref{eq:conv_dlti}. We will later show in Equation \ref{eq:commutative_convolution_proof} that the convolution sum is commutative, i.e., that
 \begin{equation}
  \sum_{k=-\infty}^{\infty} x[k]h[n-k] = \sum_{k=-\infty}^{\infty} h[k]x[n-k].
 \end{equation}
@@ -195,7 +203,8 @@ An FIR filter (Equation \ref{eq:fir_filter}) has the following impulse response:
 \begin{equation}
 h[n] = \sum_{k=-M}^{N} b_k \delta[n-k]\,\,.
 \end{equation}
-The signal $h[n]$ contains the values of the filter coefficients $h[n]=b_n$. Since there are a finite number of coefficients $b_k$, the impulse response $h[n]$ has non-zero values only in a finite range of samples. This is also where the name ``finite impulse response'' comes from.
+The signal $h[n]$ contains the values of the filter coefficients $h[n]=b_n$. Since there are a finite number of coefficients $b_k$, the impulse response $h[n]$ 
+has non-zero values only in a finite range of samples. This is also where the name ``finite impulse response'' comes from.
 \begin{marginfigure}
 \begin{center}
   \begin{tikzpicture}[node distance=2cm,auto,>=latex']
@@ -210,12 +219,14 @@ The signal $h[n]$ contains the values of the filter coefficients $h[n]=b_n$. Sin
     \draw[->] (a) edge node {$h[n]$} (end) ;
 \end{tikzpicture}
 \end{center}
-\caption{The impulse response of an FIR filter is a signal that contains the coefficients. For a finite number of coefficients $b_k$, the length of the non-zero portion of the impulse response is finite and hence the name FIR.}
+\caption{The impulse response of an FIR filter is a signal that contains the coefficients. For a finite number of coefficients $b_k$, the length of 
+the non-zero portion of the impulse response is finite, and hence the name FIR.}
 \end{marginfigure}
 
 
 \section{Impulse response}
-Linear time-invariant (LTI) systems are fully characterized by an \index{impulse response} impulse response $h(t)$. This impulse response is obtained by feeding a unit impulse into the LTI system:
+Linear time-invariant (LTI) systems are fully characterized by an \index{impulse response} impulse response $h(t)$. 
+This impulse response is obtained by feeding a unit impulse into the LTI system:
 \begin{equation}
 \boxed{
 h(t) = \mathcal{T}\{\delta(t)\}\,\,.
@@ -231,7 +242,8 @@ Let's prove this. We'll first need to represent an arbitrary signal as a sum of 
 \begin{equation}
 x(t)  = \int_{-\infty}^{\infty} x(\tau) \delta(t-\tau) d\tau\,\,.
 \end{equation}
-One way to think of this integral is that the unit impulse $\delta(t-\tau)$ ``selects'' the value of $x(\tau)$ where $\tau=t$. Another way to think of this is that the Dirac delta functions form a set of basis functions for representing the signal $x(t)$.
+One way to think of this integral is that the unit impulse $\delta(t-\tau)$ ``selects'' the value of $x(\tau)$ where $\tau=t$. 
+Another way to think of this is that the Dirac delta functions form a set of basis functions for representing the signal $x(t)$.
 
 \tikzstyle{int}=[draw, minimum size=2em]
 \tikzstyle{init} = [pin edge={to-,thin,black}]
@@ -260,7 +272,7 @@ One way to think of this integral is that the unit impulse $\delta(t-\tau)$ ``se
 \caption{A linear time-invariant system is characterized by an impulse response.}
 \end{marginfigure}
 
-First of all, you may recall that linearity of system $\mathcal{T}\{\cdot\}$ implies that:
+You may recall that linearity of the system $\mathcal{T}\{\cdot\}$ implies that:
 \begin{equation}
 \mathcal{T}\{c_1 \delta(t-\tau_1) + c_2 \delta(t-\tau_2)\} = c_1 \mathcal{T}\{\delta(t-\tau_1)\}+ c_2 \mathcal{T}\{\delta(t-\tau_2)\}\,\,.
 \end{equation}
@@ -286,16 +298,20 @@ This now completes our proof:
 \begin{equation}
 y(t)=\int_{-\infty}^{\infty} x(\tau) h(t-\tau) d\tau = \mathcal{T}\left\{x(t)\right\}\qed\,\,.
 \end{equation}
-The output of a linear time-invariant system $y(t)=\mathcal{T}\{x(t)\}$ is a convolution of the system's impulse response $h(t)=\mathcal{T}\{\delta(t)\}$ with the input signal $x(t)$ fed into the system.
+The output of a linear time-invariant system $y(t)=\mathcal{T}\{x(t)\}$ is a convolution of the system's 
+impulse response $h(t)=\mathcal{T}\{\delta(t)\}$ with the input signal $x(t)$ fed into the system.
 
 \section{Frequency response}
-It is possible to view an LTI system as a filter, which modifies each frequency component of the input signal. How each frequency component of the input signal is modified, is determined by the Fourier transform of the impulse response of the LTI system, which we will call \index{frequency response} frequency response $\Hiw$.
+It is possible to view an LTI system as a filter, which modifies each frequency component of the input signal. 
+How each frequency component of the input signal is modified, is determined by the Fourier 
+transform of the impulse response of the LTI system, which we will call \index{frequency response} frequency response $\Hiw$.
 
 Recall that every LTI system is characterized by an impulse response:
 \begin{equation}
 h(t) = \mathcal{T}\{\delta(t)\}\,\,.
 \end{equation}
-We also know that the output of the LTI system is a convolution between the input signal $x(t)$ and the impulse response, which is a multiplication in frequency domain:
+We also know that the output of the LTI system is a convolution between the input signal $x(t)$ and the impulse response, 
+which is a multiplication in frequency domain:
 \begin{equation}
 y(t) = h(t)*x(t) \xleftrightarrow{\mathcal{F}} \hat{y}(\omega) = \Hiw \hat{x}(\omega)\,\,.
 \end{equation}
@@ -305,7 +321,9 @@ The frequency response is therefore the Fourier transform of the impulse respons
 \Hiw = \int_{-\infty}^{\infty} h(\tau)e^{-i\omega \tau}  d\tau\,\,.
 }
 \end{equation}
-The absolute value $|\Hiw|$ is called the \index{magnitude response} magnitude response, and the phase angle $\angle \Hiw$ is called the \index{phase response} phase response. These determine how the LTI system modifies the amplitude and phase of each spectral component of the signal.
+The absolute value $|\Hiw|$ is called the \index{magnitude response} magnitude response, and the phase angle $\angle \Hiw$ is 
+called the \index{phase response} phase response. These determine how the LTI system modifies 
+the amplitude and phase of each spectral component of the signal.
 
 \newpage
 \section{Convolution}
@@ -364,8 +382,7 @@ operation is the input signal.
 \begin{equation}
 x[n]*\delta[n]=x[n]\,\,.
 \end{equation}
-When convolving signal $x[n]$ with a time delayed unit impulse
-$\delta[n-n_0]$ the result is a time shifted version of $x[n]$:
+When convolving a signal $x[n]$ with a time delayed unit impulse $\delta[n-n_0]$, the result is a time shifted version of $x[n]$:
 \begin{equation}
 x[n]*\delta[n-n_0]=x[n-n_0]\,\,.
 \end{equation}
@@ -407,7 +424,7 @@ If we now substitute: $m=k-\ell$, then $n-m-\ell=n-k$ and thus
 \begin{align}
 a[n]*(b[n]*c[n]) &= \sum_{k} \underbrace{\left(\sum_{\ell} a[\ell] b[k-\ell]\right)}_{a[k]*b[k]} c[n-k]\,\,.
 \end{align}
-Here we make use of the the fact that 
+Here we make use of the fact that 
 \begin{equation}
 \sum_{k-l=-\infty}^{\infty} \equiv \sum_{k=-\infty+l}^{\infty+l} \equiv \sum_{k=-\infty}^{\infty}\,\,. 
 \end{equation}
@@ -445,8 +462,6 @@ Here we make use of the the fact that
   $h_3[n]=h_1[n]*h_2[n]$.}
 \label{fig:cascade_lti}
 \end{marginfigure}
-
-
 
 A consequence of the associative property is that if we have two LTI
 systems that are applied to an input signal $x[n]$ in series, we can
@@ -553,16 +568,11 @@ sum of the signals fed into a single LTI system.
 
 Animations of the convolution operation for various example systems
 can be found here: \url{http://kaira.uit.no/juha/fir_animation/}. The
-code for creating such animations can be obtained from github:
+code for creating such animations can be obtained from GitHub:
 \url{https://github.com/jvierine/signal_processing/tree/master/017_fir_animation}.
 
 
-
 \section{Example: convolution of two rectangle functions}
-
-
-
-
 Consider the following two continuous-time signals:
 \begin{align}
 h(t) &= u(t)-u(t-1) \\
@@ -577,7 +587,7 @@ y(t)=\int_{-\infty}^{\infty}h(\tau)x(t-\tau)d\tau
 where $x(t-\tau)$ is a time-shifted and time-reversed version of
 $x(\tau)$.
 
-The integral can be divided into five different regions with different behaviours.
+The integral can be divided into five different regions with different behaviors.
 
 \noindent \textbf{When $t<0$:}
 
@@ -776,4 +786,152 @@ y(t) = \left\{ \begin{array}{lcc}
 \end{equation*}
 This is shown in Figure \ref{fig:convolution_example2}.
 
+\section{Applications of convolution}
+
+This chapter only scratches the practical and theoretical uses of
+convolution and linear time-invariant systems. I'll use two examples
+to illustrate the application of a one dimensional convolution
+equation. Be aware that these are by no means the only types of
+situations where you will encounter a convolution. Chances are quite
+high that a signal processing system you can think of is an LTI
+system, or can be approximated as one. Convolution can be found
+everywhere!
+
+\subsection{Example: Radar and sonar equation}
+
+\begin{marginfigure}
+\begin{center}
+\includegraphics[width=\textwidth]{ch10/figures/svalbard.jpg}
+\end{center}
+\caption{EISCAT Svalbard Radar. The radar echo from the D-region of the ionosphere can be modeled using the equation shown in Equation \ref{eq:convolution_radar}. Photo: Craig Heinselman}
+\label{fig:eiscat_svalbard}
+\end{marginfigure}
+The convolution equation is often used to model radar and sonar
+measurements. In this case, the impulse response signal $h[n]$
+represents the signal that is scattered as a function of distance. The
+signal $x[n]$ represents what a radar or sonar transmits. The signal
+received by a radar or sonar receiver $m[n]$ is then modeled as:
+\begin{align}
+m[n] &=  h[n]*x[n]\\
+     &= \sum_{r=0}^{M} h[r] x[n-r]. \label{eq:convolution_radar}\,\,.
+\end{align}
+In this case, the index $r \in \mathbb{N}$ represents round-trip
+propagation time between the transmitter and the receiver. The larger
+the distance between the transmitter and the receiver, the larger the
+delay. Assuming that the sample rate is $f_s$ in units of hertz or
+($\frac{1}{\mathrm{s}}$), and the group velocity of the transmitter
+wave $v_g$ ($\frac{\mathrm{m}}{\mathrm{s}}$), the round-trip range is given by:
+\begin{equation}
+R = \frac{v_g r}{2 f_s}\,\,.
+\end{equation}
+In the case of radar, the group velocity for electromagnetic waves is
+$v_g \approx 3 \cdot 10^8$ ($\frac{\mathrm{m}}{\mathrm{s}}$). For sonar, it is the speed of
+acoustic waves within the medium. In the case of air, this is
+$v_g \approx 343$ ($\frac{\mathrm{m}}{\mathrm{s}}$).
+
+To see how the convolution equation is the radar equation, we can use
+an illustration, as shown in Figure \ref{fig:range_time_diagram}.
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{ch10/figures/rd.pdf}
+\end{center}
+\caption{A range-time diagram depicting the relationship between a transmitted signal and a scattered signal.}
+\label{fig:range_time_diagram}
+\end{figure}
+
+If the probing signal is a unit impulse $x[n]=\delta[n]$ (a very short
+radar pulse), then the measurement directly provides the scattering
+amplitude as a function of range:
+\begin{align}
+m[n] = \sum_{r=0}^M h[r]\delta[n-r] = h[r]\,\,.
+\end{align}
+This type of radar is called a pulsed radar. In terms of radar
+signal processing, this is the easiest case, as no signal processing
+is needed! A radar measurement in this case is equivalent to measuring
+the ``impulse response'' of the region that the radar is probing.
+
+Here is a fascinating example of a blind child that has learned to
+click his tongue (emitting a $\delta[n]$-like impulse sound) to probe the
+acoustic scattering of his
+surroundings \url{https://www.youtube.com/watch?v=fnH7AIwhpik}. While
+this may seem like a superhuman feat, this is not unlike measuring the
+distance between yourself and a mountain side by shouting ``echo''
+very loudly and counting how long it takes for you to hear a strong
+echo. I am sure that many of you have done this already.
+
+If the transmitted waveform $x[n]$ is more complicated than a unit
+impulse, the measurements need to be filtered in some way to
+reconstruct the scattered signal as a function of range $h[n]$. This
+is achieved by designing a filter $\lambda[n]$, which has the
+following property $\lambda[n]*x[n] \approx \delta[n]$. After applying
+the filter $\lambda[n]$ to the measured signal, one obtains the echo
+as a function of range:
+\begin{align}
+\lambda[n]*m[n] = \lambda[n]*h[n]*x[n] = (\lambda[n]*x[n])*h[n]\approx h[n]\,\,. 
+\end{align}
+Design of pairs of signals $x[n]$ and filters $\lambda[n]$ is a topic
+of radar signal processing. An example of a good pairing of a radar
+transmit signal and a receiver filter is shown in the following convolution animation:
+\url{http://kaira.uit.no/juha/fir_animation/ex12.gif}.
+This is the so-called 13-bit Barker code and the inverse filter that
+corresponds to it. The convolution of these two signals is the unit
+impulse.
+
+
+\section{Example: Reverb effect}
+\label{reverb_section}
+
+\begin{marginfigure}
+\begin{center}
+\includegraphics[width=\textwidth]{ch10/figures/mountain_echo.pdf}
+\end{center}
+\caption{The acoustics of a space are determined by acoustic waves
+scattered from various obstacles at various propagation delays. This
+can be quite precisely modeled using a convolution, assuming that
+nothing is moving.}
+\end{marginfigure}
+Convolution is encountered when modeling the acoustics of a room or a
+space in audio signal processing. The basic underlying principle is
+the same as for radar and sonar.
+
+A sound source $x[n]$ is reflected or scattered from different
+surfaces within the room at various delays $r$. Each delay $r$
+corresponds to the round-trip propagation delay of the acoustic
+signal. This is what creates the ``sound'' of a room. This is also
+what is the cause for an acoustic ``echo'' from a mountain side that
+you may have experienced in real life!
+
+How much signal is scattered from range $r$ is determined by the impulse
+response $h[r]$. The resulting signal is a convolution $m[n] = h[n]*
+x[n]$. In this case, performing the convolution results in a reverb
+effect in acoustic signal processing. 
+
+By accurately modeling the impulse response of a room or a large
+concert hall with an impulse response $h[n]$, it is possible to modify
+an audio signal $x[n]$ to sound like it was played in that space.
+
+\begin{marginfigure}
+\begin{center}
+\includegraphics[width=\textwidth]{ch10/figures/reverb.pdf}
+\end{center}
+\caption{An impulse response that models the acoustics of a large space, with echoes at up to 3 seconds time delay.}
+\label{fig:room_model}
+\end{marginfigure}
+
+
+One way to characterize $h[n]$ for a room is to simply measure it. One
+emits a very short discrete unit impulse $\delta[n]$ using a high
+quality speaker, and then measures the echoes for this pulse to
+obtain:
+\begin{equation}
+h[n] = \sum_{r=0}^M h[r]\delta[n-r]\,\,.
+\end{equation}
+Another possibility is to model the impulse response $h[n]$ by making
+assumptions about the delays of the reflecting surfaces in a room or
+space.
+
+The following snippet of code demonstrates modeling of the acoustics
+of a room using an modeled impulse response for a room.
+
+\lstinputlisting[language=Python,caption={\texttt{018\_reverb/reverb.py}},label=lst:exercise_reverb]{code/018_reverb/reverb.py}
 

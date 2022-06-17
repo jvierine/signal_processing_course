@@ -5,7 +5,7 @@
 $$\hat{x}(\hat{\omega})=\sum_{n=-\infty}^{\infty}x[n]e^{-i\hat{\omega}n}.$$
 Apply complex conjugation to obtain
 $$\hat{x}^{*}(\hat{\omega})=\sum_{n=-\infty}^{\infty}(x[n]e^{-i\hat{\omega}n})^{*}=\sum_{n=-\infty}^{\infty}x[n]^{*}e^{i\hat{\omega}n}.$$
-Since $x[n]$ is real we obtain $x^{*}[n]=x[n]$. Then evaluating at $\hat{x}^{*}(-\hat{\omega})$ is
+Since the signal $x[n]$ is real, we obtain $x^{*}[n]=x[n]$. Then evaluating at $\hat{x}^{*}(-\hat{\omega})$ is
 $$\hat{x}^{*}(-\hat{\omega})=\sum_{n=-\infty}^{\infty}x[n]e^{-i\hat{\omega}n}$$
 which is equal to $\hat{x}(\hat{\omega})$. 
 
@@ -21,7 +21,7 @@ which is equal to $x[n]$.
 $$x[n]=\frac{1}{2\pi}\int_{-\pi}^{\pi}\hat{x}(\hat{\omega})e^{i\hat{\omega}n}d\hat{\omega}=\frac{1}{2\pi}\int_{-\pi}^{\pi}e^{i\hat{\omega}n}d\hat{\omega}=\frac{1}{2\pi}\left[\frac{1}{in}e^{i\hat{\omega}n}\right]_{-\pi}^{\pi}$$
 which gives
 $$x[n]=\frac{1}{2\pi in}(e^{i\pi n}-e^{-i\pi n})=\frac{1}{\pi n}\sin(\pi n).$$
-If $n\neq 0$, then this is $0$. If $n=0$ we get, using L'Hôpitals rule
+If $n\neq 0$, then this is $0$. If $n=0$ we get, using L'Hôpital's rule
 $$\lim_{n\to 0}\frac{\sin(\pi n)}{\pi n}=1.$$
 Hence this corresponds to a Dirac-delta $\delta[n]$, so by linearity we get $42i\delta[n]$. 
 

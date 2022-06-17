@@ -8,11 +8,11 @@
 $$\hat{\omega}_{k}=\hat{\omega}_{0}+2\pi k=\omega_{0}\frac{1}{f_{s}}+2\pi k=\frac{5021}{25}\pi+2\pi k$$
 for $k\in\mathbb{Z}$. 
 
-\item The principal aliases lie in $-\pi<\hat{\omega}_{k}<\pi$. Pick a $k\in\mathbb{Z}$ such that $-\pi<\hat{\omega}_{k}<\pi$. For instance $k=100$ works:
+\item The principal aliases lie in $-\pi<\hat{\omega}_{k}<\pi$. Pick a $k\in\mathbb{Z}$ such that $-\pi<\hat{\omega}_{k}<\pi$. For instance, $k=100$ works:
 $$-\pi < \frac{5021}{25}\pi-2\pi 100 < \pi,$$
 giving a value of $\hat{\omega}\approx2.6389\ \text{rad/sample}$. 
 
-\item To draw the spectrum of $x(t)$ we can use the code in Listing \ref{plotcode1}.
+\item To draw the spectrum for $x(t)$ we can use the code in Listing \ref{plotcode1}.
 
 \begin{lstlisting}[language=Python, caption=Spectrum of $x(t)$,label=plotcode1]
 import numpy as n
@@ -40,9 +40,9 @@ The spectrum $\hat{x}(\omega)$ is shown in Figure \ref{spectrum_plot}.
 
 \item The possible angular frequencies that result in the same discritization is found by
 $$\omega_{k}=\omega_{0}+2\pi kf_{s}.$$
-Choosing different values for $k$ to search for a value that satisfy the requirement of being the smallest $|\omega_{k}|$ is found to be $k=-100$. This value gives $\omega_{k}=2\pi42$. 
+Choosing different values for $k$ and search for a value that satisfy the requirement of being the smallest $|\omega_{k}|$ is found to be $k=-100$. This value gives $\omega_{k}=2\pi42$. 
 
-\item Here the signal is complex so the signal can be sampled at $f_{s}>f_{\text{max}}-f_{\text{min}}=\frac{\omega_{0}}{2\pi}$ by the Shannon which correspond to $f_{s}>10042$ Hz. 
+\item Here the signal is complex, so the signal can be sampled at $f_{s}>f_{\text{max}}-f_{\text{min}}=\frac{\omega_{0}}{2\pi}$ by the Shannon which correspond to $f_{s}>10042$ Hz. 
 \end{enumerate}
 
 \item Given the continuous-time sinusoid $y_1[n] = 2 \cos(0.67 \pi n) + \cos(0.33 \pi n)$.
@@ -126,7 +126,7 @@ Choosing different values for $k$ to search for a value that satisfy the require
 \begin{enumerate}[a)]
 \item By the definition of $|\hat{x}(\omega)|$ and the Figure we see that there is no pairing for the frequencies, meaning that $\hat{x}^{*}(\omega)\neq \hat{x}(-\omega)$, so $x(t)$ can't be real.
 
-\item For complex signals we must sample at a rate that satisfy $f_{s}>f_{\text{max}}-f_{\text{min}}=\frac{1}{2\pi}(\omega_{1}-\omega_{0})$ in units of Hz. 
+\item For complex signals, we must sample at a rate that satisfy $f_{s}>f_{\text{max}}-f_{\text{min}}=\frac{1}{2\pi}(\omega_{1}-\omega_{0})$ in units of Hz. 
 
 \item By the Shannon–sampling theorem the sample-rate $f_{s}$ from above is sufficient to retain all the information regarding the signal, thus the spectrum has no overlap. This is reflected in the drawing of $|\hat{x}_{s}(\omega)|$ where the copies are shown in red.
 
@@ -158,17 +158,17 @@ $$\mathcal{H}(\omega)=\begin{cases}
 \end{cases}$$
 Have $x_{s}(t)$ as
 $$x_{s}(t)=\sum_{n=-\infty}^{\infty}x[n]\delta(t-nT_{s}),$$
-from the samples. To reconstruct the signal simply multiply $\hat{x}(\omega)$ by the reconstruction filter in frequency domain. The frequency domain representation of $x_{s}(t)$ was shown to be
+from the samples. To reconstruct the signal, simply multiply $\hat{x}(\omega)$ by the reconstruction filter in frequency domain. The frequency domain representation of $x_{s}(t)$ was shown to be
 $$\hat{x}_{s}(\omega)=\frac{1}{T_{s}}\sum_{n=-\infty}^{\infty}\hat{x}(\omega-n\omega_{s}).$$
 Where $\omega_{s}=2\pi f_{s}$. Thus, multiplying in frequency domain yields
 $$\mathcal{H}(\omega)\hat{x}_{s}(\omega)=T_{s}\frac{1}{T_{s}}\sum_{n=-\infty}^{\infty}\hat{x}(\omega-n\omega_{s})=\hat{x}(\omega),$$
-here the sum is killed by $\mathcal{H}(\omega)$ as it is $0$ outside of $\omega_{1}\le\omega\le\omega_{2}$. Hence we retain all the information necessary to reconstruct the signal as 
+here the sum is killed by $\mathcal{H}(\omega)$ as it is $0$ outside of $\omega_{1}\le\omega\le\omega_{2}$. Hence, we retain all the information necessary to reconstruct the signal as 
 $$x(t)=(2\pi)^{-1}\int_{-\infty}^{\infty}\hat{x}(\omega)e^{i\omega t}d\omega.$$
 \end{enumerate}
 
 
 
-\item As before let $x(t)=(2\pi)^{-1}\int_{-\infty}^{\infty}\hat{x}(\omega)e^{i\omega t}d\omega$ and
+\item As before, let $x(t)=(2\pi)^{-1}\int_{-\infty}^{\infty}\hat{x}(\omega)e^{i\omega t}d\omega$ and
 $$|\hat{x}(\omega)|=\begin{cases}
     > 0 \quad    \text{when} \quad \omega_{0}<|\omega|<\omega_{1},\\
     0, \quad     \text{otherwise},
@@ -176,7 +176,7 @@ $$|\hat{x}(\omega)|=\begin{cases}
 with $\omega_{0}=2\pi30$ and $\omega_{1}=2\pi40$ radians per second. Here we use a sample rate of $f_{s}=20$ Hz or $\omega_{s}=2\pi 20$ radians per sample. 
 
 \begin{enumerate}[a)]
-\item We know that $\hat{x}(\omega)=\hat{x}^{*}(-\omega)$ so the signal is real-valued. 
+\item We know that $\hat{x}(\omega)=\hat{x}^{*}(-\omega)$, so the signal is real-valued. 
 
 \item Draw $|\hat{x}_{s}(\omega)|$ with the different aliases shown in red:
 \begin{center}
@@ -204,7 +204,9 @@ with $\omega_{0}=2\pi30$ and $\omega_{1}=2\pi40$ radians per second. Here we use
 \end{tikzpicture}
 \end{center}
 
-\item The condition $f_{s}>2f_{\text{max}}$ is violated in this case. This condition applies to real signals but assumes the frequencies fall in the principal spectrum of $|f|<f_{s}/2$ which is not the case here. However, the sample rate satisfy
+\item The condition $f_{s}>2f_{\text{max}}$ is violated in this case. 
+This condition applies to real signals but assumes the frequencies fall in the principal spectrum of $|f|<f_{s}/2$ which is not the case here. 
+However, the sample rate satisfy
 $$n\frac{\omega_{s}}{2}\le|\omega|\le(n+1)\frac{\omega_{s}}{2}$$
 or
 $$n2\pi 10\le|\omega|\le (n+1)2\pi10$$
@@ -219,7 +221,8 @@ $$\mathcal{H}(\omega)=\begin{cases}
 \end{cases}$$
 then 
 $$\mathcal{H}(\omega)\hat{x}_{s}(\omega)=T_{s}\frac{1}{T_{s}}\sum_{k=-\infty}^{\infty}\hat{x}(\omega-k\omega_{s})=\hat{x}(\omega).$$
-Due to $\mathcal{H}(\omega)$ being $0$ outside $\omega_{0}\le|\omega|\le\omega_{1}$ the sum goes away giving back the original frequency representation of the signal. Note that the absolute value is needed here to get both the positive and negative frequencies as the signal is real, then applying the Fourier transform to this signal yields the original signal $x(t)$. 
+Due to $\mathcal{H}(\omega)$ being $0$ outside $\omega_{0}\le|\omega|\le\omega_{1}$ the sum goes away giving back the original frequency representation of the signal. 
+Note that the absolute value is needed here to get both the positive and negative frequencies as the signal is real, then applying the Fourier transform to this signal yields the original signal $x(t)$. 
 \end{enumerate}
 
 

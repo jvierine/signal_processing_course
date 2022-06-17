@@ -39,14 +39,15 @@ Output of the code is shown in Figure \ref{spec_rep}.
     \label{spec_rep}
 \end{marginfigure}
 
-\item In this case the frequency response function is real, so the phase response is $0$. Meaning there is no delay applied to the signal by this filter.
+\item In this case, the frequency response function is real, so the phase response is $0$. Meaning, there is no delay applied to the signal by this filter.
 
-\item By looking at the plot of $|H(\hat{\omega})|$ we see that the filter is a high-pass filter as the frequencies around $0$ are greatly reduced. 
+\item By looking at the plot of $|H(\hat{\omega})|$, we see that the filter is a high-pass filter, as the frequencies around $0$ are greatly reduced. 
 
-\item Inspecting the plot we see that for $\hat{\omega}=0$ the amplitude of the output signal will be $A'=0$. The reason is that in frequency domain we have
+\item Inspecting the plot, we see that for $\hat{\omega}=0$, the amplitude of the output signal will be $A'=0$. The reason is that in frequency domain we have
 $$\hat{y}(\hat{\omega})=\mathcal{H}(\hat{\omega})\hat{x}(\hat{\omega}).$$
 
-\item The phase is not changed by the filter so $\phi'=\phi$. For $\hat{\omega}=\pi/2$ the amplitude is doubled, so $A'=2A$, while for $\hat{\omega}=\pi$ the amplitude is scaled by $4$, giving $A'=4A$. This can be seen from the plot in Figure \ref{spec_rep} or by inserting the values into the frequency response function. 
+\item The phase is not changed by the filter, so $\phi'=\phi$. For $\hat{\omega}=\pi/2$ the amplitude is doubled, so $A'=2A$, while for $\hat{\omega}=\pi$ the amplitude is scaled by $4$, giving $A'=4A$. 
+This can be seen from the plot in Figure \ref{spec_rep} or by inserting the values into the frequency response function. 
 
 \item The system $y(t)=\mathcal{T}\{x(t)\}=\frac{d^{2}}{dt^{2}}x(t)$ is a continuous-time LTI system, so
 $$y(t)=\mathcal{H}(\omega)x(t).$$
@@ -54,7 +55,7 @@ In particular, if we take $x(t)=Ae^{i\phi}e^{i\omega t}$, then
 $$y(t)=\frac{d^{2}}{dt^{2}}(Ae^{i\phi}e^{i\omega t})=Ae^{i\phi}(i\omega)^{2}e^{i\omega t}=-Ae^{i\phi}\omega^{2}e^{i\omega t}=-\omega^{2}(Ae^{i\phi}e^{i\omega t})=\mathcal{H}(\omega)x(t),$$
 thus $\mathcal{H}(\omega)=-\omega^{2}$. 
 
-\item Comparing the plots we conclude that the approximation is only good for small angular frequencies in the range $0<\omega<\pi/2$. 
+\item Comparing the plots, we conclude that the approximation is only good for small angular frequencies in the range $0<\omega<\pi/2$. 
 \end{enumerate}
 
 \item A running average filter is defined as
@@ -70,7 +71,7 @@ $$\{h[n]\}_{n=0}^{M-1}=\frac{1}{M}.$$
     \mathcal{H}(\hat{\omega})&=\sum_{k=0}^{M-1}\frac{1}{M}e^{-i\hat{\omega}k}=\frac{1-e^{-i\hat{\omega}M}}{M(1-e^{-i\hat{\omega}})}=\frac{1}{M}\left(\frac{e^{-i\hat{\omega}M/2}(e^{i\hat{\omega}M/2}-e^{-i\hat{\omega}M/2})}{e^{-i\hat{\omega}/2}(e^{i\hat{\omega}/2}-e^{-i\hat{\omega}/2})}\right) \\
     &=\underbrace{\frac{1}{M}\frac{\sin(\hat{\omega}M/2)}{\sin(\hat{\omega}/2)}}_{D_{M}(\hat{\omega})}e^{-i\hat{\omega}(M-1)/2}.
 \end{align*}
-The sum is evaluated using known formulas for geometric sums. 
+The sum, is evaluated using known formulas for geometric sums. 
 
 \item If we have a system with impulse response $h_{\tau}[n]=\delta[n-\tau]$, then the frequency response is
 $$\mathcal{H}_{\tau}(\hat{\omega})=\sum_{k=-\infty}^{\infty}h[k]e^{-i\hat{\omega}k}=\sum_{k=-\infty}^{\infty}\delta[k-\tau]e^{-i\hat{\omega}k}=e^{-i\hat{\omega}\tau}.$$
@@ -94,7 +95,7 @@ plt.xlabel("$\hat{\omega}$")
 plt.legend()
 plt.show()
 \end{lstlisting}
-As expected the functions are identical. 
+As expected, the functions are identical. 
 \begin{marginfigure}
     \includegraphics[height=7.0cm,width=7.5cm]{ch11/figures/frequency_responses.png}
     \caption{Comparison of frequency responses}
@@ -114,7 +115,7 @@ A simple computation gives
 \end{align*}
 as claimed. 
 \end{proof}
-In conclusion the running average filters produce the same magnitude response, but one of them induces a time-shift while the other doesn't. 
+In conclusion, the running average filters produce the same magnitude response, but one of them induces a time-shift while the other doesn't. 
 \end{enumerate}
 
 

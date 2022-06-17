@@ -4,14 +4,14 @@
 \item
 
 \begin{enumerate}[a)]
-\item To check linearity of a system we check Equation \ref{def:linear_sys}:
+\item To check linearity of a system, we check Equation \ref{def:linear_sys}:
 \begin{align*}
     \mathcal{T}\{c_{1}x_{1}(t)+c_{2}x_{2}(t)\}&=R^{-1}[c_{1}x_{1}(t)+c_{2}x_{2}(t)], \\
     c_{1}\mathcal{T}\{x_{1}(t)\}+c_{2}\mathcal{T}\{x_{2}(t)\} &=c_{1}R^{-1}[V_{1}(t)]^{2} + c_{2}R^{-1}[V_{2}(t)]^{2},
 \end{align*}
-these are not equal so the system is not a linear system. 
+these are not equal, so the system is not a linear system. 
 
-\item To check time-invariance for this system verify Equation \ref{def:timeinv}:
+\item To check time-invariance for this system, verify Equation \ref{def:timeinv}:
 \begin{align*}
     \mathcal{T}\{\mathcal{D}(V(t))\}&=\mathcal{T}\{V(t-\tau)\}=R^{-1}[V(t-\tau)]^{2}, \\
     \mathcal{D}\{\mathcal{T}\{V(t)\}\}&=\mathcal{D}\{R^{-1}[V(t)]^{2}\}=R^{-1}[V(t-\tau)]^{2}.
@@ -31,7 +31,7 @@ This system averages the past four values of $x[n]$, including $x[n]$ itself.
     \mathcal{T}\{c_{1}x_{1}[n]+c_{2}x_{2}[n]\} &= \frac{1}{5}\sum_{k=0}^{4}[c_{1}x_{1}[n-k]+c_{2}x_{2}[n-k]] \\
     c_{1}\mathcal{T}\{x_{1}[n]\}+c_{2}\mathcal{T}\{x_{2}[n]\}&=c_{1}\frac{1}{5}\sum_{i=0}^{4}x_{1}[n-i]+c_{2}\frac{1}{5}\sum_{j=0}^{4}x_{2}[n-j]=\frac{1}{5}\sum_{k=0}^{4}[c_{1}x_{1}[n-k]+c_{2}x_{2}[n-k]]
 \end{align*}
-In the last step the two sums was combined into one and the index was renamed to $k$. From this we can see that the output are equal so the system is linear. 
+In the last step the two sums were combined into one and the index was renamed to $k$. From this we can see that the output are equal, so the system is linear. 
 
 \item[c)] To check time-invariance we calculate
 \begin{align*}
@@ -43,7 +43,7 @@ These are equal upon rearranging the parenthesis, hence $\mathcal{T}\{\cdot\}$ i
 \item Consider a time-scaling system of the form $y(t)=x(\alpha t)$, where $x(t)$ is the input signal to the system. 
 
 \begin{enumerate}[a)]
-\item If $0<\alpha<1$, the output signal gets stretched becoming wider. In effect, it reduces the frequency of the original signal. To see this compare $\sin(t)$ with $\sin(0.5t)$ as an example. 
+\item If $0<\alpha<1$, the output signal gets stretched, becoming wider. In effect, it reduces the frequency of the original signal. To see this compare $\sin(t)$ with $\sin(0.5t)$ as an example. 
 
 \item If $\alpha>1$, the original frequencies are increased by a factor of $\alpha$, giving more oscillations in the signal. Again, compare $\sin(t)$ with $\sin(2t)$ as an example.
 
@@ -67,16 +67,16 @@ The system is time-invariant as these satisfy Equation \ref{def:timeinv}.
     \mathcal{T}\{c_{1}x_{1}(t)+c_{2}x_{2}(t)\}&=c_{1}\frac{d}{dt}x_{1}(t) + c_{2}\frac{d}{dt}x_{2}(t) \\
     c_{1}\mathcal{T}\{x_{1}(t)\}+c_{2}\mathcal{T}\{x_{2}(t)\}&=c_{1}\frac{d}{dt}x_{1}(t) + c_{2}\frac{d}{dt}x_{2}(t)
 \end{align*}
-are equal, which follows from linearity of the differential operator.
+are equal, which follows from the linearity of the differential operator.
 
-For time-invariance we check the condition in Equation \ref{def:timeinv}:
+For time-invariance, we check the condition in Equation \ref{def:timeinv}:
 \begin{align*}
     \mathcal{T}\{\mathcal{D}\{x(t)\}\}&=\mathcal{T}\{x(t-\tau)\}=\frac{d}{dt}x(t-\tau), \\
     \mathcal{D}\{\mathcal{T}\{x(t)\}\}&=\mathcal{D}\left\{\frac{d}{dt}x(t)\right\}=\frac{d}{dt}x(t-\tau).
 \end{align*}
 Showing that Equation \ref{def:timeinv} holds, hence the system is time-invariant. 
 
-\item The guitar amplifier is a system of the form
+\item The guitar amplifier is a system of the form:
 $$y(t)=\begin{cases}
     -\beta, \quad \hspace{0.4cm} \alpha x(t)<-\beta  \\
     \alpha x(t), \quad |\alpha x(t)|\le \beta \\
@@ -117,7 +117,7 @@ Have that
 \end{align*}
 so the system is time-invariant. 
 
-\item Running Listing \ref{lst:audio} and looking at the resulting plot one can see that the signal has been amplified. 
+\item Running Listing \ref{lst:audio} and looking at the resulting plot, one can see that the signal has been amplified. 
 \lstinputlisting[language=Python,caption={Solution for Exercise 4.8},label=ex4.8]{ch04/code/ex8.py}
 The output from this system is shown below. 
 \begin{figure}

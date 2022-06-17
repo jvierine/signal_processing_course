@@ -1,19 +1,4 @@
-
-\newthought{Many aspects of the life of a modern human} depend on the theory of
-\index{signal processing}{signal processing}. Here are a few examples. When
-you are listening to a digital audio recording of music, displaying an
-image on your computer, or using a wireless internet connection, you
-are relying on mathematical concepts that are taught in a basic course
-on signal processing. These same concepts are encountered when e.g.,
-solving differential equations, applying deep learning techniques,
-measuring the gravitational wave signature of colliding neutron stars
-with a laser interferometer, or making an image of a black hole using
-a world wide network of radio telescopes. The theory
-of \emph{\index{signals and systems}{signals and systems}} is a
-collection of applied mathematical tools that have important
-applications in science, technology, and engineering. The term signal
-processing and the terminology of signal processing have origins in
-electrical engineering.
+\newthought{Many aspects of the life of a modern human} depend on the theory of \index{signal processing}{signal processing}. Here are a few examples. When you are listening to a digital audio recording of music, displaying an image on your computer, or using a wireless internet connection, you are relying on mathematical concepts that are taught in a basic course on signal processing. These same concepts are encountered when, e.g., solving differential equations, applying deep learning techniques, measuring the gravitational wave signature of colliding neutron stars with a laser interferometer, or making an image of a black hole using a worldwide network of radio telescopes. The theory of \emph{\index{signals and systems}{signals and systems}} is a collection of applied mathematical tools that have important applications in science, technology, and engineering. The term signal processing and the terminology of signal processing have origins in electrical engineering.
 
 \begin{marginfigure}[-4.2cm]
 \begin{center}
@@ -46,7 +31,7 @@ original audio signal using a sum of a relatively small number of
 periodic sinusoidal signal components. Let's say that the original
 audio signal is $x(t)$, which represents air pressure as a function of
 time. Using the \index{Fourier series}{Fourier series} we can use the
-following type of a sum to approximate $x(t)$:
+following type of sum to approximate $x(t)$:
 \begin{equation}
 x(t) \approx \sum_{n=1}^{N} A_n \sin(\omega_n t + \phi_n) \,\,,
 \label{ch01:eq:fourier_ser}
@@ -104,7 +89,7 @@ A e^{i\phi }e^{i\omega t} = A[\cos(\omega t+\phi) + i\sin(\omega
 t+\phi)] \,\,.
 \label{ch01:eq:euler}
 \end{equation}
-Just like a real valued sinusoid, the complex sinusoid is also
+Just like a real-valued sinusoid, the complex sinusoid is also
 represented using an amplitude $A \in \mathbb{R}$, phase
 $\phi \in \mathbb{R}$, and angular frequency $\omega \in \mathbb{R}$. Note
 that the above equation is just an application of Euler's
@@ -210,8 +195,8 @@ processing.
 
 The Fourier transform is named after Jean-Baptiste Joseph Fourier, who
 is shown in Figure \ref{fig:joe_fourier}. He was the first to come up
-with the idea of expressing a function as a sum of sinusoidal signals
-or in other words spectral components. This occurred in the 1820s
+with the idea of expressing a function as a sum of sinusoidal signals,
+or in other words, spectral components. This occurred in the 1820s
 while he was studying heat conduction. Using sinusoidal valued
 spectral components to represent the distribution of heat within a
 body allowed him to analytically solve the heat equation, because
@@ -262,7 +247,7 @@ material and spend more time on the application examples.
 %areas where basic signal processing concepts are useful.
 
 \if 0
-\begin{marginfigure}[1cm]
+\begin{marginfigure}[1.0cm]
 \begin{center}
   \includegraphics[width=\textwidth]{up.jpg}
 \end{center}
@@ -424,7 +409,7 @@ and Practice'' by D. G. Manolakis and V. K. Ingle.
 %confusion related to the name of the institution.}.
 
 
-\newthought{You might be asking yourself: why should I learn about signal processing?} This may be in the minds of especially those for who have this as a mandatory course, and this is the primary reason that you are attending it. I believe that the elementary concepts taught in a basic course on this topic will provide you with the tools to be a good scientist. You will encounter the mathematical tools introduced on this course throughout science, technology, and engineering, where knowledge of these tools can often be seen as a prerequisite background knowledge that allows you to understand more advanced concepts.
+\newthought{You might be asking yourself: why should I learn about signal processing?} This may be in the minds of, especially those for who have this as a mandatory course, and this is the primary reason that you are attending it. I believe that the elementary concepts taught in a basic course on this topic will provide you with the tools to be a good scientist. You will encounter the mathematical tools introduced in this course throughout science, technology, and engineering, where knowledge of these tools can often be seen as prerequisite background knowledge that allows you to understand more advanced concepts.
 
 Perhaps the most powerful practical tool you will learn during this course is the Fast Fourier Transform (FFT), which is a specific algorithm used to compute a discrete Fourier transformation. It will allow you to perform a wide range of different calculations efficiently, using techniques that are not trivial unless you understand the basic concepts of signal processing. The FFT algorithm can be used e.g., for spectral analysis, evaluation of a convolution operation, to efficiently solve certain types of matrix operations, or to solve differential equations. Any time when processing signals
 later on in your life, there is a good chance that you will find the FFT algorithm to be highly useful.

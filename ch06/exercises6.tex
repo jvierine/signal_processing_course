@@ -1,11 +1,11 @@
 \newpage
 \section{Exercises: Sinusoidal Signals}
 
-Hint: You can often write a Python program to verify your result if you are not sure it is correct!
+Hint: You can often write a Python program to verify your result if you are not sure if it is correct!
 
 \begin{enumerate}
 
-\item You may have heard somebody say that noise cancelling headphones
+\item You may have heard somebody say that noise-cancelling headphones
   rely on playing an audio signal where each spectral component of the
   signal is perfectly ``out of phase'' with the input signal. Consider
   a noise source that is sinusoidal and described by the following
@@ -13,7 +13,7 @@ Hint: You can often write a Python program to verify your result if you are not 
 \begin{equation}
 x_{\mathrm{noise}}(t) = \cos(\omega t + \phi).
 \end{equation}
-Your noise cancelling system can generate a signal
+Your noise-cancelling system can generate a signal
 $x_{\mathrm{cancel}}(t)$ with the same amplitude and frequency, but a different phase:
 \begin{equation}
 x_{\mathrm{cancel}}(t) = \cos(\omega t + \phi_c)
@@ -48,7 +48,8 @@ What is the value of $a$, $b$, $\omega_3$, and $\omega_4$?
 \end{equation}
 is a solution to the Maxwell's equation in free space.
 
-You task is to show that a real-valued solution $\mathrm{Re}\{\vec{E}(x,t)\}$ with $\vec{E}(x,t)\ne 0$ is also a solution to the wave equation, so that we know that it is possible to have solutions with a real valued electric field. In other words, show that Equation \ref{eq:disp_relation} holds also in this case.
+Your task is to show that a real-valued solution $\mathrm{Re}\{\vec{E}(x,t)\}$ with $\vec{E}(x,t)\ne 0$ is also a solution to the wave equation, 
+so that we know that it is possible to have solutions with a real valued electric field. In other words, show that Equation \ref{eq:disp_relation} holds also in this case.
 \if 0
   \begin{equation}
     \mathrm{Re}\{\vec{E}(x,t)\} = \frac{1}{2}\hat{y}\left(E_0 e^{i (\omega/c) x} e^{i \omega t} + E_0^* e^{-i (\omega/c) x} e^{-i \omega t}\right)
@@ -68,10 +69,11 @@ You task is to show that a real-valued solution $\mathrm{Re}\{\vec{E}(x,t)\}$ wi
 \begin{equation}
     \vec{E}(x,t) = \hat{y}\sum_n E_n e^{i (\omega_n/c) x} e^{i \omega_n t}
 \end{equation}
-Would this still satisfy the Maxwell's equations (i.e., the wave equation)? Can electromagnetic waves be composed of a superposition of two dimensional plane waves of different frequencies (wavelengths, or colors), which each individually satisfy the wave equation?
+Would this still satisfy the Maxwell's equations (i.e., the wave equation)? Can electromagnetic waves be composed of a superposition of two-dimensional plane waves of different frequencies (wavelengths, or colors), which each individually satisfy the wave equation?
 
 
-\item Copy the example program in Listing \ref{lst:mixing_ex} that performs mixing and run it. The example shows how to shift a complex exponential signal with a certain frequency to another frequency. Modify the script in such a way that the resulting complex exponential signal \verb|z_shifted| has a frequency of 42 Hz. Use the plot to verify that the frequency of the signal is approximately 42 Hz.
+\item Copy the example program in Listing \ref{lst:mixing_ex} that performs mixing and run it. The example shows how to shift a complex exponential signal with a certain frequency to another frequency. 
+Modify the script in such a way that the resulting complex exponential signal \verb|z_shifted| has a frequency of 42 Hz. Use the plot to verify that the frequency of the signal is approximately 42 Hz.
 
 
 \item Go back to the guitar amplifier program
@@ -108,6 +110,6 @@ When multiplying this signal with a sinusoidal signal of frequency $\omega$, we 
 y(t) &= x(t) \cos(\omega t)\\
   y(t) &= \left[\sum_{n} A_n \cos(\omega_n t + \phi_n)\right] \cos(\omega t).
 \end{align}
-Each spectral component of signal $x(t)$ gets the same treatment as you already investigated in Exercise 3.
+Each spectral component of a signal $x(t)$ gets the same treatment as you already investigated in Exercise 3.
 
 \end{enumerate}

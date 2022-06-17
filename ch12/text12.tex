@@ -40,7 +40,7 @@ sampling theorem. Figure \ref{fig:dirac_disc} depicts a
 continuous-time signal and the continuous-time representation of the
 discretized signal $x_d(t)$, which is a sequence of unit impulses
 multiplied by the value of each discrete-time signal sample $x[n]$ at
-the position in time where it was sampled.
+the position in time, where it was sampled.
 \begin{marginfigure}[-3cm]
 \begin{center}
         \begin{tikzpicture}
@@ -60,7 +60,7 @@ the position in time where it was sampled.
 \end{axis}
         \end{tikzpicture}
 \end{center}
-\caption{A continuous-time signal $x(t)$ and a continuous-time representation of a discretized signal $x_d(t)$. Sample-spacing $T_s$ is related to sample-rate as follows: $T_s = 1/f_s$.}
+\caption{A continuous-time signal $x(t)$ and a continuous-time representation of a discretized signal $x_d(t)$. Sample spacing $T_s$ is related to sample rate as follows: $T_s = 1/f_s$.}
 \label{fig:dirac_disc}
 \end{marginfigure}
 
@@ -158,7 +158,7 @@ The periodicity property is the same one that we encountered when
 investigating aliasing of complex sinusoidal discrete-time signals,
 which are essentially frequency components of a discrete-time
 signal. Figure \ref{fig:dir_kernelp} shows one example of a
-discrete-time Fourier transform, the Dirichlet kernel that we
+discrete-time Fourier transform, the Dirichlet kernel, that we
 encountered when investigating the frequency response of a running average filter. 
 
 \section{Inverse transform}
@@ -199,10 +199,10 @@ We now have an inverse and forward discrete-time Fourier transform pair:
 \end{equation}
 We'll now list several discrete-time Fourier transform pairs. Note
 that many of these have in fact already been discussed in the chapter
-for the continuous-time Fourier transform.
+on the continuous-time Fourier transform.
 
 \if 0
-\section{Frequency response for a real valued impulse response}
+\section{Frequency response for a real-valued impulse response}
 
 The frequency response of a real-valued impulse-response
 $h[n]\in \mathbb{R}$ is conjugate symmetric
@@ -227,7 +227,7 @@ symmetry is a more general property of the Fourier transform of real
 valued signals. This is just a special case of this more general
 property that is applied to discrete-time signals.
 
-A corollary Equation \ref{eq:conj_symmetry_lti} of this is that the
+A corollary of Equation \ref{eq:conj_symmetry_lti} of this is that the
 magnitude response of an LTI system with a real valued impulse
 response is always symmetric around zero:
 \begin{equation}
@@ -257,7 +257,7 @@ y[n] &= h[n]*x[n]\\
  &= \left(\sum_{k} h[k] e^{-i\hat{\omega} k}\right) \frac{A}{2}e^{i\phi}e^{i\hat{\omega} n} + \left(\sum_{k} h[k] e^{i\hat{\omega} k}\right) \frac{A}{2}e^{-i\phi} e^{-i\hat{\omega} n}\\
  &= \mathcal{H}(\hat{\omega}) \frac{A}{2}e^{i\phi}e^{i\hat{\omega} n} + \mathcal{H}(-\hat{\omega}) \frac{A}{2}e^{-i\phi}e^{-i\hat{\omega} n}\,\,.
  \end{align} 
-In this case, the impulse response is real valued $h[n]\in \mathbb{R}$, and thus:
+In this case, the impulse response is real-valued $h[n]\in \mathbb{R}$, and thus:
 \begin{equation}
 \mathcal{H}(-\hat{\omega}) = \mathcal{H}(\hat{\omega})^*\,\,.
 \end{equation}
@@ -316,10 +316,10 @@ hand notation, we can define this as a DTFT pair:
 h[n] \xleftrightarrow{\mathcal{F}} \He\,\,.
 }
 \end{equation}
-The inverse DTFT formula will come in handy when e.g., defining LTI
+The inverse DTFT formula will come in handy when, e.g., defining LTI
 systems based on their frequency response characteristics, and then
 obtaining the impulse response using the inverse transform. This leads
-to e.g., ideal filters, ideal frequency selective filters, and
+to, e.g., ideal filters, ideal frequency selective filters, and
 arbitrary time shift filters. These are LTI systems that would be
 difficult or impossible to derive in time domain.
 
@@ -347,7 +347,7 @@ e^{i\hat{\omega}_0 n}x[n] \xleftrightarrow{\mathcal{F}} \hat{x}(\hat{\omega}-\ha
 }
 \end{equation}
 The proof is as follows. If we multiply the signal $x[n]$ with a
-complex exponential signal with frequency $\hat{\omega}_0$ we obtain a
+complex exponential signal with frequency $\hat{\omega}_0$, we obtain a
 new signal $y[n]$:
 \begin{equation}
 y[n] = e^{i\hat{\omega}_0 n}x[n]\,\,. 
@@ -369,7 +369,7 @@ downconversion systems that are found in digital radios.
 \section{Convolution theorem}
 An often used theorem of signal processing is the convolution theorem. It
 states that convolution in time domain is multiplication in frequency
-domain. This is also applies to discrete-time Fourier transforms.
+domain. This also applies to discrete-time Fourier transforms.
 \begin{equation}
 \boxed{
 a[n] = b[n]*c[n] \xleftrightarrow{\mathcal{F}} \hat{a}(\hat{\omega}) = \hat{b}(\hat{\omega})\hat{c}(\hat{\omega})\,\,.
