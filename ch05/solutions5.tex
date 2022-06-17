@@ -6,11 +6,11 @@
 $$\int_{-\infty}^{\infty}x(t)\delta(t-\tau)dt=x(\tau).$$
 
 \item[a)]
-Using the above we get
+Using the above, we get
 $$\int_{-\infty}^{\infty}\delta(t)e^{i\omega t}dt=e^{i\omega\cdot 0}=\underline{\underline{1}}.$$
 
 \item[b)]
-Similarly we get
+Similarly, we get
 $$\int_{-\infty}^{\infty}\delta(t-\tau)e^{i\omega t}dt=\underline{\underline{e^{i\omega\tau}}}.$$
 
 \item[c)]
@@ -21,7 +21,7 @@ by the same reasoning as a).
 \item[d)]
 $$\int_{-\infty}^{\infty}\delta(\omega-\omega_{0})e^{-i\omega t}d\omega=\underline{\underline{e^{-i\omega_{0}t}}}.$$
 
-\item Consider the integral
+\item Consider the integral:
 $$\int_{-\infty}^{\infty}[u(t+L)-u(t-L)]e^{i\omega t}dt.$$
 This corresponds to a rectangular function with height $1$ and width $2L$ centered around $0$. Thus, the integral can be simplified to
 $$\int_{-\infty}^{\infty}[u(t+L)-u(t-L)]e^{i\omega t}dt=\int_{-L}^{L}[u(t+L)-u(t-L)]e^{i\omega t}dt.$$
@@ -29,7 +29,7 @@ The function $u(t+L)-u(t-L)\equiv 1$ on the interval $[-L,L]$, hence
 $$\int_{-L}^{L}[u(t+L)-u(t-L)]e^{i\omega t}dt=\int_{-L}^{L}e^{i\omega t}dt=\left[\frac{1}{i\omega}e^{i\omega t}\right]_{-L}^{L}=\frac{1}{i\omega}(e^{i\omega L}-e^{-i\omega L}).$$
 Therefore, $\alpha=\frac{1}{i\omega}$.
 
-\item Using the properties of the Dirac delta function we have
+\item Using the properties of the Dirac delta function, we have
 $$\int_{-\infty}^{\infty}\sin(t-c)\delta(t)dt=\sin(0-c)=\sin(-c)=-\sin(c).$$
 This evaluates to $0$ for $c=\pi n$ where $n\in\mathbb{Z}$. Thus, $c$ has to be $c=\pi n$.
 

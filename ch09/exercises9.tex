@@ -2,9 +2,11 @@
 \section{Exercises: Discrete-time Signals}
 
 \begin{enumerate}
-\item The signal $x(t) = A e^{i\omega_0 t}$ is discretized using an idealized continuous-to-discrete time converter $x[n]=x(n T_s)=Ae^{i\hat{\omega}_{k}n}$. Here $A=1$ and $\omega_0=2\pi 10042$ radians per second. The sample-rate is $f_s=100$ samples per second and $T_s=1/f_s$.
+\item The signal $x(t) = A e^{i\omega_0 t}$ is discretized using an idealized continuous-to-discrete time converter $x[n]=x(n T_s)=Ae^{i\hat{\omega}_{k}n}$. 
+Here $A=1$ and $\omega_0=2\pi 10042$ radians per second. The sample rate is $f_s=100$ samples per second and $T_s=1/f_s$.
 \begin{enumerate}[a)]
-\item What are all the possible values of $\hat{\omega}_k$ that result in an identical discrete-time signal $x[n]$. Use normalized angular frequency with units radians per sample. The possible values $\hat{\omega}_k$ are called frequency aliases. Here $k\in \mathbb{Z}$ is an integer index to the different solutions.
+\item What are all the possible values of $\hat{\omega}_k$ that result in an identical discrete-time signal $x[n]$. 
+Use normalized angular frequency with units of radians per sample. The possible values $\hat{\omega}_k$ are called frequency aliases. Here $k\in \mathbb{Z}$ is an integer index to the different solutions.
 \item What are the principal aliases in normalized angular frequency with units radians per sample? Principal aliases are values of $\hat{\omega}_k$ that lie in the interval $-\pi < \hat{\omega}_k < \pi$.
 \item Draw the spectrum of this signal with normalized angular frequency in units of radians per sample on the horizontal axis. Use the range $-3\pi < \hat{\omega} < 3\pi$. How many frequency components are there?
 \item There are infinitely many continuous-time signals $x_k(t)=A e^{i\omega_k t}$ that will result in the same $x[n]$. What are all the possible continuous-time angular frequencies $\omega_k$? What is the smallest possible absolute value of $|\omega_k|$?
@@ -17,10 +19,10 @@
 \item Show how the spectrum changes if the signal changes to $y_2[n] = 2 \cos(2.67 \pi n) + \cos(0.33 \pi n)$. Use the same frequency range as in a).
 \end{enumerate}
   
-\item If you've ever seen an old western movie with a stagecoach wheel seemingly rotating in the wrong direction, this exercise will help you understand how this optical illusion occurs. You have done a video recording of a disc with a red mark on the rim. The disc started a clockwise rotation with slowly increasing rotational speed $0 \le v_{rot} \le 2880$ rotations per minute (rpm). The sampling rate of your camera was $f_s = 24$ frames per second (fps). Assume that each frame is captured instantaneously, i.e., the exposure time is infinitely short. On the recording you can see that the red spot seems to rotate differently for certain speeds and speed ranges.
+\item If you've ever seen an old western movie with a stagecoach wheel seemingly rotating in the wrong direction, this exercise will help you understand how this optical illusion occurs. You have done a video recording of a disc with a red mark on the rim. The disc started a clockwise rotation with slowly increasing rotational speed $0 \le v_{rot} \le 2880$ rotations per minute (rpm). The sampling rate of your camera was $f_s = 24$ frames per second (fps). Assume that each frame is captured instantaneously, i.e., the exposure time is infinitely short. On the recording, you can see that the red spot seems to rotate differently for certain speeds and speed ranges.
   \begin{enumerate}[a)]
     \item At what rotational speed (in rpm) does the red spot appear to be standing still?
-    \item Around a certain speed the red spot appears to start rotate counter-clockwise, and for what speed range will this phenomena occur?
+    \item Around a certain speed, the red spot appears to start to rotate counter-clockwise, and for what speed range will this phenomenon occur?
     \item Do you know another word for the counter-clockwise behavior?
     \item What behavior does the red spot have beyond the speed found in a)?
   \end{enumerate}
@@ -52,7 +54,7 @@
 \begin{enumerate}[a)]
     \item $x(t)=(2\pi)^{-1}\int_{-\infty}^{\infty}\hat{x}(\omega)e^{i\omega t}d\omega$. Why is $x(t)$ not a real-valued signal?
     \item What is the minimum sample-rate (in units of samples per second) required to retain all information about the signal?
-    \item Sketch a plot of $|\hat{x}_s(\omega)|$ for the sample-rate you found in b). $\hat{x}_s(\omega)$ is defined in Equation \ref{eq:xs_spec}. Why don't the frequency shifted copies of $|\hat{x}(\omega)|$ overlap? 
+    \item Sketch a plot of $|\hat{x}_s(\omega)|$ for the sample rate you found in b). $\hat{x}_s(\omega)$ is defined in Equation \ref{eq:xs_spec}. Why don't the frequency shifted copies of $|\hat{x}(\omega)|$ overlap? 
     \item What reconstruction filter would be needed in order to perfectly reconstruct $x(t)$ from the discretized signal $x[n]$, using the sample-rate that you found?
 \end{enumerate}
 
@@ -84,7 +86,7 @@
   \begin{enumerate}[a)]
     \item $x(t)=(2\pi)^{-1}\int_{-\infty}^{\infty}\hat{x}(\omega)e^{i\omega t}d\omega$. Is the signal  $x(t)$ a real valued signal?
     \item Sketch a plot of $|\hat{x}_s(\omega)|$. Recall that $\hat{x}_s(\omega)$ is defined in Equation \ref{eq:xs_spec}. Why don't the frequency shifted copies of $|\hat{x}(\omega)|$ overlap?
-    \item The sample-rate $f_s=20$ hertz is sufficient for retaining all information about $x(t)$. Why?
+    \item The sample rate $f_s=20$ hertz is sufficient for retaining all information about $x(t)$. Why?
     \item What is the frequency domain definition of the perfect reconstruction filter that reproduces the original continuous-time signal $x(t)$ from a sampled signal $x[n]$?
   \end{enumerate}
 

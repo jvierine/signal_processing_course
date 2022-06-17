@@ -1,5 +1,5 @@
-\newthought{A \index{complex sinusoidal signal}{complex sinusoidal signal} is the elementary building block of the Fourier decomposition of a signal}. This signal is fully determined by three parameters:
-\index{amplitude}{amplitude} $A \in \mathbb{R}_{\ge 0}$, \index{phase}{phase} $\phi \in \mathbb{R}$ (rad), and
+\newthought{A \index{complex sinusoidal signal}{complex sinusoidal signal} is the elementary building block of the Fourier decomposition of a signal}. 
+This signal is fully determined by three parameters:\index{amplitude}{amplitude} $A \in \mathbb{R}_{\ge 0}$, \index{phase}{phase} $\phi \in \mathbb{R}$ (rad), and
 \index{angular frequency}{angular frequency} $\omega \in \mathbb{R}$ (rad/s).
 \begin{equation}
 \boxed{
@@ -88,12 +88,12 @@ With this formulation, it is apparent that the real and imaginary components are
 = \sin(\theta + \pi/2)$. Figure \ref{fig:complex_sinusoid} shows an example of a complex sinusoidal signal.
 
 You can also think of a complex sinusoidal signal as a point on the complex plane, which rotates around in a circle around the origin. This is sometimes referred to as the \emph{rotating phasor}. The radius of the circle is the amplitude of the signal $A=|X|$. At $t=0$, the point is at a phase angle of $\phi$. This phase angle as a function of time is given by $\phi + \omega t$ and determines the position of the point on the circle at a given time. If $\omega>0$, then the point moves counterclockwise around the circle when the value of $t$ increases. If $\omega < 0$, then the point moves
-in the clockwise direction around the circle as the the value of $t$ increases. Figure \ref{fig:rotating_phasor} depicts this concept.
+in the clockwise direction around the circle as the value of $t$ increases. Figure \ref{fig:rotating_phasor} depicts this concept.
 
 This might at first seem like an unnecessarily complicated way to express a sinusoidal signal, but this representation often simplifies the mathematics. For example, it is in most cases much easier to algebraically work with the function $\frac{1}{2}(e^{i\phi}e^{i\omega
 t}+e^{-i\phi}e^{-i\omega t})$ than it is with $\cos(\omega t + \phi)$, even though they are the same thing.
 
-You'll also see later on, that a complex sinusoidal signal is
+You'll also see, later on, that a complex sinusoidal signal is
 an \emph{\index{eigenfunction}{eigenfunction}} for any linear
 time-invariant operator. It allows us to characterize the properties of a linear time-invariant system just by simply investigating what effect the system has on a complex sinusoidal signal. If we spend the effort to learn how to use a complex sinusoidal signal, then we'll know everything there is to know about linear time-invariant systems!
 
@@ -106,7 +106,7 @@ Using the earlier definition of a complex sinusoidal signal, we find that:
 \end{align}
 This tells us that a real valued sinusoidal signal with angular frequency $\omega$ is a sum of a positive and negative frequency complex sinusoidal signal with angular frequencies $\pm\omega$. Note that the sign of the phase angles of the two complex sinusoidal signals are also $\pm\phi$.
 
-\newthought{Angular frequency $\omega$} of a complex sinusoidal signal determines how many radians the phase of the signal advances per unit of time. If the unit of time is seconds, the angular frequency has units of \emph{radians per second} (rad/s).
+\newthought{Angular frequency $\omega$} of a complex sinusoidal signal, determines how many radians the phase of the signal advances per unit of time. If the unit of time is seconds, the angular frequency has units of \emph{radians per second} (rad/s).
 
 It is possible to relate angular frequency to frequency $f$ in units of cycles per time unit, i.e., how many times does the point whose position is indicated by the complex sinusoidal signal rotate around the circle per unit of time:
 \begin{equation}
@@ -115,14 +115,16 @@ It is possible to relate angular frequency to frequency $f$ in units of cycles p
 If the unit of time is seconds, then the unit of frequency $f$ is hertz (Hz or 1/s). Sometimes \emph{cycles per second} is indicated as the unit for frequency. 
 
 I will try to consistently use the name \emph{angular frequency} and symbol $\omega$ when referring to a frequency that is in units of radians per unit of $t$. I will use the name \emph{\index{frequency}{frequency}} and the symbol $f$ when referring to the frequency that is in units of cycles
-per unit of $t$. In some cases, when I am talking about frequency in general and it does not matter what the units are, I will drop the word angular and just talk about frequency.
+per unit of $t$. In some cases, when I am talking about frequency in general, and it does not matter what the units are, I will drop the word angular and just talk about frequency.
 
-It is unfortunate that these two competing units exist. It
-occasionally causes confusion even for people who have worked with signals for many years!  It is not unusual to find a factor of $2\pi$ missing or unnecessarily added in a textbook that is discussing the frequency of a signal.
+It is unfortunate that these two competing units exist. 
+It occasionally causes confusion even for people who have worked with signals for many years! 
+It is not unusual to find a factor of $2\pi$ missing or unnecessarily added in a textbook that is discussing the frequency of a signal.
 
-Throughout these lecture notes, we will most of the time call the independent variable $t$ of a one dimensional signal time and assign it units of seconds. However, the physical units of $t$ do not necessarily have to be seconds, and $t$ does not have to denote time.
+Throughout these lecture notes, we will most of the time call the independent variable $t$ of a one dimensional signal time and assign it units of seconds. 
+However, the physical units of $t$ do not necessarily have to be seconds, and $t$ does not have to denote time.
 
-For example, if the units of $t$ were e.g., distance in meters, then we would have an angular frequency $\omega$ that is in units of radians per meter, and frequency $f$ that is in units of cycles per meter. In physics, a spatial frequency is typically called a \emph{\index{wavenumber}{wavenumber}}. It is customary to use the symbol $k$ for angular wavenumber and the Greek letter $\nu$ for linear wavenumber. These types of spatial frequencies are often encountered when dealing with propagating waves. There is an example at the end of this chapter on this topic.
+For example, if the units of $t$ were distance in meters, then we would have an angular frequency $\omega$ that is in units of radians per meter, and frequency $f$ that is in units of cycles per meter. In physics, a spatial frequency is typically called a \emph{\index{wavenumber}{wavenumber}}. It is customary to use the symbol $k$ for angular wavenumber and the Greek letter $\nu$ for linear wavenumber. These types of spatial frequencies are often encountered when dealing with propagating waves. There is an example at the end of this chapter on this topic.
 
 \newthought{Complex and real valued sinusoidal signals} are periodic. The definition of a \index{periodic function}{periodic function} requires that the function repeats after a certain time period $T$ for all values of $t$:
 \begin{equation}
@@ -185,7 +187,7 @@ processing. For example, we'll use multiplication of two complex sinusoidals sig
 The frequency shift property is also widely used in radio engineering and telecommunications to shift high frequency signals to lower frequencies and vice versa. This operation is called downconversion or upconversion in radio engineering terminology.
 
 \newthought{It is possible to extend the concept of a complex sinusoidal signal into multiple dimensions}. For example, a \index{two dimensional complex sinusoidal
-signal}{two dimensional complex sinusoidal
+signal}{two-dimensional complex sinusoidal
 signal} would be of the form:
 \begin{equation}
 z(x,y) = A e^{i\phi} e^{i k x} e^{i \ell y}.
@@ -243,7 +245,7 @@ y(t) = \mathcal{T}\{e^{i(\omega t + \phi)}\} &= e^{i[\omega (t-\tau) + \phi]}\\
 The output of the time-shift system for a complex sinusoidal signal is
 the input signal multiplied by $e^{-i\omega \tau}$. In other words,
 phase shifted by $-\omega \tau$ radians. There is a linear dependence
-of phase shift with frequency as shown in
+of phase shift with frequency, as shown in
 Figure \ref{fig:timeshift_phase}.
 
 \begin{marginfigure}
@@ -282,7 +284,7 @@ phase shift only to a time-delay, then the following relationship holds
 \begin{equation}
 e^{i (\theta+2\pi k)} = e^{-i \omega \tau}.
 \end{equation}
-This means that all of the time delays that could have caused a phase shift $\theta$ are:
+This means that all the time delays that could have caused a phase shift $\theta$ are:
 \begin{equation}
 \tau = -\omega^{-1}(\theta+2\pi k).
 \end{equation}
@@ -294,7 +296,8 @@ Another possible solution to the phase-time ambiguity is to measure the rate-of-
 \begin{equation}
 \frac{d\theta}{d\omega} = -\tau.
 \end{equation}
-This type of a measurement is used by devices called network analyzers for measuring the length of a cable. This principle is also used in the radio astronomical method called very long baseline interferometry (VLBI) to determine the relative time delay between a point-like radio emission source and two different radio telescopes.
+This type of measurement is used by devices called network analyzers for measuring the length of a cable. 
+This principle is also used in the radio astronomical method called very long baseline interferometry (VLBI) to determine the relative time delay between a point-like radio emission source and two different radio telescopes.
 
 \begin{marginfigure}
 \begin{center}
@@ -304,8 +307,6 @@ This type of a measurement is used by devices called network analyzers for measu
 \label{fig:vlbi_concept}
 \end{marginfigure}
 
-
-
 \section{Example: Very long baseline interferometry}
 A point-like radio star emits a signal across a broad range of frequencies. This means that we can observe the signal originating from the radio star with multiple angular frequencies $\omega$. We can denote the signal originating from the star at a certain frequency with:
 \begin{equation}
@@ -313,14 +314,15 @@ z(t,\omega) = A(\omega) e^{i\phi(\omega)} e^{i\omega t}
 \end{equation}
 Here $A(\omega) \in \mathbb{R}_{\ge 0}$ is the amplitude and $\phi(\omega)$ is the phase of the signal at angular frequency $\omega$. Because the signal is generated by an enormous collection of charged particles (primarily electrons) in an accelerating motion, the amplitudes and phases are random variables.
 
-If we measure the signal originating from the radio star at two different places with a radio telescope simultaneously, the time of arrival of the signal between the two telescopes will differ by $\tau$ due to geometry (see Figure \ref{fig:vlbi_concept}). It is this value of $\tau$ that is often of interest, when e.g., estimating the orientation of Earth relative to the stars. 
+If we measure the signal originating from the radio star at two different places with a radio telescope simultaneously, the time of arrival of the signal between the two telescopes will differ by $\tau$ due to geometry (see Figure \ref{fig:vlbi_concept}). It is this value of $\tau$ that is often of interest, when, e.g., estimating the orientation of Earth relative to the stars. 
 
 Let's denote the signal received with telescope 1 with $z_1$ and the signal received with telescope 2 with $z_2$:
 \begin{align}
 z_1(t,\omega) &= A(\omega) e^{i\phi(\omega)} e^{i\omega t} \\
 z_2(t,\omega) &= A(\omega) e^{i\phi(\omega)} e^{i\omega (t-\tau)}
 \end{align}
-We'll assume that $z_1$ is the same signal as $z_2$ with only one exception, the signal $z_2$ is delayed by time constant $\tau$ due to the receiver being further away from the source of the signal\sidenote{For radio signals, we need the radio source to be in the Fraunhofer far-field in order for this to be valid.}.
+We'll assume that $z_1$ is the same signal as $z_2$, with only one exception, the signal $z_2$ is delayed by a time constant $\tau$ due to the receiver being further away 
+from the source of the signal\sidenote{For radio signals, we need the radio source to be in the Fraunhofer far-field in order for this to be valid.}.
 
 In order to determine the value $\tau$, we can use the following operation:
 \begin{equation}
@@ -373,7 +375,7 @@ Equation \ref{eq:freqmix} which tells us that when multiplying two complex sinus
 
 This example will show that complex sinusoidal signals are a useful mathematical tool also for solving differential equations by deriving a plane wave solution of \index{electromagnetic waves}{electromagnetic waves} from \index{Maxwell's equations}{Maxwell's equations}.
 
-Don't worry if you are not familiar with these equations. I mainly want you to pay attention to how the differential equation is solved for a plane wave using a \index{two-dimensional complex sinusoidal signal}{two-dimensional complex sinusoidal signal} $\vec{E}(x,t)=\hat{y}E_0 e^{i k x}e^{i\omega t}$. Because the exponential function is easy to differentiate, it is easy to apply this type of a function for solving differential equations.
+Don't worry if you are not familiar with these equations. I mainly want you to pay attention to how the differential equation is solved for a plane wave using a \index{two-dimensional complex sinusoidal signal}{two-dimensional complex sinusoidal signal} $\vec{E}(x,t)=\hat{y}E_0 e^{i k x}e^{i\omega t}$. Because the exponential function is easy to differentiate, it is easy to apply this type of function for solving differential equations.
 
 Assuming that there are no currents ($\vec{J}=0$) or space charges ($\rho=0$), \index{Maxwell's equations}{Maxwell's equations} are as follows:
 \begin{align}
@@ -391,19 +393,20 @@ $\nabla \cross (\nabla \cross \vec{E}) = \nabla(\nabla \cdot \vec{E}) - \nabla^2
 \begin{align}
 \nabla^2 \vec{E} &= \frac{\partial }{\partial t}\nabla \cross \vec{B}
 \end{align}
-If we now insert insert Maxwell-Ampere's law (Equation \ref{eq:maxwell}) into Faraday's
+If we now insert the Maxwell–Ampere's law (Equation \ref{eq:maxwell}) into Faraday's
 law (Equation \ref{eq:faraday}), we get:
 \begin{align}
 \frac{\partial^2 \vec{E}}{\partial t^2} - \frac{1}{\mu_0 \epsilon_0} \nabla^2 \vec{E} &= 0.
 \end{align}
-This type of equation is called a \index{wave equation}{wave equation}. You can derive the same equation also for the magnetic field, but we are not going to do that here.
+This type of equation is called a \index{wave equation}{wave equation}. You can also derive the same equation for the magnetic field, but we are not going to do that here.
 
 Now let us assume that a solution to the wave equation is of the form:
 \begin{equation}
 \vec{E}(x,t)= E_0 \hat{y} e^{-i k x}e^{i\omega t}
 \label{efieldplanewave}
 \end{equation}
-Here $E_0 \in \mathbb{C}$ is a complex number that determines the amplitude and phase of the electric field. The term $\hat{y}$ is a unit vector in the y-axis direction. In other words, a plane wave, where the electric field in the y-z plane is constant valued. The electric field only changes as a function of position in the $x$-axis as a function of time $t$.
+Here $E_0 \in \mathbb{C}$ is a complex number that determines the amplitude and phase of the electric field. The term $\hat{y}$ is a unit vector in the y-axis direction. 
+In other words, a plane wave, where the electric field in the y-z plane is constant-valued. The electric field only changes as a function of position in the $x$-axis as a function of time $t$.
 
 \begin{figure}
 \begin{center}
@@ -417,7 +420,7 @@ It is easy to differentiate a complex exponential function twice in space and ti
 \begin{equation}
 \nabla^2 = \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} +\frac{\partial^2}{\partial z^2} 
 \end{equation}
-Because the electric field is constant in the y-z plane, only the second derivative in the x-direction remains. Using the two dimensional plane wave formulation of Equation \ref{efieldplanewave}, we can see that
+Because the electric field is constant in the y-z plane, only the second derivative in the x-direction remains. Using the two-dimensional plane wave formulation of Equation \ref{efieldplanewave}, we can see that
 \begin{align}
 \frac{\partial ^2 \vec{E}}{\partial t^2} &= -\omega^2 \vec{E}(x,t) \\
 \nabla^2 \vec{E} &= -k^2 \vec{E}(x,t).
@@ -427,10 +430,11 @@ And therefore, the wave equation becomes:
 \frac{\partial^2 \vec{E}}{\partial t^2} - \frac{1}{\mu_0 \epsilon_0} \nabla^2 \vec{E} &= 0 \\
 (c^2k^2-\omega^2) \vec{E}(x,t) &= 0 \label{eq:disp_relation}
 \end{align}
-I've taken the liberty of changing the constant $c =
-(\mu_0\epsilon_0)^{-1/2}$ for reasons that will become apparent soon. The constant $\mu_0$ is permeability of free space, and $\epsilon_0$ is permittivity of free space. The value of $c \approx 3\cdot 10^{8}$ m/s.
+I've taken the liberty of changing the constant $c = (\mu_0\epsilon_0)^{-1/2}$ for reasons that will become apparent soon. 
+The constant $\mu_0$ is permeability of free space, and $\epsilon_0$ is permittivity of free space. The value of $c \approx 3\cdot 10^{8}$ m/s.
 
-In order for the two dimensional complex sinusoidal signal to be consistent with Maxwell's equations, either $E(x,t)=0$ or $c^2k^2-\omega^2 = 0$. The trivial solution $E(x,t)=0$ is not very interesting, as there would be no electric field. The latter describes a solution with a non-zero electric field, as long as the following relationship:
+In order for the two-dimensional complex sinusoidal signal to be consistent with Maxwell's equations, either $E(x,t)=0$ or $c^2k^2-\omega^2 = 0$. 
+The trivial solution $E(x,t)=0$ is not very interesting, as there would be no electric field. The latter describes a solution with a non-zero electric field, as long as the following relationship:
 \begin{equation}
 k = \pm \frac{\omega}{c}
 \end{equation}
@@ -439,7 +443,8 @@ is satisfied. This means that the following two-dimensional signal is a solution
 \vec{E}(x,t) &= E_0 \hat{y} e^{-i (\omega/c) x} e^{i\omega t} \\
              &= E_0 \hat{y} e^{-i 2\pi \lambda^{-1} x} e^{i 2\pi f t} 
 \end{align}
-Here, I've used the relation $2\pi f = \omega$. I've also used the wavelength of the electromagnetic wave, which is $\lambda = c/f$. In other words, we have used a two dimensional complex sinusoidal signal and the Maxwell's equations to describe how electromagnetic waves propagate in space and time.
+Here, I've used the relation $2\pi f = \omega$. I've also used the wavelength of the electromagnetic wave, which is $\lambda = c/f$. 
+In other words, we have used a two-dimensional complex sinusoidal signal and the Maxwell's equations to describe how electromagnetic waves propagate in space and time.
 
 I am showing the real part of the plane wave solution in
 Figure \ref{fig:planewave}. In this case, the frequency is chosen to

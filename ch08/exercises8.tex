@@ -1,5 +1,5 @@
 \newpage
-\section*{Exercises: Fourier Transform}
+\section{Exercises: Fourier Transform}
 \begin{enumerate}
 \item A rectangular signal is defined as:
 \begin{equation}
@@ -9,14 +9,14 @@
 \item Sketch a plot of $x(t)$. How long is the rectangular pulse $x(t)$?
 \item This signal is scaled in time as follows $y(t) = x(2t)$. Sketch a plot of the signal $y(t)$. How long is the rectangular pulse $y(t)$?
 \item Evaluate the Fourier transforms of these functions: $\hat{x}(\omega)=\mathcal{F}\{x(t)\}$ and $\hat{y}(\omega)=\mathcal{F}\{y(t)\}$ using the definition of the Fourier transform.
-\item How wide are the sinc functions $\hat{x}(\omega)$ and $\hat{y}(\omega)$? You can use e.g., the spacing between the first zero crossings of the sinc function as a measure of width. Does this agree with Equation \ref{eq:timescale_ft_pair}?
+\item How wide are the sinc functions $\hat{x}(\omega)$ and $\hat{y}(\omega)$? You can use, e.g., the spacing between the first zero crossings of the sinc function as a measure of width. Does this agree with Equation \ref{eq:timescale_ft_pair}?
 \end{enumerate}
 
 \item Find the Fourier transforms of these signals:
 \begin{enumerate}[a)]
-\item $x(t)=\delta(t+2)+\delta(t)+\delta(t-2)$ \\Hint: linearity and time shift properties
-\item $x(t)=\frac{\sin(100\pi [t-2])}{\pi (t-2)}$ \\Hint: time shift property
-\item $x(t)=e^{-t}u(t) - e^{-t} u(t-4)$ \\Hint: look at the derivation for the Fourier transform of $e^{-\beta t} u(t)$
+\item $x(t)=\delta(t+2)+\delta(t)+\delta(t-2)$ \\Hint: linearity and time shift properties.
+\item $x(t)=\frac{\sin(100\pi [t-2])}{\pi (t-2)}$ \\Hint: time shift property.
+\item $x(t)=e^{-t}u(t) - e^{-t} u(t-4)$ \\Hint: look at the derivation of the Fourier transform of $e^{-\beta t} u(t)$.
 \end{enumerate}
 Note that there are more than one way to solve the Fourier transforms!
 
@@ -26,7 +26,7 @@ Note that there are more than one way to solve the Fourier transforms!
 \item $\hat{x}(\omega) = \frac{1}{1+i\omega} - \frac{1}{2+i\omega}$
 \item $\hat{x}(\omega) = i \delta(\omega - 100\pi) - i\delta(\omega + 100\pi)$.
 \end{enumerate}
-  
+
 \item Use known Fourier transform pairs together with the properties of the Fourier transform to complete the following Fourier transform pairs:
   \begin{enumerate}[a)]
   \item $x(t) = u(t+3)u(3-t) \xleftrightarrow{\mathcal{F}} \hat{x} = ?$

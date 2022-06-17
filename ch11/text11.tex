@@ -1,4 +1,3 @@
-
 In this chapter, we will investigate the response of an LTI system to
 a complex sinusoidal input. This investigation leads to the concept
 of \emph{\index{frequency response}{frequency response}} of an LTI
@@ -86,7 +85,7 @@ transform of the impulse response $h(t)$.
 
 Let's consider an arbitrary continuous-time signal that is represented
 as a sum\footnote{You can think of the inverse Fourier transform as stating
-that signal $x(t)$ consists of a linear combination of infinitely many
+that the signal $x(t)$ consists of a linear combination of infinitely many
 complex sinusoidal signals.} of complex sinusoidal signals using the inverse Fourier transform:
 \begin{equation}
 x(t)  = \frac{1}{2\pi} \int_{-\infty}^{\infty} \hat{x}(\omega) e^{i \omega t} d\omega \,\,.
@@ -218,13 +217,13 @@ $h[n]$. %All of the properties of a discrete-time Fourier transform
 \end{axis}
 \end{tikzpicture}
 \end{center}
-\caption{The frequency response is complex valued, and it represents a phase shift $\angle \He$ and a magnitude scaling $|\He|$ introduced by the LTI system to a complex sinusoidal signal of normalized angular frequency $\hat{\omega}$.}
+\caption{The frequency response is complex-valued, and it represents a phase shift $\angle \He$ and a magnitude scaling $|\He|$ introduced by the LTI system to a complex sinusoidal signal of normalized angular frequency $\hat{\omega}$.}
 \label{fig:polar_he}
 \end{marginfigure}
 
 
 \section{Magnitude and phase response}
-The frequency response $\He \in \mathbb{C}$ is a complex valued
+The frequency response $\He \in \mathbb{C}$ is a complex-valued
 function. It can be expressed in either Cartesian or polar form using Euler's formula:
 \begin{equation}
 \He = \mathrm{Re}\left\{\He \right\} + i\mathrm{Im}\left\{\He \right\} = \left|\He\right|e^{i \angle \He } \,\,.
@@ -270,12 +269,12 @@ y[n] &= x[n]*h[n]\\
     \end{axis}
 \end{tikzpicture}
 \end{center}
-\caption{An example frequency response. Top: The magnitude response of the LTI system $|\He|$, Bottom: The phase response of the system $\angle \He$.}
+\caption{An example frequency response. Top: The magnitude response of the LTI system $|\He|$. Bottom: The phase response of the system $\angle \He$.}
 \label{fig:he_example_lpf}
 \end{marginfigure}
 
 The output signal is still a complex sinusoidal signal with the same
-frequency, but the amplitude $A$ is scaled by factor $|\He|$, and the
+frequency, but the amplitude $A$ is scaled by a factor of $|\He|$, and the
 phase is shifted by a factor $\angle \He$. The magnitude of the
 frequency response $|\He|$ is called the \emph{\index{magnitude
 response}{magnitude response}}:
@@ -328,9 +327,9 @@ h[n] = \left\{\begin{array}{cc}
 \caption{The impulse response $h[n]$ of a discrete-time low-pass filter.}
 \label{fig:lp_ex}
 \end{marginfigure}
-\noindent Another way we can specify the impulse response is using an ordered list notation:
+\noindent Another way we can specify the impulse response is as a sum of unit impulses:
 \begin{equation}
-\{h[n]\}_{n=0}^{2} = \{1,2,1\} \,\,.
+h[n] = \delta[n] + 2\delta[n-1] + \delta[n-2]
 \end{equation}
 The impulse response of the filter is shown in Figure \ref{fig:lp_ex}.
 
@@ -340,7 +339,7 @@ The frequency response can be determined using Equation \ref{eq:dt_fr}:
     &= h[0]e^{-i\hat{\omega}0} + h[1]e^{-i\hat{\omega}1} + h[2]e^{-i\hat{\omega}2}\\
     &= 1 + 2 e^{-i\hat{\omega}} + e^{-i2\hat{\omega}} \,\,.
 \end{align}
-We can tidy this up a little bit by multiplying the equation with
+We can tidy this up a bit by multiplying the equation with
 $1=e^{-i\hat{\omega}}e^{i\hat{\omega}}$ so that we get a conjugate
 symmetric pairing of complex exponential functions, which allows us to
 represent $\He$ conveniently in polar form:
@@ -397,7 +396,7 @@ complex sinusoidal signal $x[n]=A e^{i\phi} e^{i\hat{\omega}n} $ is:
 \begin{equation}
 x[n-n_0] = A e^{i\phi} e^{i\hat{\omega} (n-n_0)} = e^{-i\hat{\omega}n_0}x[n] \,\,.
 \end{equation}
-This means that a delay by one sample $n_0=1$ will correspond to phase
+This means that a delay by one sample $n_0=1$ will correspond to the phase
 response of $\angle \He = -\hat{\omega}$.
 
 
@@ -412,7 +411,7 @@ response of $\angle \He = -\hat{\omega}$.
         \end{axis}
         \end{tikzpicture}
 \end{center}
-\caption{The impulse response of a high-pass filter $\{h[n]\}_{n=0}^{1}=\{1,-1\}$.}
+\caption{The impulse response of a high-pass filter $h[n]=\delta[n]-\delta[n-1]$.}
 \label{fig:first_diff}
 \end{marginfigure}
 
@@ -420,8 +419,7 @@ A first difference system is defined as follows:
 \begin{align}
 y[n] & = x[n] - x[n-1] \,\,.
 \end{align}
-This is equivalent to a FIR filter with an impulse response
-$\{h[n]\}_{n=0}^{1}=\{1,-1\}$. This is shown in Figure \ref{fig:first_diff}.
+This is equivalent to a FIR filter with an impulse response $h[n]=\delta[n]-\delta[n-1]$. This is shown in Figure \ref{fig:first_diff}.
 
 Using Equation \ref{eq:dt_fr}, we obtain the frequency response:
 \begin{align}
@@ -432,7 +430,7 @@ If we multiply this with $1=e^{-i\frac{\hat{\omega}}{2}}e^{i\frac{\hat{\omega}}{
 \begin{equation}
 \He = e^{-i\frac{\hat{\omega}}{2}}\left(e^{i\frac{\hat{\omega}}{2}}-e^{-i\frac{\hat{\omega}}{2}}\right) \,\,.
 \end{equation}
-We know that $\frac{1}{2i}(e^{i\alpha} - e^{-i\alpha}) = \sin(\alpha)$, so therefore:
+We know that $\frac{1}{2i}(e^{i\alpha} - e^{-i\alpha}) = \sin(\alpha)$, therefore:
 \begin{equation}
 \He = e^{-i\frac{\hat{\omega}}{2}} 2i \sin(\frac{\hat{\omega}}{2}) \,\,.
 \end{equation}
@@ -479,7 +477,7 @@ obtain the frequency response in the following form:
 \end{axis}
 \end{tikzpicture}
 \end{center}
-\caption{Top: The magnitude response of the high-pass filter, Bottom: The phase response of the same filter.}
+\caption{Top: The magnitude response of the high-pass filter. Bottom: The phase response of the same filter.}
 \label{fig:hp_filter_ex}
 \end{marginfigure}
 
@@ -509,17 +507,16 @@ and the phase response is:
 \right.
 \end{equation}
 The magnitude and phase response is shown in
-Figure \ref{fig:hp_filter_ex}. It completely removes zero-frequency
+Figure \ref{fig:hp_filter_ex}. It completely removes the zero-frequency
 component of the signal, and reduces the amplitudes of low frequency
 spectral components. High frequency spectral components of the input
 signal will be amplified. For input signal spectral components with
 frequencies at $\hat{\omega}=\pm \pi$, the filter output signal
-spectral components will have twice original magnitude.
+spectral components will have twice the original magnitude.
 
-This type of a filter is called a \emph{\index{high-pass
+This type of filter is called a \emph{\index{high-pass
 filter}{high-pass filter}}, as it attenuates low frequency spectral
 components relative to high frequency spectral components.
-
 
 \section{Example: band-pass filter}
 
@@ -527,7 +524,7 @@ Let's now investigate the frequency response of the following filter:
 \begin{align}
 y[n] & = 0.5 x[n+1] - 0.5 x[n-1] \,\,.
 \end{align}
-The impulse response  $\{h[n]\}_{n=-1}^{1}=\{0.5,0,-0.5\}$ of this system is shown in Figure \ref{fig:example0_bpf_h}.
+The impulse response  $h[n]=0.5\delta[n+1]-0.5\delta[n-1]$ of this system is shown in Figure \ref{fig:example0_bpf_h}.
 \begin{marginfigure}
 \begin{center}
         \begin{tikzpicture}
@@ -546,7 +543,7 @@ The impulse response  $\{h[n]\}_{n=-1}^{1}=\{0.5,0,-0.5\}$ of this system is sho
 \begin{center}
 \includegraphics[width=\textwidth]{code/019_frequency_response/bpf_fresp.png}
 \end{center}
-\caption{The frequency response of band-pass filter $\{h[n]\}_{n=-1}^{1}=\{\frac{1}{2},0,-\frac{1}{2}\}$. Top: the magnitude response, Bottom: The phase response.}
+\caption{The frequency response of the band-pass filter $h[n]=0.5\delta[n+1]-0.5\delta[n-1]$. Top: the magnitude response. Bottom: The phase response.}
 \label{fig:example_bpf_fresp}
 \end{marginfigure}
 
@@ -566,11 +563,11 @@ magnitudes of high and low frequency spectral components of the input
 signal near $\hat{\omega}=0$ and $\hat{\omega}=\pm \pi$. However, the
 spectral components with frequencies near
 $\hat{\omega}=\pm \frac{\pi}{2}$ are unchanged in magnitude. The phase
-response is flat, with the exception of a discontinuity at 0, where
+response is flat, except for a discontinuity at 0, where
 the phase switches from $-\frac{\pi}{2}$ to $\frac{\pi}{2}$ to account
 for the sign of the $\sin$ function.
 
-This type of a filter that only let's through spectral components of
+This type of filter that only lets through spectral components of
 the signal within a range of frequencies is called a \emph{\index{band-pass
 filter}{band-pass
 filter}}. 
@@ -788,10 +785,10 @@ y[n] = \frac{1}{M} \sum_{k=-N}^{N} x[n-k] \,\, _.
 
 We can easily see that this is an LTI system with an impulse response:
 \begin{equation}
-\{h[n]\}_{n=-N}^{N} = \frac{1}{M} \,\, _.
+h[n] = \frac{1}{M}\sum_{k=-N}^{N}\delta[n-k] \,\, _.
 \end{equation}
 The impulse response $h[n]$ of the system is shown in
-Figure \ref{fig:rmf_ir}. This type of a filter is often used to smooth
+Figure \ref{fig:rmf_ir}. This type of filter is often used to smooth
 noisy signals. It will also later on play an important role in
 determining the frequency response of a discrete Fourier transform.
 
@@ -873,12 +870,13 @@ of complex exponentials:
 \end{tikzpicture}
 
 \end{center}
-\caption{The Dirichlet kernel $D_{7}(\hat{\omega})$ and $D_{21}(\hat{\omega})$. The first zero-crossings $\pm\hat{\omega}_0$ are depicted for $D_{7}(\hat{\omega})$, which indicate the bandwidth of the filter.}
+\caption{The Dirichlet kernel $D_{7}(\hat{\omega})$ and $D_{21}(\hat{\omega})$. The first zero-crossings $\pm\hat{\omega}_0$ are 
+depicted for $D_{7}(\hat{\omega})$, which indicate the bandwidth of the filter.}
 \label{fig:dir_kernel}
 \end{marginfigure}
 
-\noindent which then allows us to use $\sin(\theta)=\frac{1}{2i}(e^{i\theta}-e^{-i\theta})$ to relate the
-symmetric pairs to $\sin$ functions:
+\noindent which then allows us to use $\sin(\theta)=\frac{1}{2i}(e^{i\theta}-e^{-i\theta})$ 
+to relate the symmetric pairs to $\sin$ functions:
 \begin{align}
 \He &= \frac{1}{M} \frac{\cancel{-2i}}{\cancel{-2i}} \frac{ \sin(\hat{\omega} (N+1/2)) }{\sin(\hat{\omega}/2)} = D_{M}(\hat{\omega}) \,\,.
 \end{align}
@@ -896,8 +894,8 @@ using the one consistent with the Scipy
 implementation \texttt{scipy.special.diric(x,n)}.}.
 
 Equation \ref{eq:dirikereq} may at first appear problematic at
-$\hat{\omega}=0$, which results in $D_M(0)=0/0$. This can be resolved
-using L'H\^opital's rule:
+$\hat{\omega}=0$, which results in $D_M(0)=0/0$. 
+This can be resolved using L'H\^opital's rule:
 \begin{equation}
 \lim_{x\rightarrow c} \frac{f(x)}{g(x)} = \lim_{x\rightarrow c} \frac{f'(x)}{g'(x)} \,\, _.
 \end{equation}
@@ -965,7 +963,7 @@ bandwidth of the filter approaches zero and passes through only
 signals with frequencies $\hat{\omega}=2\pi k$.
 
 From Equation \ref{eq:dirac_comb_dirichlet} it is easy to see that the Dirichlet kernel is $2\pi$-periodic. This is a general property that
-applies for the frequency response of any discrete-time LTI system,
+applies to the frequency response of any discrete-time LTI system,
 and is due to dicretization of the signal.
 
 There is a short Python program in Listing \ref{lst:dirichlet}, which

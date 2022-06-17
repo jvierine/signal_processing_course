@@ -12,7 +12,7 @@ for all $t$. The phase doesn't depend on $t$, so it is the same for every $t\in\
     \phi+2\pi k&=\pi-\phi_{c}+2\pi l,
 \end{align*}
 for $k,l\in\mathbb{Z}$, which gives $\phi_{c}=\pi-\phi+2\pi(l-k)=\pi-\phi+2\pi m$, where $m\in\mathbb{Z}$. Take $m=0$ to obtain a simple solution, which gives $\phi_{c}=\pi -\phi$.
-Hence the canceling signal must be of the form
+Hence, the canceling signal must be of the form
 $$x_{\text{cancel}}(t)=\cos(\omega t+(\pi-\phi)).$$
 A simple test program to verify this is shown in Listing \ref{cancel} with an arbitrary choice of $\omega$, $\phi$ and $m$. If the code is run, two signals of opposite amplitude are shown, which cancel out when added as hoped. 
 
@@ -74,7 +74,7 @@ Here $A=\sqrt{a^{2}+b^{2}}$ and $\phi=\arctan(b/a)$, where $\arctan(b/a)$ should
 $$x(t)=\cos(\omega_{1}t)\sin(\omega_{2}t),$$
 which we can write as
 $$x(t)=\frac{1}{2}(e^{i\omega_{1}t}+e^{-i\omega_{1} t})\frac{1}{2i}(e^{i\omega_{2}t}-e^{-i\omega_{2}t})=\frac{1}{4i}[e^{i(\omega_{1}+\omega_{2})t}-e^{i(\omega_{1}-\omega_{2})t}+e^{i(-\omega_{1}+\omega_{2})t}-e^{i(-\omega_{1}-\omega_{2})t}].$$
-Collecting terms
+Collecting terms we get:
 \begin{align*}
     x(t)&=\frac{1}{4i}[e^{i(\omega_{1}+\omega_{2})t}-e^{-i(\omega_{1}+\omega_{2})t}]+\frac{1}{4i}[e^{i(-\omega_{1}+\omega_{2})t}-e^{-i(-\omega_{1}+\omega_{2})t}], \\
     &=\frac{1}{2}\sin((\omega_{1}+\omega_{2})t)+\frac{1}{2}\sin((\omega_{2}-\omega_{1})t).
@@ -85,7 +85,7 @@ This yields the values $a=1/2$ and $b=1/2$, while $\omega_{3}=\omega_{1}+\omega_
 $$E(x,t)=E_{0}e^{i(kx+\omega t)}\partial_{y}$$
 is a solution to the wave equation. Consider the real part $\Re\{E(x,t)\}$:
 $$\Re\{E(x,t)\}=\frac{1}{2}[E(x,t)+E^{*}(x,t)]=\frac{1}{2}E_{0}(e^{i(kx+\omega t)}+e^{-i(kx+\omega t)})\partial_{y}=E_{0}\cos(kx+\omega t)\partial_{y}.$$
-Recall that the wave equation is 
+Recall that the wave equation is:
 $$\partial_{t}^{2}E-\frac{1}{\mu_{0}\epsilon_{0}}\nabla^{2}E=0,$$
 which gives
 $$-\omega^{2}E_{0}\cos(kx+\omega t)\partial_{y}+\frac{1}{\mu_{0}\epsilon_{0}}k^{2}E_{0}\cos(kx+\omega t)\partial_{y}=E_{0}\left(\frac{1}{\mu_{0}\epsilon_{0}}k^{2}-\omega^{2}\right)\cos(kx+\omega t)=0$$
@@ -93,7 +93,7 @@ since $k^{2}c^{2}-\omega^{2}=0$, as $c=\sqrt{1/\mu_0\epsilon_0}$. In conclusion,
 $$\Re\{E(x,t)\}=E_{0}\cos(kx+\omega t)\partial_{y},$$
 is a solution to the wave equation. 
 
-\item If we have an arbitrary number of solutions to the wave equation each with different phasors $E_{n}$ and different angular frequencies $\omega_{n}$. Then a superposition 
+\item If we have an arbitrary number of solutions to the wave equation, each with different phasors $E_{n}$ and different angular frequencies $\omega_{n}$. Then a superposition 
 $$E(x,t)=\sum_{n}E_{n}e^{i(\omega_{n}/c)x}e^{i\omega_{n}t}\partial_{y}$$
 is also a solution. This follows by the linearity of the wave equation. 
 
@@ -185,10 +185,11 @@ out2 = x*n.cos(2.0*n.pi*time_vec*2.5)
 
 sio.write("guitar_leslie.wav",sample_rate,n.array(out,dtype=n.float32))
 \end{lstlisting}
-Listening to the audio file we hear that the guitar sound has a wavy oscillating effect.
+Listening to the audio file, we hear that the guitar sound has a wavy oscillating effect.
 
 \item[c)]
-Based on the previous task the result of multiplying with a 2.5 Hz signal will result in the same effect, but the oscillation will be slower. After testing this by running Listing \ref{save_audio} this is exactly what happens. 
+Based on the previous task, the result of multiplying with a 2.5 Hz signal will result in the same effect, but the oscillation will be slower. 
+After testing this by running Listing \ref{save_audio} this is exactly what happens. 
 \end{itemize}
 
 

@@ -1,4 +1,5 @@
-This chapter will introduce the \emph{\index{Fourier series}{Fourier series}}, which is used to express a periodic signal as a sum of sinusoidal signals. We will explore the following topics:
+This chapter will introduce the \emph{\index{Fourier series}{Fourier series}}, which is used to express a periodic signal as a sum of sinusoidal signals. 
+We will explore the following topics:
 \begin{itemize}
 \item Signals as a sum of sinusoids.
 \item Periodic signals, \emph{\index{fundamental frequency}{fundamental frequency}}, and \emph{\index{fundamental period}{fundamental period}}.
@@ -58,16 +59,17 @@ This chapter will introduce the \emph{\index{Fourier series}{Fourier series}}, w
 x(t) = \sum_{k=1}^N c_k e^{i\omega_k t} \,\,.
 \label{eq:general_spectrum}
 \end{equation}
-The symbol $c_k = A_k e^{i\phi_k} \in \mathbb{C}$ is used for complex valued constants that contain information about the amplitudes $A_k \in \mathbb{R}_{\ge 0}$ and phases $\phi_k \in \mathbb{R}$ of the complex exponential signals with angular frequencies $\omega_k \in \mathbb{R}$.
+The symbol $c_k = A_k e^{i\phi_k} \in \mathbb{C}$ is used for complex valued constants that contain information about the 
+amplitudes $A_k \in \mathbb{R}_{\ge 0}$ and phases $\phi_k \in \mathbb{R}$ of the complex exponential signals with angular frequencies $\omega_k \in \mathbb{R}$.
 
 It is possible to plot the complex coefficients $c_k$ as a function of angular frequency $\omega$ as shown in Figure \ref{fig:spec_rep}, which depicts a function of the form:
 \begin{equation}
 \hat{x}(\omega) = \sum_{k=1}^N c_k \delta(\omega - \omega_k) \,\,.
 \label{eq:freq_deltas}
 \end{equation}
-This is a spectral or frequency domain representation of the signal described in Equation \ref{eq:general_spectrum}.  In this case, one can think of the spectrum as consisting of infinitely narrow spectral lines, each defined by complex constants $c_k$ that are located at angular frequencies $\omega_k$. We will derive
-Equation \ref{eq:freq_deltas} later when discussing the
-continuous-time Fourier transform.
+This is a spectral or frequency domain representation of the signal described in Equation \ref{eq:general_spectrum}. 
+In this case, one can think of the spectrum as consisting of infinitely narrow spectral lines, each defined by complex constants $c_k$ that are located at angular frequencies $\omega_k$. 
+We will derive Equation \ref{eq:freq_deltas} later when discussing the continuous-time Fourier transform.
 
 \newthought{A spectral representation of a cosine signal} consists of two frequency components. One with a positive and one with a negative frequency. This is a direct consequence of Euler's formula. 
 
@@ -108,7 +110,8 @@ x(t) & = \frac{A}{2}e^{i\phi}e^{i\omega t} + \frac{A}{2}e^{-i\phi}e^{-i\omega t}
 \end{align}
 The second line is simply representing the first line in the format of Equation \ref{eq:general_spectrum}.
 
-Note that there is symmetry within the frequency components. First of all, the pairing of frequencies exists as $\omega_{1}=-\omega_{-1}$. The complex constants are also conjugate symmetric $c_{-1} = c_{1}^*$. We'll later on see that this type of conjugate symmetry exists for the frequency components of all real valued signals.
+Note that there is symmetry within the frequency components. The pairing of frequencies exists as $\omega_{1}=-\omega_{-1}$. 
+The complex constants are also conjugate symmetric $c_{-1} = c_{1}^*$. We'll later on see that this type of conjugate symmetry exists for the frequency components of all real valued signals.
 
 \newthought{A Fourier series is a spectral representation of a signal where each frequency is a multiple of some common base frequency $\omega$}:
 \begin{equation}
@@ -177,24 +180,17 @@ We have used the definition of $T$ in Equation \ref{eq:fundamental_period}. Beca
 \label{fig:ex_periodic}
 \end{marginfigure}
 
-A consequence of Equation \ref{eq:integer_multiple} is that the ratios of all pairs of angular frequencies $\omega_k$ and $\omega_{\ell}$ in Equation \ref{eq:general_spectrum} need to be rational numbers. In other words, it must be possible to express them in the following form
+A consequence of Equation \ref{eq:integer_multiple} is that the ratios of all pairs of angular frequencies $\omega_k$ and $\omega_{\ell}$ 
+in Equation \ref{eq:general_spectrum} need to be rational numbers. In other words, it must be possible to express them in the following form
 \begin{equation}
 \frac{\omega_k}{\omega_{\ell}} = \frac{n}{m} \in \mathbb{Q} \,\,
 \end{equation}
-in order for the signal to be periodic. Here $n$ and $m$ are arbitrary integers and $k$ and $\ell$ are all unique combinations of the frequency indices. If the ratio of two real numbers $\omega_1,\omega_2\in\mathbb{R}$ is a rational number $\omega_1/\omega_2 \in \mathbb{Q}$, the numbers $\omega_1$ and $\omega_2$ are called \emph{\index{commensurable}{commensurable}.} All angular frequencies for a Fourier series need to be commensurable relative to one another in order for the signal to be periodic.
+in order for the signal to be periodic. Here $n$ and $m$ are arbitrary integers and $k$ and $\ell$ are all unique combinations of the frequency indices. 
+If the ratio of two real numbers $\omega_1,\omega_2\in\mathbb{R}$ is a rational number $\omega_1/\omega_2 \in \mathbb{Q}$, the numbers $\omega_1$ and 
+$\omega_2$ are called \emph{\index{commensurable}{commensurable}.} All angular frequencies for a Fourier series need to be commensurable relative to one another in order for the signal to be periodic.
 
 How does one determine the fundamental frequency $\omega$? It is possible to apply \emph{\index{Euclid's algorithm}{Euclid's algorithm}}\footnote{Note that this is sometimes referred to as the \emph{greatest common divisor}, but this is only defined for
 integers.} $\omega$ for the set of frequencies $\omega_k$. This algorithm will only produce a result in a finite number of steps if the set of numbers $\{\omega_k\}$ are commensurable, so it cannot be easily used as a test of periodicity.
-
-\if 0
-Or in other words, the \emph{greatest common divisor} of all the angular frequencies
-\begin{equation}
-\boxed{
-\omega = \mathrm{GCD}(\omega_1,\omega_2,\cdots,\omega_N)
-}
-\end{equation}
-in the series of the form shown in Equation \ref{eq:general_spectrum}.
-\fi
 
 \newthought{Here is an example}. Let us assume that a signal is defined as 
 \begin{equation}
@@ -212,7 +208,7 @@ This signal has two unique angular frequencies: $\omega_1 = 2\pi 9$ and $\omega_
 (2\pi 6, 2\pi 9-2\pi 6) &= (2\pi 6, 2\pi 3) \\
 (2\pi 6-2\pi 3, 2\pi 3) &= (2\pi 3, 2\pi 3).
 \end{align*}
-And we thus find that the fundamental frequency is $\omega=2\pi 3$ and using Equation \ref{eq:fundamental_period}, we find that $T = 1/3$.
+And we thus find that the fundamental frequency is $\omega=2\pi 3$ and, using Equation \ref{eq:fundamental_period}, we find that $T = 1/3$.
 
 \begin{marginfigure}[1cm]
 \begin{center}
@@ -229,20 +225,24 @@ x_N(t) = \sum_{k=-N}^{N} c_k e^{i \frac{2\pi}{T} k t}
 \label{eq:synthesis_eq}
 } \,\,.
 \end{equation}
-The fundamental period of a periodic signal is related to the fundamental angular frequency as follows: $T=2\pi/\omega$. We can turn this around and express the fundamental angular frequency as a function of the fundamental period $\omega=2\pi/T$, as we have done above.
+The fundamental period of a periodic signal is related to the fundamental angular frequency as follows: $T=2\pi/\omega$. 
+We can turn this around and express the fundamental angular frequency as a function of the fundamental period $\omega=2\pi/T$, as we have done above.
 
 
 %\footnote{The Fourier series converges to a wide range of integrable periodic functions when $N\rightarrow \infty$. However, it is out of the scope of these lecture notes to discuss when the series converges and when it doesn't.}
 
 This Fourier series is named after Jean-Baptiste Joseph Fourier (1768–1830). He introduced this representation for the purpose of solving the heat equation with periodic boundary conditions using a series of sinusoidal characteristic solutions. Perhaps the most revolutionary outcome of his study was that a wide range of functions can be represented as a sum of elementary sinusoidal functions.
 
-Given a set of Fourier series coefficients $c_k$, we can synthesize a signal $x_N(t)$. This procedure is called \emph{\index{synthesis}{synthesis}}. This formula shown in Equation \ref{eq:synthesis_eq} is also called the Fourier series synthesis equation.
+Given a set of Fourier series coefficients $c_k$, we can synthesize a signal $x_N(t)$. This procedure is called \emph{\index{synthesis}{synthesis}}. 
+This formula shown in Equation \ref{eq:synthesis_eq} is also called the Fourier series synthesis equation.
 
-The inverse operation, determining coefficients $c_k \in \mathbb{C}$ from a certain periodic signal $x(t)$, is called \emph{\index{analysis}{analysis}}. We'll slowly work our way to this formula.
+The inverse operation, determining coefficients $c_k \in \mathbb{C}$ from a certain periodic signal $x(t)$, is called \emph{\index{analysis}{analysis}}. 
+We'll slowly work our way to this formula.
 
-We will not study the convergence of the Fourier series, which means investigating if $\lim_{N\rightarrow \infty} x_N(t) = x(t)$. This is outside of the scope of this course.
+We will not study the convergence of the Fourier series, which means investigating if $\lim_{N\rightarrow \infty} x_N(t) = x(t)$. This is outside the scope of this course.
 
-\newthought{In order to find the analysis formula, we'll first need to introduce the concept of basis functions and an inner product}. A Fourier series basis function is defined as $\psi_k(t)=e^{i\frac{2\pi}{T} k t}$. We can use this to write the Fourier series in the following form:
+\newthought{In order to find the analysis formula, we'll first need to introduce the concept of basis functions and an inner product}. 
+A Fourier series basis function is defined as $\psi_k(t)=e^{i\frac{2\pi}{T} k t}$. We can use this to write the Fourier series in the following form:
 \begin{equation}
 x_N(t) = \sum_{k=-N}^{N} c_k e^{i \frac{2\pi}{T} k t} = \sum_{k=-N}^{N} c_k \psi_k(t) \,\,.
 \end{equation}
@@ -262,7 +262,9 @@ For periodic functions $a(t)$ and $b(t)$ with period $T$, an inner product is de
 \langle a(t), b(t) \rangle = \int_{t_0}^{t_0+T} a(t) b^*(t) dt = \int_T a(t) b^*(t) dt \,\,,
 \label{eq:inner_product_def}
 \end{equation}
-where $t_0$ is an arbitrary value of time, and $T$ is the fundamental period of the signal. Because of the periodicity of the signals, we can evaluate the integral at any offset $t_0$ we wish to. The right-hand side is just an alternative way to denote the equation in the middle, i.e., that we integrate over one period of the periodic function. 
+where $t_0$ is an arbitrary value of time, and $T$ is the fundamental period of the signal. 
+Because of the periodicity of the signals, we can evaluate the integral at any offset $t_0$ we wish to. 
+The right-hand side is just an alternative way to denote the equation in the middle, i.e., that we integrate over one period of the periodic function. 
 
 When taking the inner product between two basis functions, we obtain:
 \begin{align}
@@ -337,7 +339,7 @@ c_k = \frac{1}{T} \int_T x(t) e^{-i \frac{2\pi}{T}kt} dt
 \begin{equation}
 x(t) = \sum_{\ell = -\infty}^{\infty} c_{\ell} e^{i\frac{2\pi}{T}\ell t}.
 \end{equation}
-The real part of signal $x(t)$ is:
+The real part of the signal $x(t)$ is:
 \begin{align}
 \mathrm{Re}\{x(t)\} &= \frac{1}{2} (x(t) + x^*(t)) \\
 &= \frac{1}{2}\sum_{\ell=-\infty}^{\infty} c_{\ell} e^{i\frac{2\pi}{T}\ell t} + \frac{1}{2}\sum_{\ell=-\infty}^{\infty} c^*_{\ell} e^{-i\frac{2\pi}{T}\ell t} \\
@@ -347,14 +349,18 @@ The real part of signal $x(t)$ is:
 \end{align}
 For the last part, I've introduced new variables: $A_0= \frac{1}{2}(c_0 + c_0^*) \in \mathbb{R}$, $A_\ell = |c_{\ell} +c^*_{-\ell}|\in \mathbb{R}_{\ge 0}$ and $\phi_\ell = \angle (c_{\ell} + c^*_{-\ell}) \in \mathbb{R}$. 
 
-When analyzing Fourier series coefficients for a real valued function, you will find that they come in conjugate symmetric pairs, which will allow you to write the Fourier series synthesis equation in the form shown on the last line of Equation \ref{eq:real_fourier_series}. Also, the Fourier series synthesis equation is sometimes introduced in this form in older texts.
+When analyzing Fourier series coefficients for a real valued function, you will find that they come in conjugate symmetric pairs, 
+which will allow you to write the Fourier series synthesis equation in the form shown on the last line of Equation \ref{eq:real_fourier_series}. 
+Also, the Fourier series synthesis equation is sometimes introduced in this form in older texts.
 
-\newthought{The zero frequency or the direct current (DC) frequency component $c_0$} often has a special meaning. In the case of real valued signals, this is the only frequency component that does not have a positive and negative frequency conjugate symmetric pairing. The DC component also has the meaning that it is the mean value of the signal:
+\newthought{The zero frequency or the direct current (DC) frequency component $c_0$} often has a special meaning. In the case of real valued signals, 
+this is the only frequency component that does not have a positive and negative frequency conjugate symmetric pairing. The DC component also has the meaning that it is the mean value of the signal:
 \begin{equation}
 c_0 = \frac{1}{T} \int_{T} x(t) dt \,\,.
 \end{equation}
 
-\newthought{A partial sum Fourier series can be used to approximate a periodic signal}. This is especially useful, if one knows that the signal is band-limited, and one knows \emph{a priori} that higher order terms (high frequency components) are not present in the signal or they have such low magnitudes that they are not significant. 
+\newthought{A partial sum Fourier series can be used to approximate a periodic signal}. This is especially useful, if one knows that the signal is band-limited, 
+and one knows \emph{a priori} that higher order terms (high frequency components) are not present in the signal, or they have such low magnitudes that they are not significant. 
 
 A partial sum synthesis formula only uses a subset of the Fourier coefficients:
 \begin{equation}
@@ -397,7 +403,8 @@ ylabel={$x(t)$}
 \end{axis}
 \end{tikzpicture}
 \end{center}
-\caption{The Dirac comb signal, an infinitely long train of unit impulses spaced apart by $T$. The Dirac comb is a periodic function with a fundamental period $T$. The Dirac comb is used to model sampling values of a continuous-time signal spaced evenly apart to provide an idealized model for discretizing a continuous-time signal.}
+\caption{The Dirac comb signal, an infinitely long train of unit impulses spaced apart by $T$. The Dirac comb is a periodic function with a fundamental period $T$. 
+The Dirac comb is used to model sampling values of a continuous-time signal spaced evenly apart to provide an idealized model for discretizing a continuous-time signal.}
 \label{fig:dirac_comb_plot2}
 \end{marginfigure}
 
@@ -421,7 +428,8 @@ The signal can thus be represented as the following Fourier series:
 \begin{equation}
 x_N(t) = \frac{1}{T}\sum_{k=-N}^{N} e^{i\frac{2\pi}{T}kt} \,\,. 
 \end{equation}
-Take a look at Figure \ref{fig:fs_fig0}. This is an approximation of the Dirac comb $x_7(t)$ using 15 frequency components. I hope it is not too difficult for you to convince yourself that as we increase the value of $N$, the spikes will become sharper and sharper.
+Take a look at Figure \ref{fig:fs_fig0}. This is an approximation of the Dirac comb $x_7(t)$ using 15 frequency components. 
+I hope it is not too difficult for you to convince yourself that as we increase the value of $N$, the spikes will become sharper and sharper.
 
 \begin{marginfigure}[-8cm]
 \begin{center}
@@ -476,7 +484,7 @@ with a period $T$. Two periods of the signal are shown. The Fourier series repre
 \label{fig:fs_fig0}
 \end{marginfigure}
 
-You may also be able to convince yourself that this signal is real valued, by investigating the pairing of positive and negative frequency terms:
+You may also be able to convince yourself that this signal is real-valued, by investigating the pairing of positive and negative frequency terms:
 \begin{align}
 x_N(t) &= \frac{1}{T}\sum_{k=-N}^{N} e^{i\frac{2\pi}{T}kt}\\
 &= \frac{1}{T} + \frac{1}{T} \sum_{k=1}^{N} (e^{i\frac{2\pi}{T}kt}+e^{-i\frac{2\pi}{T}kt})\\
@@ -486,7 +494,9 @@ This is how the positive and negative frequency terms are organized in Figure \r
 
 
 \newthought{Example: Fourier series representation for a square wave}. A square wave is a
-classic example of a periodic function that can be evaluated using a Fourier series. This type of a signal is often used e.g., in the pulse width modulation scheme of adjusting mean power flowing through a circuit. This type of a on-off pulsing scheme is also used in avalanche rescue beacons used to radiolocate victims buried under snow. The rectangular function is shown in Figure \ref{fig:square_wave_example}. A measurement of power emitted by an avalanche rescue beacon as a function time is shown in Figure \ref{fig:avibeacon}.
+classic example of a periodic function that can be evaluated using a Fourier series. This type of signal is often used, e.g., in the pulse width modulation scheme of adjusting mean power flowing through a circuit. 
+This type of on-off pulsing scheme is also used in avalanche rescue beacons used to radiolocate victims buried under snow. The rectangular function is shown in Figure \ref{fig:square_wave_example}. 
+A measurement of power emitted by an avalanche rescue beacon as a function of time is shown in Figure \ref{fig:avibeacon}.
 
 \begin{marginfigure}
 \begin{center}
@@ -515,7 +525,7 @@ classic example of a periodic function that can be evaluated using a Fourier ser
     \end{axis}
 \end{tikzpicture}
 \end{center}
-\caption{A classic example of a commonly encountered periodic function, the square wave signal. This type of a signal is encountered e.g., with pulse width modulation in electrical engineering.}
+\caption{A classic example of a commonly encountered periodic function, the square wave signal. This type of signal is encountered, e.g., with pulse width modulation in electrical engineering.}
 \label{fig:square_wave_example}
 \end{marginfigure}
 
@@ -536,7 +546,7 @@ x(t) = \left\{ \begin{array}{ccl}
 \end{array}
 \right. \,\,.
 \end{equation}
-By analytically evaluating the Fourier series analysis integral
+By analytically evaluating the Fourier series analysis integral one has:
 \begin{equation}
 c_k = \frac{1}{T}\int_0^T x(t) e^{-i 2\pi k t/T} dt \,\,,
 \end{equation}
@@ -652,13 +662,17 @@ c_k^{(n)} := i^n \left(\frac{2\pi k}{T}\right)^n c_k \,\,.
 \label{eq:moddiff}
 \end{equation}
 
-Differentiation can be seen as a filtering operation on the signal. A filter is something that modifies the amplitude and phase of the Fourier series coefficients in some way. For example, a low-pass filtering operation would reduce the amplitudes of high frequency coefficients relative to the amplitudes of the low frequency coefficients. After a low-pass filtering operation, the ratio of low frequency coefficient amplitudes to the high frequency coefficient amplitudes would be increased. A high pass filter on the other hand would do the opposite.
+Differentiation can be seen as a filtering operation on the signal. A filter is something that modifies the amplitude and phase of the Fourier series coefficients in some way. 
+For example, a low-pass filtering operation would reduce the amplitudes of high frequency coefficients relative to the amplitudes of the low frequency coefficients. 
+After a low-pass filtering operation, the ratio of low frequency coefficient amplitudes to the high frequency coefficient amplitudes would be increased. A high pass filter on the other hand would do the opposite.
 
 One thing to ask yourself is how does differentiation adjust the amplitude of each Fourier coefficient? When taking the $n$th time derivative, what happens to the complex amplitudes at low angular frequencies ($|2\pi k/T| < 1$)? What about high angular frequencies ($|2\pi k/T| > 1$)? Hint, inspect how the coefficients defined in Equation \ref{eq:moddiff} are scaled.
 
-The answer is that the magnitude of the low frequency Fourier coefficients are attenuated and high frequency ones are amplified. The DC component is completely removed as $2\pi k/T = 0$ for $k=0$. Differentiation can therefore be viewed as a \emph{high-pass filtering} operation.
+The answer is that the magnitude of the low frequency Fourier coefficients are attenuated, and high frequency ones are amplified. The DC component is completely removed as $2\pi k/T = 0$ for $k=0$. 
+Differentiation can therefore be viewed as a \emph{high-pass filtering} operation.
 
-\newthought{The time shift operation $x(t-\tau)$ applied to a Fourier series representation} is also pretty handy. Let's recall how a time shift affects a complex sinusoidal signal:
+\newthought{The time shift operation $x(t-\tau)$ applied to a Fourier series representation} is also pretty handy. 
+Let's recall how a time shift affects a complex sinusoidal signal:
 \begin{equation}
 x(t) = c e^{i\omega t} \,\,.
 \end{equation}
@@ -668,7 +682,7 @@ y(t)  = c e^{i\omega (t-\tau)} =  e^{-i\omega \tau} c e^{i\omega t} = e^{-i\omeg
 \end{align}
 This means that a time delay by $\tau$ corresponds to a phase shift by $-\omega\tau$ for a complex sinusoidal signal. We can apply this to a Fourier series, which is a sum of complex sinusoidal signals.
 
-If the Fourier series representation of a signal is
+If the Fourier series representation of a signal is:
 \begin{equation}
 x(t) = \sum_{k=-\infty}^{\infty} c_k e^{i\frac{2\pi}{T}kt} \,\,,
 \end{equation}
@@ -683,7 +697,7 @@ This means that if you know the Fourier series representation of a signal, you c
 
 \newthought{What if a signal is not periodic, can we still form a spectral representation for a signal?} Yes, we can. This investigation leads to the \emph{\index{continuous-time Fourier transform}{continuous-time Fourier transform}}.
 
-Let's derive the continuous-time Fourier transform from the Fourier series. Pretty much all we'll need to do is to study what happens when the fundamental period of the signal approaches infinity: $T\rightarrow \infty$.  We'll arrive with the result that introduces the Fourier transform and the inverse Fourier transform, introducing for the first time this general spectral representation for continuous-time signals.
+Let's derive the continuous-time Fourier transform from the Fourier series. Pretty much all we'll need to do is to study what happens when the fundamental period of the signal approaches infinity: $T\rightarrow \infty$.  We'll arrive with the result that introduces the Fourier transform, and the inverse Fourier transform, introducing, for the first time, this general spectral representation for continuous-time signals.
 
 We start the derivation of the continuous-time Fourier transform with the definition of a Fourier series for a function with period $T$. We'll denote by $\Delta \omega$ the spacing between frequency components. The term $\Delta \omega$ also denotes the fundamental angular frequency of the periodic signal:
 \begin{align}
@@ -740,14 +754,16 @@ In this form, the equation is a Riemann sum approximation of an integral of a co
 \caption{A depiction of how the Fourier series can be seen as a Riemann sum approximation of an integral of a continuous function.}
 \end{figure}
 
-We now inspect the case where $T\rightarrow \infty$. When the period of the function $x_{T}(t)$ approaches infinity, we drop the subscript $T$ in the notation and denote it with $x(t)$.  The Riemann sum then approaches the following integral equation ($\Delta\omega \rightarrow d\omega$, $k\Delta\omega \rightarrow \omega$):
+We now inspect the case where $T\rightarrow \infty$. When the period of the function $x_{T}(t)$ approaches infinity, 
+we drop the subscript $T$ in the notation and denote it with $x(t)$. The Riemann sum then approaches the following integral equation ($\Delta\omega \rightarrow d\omega$, $k\Delta\omega \rightarrow \omega$):
 \begin{align}
 \lim_{T\rightarrow \infty} x_{T}(t)  &= \lim_{T\rightarrow \infty}\frac{1}{2\pi} \sum_{k=-\infty}^{\infty} \hat{x}_{T}(k\Delta \omega) e^{ik\Delta \omega t}\Delta\omega \\
 &=\frac{1}{2\pi}\int_{-\infty}^{\infty} \left[\int_{-\infty}^{\infty} x(t) e^{-i\omega t} dt\right] e^{i\omega t}d\omega\\
 &= \frac{1}{2\pi} \int_{-\infty}^{\infty} \hat{x}(\omega) e^{i\omega t}d\omega\\
 &= x(t) \,\,.
 \end{align}
-This integral is known as the inverse Fourier transform. It allows us to go from a continuous function $\hat{x}(\omega)$, which is the continuous spectral representation of the signal, to the time domain signal $x(t)$.
+This integral is known as the inverse Fourier transform. It allows us to go from a continuous function $\hat{x}(\omega)$, 
+which is the continuous spectral representation of the signal, to the time domain signal $x(t)$.
 
 The innermost integral that allows us to obtain $\hat{x}(\omega)$ from the continuous-time signal $x(t)$ is:
 \begin{align}
@@ -782,7 +798,7 @@ We'll return to the Fourier transform later. We'll even show that the Fourier se
 
 \section{The spectrum of an audio signal}
 
-The Python program in Listing \ref{lst:audio_spec} shows how to use the Fast Fourier Transform (FFT) command in Python to analyze an audio signal for it's spectral contents. The output of this program is shown in Figure \ref{fig:audio_spec}.
+The Python program in Listing \ref{lst:audio_spec} shows how to use the Fast Fourier Transform (FFT) command in Python to analyze an audio signal for its spectral contents. The output of this program is shown in Figure \ref{fig:audio_spec}.
 
 The FFT algorithm is used to evaluate a discrete-time Fourier transform. This operation is mathematically defined as follows:
 \begin{equation}

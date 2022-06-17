@@ -7,9 +7,11 @@
 % - system
 %
 \newthought{What is a signal and what is a system?} By
-a \emph{\index{signal}{signal}}, we mean an information carrying mathematical function. Any function that has a value as a function of one or more variables is in essence a signal. By a \emph{\index{system}{system}}, we denote a mathematical operation that modifies a signal. A system consists of the precise mathematical description of how a signal fed into a system is modified by the system to produce an output signal.
+a \emph{\index{signal}{signal}}, we mean an information carrying mathematical function. Any function that has a value as a function of one or more variables is in essence a signal. 
+By a \emph{\index{system}{system}}, we denote a mathematical operation that modifies a signal. A system consists of the precise mathematical description of how a signal fed into a system is modified by the system to produce an output signal.
 
-The definition of signals and systems are merely abstract concepts, which have gained acceptance in the engineering community. In the context of mathematics, signals could also be called functions or vectors. Systems would be called functions or operators. In computer science, signals are often treated as arrays of numbers in the memory of a computer and systems are algorithms and computer programs that operate on these arrays.
+The definition of signals and systems are merely abstract concepts, which have gained acceptance in the engineering community. In the context of mathematics, signals could also be called functions or vectors. 
+Systems would be called functions or operators. In computer science, signals are often treated as arrays of numbers in the memory of a computer and systems are algorithms and computer programs that operate on these arrays.
 
 \section{Signals}
 \index{signal}
@@ -76,18 +78,18 @@ Physical ``real world'' signals are modeled as continuous-time signals. Examples
   (electromagnetic waves), or
 \item electrical current in a circuit.
 \end{itemize}
-Physics relies on differential calculus, with integration and differentiation as elementary operators. As we will later see, differential calculus can be studied through methods of signal processing. Especially the spectral techniques and the Fourier transform are useful tools that can be applied in differential calculus.
+Physics relies on differential calculus, with integration and differentiation as elementary operators. As we will later see, differential calculus can be studied through methods of signal processing, especially the spectral techniques and the Fourier transform are useful tools that can be applied in differential calculus.
 
 This course will focus primarily on one-dimensional signals. These signals are complex valued functions $x(t) \in \mathbb{C}$ of a real valued argument $t\in \mathbb{R}$. This will naturally also cover the
-special case, where the signal is real valued
+special case, where the signal is real-valued
 $x(t) \in \mathbb{R} \subset\mathbb{C}$. 
 
-By convention, we will refer to the independent variable of a signal as time, even though this variable doesn't necessarily have to indicate time. It can represent anything. For example, the independent variable can just as well be e.g., distance.
+By convention, we will refer to the independent variable of a signal as time, even though this variable doesn't necessarily have to indicate time. It can represent anything. For example, the independent variable can just as well be, e.g., distance.
 
 Signals can be continuous or discrete. Following a commonly adopted practice, we will use round brackets for continuous-time signals (e.g., $x(t)$) and square brackets for discrete-time signals (e.g., $x[n]$). 
 
 In the case of discrete-time signals, the sample index
-$n \in \mathbb{Z}$ is unitless. A discrete-time signal is merely a sequence of numbers. The only way to associate meaning to this sequence of numbers is the a priori knowledge of how the signal was discretized. This allows us to e.g., map the $n$th sample to a real valued time.
+$n \in \mathbb{Z}$ is unitless. A discrete-time signal is merely a sequence of numbers. The only way to associate meaning to this sequence of numbers is the a priori knowledge of how the signal was discretized. This allows us to, e.g., map the $n$th sample to a real valued time.
 
 An example of a continuous-time and a discrete-time signal is shown in Figures \ref{fig:ctfig} and \ref{fig:dtfig}. When plotting signals graphically, it is customary (but not mandatory) to use the horizontal axis for the independent variable, and the dependent variable on the vertical axis.
 
@@ -123,11 +125,16 @@ February 2016.}
 \label{fig:ligo_meas}
 \end{figure}
 
-\newthought{Signals can be of arbitrary dimension}. For example, an image is a 2d signal, where the dependent variable is intensity $I(x,y)$ measured as a function of two independent spatial variables $x$ and $y$ that indicate distance from origin along two orthogonal axes.  An example of a discrete-time two-dimensional signal is shown in Figure \ref{fig:bh_example}. It represents an image of the emission from hot gas in the event horizon of a black hole around the M87 galaxy. The image is obtained using a technique called very long baseline interferometry, which utilizes measurements from radio telescopes around the world. These measurements are combined together to simulate a large telescope with the resolution equivalent to a telescope approximately the size of Earth.\footnote{The Fourier transform, which is one of the central themes in this course, is a key part of the mathematics of very long baseline interferometric imaging.}
+\newthought{Signals can be of arbitrary dimension}. For example, an image is a 2d signal, where the dependent variable is intensity $I(x,y)$ measured as a function of two independent spatial variables $x$ and $y$ that indicate distance from origin along two orthogonal axes.  An example of a discrete-time two-dimensional signal is shown in Figure \ref{fig:bh_example}. 
+It represents an image of the emission from hot gas in the event horizon of a black hole around the M87 galaxy. 
+The image is obtained using a technique called very long baseline interferometry, which utilizes measurements from radio telescopes around the world. 
+These measurements are combined to simulate a large telescope with the resolution equivalent to a telescope approximately the size of Earth.\footnote{The Fourier transform, which is one of the central themes in this course, is a key part of the mathematics of very long baseline interferometric imaging.}
 
-Even higher dimensional signals can be used. Consider for example a video. It is a signal that contains the intensity of an image as a function of time. You can think of a moving picture (movie) as a three dimensional signal: $I(x,y,t)$, where the intensity of the image is a function of two dimensional position as well as time.
+Even higher dimensional signals can be used. Consider for example a video. It is a signal that contains the intensity of an image as a function of time. You can think of a moving picture (movie) as a three-dimensional signal: $I(x,y,t)$, where the intensity of the image is a function of two-dimensional position as well as time.
 
-While we will focus primarily on one dimensional signals in order to keep things simple, many of the concepts we discuss can be generalized to multiple dimensions. Two dimensional signal processing is called image processing, and it shares many of the same basic concepts with one dimensional signal processing. I will try to also occasionally give examples of signal processing with higher dimensional signals.
+While we will focus primarily on one dimensional signals in order to keep things simple, many of the concepts we discuss can be generalized to multiple dimensions. 
+Two-dimensional signal processing is called image processing, and it shares many of the same basic concepts with one dimensional signal processing. 
+I will try to occasionally give examples of signal processing with higher dimensional signals.
 
 %\begin{figure}
 %\begin{center}
@@ -149,15 +156,15 @@ the black hole at the center of galaxy M87. The intensity depicts what is though
 \label{fig:bh_example}
 \end{figure}
 
-\newthought{Digital signals}
-in a computer are also quantized. This means that there is only a finite number of possible values for the dependent value of a signal. This type of a signal is called a \emph{\index{quantized}{quantized}} signal. We will not discuss quantization in this course.
+\newthought{Digital signals} on a computer, are also quantized. This means that there is only a finite number of possible values for the dependent value of a signal. 
+This type of signal is called a \emph{\index{quantized}{quantized}} signal. We will not discuss quantization in this course.
 
 
 \section{Systems}
 %\newcommand{\sign}{\text{sign}}
 
-\newthought{A signal processing \index{system}{system}} can be represented graphically as a block diagram, which describes signals going into a system, and signals going out of a system. An example is shown in
-Figure \ref{simple_sps}
+\newthought{A signal processing \index{system}{system}} can be represented graphically as a block diagram, which describes signals going into a system, and signals going out of a system. 
+An example is shown in Figure \ref{simple_sps}
 
 \begin{figure}
 \tikzstyle{int}=[draw]
@@ -190,7 +197,8 @@ The following block diagram is a real-world example of the block diagram of the 
 \label{fig:esr}
 \end{figure}
 
-The mathematical description of a system (what goes on in the box) is a general transformation of a signal. The mathematical notation for a continuous-time system in general is\footnote{Here $\spop$ is a mathematical description of how the input signal is modified by the signal processing system. This is also called an
+The mathematical description of a system (what goes on in the box) is a general transformation of a signal. 
+The mathematical notation for a continuous-time system in general is\footnote{Here $\spop$ is a mathematical description of how the input signal is modified by the signal processing system. This is also called an
 \index{operator}{operator}}:
 \begin{equation}
 \boxed{
@@ -228,7 +236,8 @@ We can further expand this concept to write the equation that describes a radar 
 \begin{equation}
 y(t) = \int_0^T \alpha(\tau) x(t-\tau) d\tau.
 \end{equation}
-In this case, $\alpha(\tau)$ describes the radar echo amplitude as a function of propagation delay. This type of an equation is called a \emph{\index{convolution}convolution} equation. You will encounter this type of equation very often in signal processing, and find that the Fourier transform is a very useful tool when dealing with convolution equations.
+In this case, $\alpha(\tau)$ describes the radar echo amplitude as a function of propagation delay. This type of equation is called a \emph{\index{convolution}convolution} equation. 
+You will encounter this type of equation very often in signal processing, and find that the Fourier transform is a very useful tool when dealing with convolution equations.
 
 \newthought{Differential operators can also be seen as
 systems}. Consider the first time-derivative of the continuous-time signal $x(t)$:
@@ -240,7 +249,8 @@ The system definition is the time derivative operator $\frac{d}{dt}$.
 \newthought{Systems are classified based on their mathematical properties}. The most important two are: \emph{\index{linearity}{linearity}} and \emph{\index{time-invariance}{time-invariance}}. A
 system which is both linear and time-invariant is called 
 \index{linear time-invariant}{linear time-invariant} 
-(LTI)\index{LTI}. Such systems have beneficial mathematical properties that make analysis and design of such systems very straightforward. We'll later on prove that LTI systems are fully characterized by something known as an impulse response. This is an important concept in signal processing.
+(LTI)\index{LTI}. Such systems have beneficial mathematical properties that make analysis and design of such systems very straightforward. 
+We'll later on prove that LTI systems are fully characterized by something known as an impulse response. This is an important concept in signal processing.
 
 \section{Linear system}
 \index{Linear system}
@@ -370,7 +380,7 @@ for arbitrary constants $c_1 \in \mathbb{C}$ and $c_2 \in \mathbb{C}$ and arbitr
 \begin{equation}
   y(t) = \alpha x(t).
 \end{equation}
-If $|\alpha| >1$, the signal is amplified. This type of a system would typically be called an amplifier. If $0<|\alpha|<1$, the system would be called an attenuator, as the output signal amplitude would be attenuated.
+If $|\alpha| >1$, the signal is amplified. This type of system would typically be called an amplifier. If $0<|\alpha|<1$, the system would be called an attenuator, as the output signal amplitude would be attenuated.
 
 It is quite easy to determine that the test for linearity is passed for this system:
 \begin{equation}
@@ -416,7 +426,7 @@ node at (-1.0,3.0) [name=in0] {$x(t)$};
 node at (-1.0,1.5) [block, name=op0] {$\spop$};
 
 \draw  
-node at (-1.0,0) [block, name=delay0] {Delay};
+node at (-1.0,0) [block, name=delay0] {$\mathcal{D}\{\cdot\}$};
 
 % output node
 \draw 
@@ -431,7 +441,7 @@ node at (1.0,3.0) [name=in1] {$x(t)$};
 node at (1.0,0.0) [block, name=op1] {$\spop$};
 
 \draw  
-node at (1.0,1.5) [block, name=delay1] {Delay};
+node at (1.0,1.5) [block, name=delay1] {$\mathcal{D}\{\cdot\}$};
 
 % output node
 \draw 
@@ -464,11 +474,12 @@ Let us first define a delay system $\mathcal{D}\{x(t)\} = x(t-\tau)$. Let us ass
 \label{def:timeinv}
 }
 \end{equation}
-In other words, it does not matter if the signal is delayed before or after the system $\mathcal{T}\{\cdot\}$. To check time-invariance we need to verify Equation \ref{def:timeinv}. 
+In other words, it does not matter if the signal is delayed before or after the system $\mathcal{T}\{\cdot\}$. To check time-invariance, we need to verify Equation \ref{def:timeinv}. 
 
 The test for time-invariance is illustrated as a block diagram in Figure \ref{fig:time_inv_block}. If you want, you could think of a time-invariant system as a system that satisfy
 $$[\mathcal{T},\mathcal{D}]x(t)=0,$$
-where $[\mathcal{T},\mathcal{D}]=\mathcal{T}\mathcal{D}-\mathcal{D}\mathcal{T}$ is the commutator of two operators. Thus, a time-invariant system $\mathcal{T}$ is a system that commutes with the time-delay operator $[\mathcal{T},\mathcal{D}]=0$. 
+where $[\mathcal{T},\mathcal{D}]=\mathcal{T}\mathcal{D}-\mathcal{D}\mathcal{T}$ is the commutator of two operators. 
+Thus, a time-invariant system $\mathcal{T}$ is a system that commutes with the time-delay operator $[\mathcal{T},\mathcal{D}]=0$. 
 
 \newthought{An example of a time-invariant system} is the system that returns the absolute value of the input signal $y(t)=|x(t)|$. We can see this by evaluating:
 \begin{align}
@@ -477,12 +488,13 @@ where $[\mathcal{T},\mathcal{D}]=\mathcal{T}\mathcal{D}-\mathcal{D}\mathcal{T}$ 
 \end{align}
 Time-invariance holds as the outputs are equal. It doesn't matter if a time-delay is applied to the signal before or after obtaining the absolute value of the input signal.
 
-\newthought{An example of a case that is not time-invariant} is $y(t) = \mathcal{T}\{x(t)\} = t + x(t)$. We can immediately see that the system directly depends on $t$, not only through the input. The formal test also shows that time-invariance is not met:
+\newthought{An example of a case that is not time-invariant} is $y(t) = \mathcal{T}\{x(t)\} = t + x(t)$. We can immediately see that the system directly depends on $t$, not only through, the input. 
+The formal test also shows that time-invariance is not met:
 \begin{align}
 \mathcal{T}\{\mathcal{D}\{x(t)\}\} &= \mathcal{T}\{x(t-\tau)\}=t+x(t-\tau) \\
 \mathcal{D}\{\mathcal{T}\{x(t)\}\} &= \mathcal{D}\{t + x(t)\}=(t-\tau)+x(t-\tau)
 \end{align}
-In this case $\mathcal{T}\{\mathcal{D}\{x(t)\}\}\neq\mathcal{D}\{\mathcal{T}\{x(t)\}\}$ so the system is not time-invariant.
+In this case, $\mathcal{T}\{\mathcal{D}\{x(t)\}\}\neq\mathcal{D}\{\mathcal{T}\{x(t)\}\}$ so the system is not time-invariant.
 
 \section{Example: Overdriven amplifier}
 \begin{marginfigure}
@@ -526,9 +538,9 @@ y_d(t) = \left\{
 \label{clipamp}
 \end{equation}
 This is a very approximative model of an overdriven guitar
-amplifier. This type of a system is often encountered in guitar music from the 50s and onwards. I'm sure that once you later implement this in practice, you'll recognize the sound that this system makes.
+amplifier. This type of system is often encountered in guitar music from the 50s and onwards. I'm sure that once you later implement this in practice, you'll recognize the sound that this system makes.
 
-What does this system do? It amplifies the signal, but only up to a certain point. Beyond a certain absolute value of the input, the output maintains a constant positive or negative value.  This type of a behavior is also sometimes called clipping, and the effect is
+What does this system do? It amplifies the signal, but only up to a certain point. Beyond a certain absolute value of the input, the output maintains a constant positive or negative value.  This type of behavior is also sometimes called clipping, and the effect is
 also sometimes called distortion, as the input signal amplitude is not linearly scaled, but it is rather distorted.
 
 \begin{marginfigure}
@@ -537,7 +549,7 @@ also sometimes called distortion, as the input signal amplitude is not linearly 
   \end{center}
   \caption{A video discussing an overdriven guitar amplifier can be found here: \url{https://youtu.be/I30Mn_-yYF8}.}
 \end{marginfigure}
-Many real world amplifier systems have this type saturation behaviour. What this often means in practice is that the system is linear when the input absolute amplitude is less than some critical value, but beyond this, linearity no longer holds.
+Many real world amplifier systems have this type of saturation behavior. What this often means in practice is that the system is linear when the input absolute amplitude is less than some critical value, but beyond this, linearity no longer holds.
 
 Figure \ref{dist_effect} illustrates what $y_d(t)$ would look like as a function of $x(t)$. It is compared with a normal amplifier system $y(t)=\alpha x(t)$, which does not clip.
 

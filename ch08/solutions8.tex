@@ -7,7 +7,7 @@ $$x(t)=u(t+1)-u(t-1)$$
 \begin{enumerate}[a)]
 \item The signal $x(t)$ is a box of width $2$ with corners at $t=\pm 1$ and height $1$. 
 
-\item Scaling the signal as $y(t)=x(2t)$ gives another rectangular box function. In this case the box starts and ends at $t=\pm 1/2$, so the width is $1$. Both of these signals are illustrated in Figure .
+\item Scaling the signal as $y(t)=x(2t)$ gives another rectangular box function. In this case, the box starts and ends at $t=\pm 1/2$, so the width is $1$. Both of these signals are illustrated in Figure .
 
 \begin{figure}
     \centering
@@ -27,7 +27,7 @@ and for $y(t)$
     &=-\frac{1}{i\omega}[e^{-i\omega t}]_{-\frac{1}{2}}^{\frac{1}{2}}=\frac{1}{i\omega}\left[e^{\frac{i}{2}\omega}-e^{-\frac{i}{2}\omega}\right]=\frac{2\sin(\omega/2)}{\omega}.
 \end{align*}
 
-\item For $\hat{x}(\omega)$ we have that the zeros occur for $\omega=n\pi$, giving a spacing of $1$ between the zeros. On the other hand, $\hat{y}(\omega)$ has its zeros occurring at $\omega=2n\pi$. In conclusion, $\hat{x}(\omega)$ has a spacing of $1$, while $\hat{y}(\omega)$ has a spacing of $2$. In this case \ref{eq:timescale_ft_pair} doesn't hold. The reason is due to the theorem relying on continuity and differentiability and this is not the case here. 
+\item For $\hat{x}(\omega)$ we have that the zeros occur for $\omega=n\pi$, giving a spacing of $1$ between the zeros. On the other hand, $\hat{y}(\omega)$ has its zeros occurring at $\omega=2n\pi$. In conclusion, $\hat{x}(\omega)$ has a spacing of $1$, while $\hat{y}(\omega)$ has a spacing of $2$. In this case, \ref{eq:timescale_ft_pair} doesn't hold. The reason is due to the theorem relying on continuity and differentiability, and this is not the case here. 
 \end{enumerate}
 \item
 \begin{enumerate}[a)]
@@ -84,7 +84,7 @@ as $\mathcal{F}\{e^{-\beta t}u(t)\}=\frac{1}{\beta+i\omega}$.
 
 \item   
 \begin{enumerate}[a)]
-\item Let $x(t)=u(t+3)u(3-t)$, then $x(t)$ is a rectangular function with corners at $t=\pm 3$ and height $1$. Therefore we have 
+\item Let $x(t)=u(t+3)u(3-t)$, then $x(t)$ is a rectangular function with corners at $t=\pm 3$ and height $1$. Therefore, we have 
 $$\hat{x}(\omega)=\mathcal{F}\{x(t)\}=\int_{-\infty}^{\infty}u(t+3)u(3-t)e^{-i\omega t}dt=\int_{-3}^{3}e^{-i\omega t}dt=\left[\frac{1}{-i\omega}e^{-i\omega t}\right]_{t=-3}^{3}.$$
 Evaluating this yields
 $$\hat{x}(\omega)=-\frac{1}{i\omega}(e^{-3i\omega}-e^{3i\omega})=\frac{1}{i\omega}(e^{3i\omega}-e^{-3i\omega})=\underline{\underline{\frac{2\sin(3\omega)}{\omega}}}.$$
@@ -105,7 +105,7 @@ $$\hat{x}(\omega)=\underline{\underline{-\frac{\pi}{2}[\delta(\omega-54\pi)-\del
 
 \item Let
 $$x(t)=\frac{\sin(4\pi t)}{\pi t}\sin(50\pi t)$$
-then to compute the Fourier transform we apply the convolution theorem, have that
+then, to compute the Fourier transform we apply the convolution theorem, have that
 \begin{align*}
     \mathcal{F}\left\{\frac{\sin(4\pi t)}{\pi t}\right\}&=[u(\omega+4\pi)-u(\omega-4\pi)]=\hat{x}_{1}(\omega) \\
     \mathcal{F}\left\{\sin(50\pi t)\right\}&=-i\pi[\delta(\omega-50\pi)-\delta(\omega+50\pi)]=\hat{x}_{2}(\omega)
@@ -126,7 +126,7 @@ The integral consists of four terms, these being
 combining all these we get
 $$\hat{x}(\omega)=\underline{\underline{\frac{1}{2i}[u(\omega-46\pi)-u(\omega+54\pi)-u(\omega-54\pi)+u(\omega+46\pi)]}}.$$
 
-\item If $\hat{x}(\omega)=\cos^{2}(\omega)$, then we find $x(t)$ by using the inverse Fourier transform
+\item If $\hat{x}(\omega)=\cos^{2}(\omega)$ then we find $x(t)$ by using the inverse Fourier transform
 $$x(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}\cos^{2}(\omega)e^{i\omega t}d\omega.$$
 Firstly, we rewrite our function as
 $$\cos^{2}(\omega)=\left(\frac{1}{2}\left(e^{i\omega}+e^{-i\omega}\right)\right)^{2}=\frac{1}{4}\left(e^{2i\omega }+e^{-2i\omega}+2\right)$$

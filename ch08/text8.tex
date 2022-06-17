@@ -22,12 +22,13 @@ We'll use the following notation to indicate Fourier transform pairs:
 \begin{equation}
 \boxed{x(t) \xleftrightarrow{\mathcal{F}} \hat{x}(\omega)\,\,.}
 \end{equation}
-The left denotes the \emph{\index{time domain}{time domain}} representation of the signal and the right-hand side denotes the \emph{\index{frequency domain}{frequency domain}} representation of the same signal. I've used a hat to signify that the symbol $\hat{x}(\omega)$ is a frequency domain representation of a signal.
+The left denotes the \emph{\index{time domain}{time domain}} representation of the signal and the right-hand side denotes the \emph{\index{frequency domain}{frequency domain}} representation of the same signal. 
+I've used a hat to signify that the symbol $\hat{x}(\omega)$ is a frequency domain representation of a signal.
 
 The existence or non-existence of a Fourier transform or an inverse Fourier transform is rarely something that is encountered in signal processing applications. Exploring this topic rigorously is outside the scope of this course.
 
 \section{Selected Fourier transform}
-It is impossible to exhaustively cover all of the possible Fourier transform pairs here. We'll only give examples of commonly encountered Fourier transforms and provide solution strategies for using these as basic building blocks to evaluate the Fourier transform for more complicated signals. Refer to a formula book\sidenote{The wikipedia article also contains a nice table of Fourier transform pairs:\url{https://en.wikipedia.org/wiki/Fourier_transform}.}\cite{kammler2007firs} for a more complete table of Fourier transform pairs.
+It is impossible to exhaustively cover all the possible Fourier transform pairs here. We'll only give examples of commonly encountered Fourier transforms and provide solution strategies for using these as basic building blocks to evaluate the Fourier transform for more complicated signals. Refer to a formula book\sidenote{The wikipedia article also contains a nice table of Fourier transform pairs:\url{https://en.wikipedia.org/wiki/Fourier_transform}.}\cite{kammler2007firs} for a more complete table of Fourier transform pairs.
 
 \subsection{Linear combination}
 The Fourier transform of a linear combination of signals in time domain is related to a linear combination of Fourier transforms in frequency domain:
@@ -36,14 +37,13 @@ The Fourier transform of a linear combination of signals in time domain is relat
 y(t)=c_1 x_1(t)  + c_2 x_2(t) \xleftrightarrow{\mathcal{F}} \hat{y}(\omega) = c_1\hat{x}_1(\omega)+c_2\hat{x}_2(\omega)\,\,.
 }
 \end{equation}
-This is can be shown as follows:
+This can be shown as follows:
 \begin{align}
 \hat{y}(\omega) &= \int_{-\infty}^{\infty} [c_1 x_1(t)+c_2 x_2(t)] e^{-i\omega t} dt \\
 &= c_1\int_{-\infty}^{\infty} x_1(t) e^{-i\omega t} dt + c_2\int_{-\infty}^{\infty} x_2(t) e^{-i\omega t} dt \\ 
 &=  c_1\hat{x}_1(\omega)+c_2\hat{x}_2(\omega)\qed\,\,.
 \end{align}
 This may seem trivial, but keep this property in mind, as it can be used to Fourier transform more complicated signals that are a superposition of simple individual signals.
-
 
 \subsection{Fourier transform of $\delta(t+\tau)$}
 
@@ -230,7 +230,8 @@ Which in this case is:
 We'll be using L'H\^{o}pital's rule elsewhere in signal processing to resolve similar situations.
 
 \subsection{Sinc function}
-A related Fourier transform pair is the one where the frequency domain representation is a rectangular function. This is used e.g., when calculating ideal filters. This result is also used in Shannon's sampling theorem to obtain an ideal reconstruction filter for band limited signals that only have spectral components in the band
+A related Fourier transform pair is the one where the frequency domain representation is a rectangular function. This is used, e.g., when calculating ideal filters. 
+This result is also used in Shannon's sampling theorem to obtain an ideal reconstruction filter for band limited signals that only have spectral components in the band
 $|\omega| < \omega_b$.
 \begin{equation}
 \boxed{
@@ -307,7 +308,8 @@ which implies that:
 \begin{equation}
 \frac{1}{\sigma_t} = \sigma_\omega\,\,.
 \end{equation}%$\alpha=(1/2)*s_t^2$
-This is a very nice demonstration of the inverse relationship between the width of a signal in time domain and frequency domain. When we discuss filters later on, we'll use this to show that the length of a filter in time domain is inversely proportional to the spectral resolution (width of the filter response).
+This is a very nice demonstration of the inverse relationship between the width of a signal in time domain and frequency domain. 
+When we discuss filters later on, we'll use this to show that the length of a filter in time domain is inversely proportional to the spectral resolution (width of the filter response).
 
 \begin{marginfigure}
 \begin{center}
@@ -421,7 +423,8 @@ The plots in Figure \ref{fig:gaussftf} show the time domain and frequency domain
 \caption{The Fourier transform of an exponentially decaying signal.}
 \end{marginfigure}
 
-When $\beta \in \mathbb{R}_{>0}$ the signal $e^{-\beta t} u(t)$ decays exponentially. This type of signal is often encountered in electrical circuits (e.g., a low pass filter) and in control systems:
+When $\beta \in \mathbb{R}_{>0}$ the signal $e^{-\beta t} u(t)$ decays exponentially. 
+This type of signal is often encountered in electrical circuits (e.g., a low pass filter) and in control systems:
 \begin{equation}
 \boxed{x(t)=e^{-\beta t} u(t) \xleftrightarrow{\mathcal{F}} \hat{x}(\omega)=\frac{1}{\beta + i\omega}\,\,.}
 \end{equation}
@@ -434,10 +437,10 @@ This can be derived as follows:
 \end{align}
 The above requires that $\beta \in \mathbb{R}_{> 0}$.
 
-\subsection{Real valued signals}
-There is a special conjugate symmetry for signals that are real valued either in time domain or frequency domain. 
+\subsection{Real-valued signals}
+There is a special conjugate symmetry for signals that are real-valued either in time domain or frequency domain. 
 
-If the time domain signal is real valued, then the frequency domain representation is conjugate symmetric.
+If the time domain signal is real-valued, then the frequency domain representation is conjugate symmetric.
 \begin{equation}
 \boxed{
 x(t) \in \mathbb{R} \xleftrightarrow{\mathcal{F}} \hat{x}(-\omega)=\hat{x}^*(\omega)\,\,.
@@ -474,7 +477,8 @@ The derivation is as follows:
 &= \sum_{k=-\infty}^{\infty} c_k\int_{-\infty}^{\infty} e^{ik\omega_0 t}e^{-i\omega t}dt\\
 &= 2\pi\sum_{k=-\infty}^{\infty}  c_k \delta(\omega - k\omega_0)\,\,.
 \end{align}
-This is simply the continuous-frequency representation of Fourier series spectral components. A periodic function has non-zero spectral components only at frequencies that are multiples of $\omega_0$. 
+This is simply the continuous-frequency representation of Fourier series spectral components. 
+A periodic function has non-zero spectral components only at frequencies that are multiples of $\omega_0$. 
 \begin{marginfigure}
 \begin{center}
         \begin{tikzpicture}
@@ -514,14 +518,16 @@ This is simply the continuous-frequency representation of Fourier series spectra
 \end{axis}
         \end{tikzpicture}
 \end{center}
-\caption{The Fourier transform of a Fourier series. The spectral representation is a set of spectral lines spaced apart by $\omega_0$, the fundamental angular frequency of the periodic signal. A set of spectral lines spaced apart by a constant value is a spectral signature of a time-periodic signal.}
+\caption{The Fourier transform of a Fourier series. The spectral representation is a set of spectral lines spaced apart by $\omega_0$, the fundamental angular frequency of the periodic signal. 
+A set of spectral lines spaced apart by a constant value is a spectral signature of a time-periodic signal.}
 \end{marginfigure}
 
 \begin{marginfigure}
 \begin{center}
 \includegraphics[width=\textwidth]{ch08/figures/real_spectrum.png}
 \end{center}
-\caption{A time-frequency-power image of a violin being played. The x-axis represents time and the y-axis represents frequency. Only positive frequencies are shown. At any given moment, a violin is playing approximately a time-periodic signal (a single note).  The spectrum is a forest of spectral lines spaced apart by the fundamental angular frequency of the signal.  Credits: Wikipedia.}
+\caption{A time-frequency-power image of a violin being played. The x-axis represents time and the y-axis represents frequency. 
+Only positive frequencies are shown. At any given moment, a violin is playing approximately a time-periodic signal (a single note).  The spectrum is a forest of spectral lines spaced apart by the fundamental angular frequency of the signal.  Credits: Wikipedia.}
 \end{marginfigure}
 
 The inverse Fourier transform of the spectrum $\hat{x}(\omega)$ is:
@@ -530,7 +536,8 @@ x(t) &= \frac{1}{2\pi}\int_{-\infty}^{\infty} \hat{x}(\omega)e^{i\omega t} d\ome
 &= \sum_{k=-\infty}^{\infty} c_k \int_{-\infty}^{\infty} \delta(\omega - k\omega_0) e^{i\omega t} d\omega \\
 &= \sum_{k=-\infty}^{\infty} c_k e^{ik\omega_0 t}\,\,.
 \end{align}
-The fact that the continuous-time Fourier transform and the Fourier series are related in this way shouldn't be too surprising, as we earlier derived the Fourier transform from the Fourier series representation for a periodic function with an infinitely long fundamental period.
+The fact that the continuous-time Fourier transform and the Fourier series are related in this way shouldn't be too surprising, 
+as we earlier derived the Fourier transform from the Fourier series representation for a periodic function with an infinitely long fundamental period.
 
 \subsection{Time scaling system}
 Let's look at a time scaling system:
@@ -584,7 +591,8 @@ Plancherel's theorem states that for any two signals $f(t)$ and $g(t)$ with Four
 \int_{-\infty}^{\infty} f(t) g^*(t) dt = \frac{1}{2\pi} \int_{-\infty}^{\infty}  \hat{F}(\omega)\hat{G}^*(\omega) d\omega\,\,.
 }
 \end{equation}
-This is useful, as we can relate the amount of signal power in time domain to the total amount of power in frequency domain. This theorem has many applications in e.g., the theory of random processes, radio astronomical signal processing, and radar signal processing.
+This is useful, as we can relate the amount of signal power in time domain to the total amount of power in frequency domain. This theorem has many applications in, e.g., the 
+theory of random processes, radio astronomical signal processing, and radar signal processing.
 
 
 \begin{proof}
@@ -602,8 +610,7 @@ Let us now consider the Fourier transform representations for these two signals:
 f(t) &= \frac{1}{2\pi} \int_{-\infty}^{\infty} F(\omega) e^{i\omega t}d\omega \\
 g(t) &= \frac{1}{2\pi} \int_{-\infty}^{\infty} G(\omega') e^{i\omega' t}d\omega'\,\,.
 \end{align}
-If we multiply the Fourier representations of these two and integrate
-over time:
+If we multiply the Fourier representations of these two and integrate over time:
 \begin{align}
 \int_{-\infty}^{\infty} f(t)g^*(t)dt &= \frac{1}{(2\pi)^2} \int_{-\infty}^{\infty}  \left[\int_{-\infty}^{\infty} F(\omega) e^{i\omega t}d\omega \right] \left[ \int_{-\infty}^{\infty} G^*(\omega') e^{-i\omega' t}d\omega' \right]dt\\
 &= \frac{1}{(2\pi)^2} \int_{-\infty}^{\infty} F(\omega) \int_{-\infty}^{\infty} G^*(\omega') \int_{-\infty}^{\infty} e^{i(\omega-\omega')t}dt d\omega' d\omega\\
@@ -633,7 +640,7 @@ The convolution theorem states that a convolution operation in time domain is a 
 x_1(t)*x_2(t) := \int_{-\infty}^{\infty} x_1(\tau) x_2(t-\tau)d\tau\,\,.
 }
 \end{equation}
-The star symbol ($*$) is often used in short hand to express this operation.
+The star symbol ($*$) is often used in shorthand to express this operation.
 
 An often used property in signal processing is that convolution in time domain is multiplication in frequency domain.
 \begin{equation}
@@ -669,7 +676,7 @@ We start by Fourier transforming $x_1(t)x_2(t)$:
 \begin{align}
 \hat{y}(\omega) &= \int_{-\infty}^{\infty} x_1(t) x_2(t) e^{-i\omega t} dt \,\,.
 \end{align}
-We then substitute $x_2(t)$ with it's Fourier transform:
+We then substitute $x_2(t)$ with its Fourier transform:
 \begin{align}
 x_2(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} \hat{x}_2(\omega') e^{i\omega' t}d\omega'\,\,,
 \end{align}
@@ -698,7 +705,9 @@ Left as an exercise for now, we'll prove it later using another approach.
 \end{proof}
 
 \subsection{Alternative definitions and notation}
-There are several different notations and slightly different definitions of a Fourier transform that one may encounter in the literature. These mainly vary in how the frequency parameter of spectral representation is scaled and what symbols are used to denote frequency and the imaginary number. The underlying mathematical concepts are the same. 
+There are several notations and slightly different definitions of a Fourier transform that one may encounter in the literature. 
+These mainly vary in how the frequency parameter of the spectral representation is scaled and what symbols are used to denote frequency and the imaginary number. 
+The underlying mathematical concepts are the same. 
 
 The spectral representation is sometimes written with an explicit function parameter $i\omega$ instead of $\omega$. Sometimes the hat-notation is not used:
 \begin{equation}
@@ -725,7 +734,9 @@ Sometimes, the sign convention for the forward and reverse transform is changed:
 \hat{x}_3(\omega) &=  \int_{-\infty}^{\infty} x(t) e^{i\omega t}dt\\
 x(t) &= \frac{1}{2\pi} \int_{-\infty}^{\infty} \hat{x}_3(\omega) e^{-i\omega t}d\omega\,\,.
 \end{align}
-All of these alternative Fourier transform definitions have the same general properties, but the exact equations can differ in scaling constants or in sign of the frequencies. For example, if we were to define the Fourier transform as in equation \ref{eq:ft_alt_form}, the Fourier transform of $x(t)=\delta(t+\tau)$ would be $\hat{x}(\omega)=\frac{1}{\sqrt{2\pi}}e^{i\omega \tau}$, which is slightly different than the result we obtained in Equation \ref{eq:fttss}.
+All of these alternative Fourier transform definitions have the same general properties, but the exact equations can differ in scaling constants or in sign of the frequencies. 
+For example, if we were to define the Fourier transform as in equation \ref{eq:ft_alt_form}, the Fourier transform of $x(t)=\delta(t+\tau)$ would be $\hat{x}(\omega)=\frac{1}{\sqrt{2\pi}}e^{i\omega \tau}$, 
+which is slightly different from the result we obtained in Equation \ref{eq:fttss}.
 
 \if 0
 The Laplace transform:

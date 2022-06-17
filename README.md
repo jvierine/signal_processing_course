@@ -39,12 +39,15 @@ Furthermore, each directory has the following structure
 - Overall typos have been fixed. 
 - Applications have been added to one 
 - All source code has been added and is up to date
+- Ordered lists have been removed (ch11)
 
 ## To do
 - Add a new programming exercise on signals and systems
 - Fix the rectangular signal exercise
 - Read through Python code and comment it
 - Try to find a heat equation exercise
+- Shorten Gaussian derivation of Fourier transform
+- Shorten convolution property discussion and derivation
 
 ### Everything you need to know
 #### Complex Algebra:
