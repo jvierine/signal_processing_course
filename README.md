@@ -64,6 +64,7 @@ Furthermore, each directory has the following structure
 - Look through exam questions to see if there are interesting ones to add as exercises.
 - $5\pi$ is a bit of an inconvenient frequency cutoff for ch11 ex. 1c). Maybe 5.5\pi?
 - Move Fur Elise to spectral analysis
+- Add index
 
 ### Everything you need to know
 #### Complex Algebra:
