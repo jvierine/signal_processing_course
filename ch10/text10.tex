@@ -301,31 +301,6 @@ y(t)=\int_{-\infty}^{\infty} x(\tau) h(t-\tau) d\tau = \mathcal{T}\left\{x(t)\ri
 The output of a linear time-invariant system $y(t)=\mathcal{T}\{x(t)\}$ is a convolution of the system's 
 impulse response $h(t)=\mathcal{T}\{\delta(t)\}$ with the input signal $x(t)$ fed into the system.
 
-\section{Frequency response}
-It is possible to view an LTI system as a filter, which modifies each frequency component of the input signal. 
-How each frequency component of the input signal is modified, is determined by the Fourier 
-transform of the impulse response of the LTI system, which we will call \index{frequency response} frequency response $\Hiw$.
-
-Recall that every LTI system is characterized by an impulse response:
-\begin{equation}
-h(t) = \mathcal{T}\{\delta(t)\}\,\,.
-\end{equation}
-We also know that the output of the LTI system is a convolution between the input signal $x(t)$ and the impulse response, 
-which is a multiplication in frequency domain:
-\begin{equation}
-y(t) = h(t)*x(t) \xleftrightarrow{\mathcal{F}} \hat{y}(\omega) = \Hiw \hat{x}(\omega)\,\,.
-\end{equation}
-The frequency response is therefore the Fourier transform of the impulse response of the LTI system:
-\begin{equation}
-\boxed{
-\Hiw = \int_{-\infty}^{\infty} h(\tau)e^{-i\omega \tau}  d\tau\,\,.
-}
-\end{equation}
-The absolute value $|\Hiw|$ is called the \index{magnitude response} magnitude response, and the phase angle $\angle \Hiw$ is 
-called the \index{phase response} phase response. These determine how the LTI system modifies 
-the amplitude and phase of each spectral component of the signal.
-
-\newpage
 \section{Convolution}
 
 A convolution operation is defined for both continuous-time and
@@ -346,92 +321,42 @@ The discrete-time convolution is defined as a sum:
 \end{equation}
 
 \section{Properties of a convolution}
+The properties of the convolution operation are shown in Table \ref{con:table}. The same properties also exist for the continuous-time convolution
+operation. 
+\begin{table}
+    \centering
+    \caption{Table of convolution properties}
+    \label{con:table}
+    \begin{tabular}{|c|c|}
+    \hline
+    Property     & Equation \\ \hline
+    identity     & $x[n]*\delta[n]=x[n]$ \\ \hline
+    commutative  & $a[n] * b[n] = b[n] * a[n]$ \\ \hline
+    associative  & $(a[n]*b[n]) * c[n] = a[n] * ( b[n] * c[n])$ \\ \hline
+    distributive & $a[n]*(b[n]+c[n]) = a[n]*b[n] + a[n]*c[n]$ \\ \hline
+    \end{tabular}
+\end{table}
 
-The unit impulse is \emph{identity}:
-\begin{equation}
-  \boxed{
-    a[n] = a[n]*\delta[n]\,\,.
-    } 
-\end{equation}
-Convolution is \emph{commutative}:
-\begin{equation}
-  \boxed{
-    a[n]*b[n] = b[n]*a[n]\,\,,
-    }
-\end{equation}
-\emph{associative}:
-\begin{equation}
-    \boxed{
-      (a[n]*b[n])*c[n] = a[n]*(b[n]*c[n])\,\,,
-      }
-\end{equation}
-and \emph{distributive}:
-\begin{equation}
-    \boxed{
-      a[n]*(b[n]+c[n]) = a[n]*b[n] + a[n]*c[n]\,\,.
-      }
-\end{equation}
-The same properties also exist for the continuous-time convolution
-operation.
-
-
-\subsection{Identity and time-shift}
-
-When convolving a signal with the unit impulse, the result of this
-operation is the input signal.
-\begin{equation}
-x[n]*\delta[n]=x[n]\,\,.
-\end{equation}
-When convolving a signal $x[n]$ with a time delayed unit impulse $\delta[n-n_0]$, the result is a time shifted version of $x[n]$:
-\begin{equation}
-x[n]*\delta[n-n_0]=x[n-n_0]\,\,.
-\end{equation}
-The time-shifted unit-impulse is therefore the impulse response of a
-time-shifting system $y[n] = x[n-n_0]$.
-
-\subsection{Commutative}
-
-You can change the order of the signals that are being convolved without changing the result: 
-\begin{equation}
-y[n] = a[n]*b[n] = b[n]*a[n]\,\,.
-\end{equation}
-The ordering of $a[n]$ and $b[n]$ is interchangeable. The proof is as follows:
-\begin{equation}
-y[n] = a[n]*b[n] = \sum_{k=-\infty}^{\infty} a[k]b[n-k]\,\,. 
-\end{equation}
-Using a change of variable $\ell=n-k$:
-\begin{equation}
-  \sum_{k=-\infty}^{\infty} a[k]b[n-k] = \sum_{\ell=-\infty}^{\infty} b[\ell] a[n-\ell] = y[n]\,\,.
-  \label{eq:commutative_convolution_proof}
-\end{equation}
-
-\subsection{Associative}
-
-You can change the order of execution of binary convolution operation without changing the result:
-\begin{equation}
-(a[n]*b[n])*c[n] = a[n]*(b[n]*c[n])\,\,.
-\end{equation}
-The proof is as follows:
+The identity property is clear, and the commutative property is left as an exercise. The associative property takes a bit more work, and the proof is as follows: 
+\begin{proof}
+Using the definition of the convolution operation twice:
 \begin{align}
-(a[n]*b[n])*c[n] &= \sum_{k}\underbrace{\left(\sum_\ell a[\ell]b[k-\ell]\right)}_{a[k]*b[k]} c[n-k]\,\,.
+(a[n]*b[n])*c[n] &= \sum_{k}\underbrace{\left(\sum_\ell a[\ell]b[k-\ell]\right)}_{a[k]*b[k]} c[n-k] \\
+                 &= \sum_{k}\sum_\ell a[\ell]b[k-\ell]c[n-k]
 \end{align}
-For the other ordering
+For the other ordering:
 \begin{align}
-a[n]*(b[n]*c[n]) &= \sum_{\ell} a[\ell] \underbrace{\left(\sum_m b[m]c[(n-m)-\ell]\right)}_{b[n]*c[n]}\\
+a[n]*(b[n]*c[n]) &= \sum_{\ell} a[\ell] \Big(\underbrace{\sum_m b[m]c[(n-m)}_{b[n]*c[n]}-\ell]\Big)\\
                  &= \sum_{\ell} \sum_m a[\ell] b[m]c[(n-m)-\ell]\,\,.
 \end{align}
-If we now substitute: $m=k-\ell$, then $n-m-\ell=n-k$ and thus
+If we now substitute: $m=k-\ell$, then $n-m-\ell=n-k$, which gives
 \begin{align}
-a[n]*(b[n]*c[n]) &= \sum_{k} \underbrace{\left(\sum_{\ell} a[\ell] b[k-\ell]\right)}_{a[k]*b[k]} c[n-k]\,\,.
+a[n]*(b[n]*c[n]) &= \sum_{k} \underbrace{\left(\sum_{\ell} a[\ell] b[k-\ell]\right)}_{a[k]*b[k]} c[n-k]\,\,,
 \end{align}
-Here we make use of the fact that 
-\begin{equation}
-\sum_{k-l=-\infty}^{\infty} \equiv \sum_{k=-\infty+l}^{\infty+l} \equiv \sum_{k=-\infty}^{\infty}\,\,. 
-\end{equation}
-
+which is the same as $(a[n]*b[n])*c[n]$, which completes the proof.
+\end{proof}
 
 \begin{marginfigure}
-
 \begin{center}
   \begin{tikzpicture}[node distance=3cm,auto,>=latex']
 
@@ -519,45 +444,14 @@ The convolution is distributive:
 \begin{equation}
 a[n]*(b[n]+c[n]) = a[n]*b[n] + a[n]*c[n]\,\,.
 \end{equation}
-Proof:
+
+\begin{proof}
 \begin{align}
 a[n]*(b[n]+c[n]) & = \sum_{k=-\infty}^{\infty} a[k](b[n-k]+c[n-k]) \\
  & = \sum_{k=-\infty}^{\infty} a[k]b[n-k]+ \sum_{k=-\infty}^{\infty} a[k]c[n-k]\,\,.
 \end{align}
-\begin{marginfigure}
-\begin{center}
-        \begin{tikzpicture}
-        \begin{axis}[width=6cm,height=4cm,ymin=0,xmin=-2,ymax=1.3,xmax=2, 
-                ytick={0,1},
-        yticklabels={0,1},
-        xtick={0.5},
-             xticklabels={$1$},
-    xlabel=$\tau$, axis lines = center]
+\end{proof}
 
-\addplot[color=blue,thick] plot coordinates {(-3,0) (0.00001,0) (0.0,1.0) (0.5,1.0) (0.5,0.0) (10,0.0) };
-\node at (axis cs:-0.45,0.8) [below, font={\footnotesize}]{$h(\tau)$};
-
-\end{axis}
-        \end{tikzpicture}
-\end{center}
-\begin{center}
-        \begin{tikzpicture}
-        \begin{axis}[width=6cm,height=4cm,ymin=0,xmin=-2,ymax=1.3,xmax=2, 
-                ytick={0,1},
-        yticklabels={0,1},
-        xtick={1.0},
-             xticklabels={$T$},
-    xlabel=$\tau$, axis lines = center]
-
-\addplot[color=red,thick] plot coordinates {(-3,0) (0.00001,0) (0.0,1.0) (1.0,1.0) (1.0,0.0) (10,0.0) };
-\node at (axis cs:-0.45,0.8) [below, font={\footnotesize}]{$x(\tau)$};
-
-\end{axis}
-        \end{tikzpicture}
-\end{center}
-\caption{Two rectangle functions.}
-\label{fig:rectangles}
-\end{marginfigure}
 An example application of this property is shown in Figure
 \ref{fig:sum_lti}. Signals $x_1[n]$ and $x_2[n]$ fed into an identical
 LTI systems separately and then added together is equivalent to the
@@ -572,366 +466,4 @@ code for creating such animations can be obtained from GitHub:
 \url{https://github.com/jvierine/signal_processing/tree/master/017_fir_animation}.
 
 
-\section{Example: convolution of two rectangle functions}
-Consider the following two continuous-time signals:
-\begin{align}
-h(t) &= u(t)-u(t-1) \\
-x(t) &= u(t)-u(t-T)\,\,.
-\end{align}
-with $T>1$. These signals are shown in Figure \ref{fig:rectangles}.
-
-The convolution equation includes a term $h(\tau)$ and a term $x(t-\tau)$:
-\begin{equation}
-y(t)=\int_{-\infty}^{\infty}h(\tau)x(t-\tau)d\tau
-\end{equation}
-where $x(t-\tau)$ is a time-shifted and time-reversed version of
-$x(\tau)$.
-
-The integral can be divided into five different regions with different behaviors.
-
-\noindent \textbf{When $t<0$:}
-
-There is no overlap between $h(\tau)$ and $x(t-\tau)$. The integral is $0$ when $t<0$:
-\begin{equation}
-y(t) = \int_{-\infty}^{\infty} h(\tau)x(t-\tau)d\tau = 0\,\,.
-\end{equation}
-
-\begin{marginfigure}
-\if 0
-  \begin{center}
-        \begin{tikzpicture}
-        \begin{axis}[width=7cm,height=3.5cm,ymin=0,xmin=-2,ymax=1.3,xmax=2, 
-                ytick={0,1},
-        yticklabels={0,1},
-        xtick={0.1,1.1},
-             xticklabels={$t-T$,$t$},
-    xlabel=$\tau$, axis lines = center]
-
-\addplot[color=red,thick] plot coordinates {(-3,0) (0.1,0) (0.1,1) (1.1,1.0) (1.1,0.0) (10,0.0) };
-
-%\addplot[color=red] plot coordinates {(-1,0) (-0.251,0.0) (-0.25,2.0)(0.25,2.0) (0.251,0.0) (1,0)};
-
-\node at (axis cs:0.5,1.0) [below, font={\footnotesize}]{$x(t-\tau)$};
-
-\end{axis}
-        \end{tikzpicture}
-  \end{center}
-  \fi
-\begin{center}
-        \begin{tikzpicture}
-        \begin{axis}[width=7cm,height=3.5cm,ymin=0,xmin=-2,ymax=1.3,xmax=2, 
-                ytick={0,1},
-        yticklabels={0,1},
-        xtick={-1.2,-0.2,0.5},
-             xticklabels={$t-T$,$t$,$1$},
-    xlabel=$\tau$, axis lines = center]
-
-\addplot[color=red,thick] plot coordinates {(-3,0) (-1.2,0) (-1.2,1) (-0.2,1.0) (-0.2,0.0) (10,0.0) };
-
-\node at (axis cs:-1.5,1.0) [below, font={\footnotesize}]{$x(t-\tau)$};
-
-\addplot[color=blue,thick] plot coordinates {(-3,0) (0.00001,0) (0.0,1.0) (0.5,1.0) (0.5,0.0) (10,0.0) };
-
-\node at (axis cs:0.25,1.0) [below, font={\footnotesize}]{$h(\tau)$};
-
-\end{axis}
-        \end{tikzpicture}
-\end{center}
-\begin{center}
-        \begin{tikzpicture}
-        \begin{axis}[width=7cm,height=3.5cm,ymin=0,xmin=-2,ymax=1.3,xmax=2, 
-                ytick={0,1},
-        yticklabels={0,1},
-        xtick={-0.9,0.1,0.5},
-             xticklabels={$t-T$,$t$,$1$},
-    xlabel=$\tau$, axis lines = center]
-
-\addplot[color=red,thick] plot coordinates {(-3,0) (-0.9,0) (-0.9,1) (0.1,1.0) (0.1,0.0) (10,0.0) };
-
-\node at (axis cs:-0.5,1.3) [below, font={\footnotesize}]{$x(t-\tau)$};
-
-\addplot[color=blue,thick] plot coordinates {(-3,0) (0.00001,0) (0.0,1.0) (0.5,1.0) (0.5,0.0) (10,0.0) };
-
-\node at (axis cs:0.25,1.3) [below, font={\footnotesize}]{$h(\tau)$};
-
-\end{axis}
-        \end{tikzpicture}
-\end{center}
-\begin{center}
-        \begin{tikzpicture}
-        \begin{axis}[width=7cm,height=3.5cm,ymin=0,xmin=-1,ymax=1.3,xmax=2, 
-                ytick={0,1},
-        yticklabels={0,1},
-        xtick={-0.2,0.8,0.5},
-             xticklabels={$t-T$,$t$,$1$},
-    xlabel=$\tau$, axis lines = center]
-
-\addplot[color=red,thick] plot coordinates {(-3,0) (-0.2,0) (-0.2,1) (0.8,1.0) (0.8,0.0) (10,0.0) };
-
-\node at (axis cs:-0.5,1.3) [below, font={\footnotesize}]{$x(t-\tau)$};
-
-\addplot[color=blue,thick] plot coordinates {(-3,0) (0.00001,0) (0.0,1.0) (0.5,1.0) (0.5,0.0) (10,0.0) };
-
-\node at (axis cs:0.25,1.3) [below, font={\footnotesize}]{$h(\tau)$};
-
-\end{axis}
-        \end{tikzpicture}
-\end{center}
-\begin{center}
-        \begin{tikzpicture}
-        \begin{axis}[width=7cm,height=3.5cm,ymin=0,xmin=-1,ymax=1.3,xmax=2, 
-                ytick={0,1},
-        yticklabels={0,1},
-        xtick={0.2,1.2,0.5},
-             xticklabels={$t-T$,$t$,$1$},
-    xlabel=$\tau$, axis lines = center]
-
-\addplot[color=red,thick] plot coordinates {(-3,0) (0.2,0) (0.2,1) (1.2,1.0) (1.2,0.0) (10,0.0) };
-
-\node at (axis cs:1.0,1.3) [below, font={\footnotesize}]{$x(t-\tau)$};
-
-\addplot[color=blue,thick] plot coordinates {(-3,0) (0.00001,0) (0.0,1.0) (0.5,1.0) (0.5,0.0) (10,0.0) };
-
-\node at (axis cs:0.25,1.3) [below, font={\footnotesize}]{$h(\tau)$};
-
-\end{axis}
-        \end{tikzpicture}
-\end{center}
-\begin{center}
-        \begin{tikzpicture}
-        \begin{axis}[width=7cm,height=3.5cm,ymin=0,xmin=-1,ymax=1.3,xmax=2, 
-                ytick={0,1},
-        yticklabels={0,1},
-        xtick={0.8,1.8,0.5},
-             xticklabels={$t-T$,$t$,$1$},
-    xlabel=$\tau$, axis lines = center]
-
-\addplot[color=red,thick] plot coordinates {(-3,0) (0.8,0) (0.8,1) (1.8,1.0) (1.8,0.0) (10,0.0) };
-
-\node at (axis cs:1.0,1.3) [below, font={\footnotesize}]{$x(t-\tau)$};
-
-\addplot[color=blue,thick] plot coordinates {(-3,0) (0.00001,0) (0.0,1.0) (0.5,1.0) (0.5,0.0) (10,0.0) };
-
-\node at (axis cs:0.25,1.3) [below, font={\footnotesize}]{$h(\tau)$};
-
-\end{axis}
-        \end{tikzpicture}
-\end{center}
-\caption{Different cases for a convolution of two rectangular functions.}
-\label{fig:convolution_example}
-\end{marginfigure}
-
-\noindent \textbf{When $0\le t < 1$:}
-
-There is overlap between $h(\tau)$ and $x(t-\tau)$.
-\begin{equation}
-y(t) = \int_0^{t} d\tau = t\,\,.
-\end{equation}
-
-\noindent \textbf{When $1 \le t < T$:}
-
-There is full overlap between $h(\tau)$ and $x(t-\tau)$.
-\begin{equation}
-y(t) = \int_0^{1} d\tau = 1\,\,.
-\end{equation}
-
-
-\noindent \textbf{When $T \le t \le T+1$:}
-
-There is partial overlap.
-\begin{equation}
-y(t) = \int_{t-T}^{1}  d\tau = 1-(t-T)\,\,.
-\end{equation}
-
-
-\noindent \textbf{When $t > T+1$:}
-
-There is no overlap.
-\begin{equation}
-y(t) = 0\,\,.
-\end{equation}
-
-\begin{marginfigure}
-\begin{center}
-        \begin{tikzpicture}
-        \begin{axis}[width=7cm,height=3.5cm,ymin=0,xmin=-1,ymax=1.3,xmax=2, 
-                ytick={0,1},
-        yticklabels={0,1},
-        xtick={0.5,1.0,1.5},
-             xticklabels={$1$,$T$,$T+1$},
-    xlabel=$t$, axis lines = center]
-
-
-\addplot[color=black,thick] plot coordinates {(-3,0) (0,0) (0.5,1.0) (1.0,1.0) (1.5,0.0) (10,0) };
-
-\node at (axis cs:0.5,1.3) [below, font={\footnotesize}]{$y(t)$};
-
-\end{axis}
-        \end{tikzpicture}
-\end{center}
-\caption{The result of the convolution operation.}
-\label{fig:convolution_example2}
-\end{marginfigure}
-
-\noindent \textbf{Combined}
-\begin{equation*}
-y(t) = \left\{ \begin{array}{lcc}
-    0 & & t<0  \\
-    t & & 0 \le t < 1\\
-    1 & & 1 \le t < T\\
-    1-(t-T) & & T \le t \le T+1\\
-    0 & & t > T+1\\
-\end{array}
-\right.
-\end{equation*}
-This is shown in Figure \ref{fig:convolution_example2}.
-
-\section{Applications of convolution}
-
-This chapter only scratches the practical and theoretical uses of
-convolution and linear time-invariant systems. I'll use two examples
-to illustrate the application of a one dimensional convolution
-equation. Be aware that these are by no means the only types of
-situations where you will encounter a convolution. Chances are quite
-high that a signal processing system you can think of is an LTI
-system, or can be approximated as one. Convolution can be found
-everywhere!
-
-\subsection{Example: Radar and sonar equation}
-
-\begin{marginfigure}
-\begin{center}
-\includegraphics[width=\textwidth]{ch10/figures/svalbard.jpg}
-\end{center}
-\caption{EISCAT Svalbard Radar. The radar echo from the D-region of the ionosphere can be modeled using the equation shown in Equation \ref{eq:convolution_radar}. Photo: Craig Heinselman}
-\label{fig:eiscat_svalbard}
-\end{marginfigure}
-The convolution equation is often used to model radar and sonar
-measurements. In this case, the impulse response signal $h[n]$
-represents the signal that is scattered as a function of distance. The
-signal $x[n]$ represents what a radar or sonar transmits. The signal
-received by a radar or sonar receiver $m[n]$ is then modeled as:
-\begin{align}
-m[n] &=  h[n]*x[n]\\
-     &= \sum_{r=0}^{M} h[r] x[n-r]. \label{eq:convolution_radar}\,\,.
-\end{align}
-In this case, the index $r \in \mathbb{N}$ represents round-trip
-propagation time between the transmitter and the receiver. The larger
-the distance between the transmitter and the receiver, the larger the
-delay. Assuming that the sample rate is $f_s$ in units of hertz or
-($\frac{1}{\mathrm{s}}$), and the group velocity of the transmitter
-wave $v_g$ ($\frac{\mathrm{m}}{\mathrm{s}}$), the round-trip range is given by:
-\begin{equation}
-R = \frac{v_g r}{2 f_s}\,\,.
-\end{equation}
-In the case of radar, the group velocity for electromagnetic waves is
-$v_g \approx 3 \cdot 10^8$ ($\frac{\mathrm{m}}{\mathrm{s}}$). For sonar, it is the speed of
-acoustic waves within the medium. In the case of air, this is
-$v_g \approx 343$ ($\frac{\mathrm{m}}{\mathrm{s}}$).
-
-To see how the convolution equation is the radar equation, we can use
-an illustration, as shown in Figure \ref{fig:range_time_diagram}.
-\begin{figure}
-\begin{center}
-\includegraphics[width=\textwidth]{ch10/figures/rd.pdf}
-\end{center}
-\caption{A range-time diagram depicting the relationship between a transmitted signal and a scattered signal.}
-\label{fig:range_time_diagram}
-\end{figure}
-
-If the probing signal is a unit impulse $x[n]=\delta[n]$ (a very short
-radar pulse), then the measurement directly provides the scattering
-amplitude as a function of range:
-\begin{align}
-m[n] = \sum_{r=0}^M h[r]\delta[n-r] = h[r]\,\,.
-\end{align}
-This type of radar is called a pulsed radar. In terms of radar
-signal processing, this is the easiest case, as no signal processing
-is needed! A radar measurement in this case is equivalent to measuring
-the ``impulse response'' of the region that the radar is probing.
-
-Here is a fascinating example of a blind child that has learned to
-click his tongue (emitting a $\delta[n]$-like impulse sound) to probe the
-acoustic scattering of his
-surroundings \url{https://www.youtube.com/watch?v=fnH7AIwhpik}. While
-this may seem like a superhuman feat, this is not unlike measuring the
-distance between yourself and a mountain side by shouting ``echo''
-very loudly and counting how long it takes for you to hear a strong
-echo. I am sure that many of you have done this already.
-
-If the transmitted waveform $x[n]$ is more complicated than a unit
-impulse, the measurements need to be filtered in some way to
-reconstruct the scattered signal as a function of range $h[n]$. This
-is achieved by designing a filter $\lambda[n]$, which has the
-following property $\lambda[n]*x[n] \approx \delta[n]$. After applying
-the filter $\lambda[n]$ to the measured signal, one obtains the echo
-as a function of range:
-\begin{align}
-\lambda[n]*m[n] = \lambda[n]*h[n]*x[n] = (\lambda[n]*x[n])*h[n]\approx h[n]\,\,. 
-\end{align}
-Design of pairs of signals $x[n]$ and filters $\lambda[n]$ is a topic
-of radar signal processing. An example of a good pairing of a radar
-transmit signal and a receiver filter is shown in the following convolution animation:
-\url{http://kaira.uit.no/juha/fir_animation/ex12.gif}.
-This is the so-called 13-bit Barker code and the inverse filter that
-corresponds to it. The convolution of these two signals is the unit
-impulse.
-
-
-\section{Example: Reverb effect}
-\label{reverb_section}
-
-\begin{marginfigure}
-\begin{center}
-\includegraphics[width=\textwidth]{ch10/figures/mountain_echo.pdf}
-\end{center}
-\caption{The acoustics of a space are determined by acoustic waves
-scattered from various obstacles at various propagation delays. This
-can be quite precisely modeled using a convolution, assuming that
-nothing is moving.}
-\end{marginfigure}
-Convolution is encountered when modeling the acoustics of a room or a
-space in audio signal processing. The basic underlying principle is
-the same as for radar and sonar.
-
-A sound source $x[n]$ is reflected or scattered from different
-surfaces within the room at various delays $r$. Each delay $r$
-corresponds to the round-trip propagation delay of the acoustic
-signal. This is what creates the ``sound'' of a room. This is also
-what is the cause for an acoustic ``echo'' from a mountain side that
-you may have experienced in real life!
-
-How much signal is scattered from range $r$ is determined by the impulse
-response $h[r]$. The resulting signal is a convolution $m[n] = h[n]*
-x[n]$. In this case, performing the convolution results in a reverb
-effect in acoustic signal processing. 
-
-By accurately modeling the impulse response of a room or a large
-concert hall with an impulse response $h[n]$, it is possible to modify
-an audio signal $x[n]$ to sound like it was played in that space.
-
-\begin{marginfigure}
-\begin{center}
-\includegraphics[width=\textwidth]{ch10/figures/reverb.pdf}
-\end{center}
-\caption{An impulse response that models the acoustics of a large space, with echoes at up to 3 seconds time delay.}
-\label{fig:room_model}
-\end{marginfigure}
-
-
-One way to characterize $h[n]$ for a room is to simply measure it. One
-emits a very short discrete unit impulse $\delta[n]$ using a high
-quality speaker, and then measures the echoes for this pulse to
-obtain:
-\begin{equation}
-h[n] = \sum_{r=0}^M h[r]\delta[n-r]\,\,.
-\end{equation}
-Another possibility is to model the impulse response $h[n]$ by making
-assumptions about the delays of the reflecting surfaces in a room or
-space.
-
-The following snippet of code demonstrates modeling of the acoustics
-of a room using an modeled impulse response for a room.
-
-\lstinputlisting[language=Python,caption={\texttt{018\_reverb/reverb.py}},label=lst:exercise_reverb]{code/018_reverb/reverb.py}
 
