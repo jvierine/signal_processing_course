@@ -1,0 +1,96 @@
+\chapter{Programming Assignment 1}
+
+The Dirac comb is a periodic signal, which is defined as follows:
+\begin{equation}
+x(t) = \sum_{k=-\infty}^{\infty} \delta(t - k T)
+\end{equation}
+The signal is shown in Figure \ref{fig:dirac_comb_plot}.
+
+\begin{marginfigure}
+\begin{center}
+\begin{tikzpicture}
+\pgfmathdeclarefunction{p}{1}{%
+  \pgfmathparse{(and(mod(#1,2)>0, mod(#1,2)<1))}%
+} \begin{axis}[
+width=7cm,
+axis lines = center,
+ymax=1.5,
+ymin=0,
+xmax=3.5,
+xmin=-3.5,
+legend pos=outer north east,
+yticklabels={,,},
+xticklabels={,,},
+xlabel={$t$},
+ylabel={$x(t)$}
+]
+    
+    \addplot+[ycomb,color=blue,mark=triangle*,mark options={blue}] plot coordinates {
+    (-3,1)
+    (-2,1)
+    (-1,1)
+    (-0,1)
+    (1,1)
+    (2,1)
+    (3,1)
+};
+
+\node at (axis cs:1.5,1.15) {$\displaystyle{T}$};   
+\addplot [dimen] plot coordinates {(1,1.1) (2,1.1)};
+
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+\caption{The Dirac comb signal with period $T$.}
+\label{fig:dirac_comb_plot}
+\end{marginfigure}
+
+Perform the following tasks. Write a max two-page report describing
+your results. The report is otherwise free form, as long as it is in
+PDF format. Include your code and plots in the report.
+
+You will find a lot of help for this task in the lecture notes that
+discusses the Fourier series. You may help each other on Perusall. It
+is fine to give hints, but please try not to give away the \emph{exact
+  solution}.
+
+\begin{itemize}
+\item[a)] Implement a program that calculates a partial sum
+  approximation
+  \begin{equation}
+    x_N(t) = \sum_{k=-N}^{N} c_k e^{i \frac{2\pi}{T}kt}
+\end{equation}
+  of a Dirac comb with a fundamental period of $T=0.5$ seconds. Use
+  $N=50$ as the number of complex exponential signals to include in
+  the partial sum. Evaluate the signal from $t=0$ to $t=4$ seconds at 10
+  kHz sample rate. 
+
+  Here's some partial code, which almost does the
+  job. 
+\begin{lstlisting}[language=Python,numbers=none]
+import numpy as n
+import matplotlib.pyplot as plt
+# define the sample rate (Hz)
+sample_rate=10000.0
+# create time array 0 to 4 seconds
+t=n.arange(4.0*sample_rate)/sample_rate
+# initialize empty vector to hold Fourier series
+sig=n.zeros(len(t),dtype=n.complex64)
+N=50
+for k in range(-N,N):
+    sig+=...# complete this line
+    
+plt.plot(t,sig.real)
+plt.plot(t,sig.imag)
+plt.xlabel("Time (s)")
+plt.show()
+\end{lstlisting}
+There is a small bug in the example code, which causes the imaginary
+  component of the signal \verb|sig| to not be zero valued. Find the
+  bug and fix it!
+
+\item[b)] Figure out what analytic modification you need to make to the Fourier series coefficients $c_k$ in order to delay the signal by 0.2 seconds.
+
+\item[c)] Plot and verify that the coefficients obtained in b) produce the correct delay.
+
+\end{itemize}
