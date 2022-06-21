@@ -1,6 +1,50 @@
 \newpage
 \section{Exercises: Frequency Response}
 
+\begin{enumerate}
+
+\item The impulse response of an LTI system is defined as:
+\begin{equation}
+    h(t) = \frac{42\sin(\omega_c t)}{\pi t}.
+    \label{eq:ir_42rect}
+\end{equation}
+The input to the LTI system is a periodic signal with a fundamental period $T=1$:
+\begin{equation}
+    x(t) = \sum_{n=-\infty}^{\infty}\delta(t-n).
+\end{equation}
+When the signal $x(t)$ is fed into an LTI system, the output signal is given by a convolution of the input signal with the output signal:
+\begin{equation}
+    y(t) = \int_{-\infty}^{\infty} h(t-\tau)x(\tau) d\tau.
+\end{equation}
+\begin{enumerate}[a)]
+\item Determine the Fourier transform $\hat{x}(\omega)$ of the input signal. Plot $\hat{x}(\omega)$ over the range of angular frequencies $-7\pi < \omega < 7\pi$. Hint: It might help if you start by expressing the signal $x(t)$ using a Fourier series representation first, and then apply Equation \ref{eq:fsftgen}.
+\item Determine the frequency response $\mathcal{H}(\omega)$ of the LTI system. In other words, Fourier transform the impulse response signal given in Equation \ref{eq:ir_42rect}. It should be a fairly simple function. Make a plot of $|\mathcal{H}(\omega)|$ on the same graph as $\hat{x}(\omega)$ using $\omega_c = 5\pi$.
+\item Use your plot in b) to determine $y(t)$, the output of the LTI system characterized using $h(t)$ when $\omega_c=5\pi$. Hint: use property that convolution in time domain is multiplication in frequency domain.
+\item What values of $\omega_c$ will result in a non-zero constant output $y(t)=c$. What is the constant $c$?
+\end{enumerate}
+
+\item A running average filter is defined as:
+  \begin{equation}
+    y[n] = \frac{1}{M} \sum_{k=0}^{M-1} x[n-k].
+    \label{eq:racausal}
+  \end{equation}
+  This filter only depends on the current and past values of the input, and can thus be implemented in a real-time system. Assume that $M$ is an odd number.
+  \begin{enumerate}[a)]
+  \item What is the impulse response $h_M[n]$ of the system described in Equation \ref{eq:racausal}?
+  \item What is the frequency response $\mathcal{H}_M(\hat{\omega})$ of the system described in Equation \ref{eq:racausal}?
+  \item What is the frequency response $\mathcal{H}_{\tau}(\hat{\omega})$ of a time-shift system $h_{\tau}[n]=\delta[n-\tau]$?
+  \item I recommend that you do this task on a computer. Plot the squared magnitude response $|\mathcal{H}_M(\hat{\omega})|^2$ between $-\pi < \hat{\omega} < \pi$. Assume that $M=11$. Compare this with a plot of the squared magnitude response of the time-symmetric running average filter $|D_M(\hat{\omega})|^2$ of the same length. It is defined in Equation \ref{eq:dirikereq}. They should be the same. If you are not sure why, carry on with the next tasks.
+  \item Show that the frequency response $\mathcal{H}_M(\hat{\omega})$
+     be obtained by multiplying the frequency response of the time symmetric running average filter given in Equation
+    \ref{eq:dirikereq} with the frequency response of the time shift system with a suitable value of $\tau$:
+    \begin{equation}
+      \mathcal{H}_M(\hat{\omega}) =
+    D_{M}(\hat{\omega})\mathcal{H}_{\tau}(\hat{\omega})?
+    \end{equation}
+    Hint: Look at the derivation of $D_M(\hat{\omega})$.
+    \item Explain why $|\mathcal{H}_M(\hat{\omega})|^2=|\mathcal{D}_M(\hat{\omega})|^2$. Hint: $|z|^2 = z z^*$.
+  \end{enumerate}
+
 \begin{marginfigure}
 \begin{center}
         \begin{tikzpicture}
@@ -15,7 +59,7 @@
 \label{fig:exer_laplac}
 \end{marginfigure}
 
-\begin{enumerate}
+
 \item It is possible to numerically estimate the second time
   derivative of a discretized signal using an FIR filter with the
   following filter coefficients:
@@ -86,26 +130,5 @@
 \end{marginfigure}
 \vspace{3cm}
 
-\item A running average filter is defined as:
-  \begin{equation}
-    y[n] = \frac{1}{M} \sum_{k=0}^{M-1} x[n-k].
-    \label{eq:racausal}
-  \end{equation}
-  This filter only depends on the current and past values of the input, and can thus be implemented in a real-time system. Assume that $M$ is an odd number.
-  \begin{enumerate}[a)]
-  \item What is the impulse response $h_M[n]$ of the system described in Equation \ref{eq:racausal}?
-  \item What is the frequency response $\mathcal{H}_M(\hat{\omega})$ of the system described in Equation \ref{eq:racausal}?
-  \item What is the frequency response $\mathcal{H}_{\tau}(\hat{\omega})$ of a time-shift system $h_{\tau}[n]=\delta[n-\tau]$?
-  \item I recommend that you do this task on a computer. Plot the squared magnitude response $|\mathcal{H}_M(\hat{\omega})|^2$ between $-\pi < \hat{\omega} < \pi$. Assume that $M=11$. Compare this with a plot of the squared magnitude response of the time-symmetric running average filter $|D_M(\hat{\omega})|^2$ of the same length. It is defined in Equation \ref{eq:dirikereq}. They should be the same. If you are not sure why, carry on with the next tasks.
-  \item Show that the frequency response $\mathcal{H}_M(\hat{\omega})$
-     be obtained by multiplying the frequency response of the time symmetric running average filter given in Equation
-    \ref{eq:dirikereq} with the frequency response of the time shift system with a suitable value of $\tau$:
-    \begin{equation}
-      \mathcal{H}_M(\hat{\omega}) =
-    D_{M}(\hat{\omega})\mathcal{H}_{\tau}(\hat{\omega})?
-    \end{equation}
-    Hint: Look at the derivation of $D_M(\hat{\omega})$.
-    \item Explain why $|\mathcal{H}_M(\hat{\omega})|^2=|\mathcal{D}_M(\hat{\omega})|^2$. Hint: $|z|^2 = z z^*$.
-  \end{enumerate}
 
 \end{enumerate}
