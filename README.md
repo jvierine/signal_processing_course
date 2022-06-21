@@ -63,6 +63,7 @@ Furthermore, each directory has the following structure
 - Ch 12 (DTFT)
 - Look through exam questions to see if there are interesting ones to add as exercises.
 - $5\pi$ is a bit of an inconvenient frequency cutoff for ch11 ex. 1c). Maybe 5.5\pi?
+- Move Fur Elise to spectral analysis
 
 ### Everything you need to know
 #### Complex Algebra:
