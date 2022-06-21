@@ -21,7 +21,8 @@ Structure of the repository has been changed. The notes have been divided into c
 | ch15          | Discrete Fourier Transform             | Done*  |
 | ch16          | Spectral Analysis                      | Done*  |
 | ch17          | Arbitrary Frequency Response Filters   | Done*  |
-| ch18          | Z-transform                            | Read   |
+| ch18          | Z-transform                            | Done*  |
+| ch19          | Infinite Impulse Response Filters      | Read   |
 
 Furthermore, each directory has the following structure
 | Directory     | Contains                                                           |
@@ -46,6 +47,9 @@ Furthermore, each directory has the following structure
 - Applications have been added to one 
 - All source code has been added and is up to date
 - Ordered lists have been removed (ch11)
+- The proof of the commutative property of convolution is now an exercise in ch10
+- Sonar exercise in ch10 has been removed
+- Convolution of two rectangles example has been removed
 
 ## To do
 - Add a new programming exercise on signals and systems
@@ -53,19 +57,9 @@ Furthermore, each directory has the following structure
 - Read through Python code and comment it
 - Try to find a heat equation exercise
 - Shorten Gaussian derivation of Fourier transform
-- Shorten convolution property discussion and derivation
-- Finish solution for ch18
+- Add solutions to ch19
 - Ch 11 (Convolution and Frequency response)
-  - Make proof of the commutative property an exercise (CT and DT)
   - Make a table or diagram of the convolution properties, figure out how to provide properties for CT and DT in a nice way.
-  - Remove convolution of two CT rectangles
-  - Remove example: convolution of two rectangle functions,
-  - Make radar and sonar equation a separate application example chapter, like FFT image and FFT audio. 
-  - Remove sonar exercise
-  - Move frequency response to Ch12 (or remove completely)
-  - remove juha's shitty notation from ex 2a solution
-  - move ch11 exercise 1 to ch12. 
-  - make ex 2 ex 1
 - Ch 12 (DTFT)
 - Look through exam questions to see if there are interesting ones to add as exercises.
 
