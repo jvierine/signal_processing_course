@@ -73,11 +73,11 @@
     
   \item Sketch the locations of the poles and zeroes of the system function on the complex plane. Include the unit circle on the plot. 
     
-  \item Sketch a plot of the magnitude response $|\mathcal{H}(\hat{\omega})|$ of this system. Label the frequencies of the nulls on the horizontal axis.
+  \item Sketch a plot of the magnitude response $|\mathcal{H}(\hat{\omega})|$ of this system. Mark the nulls on the plot.
   \item List the frequencies of the frequency components of the input signal that will be completely removed by this system (nulled out). Use radians per sample as the units for frequency.
-  \item Write the system function in the form
+  \item Write the system function on the form:
     \begin{equation}
-      \mathcal{H}(z) = \sum_n \alpha_n z^{-n}
+      \mathcal{H}(z) = \sum_k \beta_k z^{-k}
     \end{equation}
     What are the non-zero values of $\alpha_n$?
   \item What is the impulse response $h[n]$ of the LTI system?
@@ -94,17 +94,12 @@
 \label{fig:2notch}
 \end{marginfigure}
 
-  \begin{enumerate}[a)] \item What is the system function that you
-  came up with?  \item Draw a pole-zero diagram of your system
-  function.  \item Sketch a plot of the magnitude response
-  $\mathcal{H}(\hat{\omega})$ of this system.  \item Write a computer
-  program to verify that the magnitude response has nulls on the
-  correct frequencies. Hint: you can use the code in
-  Listing \ref{lst:mag_resp_example_code} to help you out. An example
-  output of this program is shown in Figure \ref{fig:2notch}.  \item
-  What is the impulse response of $h[n]$ of your LTI
-  system?  \end{enumerate}
-
-  \end{enumerate}
+\begin{enumerate}[a)] 
+    \item What is the system function that you came up with?  
+    \item Draw a pole-zero diagram of your system function.
+    \item Write a computer program to verify that the magnitude response has nulls on the correct frequencies. Hint: you can use the code in Listing \ref{lst:mag_resp_example_code} to help you out. An example output of this program is shown in Figure \ref{fig:2notch}.  
+    \item What is the impulse response of $h[n]$ of your LTI system?  
+\end{enumerate}
+\end{enumerate}
 
 \lstinputlisting[language=Python,caption={\texttt{030\_z\_fir\_magresp/plot\_mag\_resp.py}},label=lst:mag_resp_example_code]{code/030_z_fir_magresp/plot_mag_resp.py}
