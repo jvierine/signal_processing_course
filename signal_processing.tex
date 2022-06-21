@@ -58,13 +58,13 @@ Copyright \copyright\ \the\year\ \thanklessauthor
 \noindent\fontsize{10}{10}\selectfont\itshape
 \nohyphenation
 I'd like to thank the following people\sidenote{or their aliases, as
-some may have not chosen to use their real name when participating in
+some may have chosen not to use their real names when participating in
 the course commentary on Perusall.} for corrections and suggestions
 that have improved these lecture notes over the years: Björn
 Gustavsson, Patrick Guio,
 %(2020)
-Mikkel Isak Gaup, Adrian Sletten,
-Rikke Bjarnesen Andresen, Jostein Henriksen, Daniel Nordajl Jørgensen,
+Mikkel Isak Gaup, Adrian Sletten$^{32}$,
+Rikke Bjarnesen Andresen, Jostein Henriksen$^7$, Daniel Nordahl Jørgensen,
 Ivan Mikheev, Oskar Marthinussen, Iver Martinsen, Marit Breimo, Sigurd
 Haugse, Ragnar Helgaas, Sondre Thomassen, Sofie Svenøe, Sigurd Yngvar
 Ekern, Vetle Hofsøy-Woie, Øyvind Alexander Larssen, Erlend
@@ -73,13 +73,18 @@ Abrar, Daniel Breiland Teigen, Sigrid Holm, Åse Fauske, Yvonne
 Johansen, Frank Martin Fossland, Runar Folke-Olsen, Morten Paulsen,
 Teodor Skotnes,
 %(2021)
-Martin Stave, Kristine Rein, Anna Odh, Vegar
-Einarsen, Christian Salomonsen, Jonas Riise, Jørn Jensen, Anton
-Zyranov, Nikolai Anfeltmo, Håkon Johansen, Kian Sadeghi, Johannes
-Bjørnhaug, Ines Seeliger, Dana King, Emil Jettli, Sigurd Hanssen, Liza
-Liz, Sebastian Iversen, Daniel Johansen, Tobias W. Tobiassen, and
-Johanna Mankova Buseth. I'd also like to thank countless others whose
-names I have forgot to mention. All mistakes are purely mine.
+Martin Stave$^{16}$, Kristine Rein$^{3}$, Anna Odh$^{2}$, Vegar
+Einarsen$^{1}$, Christian Salomonsen$^{5}$, Jonas Riise$^{1}$, Jørn
+Jensen$^{25}$, Anton Zyranov$^{1}$, Nikolai Anfeltmo$^{1}$, Håkon
+Johansen$^{10}$, Kian Sadeghi$^{3}$, Johannes Bjørnhaug$^{2}$, Ines
+Seeliger$^{2}$, Dana King$^{3}$, Emil Jettli$^{1}$, Sigurd
+Hanssen$^{1}$, Liza Liz$^{1}$, Sebastian Iversen$^{1}$, Daniel
+Johansen$^{1}$, Tobias W. Tobiassen$^{1}$, and Johanna Mankova
+Buseth$^{1}$. I'd also like to thank countless others whose names I
+have forgotten to mention. A number indicates how many corrections were
+found by each person. This is a very rough estimate based on my
+somewhat incomplete bookkeeping, which I only started midway through
+this project. All mistakes are purely mine.
 \end{doublespace}
 \vfill
 \vfill
@@ -140,13 +145,20 @@ names I have forgot to mention. All mistakes are purely mine.
 \input{ch07/text7}
 \input{ch07/exercises7}
 \input{ch07/solutions7}
+\input{Applications/audio_comp}
+\input{Applications/image_comp}
+\input{Applications/ceph_ex}
 \fi
+
+%\input{Assignments/prog1}
 
 \ifSpFourierTra
 \chapter{Fourier Transform}
 \input{ch08/text8}
 \input{ch08/exercises8}
 \input{ch08/solutions8}
+\input{Applications/am_radio}
+\input{Applications/rc_circuit}
 \fi
 
 \ifSpDT
@@ -154,11 +166,14 @@ names I have forgot to mention. All mistakes are purely mine.
 \input{ch09/text9}
 \input{ch09/exercises9}
 \input{ch09/solutions9}
+\input{Applications/dB}
 \fi
 
 \ifSpLTI
 \chapter{Linear Time-invariant Systems}
 \input{ch10/text10}
+\input{Applications/radar}
+\input{Applications/reverb}
 \input{ch10/exercises10}
 \input{ch10/solutions10}
 \fi
@@ -170,6 +185,8 @@ names I have forgot to mention. All mistakes are purely mine.
 \input{ch11/solutions11}
 \fi
 
+%\input{Assignments/prog2}
+
 \ifSpDTFT
 \chapter{Discrete-time Fourier Transform (DTFT)}
 \input{ch12/text12}
@@ -177,13 +194,54 @@ names I have forgot to mention. All mistakes are purely mine.
 \input{ch12/solutions12}
 \fi
 
-\chapter{Applications}
-\input{Applications/audio_comp}
-\input{Applications/image_comp}
-\input{Applications/ceph_ex}
-\input{Applications/am_radio}
-\input{Applications/rc_circuit}
+\ifSpFilters
+\chapter{Ideal and Tapered Filters}
+\input{ch13/text13}
+\input{ch13/exercises13}
+\input{ch13/solutions13}
+\fi
 
+\ifSpUncertainty
+\chapter{Time-frequency Uncertainty Principle}
+\input{ch14/text14}
+\input{ch14/exercises14}
+\input{ch14/solutions14}
+\fi
+
+\ifSpDFT
+\chapter{Discrete Fourier Transform}
+\input{ch15/text15}
+\fi
+
+\ifSpSpectAn
+\chapter{Spectral Analysis}
+\input{ch16/text16}
+\input{ch16/exercises16}
+\input{ch16/solutions16}
+\fi
+
+\ifSpFiltering
+\chapter{Arbitrary Frequency Response Filters}
+\input{ch17/text17.tex}
+\input{ch17/exercises17}
+\input{ch17/solutions17}
+\fi
+
+%\input{Assignments/prog3}
+
+\ifSpZFIR
+\chapter{Z-transform}
+\input{ch18/text18}
+\input{ch18/exercises18}
+\input{ch18/solutions18}
+\fi
+
+\ifSpZIIR
+\chapter{Infinite Impulse Response Filters}
+%\input{ch19/text19}
+\input{ch19/exercises19}
+\input{ch19/solutions19}
+\fi
 
 
 \bibliographystyle{alpha}
