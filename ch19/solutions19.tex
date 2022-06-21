@@ -1,0 +1,58 @@
+\newpage
+\section{Suggested solutions: Infinite Impulse Response Filters}
+
+\begin{enumerate}
+\item Let $y[n]=\mathcal{T}\{x[n]\}$ be a discrete LTI system, defined as:
+$$y[n]=y[n-1]+y[n-2]+x[n-1].$$
+
+\begin{enumerate}[a)]
+\item The impulse response is simply $h[n]=\mathcal{T}\{x[n]\}$, giving that $h[n]$ must satisfy the following difference equation:
+$$h[n]=h[n-1]+h[n-2]+\delta[n-1].$$
+Assume $h[n]=0$ for $n<0$, then by iterating, we have:
+\begin{align*}
+    h[0]&= h[-1] + h[-2] + \delta[0-1]=0, \\
+    h[1]&= h[0]  + h[-1] + \delta[0]=1, \\
+    h[2]&= h[1]  + h[0]  + \delta[1]=1, \\
+    h[3]&= h[2]  + h[1]  + \delta[2]=2, \\
+    h[4]&= h[3]  + h[2]  + \delta[3]=3, \\
+    h[5]&= h[4]  + h[2]  + \delta[4]=5, 
+\end{align*}
+as we wanted to show.
+
+\item This is an infinite impulse response filter as it can be written as:
+$$y[n]=\sum_{l=1}^{2} a_{l}y[n-l]+\sum_{k=0}^{1} b_{k}x[n-l],$$
+with $a_{1}=a_{2}=1$, $b_{0}=0$ and $b_{1}=1$. 
+
+\item Calculating the $z$-transform, one gets
+\begin{align*}
+    Y(z)&=\mathcal{Z}\{y[n]\}=\mathcal{Z}\{y[n-1]\}+\mathcal{Z}\{y[n-2]\}+\mathcal{Z}\{x[n-1]\}, \\
+    Y(z)&=z^{-1}\mathcal{Z}\{y[n]\} + z^{-2}\mathcal{Z}\{y[n]\} + z^{-1}\mathcal{Z}\{x[n]\}, \\
+    Y(z)&=z^{-1}Y(z) + z^{-2}Y(z) + z^{-1}X(z),
+\end{align*}
+where the final equation can be solved to obtain:
+$$Y(z)=\frac{z^{-1}X(z)}{1-z^{-1}-z^{-2}}.$$
+
+\item The system function is, by definition, the function $\mathcal{H}(z)$, such that:
+$$Y(z)=\mathcal{H}(z)X(z).$$
+Clearly, we must have:
+$$\mathcal{H}(z)=\frac{z^{-1}}{1-z^{-1}-z^{-2}}.$$
+This can be factored as:
+$$\mathcal{H}(z)=\frac{z^{-1}}{(1-\varphi_{1}z^{-1})(1-\varphi_{2}z^{-1})},$$
+where $\varphi_{1}$ and $\varphi_{2}$ are the roots of the quadratic equation:
+$$z^{2}-z-1=0.$$
+
+\item The values of $\varphi_{1}$ and $\varphi_{2}$ are the roots of the equation $z^{2}-z-1$. You can easily find the roots by solving the quadratic equation by the standard formula. On the other, the equation is the second degree polynomial that defined the golden ratio, therefore, we know the roots are:
+\begin{align*}
+    \varphi_{1} &= \frac{1+\sqrt{5}}{2}, \\
+    \varphi_{2} &= \frac{1-\sqrt{5}}{2}.
+\end{align*}
+
+\item Apply partial fraction decomposition to the system function:
+$$\mathcal{H}(z)=\frac{z^{-1}}{(1-\varphi_{1}z^{-1})(1-\varphi_{2}z^{-1})}=\frac{A}{1-\varphi_{1}z^{-1}}+\frac{B}{1-\varphi_{2}z^{-1}}$$
+
+
+$$\mathcal{Z}^{-1}\{\mathcal{H}(z)\}$$
+
+
+\end{enumerate}
+\end{enumerate}
