@@ -104,7 +104,7 @@ $$E(x,t)=\sum_{n}E_{n}e^{i(\omega_{n}/c)x}e^{i\omega_{n}t}\partial_{y},$$
 is also a solution. This follows by the linearity of the wave equation. 
 
 \item The code from the notes has been modified such that the output signal has a frequency of approximately 42.0 Hz. 
-\begin{lstlisting}[language=Python, caption=Adding frequencies,label=code:ex6.6]
+\begin{lstlisting}[language=Python, caption=Adding frequencies,label=sig42]
 import numpy as n
 import matplotlib.pyplot as plt
 
@@ -140,18 +140,17 @@ plt.xlabel("Time (s)")
 plt.legend()
 plt.show()
 \end{lstlisting}
-Running the code in Listing \ref{code:ex6.6} yields the following output:
+Running the code in Listing \ref{sig42} yields the following output:
 \begin{figure}[h!]
     \centering
-    \includegraphics[scale=1.0]{ch06/figures/ex6.6.png}
+    \includegraphics[scale=1.0]{ch06/figures/ex6a.png}
     \caption{Signal with 42 Hz frequency}
-    \label{fig:ex6.6}
 \end{figure}
 
 \item The following code is a modification that multiplies the signal with a periodic 5.0 Hz signal:
 \begin{itemize}
-\item[a)] Listing \ref{code:ex6.7} provides a suggested solution.
-\begin{lstlisting}[language=Python, caption=Modifying signals,label=code:ex6.7]
+\item[a)] Listing \ref{sig42_mod} provides a suggested solution.
+\begin{lstlisting}[language=Python, caption=Modifying signals,label=sig42_mod]
 import numpy as n
 import scipy.io.wavfile as sio
 import matplotlib.pyplot as plt
@@ -173,16 +172,16 @@ plt.xlabel("Time $t$")
 plt.ylabel("Relative air pressure $y(t)$")
 plt.show()
 \end{lstlisting}
-Running Listing \ref{code:ex6.7} produces Figure \ref{fig:ex6.7}.
+Running Listing \ref{sig42_mod} produces Figure \ref{fig:ex6b}.
 \begin{figure}[h!]
     \centering
-    \includegraphics[width=12.5cm,height=9.5cm]{ch06/figures/ex6.7.png}
+    \includegraphics[width=12.5cm,height=9.5cm]{ch06/figures/ex6b.png}
     \caption{Original and modified guitar signal}
-    \label{fig:ex6.7}
+    \label{fig:ex6b}
 \end{figure}
 
 \item[b)]
-Adding the following code to Listing \ref{code:ex6.7} will save the result as an audio file.
+Adding the following code to Listing \ref{sig42_mod} will save the result as an audio file.
 \begin{lstlisting}[language=Python,caption=Saving an audiofile,label=save_audio]
 out = 0.9*out/n.max(n.abs(out)) 
 # write compressed output to wav file.
