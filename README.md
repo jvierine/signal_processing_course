@@ -62,9 +62,10 @@ Furthermore, each directory has the following structure
   - Make a table or diagram of the convolution properties, figure out how to provide properties for CT and DT in a nice way.
 - Ch 12 (DTFT)
 - Look through exam questions to see if there are interesting ones to add as exercises.
-- $5\pi$ is a bit of an inconvenient frequency cutoff for ch11 ex. 1c). Maybe 5.5\pi?
+- $5\pi$ is a bit of an inconvenient frequency cutoff for ch11 ex. 1c). Maybe $5.5\pi$?
 - Move Fur Elise to spectral analysis
 - Add index
+- Add programming assignments
 
 ### Everything you need to know
 #### Complex Algebra:
