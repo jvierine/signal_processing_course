@@ -1,5 +1,5 @@
 \newpage
-\section{Suggested solutions: Discrete-time Signals}
+\section{Suggested solutions: Linear Time-invariant Systems}
 \begin{enumerate}
 
 \item Claim: $a[n]*b[n]=b[n]*a[n]$.
@@ -10,17 +10,17 @@ By definition, the convolution of two discrete-time signals is defined as:
 \end{align*}
 Change variables by setting $l=n-k$, so that $k=n-l$, then:
 \begin{align*}
-    a[n]*b[n]&=\sum_{l=-\infty}^{\infty}a[n-l]b[l]=\sum_{l=-\infty}^{\infty}b[l]a[n-l]
+    a[n]*b[n]&=\sum_{l=-\infty}^{\infty}a[n-l]b[l]=\sum_{l=-\infty}^{\infty}b[l]a[n-l].
 \end{align*}
 The last sum is the definition of $b[n]*a[n]$, just with the sum index named $l$, hence $a[n]*b[n]=b[n]*a[n]$. 
 \end{proof}
 The same approach can be used to prove the commutativity of the continuous-time convolution. Again, substitution of variables, but with integrals. Here is the proof:
 \begin{proof}
 \begin{align*}
-    a(t)*b(t) &= \int_{-\infty}^{\infty}a(\tau)b(t-\tau)d\tau \\
-              &= -\int_{\infty}^{-\infty}a(t-u)b(u)du \\
-              &= \int_{-\infty}^{\infty}b(u)a(t-u)du \\
-              &= b(t) * a(t)
+    a(t)*b(t) &= \int_{-\infty}^{\infty}a(\tau)b(t-\tau)d\tau, \\
+              &= -\int_{\infty}^{-\infty}a(t-u)b(u)du, \\
+              &= \int_{-\infty}^{\infty}b(u)a(t-u)du, \\
+              &= b(t) * a(t),
 \end{align*}
 \end{proof}
 where $u=t-\tau$, giving $du=-d\tau$. Note that the minus sign is used to swap the limits. 
@@ -31,15 +31,15 @@ $$y[n]=\mathcal{T}\{x[n]\}=\frac{1}{L}\sum_{k=0}^{L-1}x[n-k].$$
 \begin{enumerate}[a)]
 \item Consider two discrete-time signals $x_{1}[n]$ and $x_{2}[n]$ with arbitrary constants $c_{1},c_{2}$, then:
 \begin{align*}
-    \mathcal{T}\{c_{1}x_{1}[n]+c_{2}x_{2}[n]\}&=\frac{1}{L}\sum_{j=0}^{L-1}[c_{1}x_{1}[n-j]+c_{2}x_{2}[n-j]] \\
-    c_{1}\mathcal{T}\{x_{1}[n]\}+c_{2}\mathcal{T}\{x_{2}[n]\}&=c_{1}\frac{1}{L}\sum_{k=0}^{L-1}x_{1}[n-k]+c_{2}\frac{1}{L}\sum_{l=0}^{L-1}x_{1}[n-l]
+    \mathcal{T}\{c_{1}x_{1}[n]+c_{2}x_{2}[n]\}&=\frac{1}{L}\sum_{j=0}^{L-1}[c_{1}x_{1}[n-j]+c_{2}x_{2}[n-j]], \\
+    c_{1}\mathcal{T}\{x_{1}[n]\}+c_{2}\mathcal{T}\{x_{2}[n]\}&=c_{1}\frac{1}{L}\sum_{k=0}^{L-1}x_{1}[n-k]+c_{2}\frac{1}{L}\sum_{l=0}^{L-1}x_{1}[n-l],
 \end{align*}
 which are equal. 
 
 For time-invariance we have:
 \begin{align*}
-    \mathcal{T}\{\mathcal{D}\{x[n]\}\}&=\mathcal{T}\{x[n-\tau]\}=\frac{1}{L}\sum_{k=0}^{L-1}x[n-\tau-k] \\
-    \mathcal{D}\{\mathcal{T}\{x[n]\}\}&=\mathcal{D}\left\{\frac{1}{L}\sum_{k=0}^{L-1}x[n-k]\right\}=\frac{1}{L}\sum_{k=0}^{L-1}x[n-\tau-k].
+    \mathcal{T}\{\mathcal{D}\{x[n]\}\}&=\mathcal{T}\{x[n-\tau]\}=\frac{1}{L}\sum_{k=0}^{L-1}x[n-\tau-k], \\
+    \mathcal{D}\{\mathcal{T}\{x[n]\}\}&=\mathcal{D}\left\{\frac{1}{L}\sum_{k=0}^{L-1}x[n-k]\right\}=\frac{1}{L}\sum_{k=0}^{L-1}x[n-\tau-k],
 \end{align*}
 both are equal, so the system is time-invariant. 
 
@@ -47,16 +47,16 @@ both are equal, so the system is time-invariant.
 $$h[n]=\frac{1}{L}\sum_{k=0}^{L-1}\delta[n-k].$$
 The impulse response function is then:
 $$h[n]=\begin{cases}
-    \frac{1}{L}, \quad n=0,\hdots,L-1 \\
+    \frac{1}{L}, \quad n=0,\hdots,L-1, \\
     0, \quad \text{otherwise}.
 \end{cases}$$
 
 \item The impulse response has $L$ nonzero values, all of them being $1/L$. 
 
-\item Let $x[n]=e^{i\hat{\omega}_{0}n}$ then if we feed this into our system we get
+\item Let $x[n]=e^{i\hat{\omega}_{0}n}$ then if we feed this into our system we get:
 $$y[n]=\frac{1}{L}\sum_{k=0}^{L-1}e^{i\hat{\omega}_{0}(n-k)}=\frac{1}{L}e^{i\hat{\omega}_{0}n}\sum_{k=0}^{L-1}e^{-i\hat{\omega}_{0}k}=\frac{1}{L}e^{i\hat{\omega}_{0}n}\left(\frac{1-(e^{-i\hat{\omega}_{0}})^{L}}{1-e^{-i\hat{\omega}_{0}}}\right).$$
 The output signal is of the form $Ae^{i\phi}e^{i\hat{\omega}_{0}n}$ as $y[n]$ is then:
-$$y[n]=\frac{1}{L}\frac{1-e^{-i\hat{\omega}_{0}L}}{1-e^{-i\hat{\omega}_{0}}}e^{i\hat{\omega}_{0}n}=\frac{1}{L}\frac{1-e^{-i\hat{\omega}_{0}L}}{1-e^{-i\hat{\omega}_{0}}}e^{i\hat{\omega}_{0}n}$$
+$$y[n]=\frac{1}{L}\frac{1-e^{-i\hat{\omega}_{0}L}}{1-e^{-i\hat{\omega}_{0}}}e^{i\hat{\omega}_{0}n}=\frac{1}{L}\frac{1-e^{-i\hat{\omega}_{0}L}}{1-e^{-i\hat{\omega}_{0}}}e^{i\hat{\omega}_{0}n}.$$
 \end{enumerate}
 
 \item Take $L=4$, then:
@@ -65,18 +65,20 @@ Next, consider the cases of input frequencies:
 \begin{align*}
     \hat{\omega}&=0,\\
     \hat{\omega}&=\pi,\\
-    \hat{\omega}&=0.5\pi
+    \hat{\omega}&=0.5\pi,
 \end{align*}
 in these cases the amplitude of the output is:
 \begin{align*}
-    A&=\lim_{\hat{\omega}\to 0}\frac{1}{4}\frac{1-e^{-4i\hat{\omega}_{0}}}{1-e^{-i\hat{\omega}_{0}}}=\lim_{\hat{\omega}\to 0}\frac{1}{4}\frac{4ie^{-4i\hat{\omega}_{0}}}{ie^{-i\hat{\omega}_{0}}}=1 \\
+    A&=\lim_{\hat{\omega}\to 0}\frac{1}{4}\frac{1-e^{-4i\hat{\omega}_{0}}}{1-e^{-i\hat{\omega}_{0}}}=\lim_{\hat{\omega}\to 0}\frac{1}{4}\frac{4ie^{-4i\hat{\omega}_{0}}}{ie^{-i\hat{\omega}_{0}}}=1, \\
     A&=\frac{1}{4}\frac{1-e^{-4i\pi}}{1-e^{-i\pi}}=0,\\
-    A&=\frac{1}{4}\frac{1-e^{-4i\pi/2}}{1-e^{-i\pi/2}}=0,
+    A&=\frac{1}{4}\frac{1-e^{-4i\pi/2}}{1-e^{-i\pi/2}}=0.
 \end{align*}
 
-\item The system $y[n]=\mathcal{T}\{x[n]\}$ is an LTI system and can be written as $y[n]=h[n]*x[n]$, where $h[n]$ is the impulse response function as defined above. Then the system can be described as:
+\item The system $y[n]=\mathcal{T}\{x[n]\}$ is an LTI system and can be written as $y[n]=h[n]*x[n]$, where $h[n]$ is the impulse response function as defined above. 
+Then the system can be described as:
 $$y_{2}[n]=\mathcal{T}\{\mathcal{T}\{x[n]\}\}=\mathcal{T}\{h[n]*x[n]\}=h[n]*(h[n]*x[n])=(h[n]*h[n])*x[n].$$
-We've used associativity of convolution in the final step. Then the system can be described as $y_{2}[n]=h_{2}[n]*x[n]$, where $h_{2}[n]=h[n]*h[n]$. Hence, $y_{2}[n]$ is an LTI system, as all LTI system are fully determined by convolution with an impulse response. 
+We've used associativity of convolution in the final step. Then the system can be described as $y_{2}[n]=h_{2}[n]*x[n]$, 
+where $h_{2}[n]=h[n]*h[n]$. Hence, $y_{2}[n]$ is an LTI system, as all LTI system are fully determined by convolution with an impulse response. 
 
 \item Have that $h_{2}[n]=\mathcal{T}\{\mathcal{T}\{\delta[n]\}\}=h[n]*h[n]$, so:
 $$h_{2}[n]=\sum_{k=-\infty}^{\infty} h[k]h[n-k]=h[0]h[n]+h[1]h[n-1]+h[2]h[n-2]+h[3]h[n-3]+h[4]h[n-4].$$
@@ -99,7 +101,8 @@ $$h_{2}[n]=\begin{cases}
     0, \quad \text{otherwise}.
 \end{cases}$$
 
-To draw the impulse response function, we write a little program to do it. The program is shown in Listing \ref{code12_1}. The impulse response is $0$ for all values of $n$ not shown. 
+To draw the impulse response function, we write a little program to do it. 
+The program is shown in Listing \ref{code12_1}. The impulse response is $0$ for all values of $n$ not shown. 
 \begin{lstlisting}[language=Python, caption=Simple convolution,label=code12_1]
 import numpy as n
 import matplotlib.pyplot as plt

@@ -1,7 +1,7 @@
 \newpage
 \section{Suggested solutions: Sinusoidal Signals}
 \begin{enumerate}
-\item If $x_{\text{noise}}(t)=\cos(\omega t+\phi)$ and $x_{\text{cancel}}(t)=\cos(\omega t+\phi_{c})$ and
+\item If $x_{\text{noise}}(t)=\cos(\omega t+\phi)$ and $x_{\text{cancel}}(t)=\cos(\omega t+\phi_{c})$ and:
 $$x_{\text{noise}}(t)+x_{\text{cancel}}(t)=0,$$
 then we must have:
 $$\cos(\omega t+\phi)+\cos(\omega t+\phi_{c})=0,$$
@@ -18,7 +18,7 @@ $$x_{\text{cancel}}(t)=\cos(\omega t+(\pi-\phi)).$$
 A simple test program to verify this is shown in Listing \ref{cancel} 
 with an arbitrary choice of $\omega$, $\phi$ and $m$. 
 If the code is run, two signals of opposite amplitude are shown, 
-which cancel out when added as hoped. 
+which cancel out when added, as hoped. 
 
 \begin{lstlisting}[language=Python, caption=Noise canceling signal,label=cancel]
 import numpy as n
@@ -93,7 +93,7 @@ $$\Re\{E(x,t)\}=\frac{1}{2}[E(x,t)+E^{*}(x,t)]=\frac{1}{2}E_{0}(e^{i(kx+\omega t
 Recall that the wave equation is:
 $$\partial_{t}^{2}E-\frac{1}{\mu_{0}\epsilon_{0}}\nabla^{2}E=0,$$
 which gives:
-$$-\omega^{2}E_{0}\cos(kx+\omega t)\partial_{y}+\frac{1}{\mu_{0}\epsilon_{0}}k^{2}E_{0}\cos(kx+\omega t)\partial_{y}=E_{0}\left(\frac{1}{\mu_{0}\epsilon_{0}}k^{2}-\omega^{2}\right)\cos(kx+\omega t)=0,$$
+$$-\omega^{2}E_{0}\cos(kx+\omega t)\partial_{y}+\frac{1}{\mu_{0}\epsilon_{0}}k^{2}E_{0}\cos(kx+\omega t)\partial_{y}=E_{0}\left(\frac{1}{\mu_{0}\epsilon_{0}}k^{2}-\omega^{2}\right)\cos(kx+\omega t)\partial_{y}=0,$$
 since $k^{2}c^{2}-\omega^{2}=0$, as $c=\sqrt{1/\mu_0\epsilon_0}$. In conclusion, the signal:
 $$\Re\{E(x,t)\}=E_{0}\cos(kx+\omega t)\partial_{y},$$
 is a solution to the wave equation. 

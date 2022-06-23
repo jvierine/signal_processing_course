@@ -1,14 +1,16 @@
 \newpage
 \section{Suggested solutions: Discrete-time Signals}
 \begin{enumerate}
-\item The signal $x(t)=Ae^{i\omega_{0}t}$ is discretized using an ideal continuous-to-discrete time converter $x[n]=x(nT_{s})=Ae^{i\hat{\omega}_{k}n}$. Let $A=1$ and $\omega_{0}=2\pi 10042$ rad/s. Let the sample rate be $f_{s}=100$ samples per second and $T_{s}=1/f_{s}$.
+\item The signal $x(t)=Ae^{i\omega_{0}t}$ is discretized using an ideal continuous-to-discrete time converter $x[n]=x(nT_{s})=Ae^{i\hat{\omega}_{k}n}$. 
+Let $A=1$ and $\omega_{0}=2\pi 10042$ rad/s. Let the sample rate be $f_{s}=100$ samples per second and $T_{s}=1/f_{s}$.
 
 \begin{enumerate}[a)]
-\item Have $\hat{\omega}_{0}=\omega_{0}T_{s}$ and $\hat{\omega}_{k}$ is
-$$\hat{\omega}_{k}=\hat{\omega}_{0}+2\pi k=\omega_{0}\frac{1}{f_{s}}+2\pi k=\frac{5021}{25}\pi+2\pi k$$
+\item Have $\hat{\omega}_{0}=\omega_{0}T_{s}$ and $\hat{\omega}_{k}$ is:
+$$\hat{\omega}_{k}=\hat{\omega}_{0}+2\pi k=\omega_{0}\frac{1}{f_{s}}+2\pi k=\frac{5021}{25}\pi+2\pi k,$$
 for $k\in\mathbb{Z}$. 
 
-\item The principal aliases lie in $-\pi<\hat{\omega}_{k}<\pi$. Pick a $k\in\mathbb{Z}$ such that $-\pi<\hat{\omega}_{k}<\pi$. For instance, $k=100$ works:
+\item The principal aliases lie in $-\pi<\hat{\omega}_{k}<\pi$. Pick a $k\in\mathbb{Z}$ such that $-\pi<\hat{\omega}_{k}<\pi$. 
+For instance, $k=100$ works:
 $$-\pi < \frac{5021}{25}\pi-2\pi 100 < \pi,$$
 giving a value of $\hat{\omega}\approx2.6389\ \text{rad/sample}$. 
 
@@ -18,7 +20,7 @@ giving a value of $\hat{\omega}\approx2.6389\ \text{rad/sample}$.
 import numpy as n
 import matplotlib.pyplot as plt
 
-fs = 100 # sample-rate in Hz
+fs = 100 # sample rate in Hz
 om0 = 2*n.pi*fs
 
 om = n.linspace(-3*n.pi,3*n.pi,num=1000)
@@ -38,18 +40,20 @@ The spectrum $\hat{x}(\omega)$ is shown in Figure \ref{spectrum_plot}.
     \label{spectrum_plot}
 \end{marginfigure}
 
-\item The possible angular frequencies that result in the same discritization is found by
+\item The possible angular frequencies that result in the same discritization is found by:
 $$\omega_{k}=\omega_{0}+2\pi kf_{s}.$$
-Choosing different values for $k$ and search for a value that satisfy the requirement of being the smallest $|\omega_{k}|$ is found to be $k=-100$. This value gives $\omega_{k}=2\pi42$. 
+Choosing different values for $k$ and search for a value that satisfy the requirement of being the smallest $|\omega_{k}|$ is found to be $k=-100$. 
+This value gives $\omega_{k}=2\pi42$. 
 
-\item Here the signal is complex, so the signal can be sampled at $f_{s}>f_{\text{max}}-f_{\text{min}}=\frac{\omega_{0}}{2\pi}$ by the Shannon which correspond to $f_{s}>10042$ Hz. 
+\item Here the signal is complex, so the signal can be sampled at $f_{s}>f_{\text{max}}-f_{\text{min}}=\frac{\omega_{0}}{2\pi}$ 
+by the Shannon sampling theorem, which correspond to $f_{s}>10042$ Hz. 
 \end{enumerate}
 
 \item Given the continuous-time sinusoid $y_1[n] = 2 \cos(0.67 \pi n) + \cos(0.33 \pi n)$.
   \begin{enumerate}[a)]
     \item Using Euler's formula to first rewrite $y_{1}[n]$ on polar form:\\
     	\[y_1[n] = e^{i0.67\pi n} + e^{-i0.67\pi n} + \frac{1}{2}e^{i0.33\pi n} + \frac{1}{2}e^{-i0.33\pi n}\]
-    	and then plot the spectrum (Figure \ref{fig:ex1}):\\
+    	and then plot the spectrum as shown in Figure \ref{fig:ex1}.\\
 		\begin{marginfigure}
 		  \begin{center}
 			\begin{tikzpicture}
@@ -85,9 +89,9 @@ Choosing different values for $k$ and search for a value that satisfy the requir
 				\addplot+[ycomb,mark=*,mark color=skyblue1, solid,
 						color=skyblue1] plot coordinates {(-1.33,1)(1.33,1)};
 			  	\node at (axis cs:-1.33,1)[below,
-			  				font={\footnotesize}]{$e^{-i0.33\pi}$};
+			  				font={\footnotesize}]{$e^{-i1.33\pi}$};
 			  	\node at (axis cs:1.33,1)[above,
-			  				font={\footnotesize}]{$e^{i0.33\pi}$};
+			  				font={\footnotesize}]{$e^{i1.33\pi}$};
 			  	
 			  	\addplot+[ycomb,mark=*,mark color=blue, solid,
 						color=blue] plot coordinates {(-0.67,1)(0.67,1)};
@@ -128,7 +132,8 @@ Choosing different values for $k$ and search for a value that satisfy the requir
 
 \item For complex signals, we must sample at a rate that satisfy $f_{s}>f_{\text{max}}-f_{\text{min}}=\frac{1}{2\pi}(\omega_{1}-\omega_{0})$ in units of Hz. 
 
-\item By the Shannon–sampling theorem the sample-rate $f_{s}$ from above is sufficient to retain all the information regarding the signal, thus the spectrum has no overlap. This is reflected in the drawing of $|\hat{x}_{s}(\omega)|$ where the copies are shown in red.
+\item By the Shannon sampling theorem the sample rate $f_{s}$ from above is sufficient to retain all the information regarding the signal, 
+thus the spectrum has no overlap. This is reflected in the drawing of $|\hat{x}_{s}(\omega)|$ where the copies are shown in red.
 
 \begin{center}
 \begin{tikzpicture}
@@ -151,24 +156,24 @@ Choosing different values for $k$ and search for a value that satisfy the requir
 \end{tikzpicture}
 \end{center}
 
-\item In this case, the reconstruction filter would be an ideal band-pass filter of the form
+\item In this case, the reconstruction filter would be an ideal band-pass filter of the form:
 $$\mathcal{H}(\omega)=\begin{cases}
     T_{s}, \quad \omega_{1}\le\omega\le\omega_{2}, \\
     0, \quad \hspace{0.1cm}\text{otherwise}.
 \end{cases}$$
-Have $x_{s}(t)$ as
+Have $x_{s}(t)$ as:
 $$x_{s}(t)=\sum_{n=-\infty}^{\infty}x[n]\delta(t-nT_{s}),$$
-from the samples. To reconstruct the signal, simply multiply $\hat{x}(\omega)$ by the reconstruction filter in frequency domain. The frequency domain representation of $x_{s}(t)$ was shown to be
+from the samples. To reconstruct the signal, simply multiply $\hat{x}(\omega)$ by the reconstruction filter in frequency domain. The frequency domain representation of $x_{s}(t)$ was shown to be:
 $$\hat{x}_{s}(\omega)=\frac{1}{T_{s}}\sum_{n=-\infty}^{\infty}\hat{x}(\omega-n\omega_{s}).$$
-Where $\omega_{s}=2\pi f_{s}$. Thus, multiplying in frequency domain yields
+Where $\omega_{s}=2\pi f_{s}$. Thus, multiplying in frequency domain yields:
 $$\mathcal{H}(\omega)\hat{x}_{s}(\omega)=T_{s}\frac{1}{T_{s}}\sum_{n=-\infty}^{\infty}\hat{x}(\omega-n\omega_{s})=\hat{x}(\omega),$$
-here the sum is killed by $\mathcal{H}(\omega)$ as it is $0$ outside of $\omega_{1}\le\omega\le\omega_{2}$. Hence, we retain all the information necessary to reconstruct the signal as 
+here the sum is killed by $\mathcal{H}(\omega)$ as it is $0$ outside of $\omega_{1}\le\omega\le\omega_{2}$. Hence, we retain all the information necessary to reconstruct the signal as: 
 $$x(t)=(2\pi)^{-1}\int_{-\infty}^{\infty}\hat{x}(\omega)e^{i\omega t}d\omega.$$
 \end{enumerate}
 
 
 
-\item As before, let $x(t)=(2\pi)^{-1}\int_{-\infty}^{\infty}\hat{x}(\omega)e^{i\omega t}d\omega$ and
+\item As before, let $x(t)=(2\pi)^{-1}\int_{-\infty}^{\infty}\hat{x}(\omega)e^{i\omega t}d\omega$ and:
 $$|\hat{x}(\omega)|=\begin{cases}
     > 0 \quad    \text{when} \quad \omega_{0}<|\omega|<\omega_{1},\\
     0, \quad     \text{otherwise},
@@ -206,23 +211,24 @@ with $\omega_{0}=2\pi30$ and $\omega_{1}=2\pi40$ radians per second. Here we use
 
 \item The condition $f_{s}>2f_{\text{max}}$ is violated in this case. 
 This condition applies to real signals but assumes the frequencies fall in the principal spectrum of $|f|<f_{s}/2$ which is not the case here. 
-However, the sample rate satisfy
-$$n\frac{\omega_{s}}{2}\le|\omega|\le(n+1)\frac{\omega_{s}}{2}$$
+However, the sample rate satisfy:
+$$n\frac{\omega_{s}}{2}\le|\omega|\le(n+1)\frac{\omega_{s}}{2},$$
 or
-$$n2\pi 10\le|\omega|\le (n+1)2\pi10$$
-which is satisfied for $n=3$, as this gives
-$$2\pi 30\le |\omega|\le 2\pi 40$$
+$$n2\pi 10\le|\omega|\le (n+1)2\pi10,$$
+which is satisfied for $n=3$, as this gives:
+$$2\pi 30\le |\omega|\le 2\pi 40,$$
 this bounds the spectrum and avoids aliasing, hence this is sufficient to retain all the information in the signal. 
 
-\item Define a filter $\mathcal{H}(\omega)$ as an ideal band-pass filter
+\item Define a filter $\mathcal{H}(\omega)$ as an ideal band-pass filter:
 $$\mathcal{H}(\omega)=\begin{cases}
     T_{s}, \quad \omega_{0}\le|\omega|\le\omega_{1}, \\
     0, \quad \hspace{0.1cm}\text{otherwise}.
 \end{cases}$$
-then 
+Then:
 $$\mathcal{H}(\omega)\hat{x}_{s}(\omega)=T_{s}\frac{1}{T_{s}}\sum_{k=-\infty}^{\infty}\hat{x}(\omega-k\omega_{s})=\hat{x}(\omega).$$
 Due to $\mathcal{H}(\omega)$ being $0$ outside $\omega_{0}\le|\omega|\le\omega_{1}$ the sum goes away giving back the original frequency representation of the signal. 
-Note that the absolute value is needed here to get both the positive and negative frequencies as the signal is real, then applying the Fourier transform to this signal yields the original signal $x(t)$. 
+Note that the absolute value is needed here to get both the positive and negative frequencies as the signal is real, 
+then applying the Fourier transform to this signal yields the original signal $x(t)$. 
 \end{enumerate}
 
 

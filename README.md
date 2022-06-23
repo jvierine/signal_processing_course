@@ -35,7 +35,7 @@ Furthermore, each directory has the following structure
 
 ## Changes
 - Wrote a segment on exponents for complex exponentials (ch03)
-- Causality has been removed from ch04 and all the exercises refering to this has been removed
+- Causality has been removed from ch04 and all the exercises referring to this has been removed
 - Added some details on time-invariant systems
 - Exercise 3.9 has been rewritten. Added a new programming exercise
 - Chapter 4 has been rewritten to make time-invariant systems easier and shorter
@@ -45,7 +45,7 @@ Furthermore, each directory has the following structure
 - Frequency response has been removed from the Fourier transform chapter
 - Overall typos have been fixed and grammar has been improved
 - Applications have been added to one 
-- All source code has been added and is up to date
+- All source code has been added and is up-to-date
 - Ordered lists have been removed (ch11)
 - The proof of the commutative property of convolution is now an exercise in ch10
 - Sonar exercise in ch10 has been removed
@@ -61,8 +61,7 @@ Furthermore, each directory has the following structure
 - Add solutions to ch19
 - Ch 12 (DTFT)
 - Look through exam questions to see if there are interesting ones to add as exercises.
-- $5\pi$ is a bit of an inconvenient frequency cutoff for ch11 ex. 1c). Maybe $5.5\pi$?
-- Add programming assignments
+- Add plot of roots of unity
 
 ### Everything you need to know
 #### Complex Algebra:
