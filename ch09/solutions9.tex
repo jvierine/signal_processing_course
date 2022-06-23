@@ -53,7 +53,8 @@ by the Shannon sampling theorem, which correspond to $f_{s}>10042$ Hz.
   \begin{enumerate}[a)]
     \item Using Euler's formula to first rewrite $y_{1}[n]$ on polar form:\\
     	\[y_1[n] = e^{i0.67\pi n} + e^{-i0.67\pi n} + \frac{1}{2}e^{i0.33\pi n} + \frac{1}{2}e^{-i0.33\pi n}\]
-    	and then plot the spectrum as shown in Figure \ref{fig:ex1}.\\
+    	and then plot the spectrum as shown in figure on the side. The blue nodes are all aliases of each other, the same goes for the red ones. 
+		The light blue and scarlet colored nodes are folded aliases. 
 		\begin{marginfigure}
 		  \begin{center}
 			\begin{tikzpicture}
@@ -110,8 +111,6 @@ by the Shannon sampling theorem, which correspond to $f_{s}>10042$ Hz.
 			  \end{axis}
 			\end{tikzpicture}
 		  \end{center}
-		\caption{Spectrum for 1.a): \\ $y_1[n] = 2 \cos(0.67 \pi n) + \cos(0.33 \pi n)$ \\ Shown only frequency components from principal up to 2nd alias.}
-		\label{fig:ex1}
 		\end{marginfigure}
     
     \item For the changed signal $y_2[n] = 2 \cos(2.67 \pi n) + \cos(0.33 \pi n)$, the spectrum will stay unchanged because $\cos(2.67 \pi n) = \cos(0.67 \pi n)$.
