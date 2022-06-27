@@ -1,0 +1,21 @@
+\newpage
+\section{Suggested solutions: Discrete Fourier Transform}
+
+\begin{enumerate}
+\item Let $x[n]$ be a discrete-time signal of length $N$.
+
+\begin{enumerate}[a)]
+\item The spectral components in the DFT is given as $\omega_{k}=\frac{2\pi k}{NT_{s}}$. In units of hertz one has:
+$$f_{k}=\frac{\omega_k}{2\pi}=\frac{k}{NT_{s}}=\frac{kf_{s}}{N}.$$
+
+\item The DFT yields evenly spaces points in frequency domain corresponding to normalized angular frequencies of:
+$$\hat{\omega}_{k}=\frac{2\pi k}{N}.$$
+In other words, the resolution is:
+$$\Delta\hat{\omega}=\frac{2\pi (k+1)}{N}-\frac{2\pi k}{N}=\frac{2\pi}{N}.$$
+In units of hertz, we get:
+$$\Delta f = \frac{\Delta\omega_{k}}{2\pi}=\frac{\Delta\hat{\omega}}{2\pi T_{s}}=\frac{2\pi}{N}\frac{1}{2\pi T_{s}}=\frac{1}{N T_{s}}=\frac{f_{s}}{N}.$$
+Having used that $\hat{\omega}=\omega_{k}T_{s}$. If we want to have a resolution of $\Delta f=0.1$ Hz, then we must choose $N$, so that:
+$$N=\frac{f_{s}}{\Delta f}=\frac{17\cdot 10^{3}\ \text{Hz}}{0.1\ \text{Hz}}=\underline{\underline{170000}}.$$
+\end{enumerate}
+
+\end{enumerate}
