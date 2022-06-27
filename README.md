@@ -19,8 +19,8 @@ Structure of the repository has been changed. The notes have been divided into c
 | ch13          | Ideal and Tapered Filters              | Done*  |
 | ch14          | Time-frequency Uncertainty Principle   | Done   |
 | ch15          | Discrete Fourier Transform             | Done*  |
-| ch16          | Spectral Analysis                      | Done*  |
-| ch17          | Arbitrary Frequency Response Filters   | Done*  |
+| ch16          | Spectral Analysis                      | Done   |
+| ch17          | Arbitrary Frequency Response Filters   | Done   |
 | ch18          | Z-transform                            | Done*  |
 | ch19          | Infinite Impulse Response Filters      | Read   |
 
@@ -51,6 +51,7 @@ Furthermore, each directory has the following structure
 - Sonar exercise in ch10 has been removed
 - Convolution of two rectangles example has been removed
 - Moved Fur Elise to Spectral Analysis (ch16)
+- Added exercise with solution for ch15 (DFT)
 
 ## To do
 - Fix the rectangular signal exercise
