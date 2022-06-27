@@ -4,6 +4,33 @@
 
 \item
 \begin{enumerate}[a)]
+\item If:
+$$x(t)=\delta(t+2)+\delta(t)+\delta(t-2),$$
+then by linearity we have that:
+$$\hat{x}(\omega)=\mathcal{F}\{x(t)\}=\mathcal{F}\{\delta(t+2)\}+\mathcal{F}\{\delta(t)\}+\mathcal{F}\{\delta(t-2)\},$$
+now, by using time shift properties we get:
+$$\hat{x}(\omega)=\mathcal{F}\{x(t)\}=\underline{\underline{e^{2i\omega}+1+e^{-2i\omega}}},$$
+by Equation \ref{eq:fttss}.
+
+\item Can rewrite the signal using the sinc function as:
+$$x(t)=\frac{\sin(100\pi(t-2))}{\pi(t-2)}=100\text{sinc}(100(t-2)).$$
+Then by Equation \ref{eq:ft:timeshift} and Equation \ref{eq:ft:sinc} the Fourier transform is:
+$$\hat{x}(\omega)=100e^{-2i\omega}\mathcal{F}\{\text{sinc}100t\}=100e^{-2i\omega} \frac{1}{100}[u(\omega+100\pi)-u(\omega-100\pi)],$$
+giving:
+$$\hat{x}(\omega)=\underline{\underline{e^{-2i\omega}[u(\omega+100\pi)-u(\omega-100\pi)]}}.$$
+
+\item Take:
+$$x(t)=e^{-t}u(t)-e^{-t}u(t-4),$$
+then by linearity the Fourier transform is:
+$$\hat{x}(\omega)=\mathcal{F}\{x(t)\}=\mathcal{F}\{e^{-t}u(t)\}-\mathcal{F}\{e^{-t}u(t-4)\}.$$
+The last term can be simplified using the time shift property with $\tau=-4$ giving:
+$$\hat{x}(\omega)=\mathcal{F}\{e^{-t}u(t)\}-e^{-4i\omega}\mathcal{F}\{e^{-t}u(t)\}.$$
+The Fourier transform of $e^{-t}u(t)$ is easily found as it is an exponential decay with $\beta=1$, hence:
+$$\hat{x}(\omega)=\frac{1}{1+i\omega}-e^{-4i\omega}\frac{1}{1+i\omega}=\underline{\underline{\frac{1}{1+i\omega}\left(1-e^{-4i\omega}\right)}}.$$
+\end{enumerate}
+
+\item
+\begin{enumerate}[a)]
 \item Let $\hat{x}(\omega)=2+\cos\omega$, then the inverse Fourier transform is:
 \begin{align*}
     x(t)&=\mathcal{F}^{-1}\{\hat{x}(\omega)\}=\mathcal{F}^{-1}\{2\}+\mathcal{F}^{-1}\{\cos\omega\}, \\
