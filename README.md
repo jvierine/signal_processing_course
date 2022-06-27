@@ -6,9 +6,9 @@ Structure of the repository has been changed. The notes have been divided into c
 ----------------|----------------------------------------|--------|
 | ch01          | Introduction                           | Done   |
 | ch02          | Python                                 | Done   |
-| ch03          | Complex Algebra                        | Done*  |
+| ch03          | Complex Algebra                        | Done   |
 | ch04          | Signals and Systems                    | Done*  |
-| ch05          | Elementary Signals                     | Done*  |
+| ch05          | Elementary Signals                     | Done   |
 | ch06          | Sinusodial Signals                     | Done*  |
 | ch07          | Fourier series                         | Done*  |
 | ch08          | Fourier Transform                      | Done*  |
@@ -53,15 +53,12 @@ Furthermore, each directory has the following structure
 - Moved Fur Elise to Spectral Analysis (ch16)
 
 ## To do
-- Add a new programming exercise on signals and systems
 - Fix the rectangular signal exercise
 - Read through Python code and comment it
 - Try to find a heat equation exercise
 - Shorten Gaussian derivation of Fourier transform
 - Add solutions to ch19
-- Ch 12 (DTFT)
 - Look through exam questions to see if there are interesting ones to add as exercises.
-- Add plot of roots of unity
 
 ### Everything you need to know
 #### Complex Algebra:
