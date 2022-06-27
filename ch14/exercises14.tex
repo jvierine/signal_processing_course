@@ -159,5 +159,39 @@ band. Which one you should use will depend on your application.
 
       
   \end{enumerate}
-  
+
+
+\item Consider the following function:
+\begin{equation}
+\Psi(x) = \frac{1}{\sqrt{2T}}[u(x + T) - u(x - T)].
+\end{equation}
+The function $|\Psi(x)|^{2}$ describes the probability density of finding a particle at position $x$. 
+
+\begin{enumerate}[a)]
+\item Show that:
+\begin{align*}
+\phi(p)&= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\Psi(x)e^{-ip x}dx, \\
+            &= \frac{1}{\sqrt{T\pi}}\frac{\sin(p T)}{p}.
+\end{align*}
+Here $\phi(p)$ is the unitary Fourier transform of $\Psi(x)$. The function $|\phi(p)|^{2}$ is the probability density function
+for the particle having a momentum of $p$. 
+
+\item Define the width of the wave functions $\Psi(x)$ and $\phi(p)$.
+\footnote{A solution to the Schrödinger equation is called a wave function. If you haven't seen quantum mechanics,
+just think of it as an ordinary function.} The width is defined in the following way:
+$$\Delta x = \min\{x : |\Psi(x)|^{2}=0,x>0\},$$
+and 
+$$\Delta p = \min\{p : |\phi(p)|^{2}=0,p>0\},$$
+or, in other words, $\Delta x$ and $\Delta p$ are the smallest positive values for which the functions $|\Psi(x)|^{2}$ and $|\phi(p)|^{2}$ are $0$. Determine $\Delta x$ and $\Delta p$ for the functions $\Psi(x)$ and $\phi(p)$ and come up with a relation between $\Delta x$ and $\Delta p$.
+
+\item Sketch the functions $\Psi(x)$ and $\phi(p)$ and indicate $\Delta x$ and $\Delta p$ in your drawing. 
+
+\item Show that:
+$$\int_{-\infty}^{\infty} |\phi(p)|^{2}dp=1.$$
+The meaning of this integral is that we are 100\% certain that a particle will have a momentum in the range $-\infty<p<\infty$.
+
+\end{enumerate}
+
+
+
 \end{enumerate}

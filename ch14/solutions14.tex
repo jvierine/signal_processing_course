@@ -107,4 +107,88 @@ This can be seen from the plot of the power of the magnitude response. Thus, the
 
 
 \end{enumerate}
+
+\item Let $\Psi(x)$ be given as:
+\begin{equation*}
+\Psi(x) = \frac{1}{\sqrt{2T}}[u(x + T) - u(x - T)].
+\end{equation*}
+
+\begin{enumerate}[a)]
+\item Using the unitary Fourier transform, we can directly compute it as:
+\begin{align*}
+    \phi(p) &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\Psi(x)e^{-ip x}dx, \\
+            &= \frac{1}{\sqrt{2\pi}\sqrt{2T}}\int_{-\infty}^{\infty} [u(x+T) - u(x-T)]e^{-ip x}dx, \\
+            &= \frac{1}{\sqrt{4\pi T}}\int_{-T}^{T}e^{-ip x}dx, \\
+            &= \frac{1}{2ip\sqrt{\pi T}}[e^{ip T} - e^{-ip T}], \\
+            &= \frac{1}{\sqrt{T\pi }}\frac{\sin(p T)}{p},
+\end{align*}
+where we've used that $\sin\theta = \frac{1}{2i}(e^{i\theta}-e^{-i\theta})$.
+
+\item Have that:
+\begin{align*}
+    |\Psi(x)|^{2} &= \frac{1}{2T}[u(x+T) - u(x-T)], \\
+    |\phi(p)|^{2} &= \frac{1}{T\pi}\frac{\sin^{2}(\omega T)}{\omega^{2}}.
+\end{align*}
+For $|\Psi(x)|^{2}$, we see that $\Delta x = T$ and for $|\psi(p)|^{2}$, we get $\Delta p =\pi/T$. The time-frequency uncertainty can then be expressed as
+$$\Delta x\Delta p=(T)\left(\frac{\pi}{T}\right)=\pi.$$
+
+\item The wave functions $\Psi(x)$ and $\phi(p)$ are shown in Figure \ref{x:wavefunction} and Figure \ref{p:wavefunction}, respectively. 
+\begin{marginfigure}
+\begin{tikzpicture}
+	\begin{axis}[domain=(-1):(1),samples=300,
+        width=6cm,
+        height=4.5cm,
+        ymin=0,ymax=1.2,
+        xlabel={$x$},
+        ylabel={$\Psi(x)=\frac{1}{\sqrt{2T}}[u\left(x+T\right) - u\left(x-T\right)$]},
+        axis x line=center, 
+        axis y line=center, 
+        yticklabels={,,,}, 
+        xtick={-0.5,0.5},
+        xticklabels={$-T$,$T$}
+    ]
+
+    \addplot[blue] {(x>-0.5)*(x<0.5)};
+\end{axis}
+\end{tikzpicture}
+\caption{The wave function $\Psi(x)$ in position space, with $\Delta x=T$.}
+\label{x:wavefunction}
+\end{marginfigure}
+
+\begin{marginfigure}
+\begin{tikzpicture}
+\begin{axis}[domain=(-6):(6),samples=300,
+        width=7cm,
+        height=4.5cm,        
+        xlabel={$p$},
+        ylabel={$\phi(p)=\frac{1}{\sqrt{T\pi}}\frac{\sin(p T)}{p}$},
+        axis x line=center, 
+        axis y line=center, 
+        yticklabels={,,,}, 
+        xtick={-1.0,1.0},
+        xticklabels={$-\frac{\pi}{T}$,$\frac{\pi}{T}$}
+    ]
+    \addplot[blue] {sin(deg(3.14 * x))/x};
+\end{axis}
+\end{tikzpicture}
+\caption{The wave function $\phi(p)$ in momentum space, with $\Delta p=\frac{\pi}{T}$.}
+\label{p:wavefunction}
+\end{marginfigure}
+
+
+
+\item By Parseval's theorem, we have, in the unitary case:
+$$\int_{-\infty}^{\infty} |x(t)|^{2}dt=\int_{-\infty}^{\infty} |\hat{x}(\omega)|^{2}d\omega.$$
+Using this, we get:
+\begin{align*}
+    \int_{-\infty}^{\infty}|\Psi(x)|^{2}dx&=\int_{-\infty}^{\infty}\frac{1}{2T}[u(x+T) - u(x-T)]dx, \\
+            &= \frac{1}{2T}\int_{-T}^{T}dx=1,
+\end{align*}
+thus, by the unitary form of Parseval's theorem, we get:
+$$\int_{-\infty}^{\infty}|\phi(p)|^{2}dp=\int_{-\infty}^{\infty}|\Psi(x)|^{2}dx=1.$$
+
+\end{enumerate}
+
+
+
 \end{enumerate}
