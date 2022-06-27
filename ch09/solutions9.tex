@@ -10,26 +10,38 @@ $$\hat{\omega}_{k}=\hat{\omega}_{0}+2\pi k=\omega_{0}\frac{1}{f_{s}}+2\pi k=\fra
 for $k\in\mathbb{Z}$. 
 
 \item The principal aliases lie in $-\pi<\hat{\omega}_{k}<\pi$. Pick a $k\in\mathbb{Z}$ such that $-\pi<\hat{\omega}_{k}<\pi$. 
-For instance, $k=100$ works:
+For instance, $k=-100$ works:
 $$-\pi < \frac{5021}{25}\pi-2\pi 100 < \pi,$$
 giving a value of $\hat{\omega}\approx2.6389\ \text{rad/sample}$. 
 
-\item To draw the spectrum for $x(t)$ we can use the code in Listing \ref{plotcode1}.
+\item To draw the spectrum for $x(t)$ we can use the code in Listing \ref{plotcode1}. The boundaries for $-3\pi$ and $3\pi$ are shown
+as vertical lines in green. The principal alias is shown in blue while the other aliases are shown in red. There are a total of 
+three spectral components on this the interval $(-3\pi,3\pi)$. 
 
 \begin{lstlisting}[language=Python, caption=Spectrum of $x(t)$,label=plotcode1]
 import numpy as n
 import matplotlib.pyplot as plt
 
 fs = 100 # sample rate in Hz
-om0 = 2*n.pi*fs
+om0 = 2*n.pi*10042
 
+# function to compute the different aliases
+def omk(k):
+	return om0/fs + 2*n.pi*k
+
+# plot on the interval (-3*n.pi,3*n.pi)
 om = n.linspace(-3*n.pi,3*n.pi,num=1000)
-plt.vlines(om0+2*n.pi*(-99),ymin=0,ymax=1,color="red")
-plt.vlines(om0+2*n.pi*(-100),ymin=0,ymax=1,color="red")
-plt.vlines(om0+2*n.pi*(-101),ymin=0,ymax=1,color="red")
+
+# plot the components
+plt.vlines(omk(-100),ymin=0,ymax=1,color="blue",label="Principal value")
+plt.vlines(omk(-99),ymin=0,ymax=1,color="red",label="Alias")
+plt.vlines(omk(-101),ymin=0,ymax=1,color="red")
+plt.vlines(-3*n.pi,ymin=0,ymax=1,color="green",label="$(-3\pi,3\pi)$")
+plt.vlines(3*n.pi,ymin=0,ymax=1,color="green")
 plt.xlabel("$\hat{\omega}$")
 plt.ylabel("$\hat{x}(\omega)$")
 plt.grid(True)
+plt.legend()
 plt.show()
 \end{lstlisting}
 The spectrum $\hat{x}(\omega)$ is shown in Figure \ref{spectrum_plot}. 
@@ -42,10 +54,10 @@ The spectrum $\hat{x}(\omega)$ is shown in Figure \ref{spectrum_plot}.
 
 \item The possible angular frequencies that result in the same discritization is found by:
 $$\omega_{k}=\omega_{0}+2\pi kf_{s}.$$
-Choosing different values for $k$ and search for a value that satisfy the requirement of being the smallest $|\omega_{k}|$ is found to be $k=-100$. 
+Choosing different values for $k$ and search for a value that satisfy the requirement of being the smallest, $|\omega_{k}|$ is found to be $k=-100$. 
 This value gives $\omega_{k}=2\pi42$. 
 
-\item Here the signal is complex, so the signal can be sampled at $f_{s}>f_{\text{max}}-f_{\text{min}}=\frac{\omega_{0}}{2\pi}$ 
+\item Here the signal is complex, so the signal can be sampled at $f_{s}> f_{\text{max}} - f_{\text{min}}=\frac{\omega_{0}}{2\pi}$ 
 by the Shannon sampling theorem, which correspond to $f_{s}>10042$ Hz. 
 \end{enumerate}
 
