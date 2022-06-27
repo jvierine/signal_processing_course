@@ -186,6 +186,7 @@ Adding the following code to Listing \ref{sig42_mod} will save the result as an 
 out = 0.9*out/n.max(n.abs(out)) 
 # write compressed output to wav file.
 
+# multiply the signals
 out2 = x*n.cos(2.0*n.pi*time_vec*2.5)
 
 sio.write("guitar_leslie.wav",sample_rate,n.array(out,dtype=n.float32))

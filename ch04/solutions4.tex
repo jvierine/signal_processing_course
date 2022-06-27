@@ -28,8 +28,9 @@ This system averages the past four values of $x[n]$, including $x[n]$ itself.
 
 \item[b)] Have that:
 \begin{align*}
-    \mathcal{T}\{c_{1}x_{1}[n]+c_{2}x_{2}[n]\} &= \frac{1}{5}\sum_{k=0}^{4}[c_{1}x_{1}[n-k]+c_{2}x_{2}[n-k]], \\
-    c_{1}\mathcal{T}\{x_{1}[n]\}+c_{2}\mathcal{T}\{x_{2}[n]\}&=c_{1}\frac{1}{5}\sum_{i=0}^{4}x_{1}[n-i]+c_{2}\frac{1}{5}\sum_{j=0}^{4}x_{2}[n-j]=\frac{1}{5}\sum_{k=0}^{4}[c_{1}x_{1}[n-k]+c_{2}x_{2}[n-k]].
+    \mathcal{T}\{c_{1}x_{1}[n]+c_{2}x_{2}[n]\} &= \frac{1}{5}\sum_{m=0}^{4}[c_{1}x_{1}[n-m]+c_{2}x_{2}[n-m]], \\
+    c_{1}\mathcal{T}\{x_{1}[n]\}+c_{2}\mathcal{T}\{x_{2}[n]\}&=c_{1}\frac{1}{5}\sum_{j=0}^{4}x_{1}[n-j]+c_{2}\frac{1}{5}\sum_{k=0}^{4}x_{2}[n-k]
+    =\frac{1}{5}\sum_{m=0}^{4}[c_{1}x_{1}[n-m]+c_{2}x_{2}[n-m]].
 \end{align*}
 In the last step the two sums were combined into one and the index was renamed to $k$. 
 From this we can see that the output are equal, so the system is linear. 

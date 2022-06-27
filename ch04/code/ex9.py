@@ -8,7 +8,7 @@ alpha = 2.0
 # cut off
 beta = 0.08
 
-# a function to compress a signal x
+# a function to apply distortion to a signal x
 def distortion(x,alpha,beta):
     y = n.zeros(x.size)
 
@@ -27,9 +27,6 @@ wav = sio.read("guitar_clean.wav")
 sample_rate = wav[0]
 # read only one stereo channel
 x = wav[1][:,0]
-
-# scale to near unity, as the maximum allowed amplitude is +/- 1 for an audio waveform
-x = 0.9*x / n.max(n.abs(x))
 
 # create time vector (independent variable)
 time_vec = n.arange(len(x))/float(sample_rate)

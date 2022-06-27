@@ -7,9 +7,9 @@ Structure of the repository has been changed. The notes have been divided into c
 | ch01          | Introduction                           | Done   |
 | ch02          | Python                                 | Done   |
 | ch03          | Complex Algebra                        | Done   |
-| ch04          | Signals and Systems                    | Done*  |
+| ch04          | Signals and Systems                    | Done   |
 | ch05          | Elementary Signals                     | Done   |
-| ch06          | Sinusodial Signals                     | Done*  |
+| ch06          | Sinusodial Signals                     | Done   |
 | ch07          | Fourier series                         | Done*  |
 | ch08          | Fourier Transform                      | Done*  |
 | ch09          | Discrete-time Signals                  | Done*  |
