@@ -53,11 +53,10 @@ $$h[n]=\begin{cases}
 
 \item The impulse response has $L$ nonzero values, all of them being $1/L$. 
 
-\item Let $x[n]=e^{i\hat{\omega}_{0}n}$ then if we feed this into our system we get:
+\item Let $x[n]=e^{i\hat{\omega}_{0}n}$, then if we feed this into our system we get:
 $$y[n]=\frac{1}{L}\sum_{k=0}^{L-1}e^{i\hat{\omega}_{0}(n-k)}=\frac{1}{L}e^{i\hat{\omega}_{0}n}\sum_{k=0}^{L-1}e^{-i\hat{\omega}_{0}k}=\frac{1}{L}e^{i\hat{\omega}_{0}n}\left(\frac{1-(e^{-i\hat{\omega}_{0}})^{L}}{1-e^{-i\hat{\omega}_{0}}}\right).$$
 The output signal is of the form $Ae^{i\phi}e^{i\hat{\omega}_{0}n}$ as $y[n]$ is then:
 $$y[n]=\frac{1}{L}\frac{1-e^{-i\hat{\omega}_{0}L}}{1-e^{-i\hat{\omega}_{0}}}e^{i\hat{\omega}_{0}n}=\frac{1}{L}\frac{1-e^{-i\hat{\omega}_{0}L}}{1-e^{-i\hat{\omega}_{0}}}e^{i\hat{\omega}_{0}n}.$$
-\end{enumerate}
 
 \item Take $L=4$, then:
 $$y[n]=\frac{1}{4}\frac{1-e^{-i\hat{4\omega}_{0}}}{1-e^{-i\hat{\omega}_{0}}}x[n].$$
@@ -127,6 +126,7 @@ The output of the program is shown in Figure \ref{h2}.
     \label{h2}
 \end{marginfigure}
 
+\end{enumerate}
 
 
 \end{enumerate}
