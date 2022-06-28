@@ -60,6 +60,8 @@ Furthermore, each directory has the following structure
 - Shorten Gaussian derivation of Fourier transform
 - Add solutions to ch19
 - Look through exam questions to see if there are interesting ones to add as exercises.
+- Add plot generating code into code directories, so that they generate plots into ../figures and for bonus points
+  add make figures in Makefile
 
 ### Everything you need to know
 #### Complex Algebra:
