@@ -183,7 +183,7 @@ not to give away the \emph{exact solution}.
   constant?
    
  \item Evaluate the autocorrelation function of the transmitted signal
-   $c[n]=x[n]*x[-n-n_0]$. Use the signal that you read from
+   $c[n]=x[n]*x[-n]$. Use the signal that you read from
    \verb|chirp.bin|. You can time-reverse a signal in Python using
    \verb|deconvolution_filter = x[::-1]|. Make a plot of $c[n]$
    zooming into the portion of the signal that has significantly
@@ -191,7 +191,7 @@ not to give away the \emph{exact solution}.
 
  \item How close is $c[n]$ in your opinion to a scaled unit
    impulse $A\delta[n]$? How will deviations from the unit impulse
-   affect deconvolution quality when using $\lambda[n]=x[-n-n_0]$ as a
+   affect deconvolution quality when using $\lambda[n]=x[-n]$ as a
    deconvolution filter?
 
  \item Make a plot of the scattered power as a function of time and
