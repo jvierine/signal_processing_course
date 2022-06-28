@@ -17,11 +17,11 @@ print(len(clip))
 # length of filter
 #N = int(len(clip)/20)
 
-f0 = 80
-f1 = 1e3
+f0 = 2e3
+f1 = 5e3
 
 # time-frequency uncertainty
-N = int(20.0*sr*(1.0/(f1-f0)))
+N = int(100.0*sr*(1.0/(f1-f0)))
 print(N)
 
 om0 = 2*n.pi*f0
@@ -41,8 +41,14 @@ for i in range(N):
     else:
         h[i] = (n.sin(om0_hat*(i - int(N/2))) / ((i - int(N/2))*n.pi) - n.sin(om1_hat*(i - int(N/2))) / ((i - int(N/2))*n.pi))*w[i]
 
+
+plt.subplot(121)
 plt.plot(h)
+
+plt.subplot(122)
+plt.plot(n.fft.fftshift(n.fft.fftfreq(len(h),d=1.0/sr))/1e3,10.0*n.log10(n.abs(n.fft.fftshift(n.fft.fft(h)))**2.0))
 plt.show()
+
 
 print("computing convolution")
 res = n.convolve(h,clip,mode="full")
