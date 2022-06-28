@@ -20,10 +20,14 @@ z1 = roots.real
 z2 = roots.imag
 
 # plotting
+plt.figure(figsize=(4,4))
+ax=plt.gca()
 plt.plot(z1,z2)
 plt.plot(x,y)
 plt.grid(True)
 plt.xlabel("x")
 plt.ylabel("y")
 plt.title("Fifth roots of unity")
+ax.set_aspect("equal")
+plt.savefig("roots.png")
 plt.show()
