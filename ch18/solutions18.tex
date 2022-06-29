@@ -41,24 +41,8 @@ $$y[n]=h[n]*x[n]=\sum_{k=-\infty}^{\infty}h[k]x[n-k],$$
 with $h[n]=\mathcal{T}\{\delta[n]\}$. 
 
 \item In Listing \ref{code17_2} is a simple program to plot the impulse response for this system. 
-\begin{lstlisting}[language=Python, caption=Code to plot the impulse response function,label=code17_2]
-import numpy as n
-import matplotlib.pyplot as plt
+\lstlisting[language=Python, caption=Code to plot the impulse response function,label=code17_2]{ch18/code/ex18_2.py}
 
-# sample value we want to plot on
-nn = n.array([-2,-1,0,1,2,3,4,5,6,7,8,9,10])
-
-# values for the impulse response function
-h = n.array([0,1,1,3,-0.5,0,0,0,0,0,0,0,4])
-
-# plot as a stem plot to emphasize the 
-# discrete nature of the function
-plt.stem(nn,h)
-plt.xlabel("samples [n]")
-plt.ylabel("$h[n]$")
-plt.title("Impulse response")
-plt.show()
-\end{lstlisting}
 The impulse response plot is shown in Figure \ref{fig17_2}.
 \begin{marginfigure}
     \centering
@@ -108,34 +92,7 @@ have $\alpha_k=\{e^{i\pi/4},e^{-i\pi}\}$. Zeros are marked with blue
 \item The poles and zeros of the system function are shown in Figure \ref{z:ex3}. 
 
 \item The following code snippet will plot the magnitude response corresponding to $\mathcal{H}(\hat{\omega})=\mathcal{H}(z)|_{z=e^{i\hat{\omega}}}$:
-\begin{lstlisting}[language=Python,caption=Script to plot the magnitude response,label=sol_to_c]
-import numpy as n
-import matplotlib.pyplot as plt
-
-# partition the interval (-pi,pi)
-om = n.linspace(-n.pi,n.pi,num=100)
-
-# definition of the system function, H(z):
-def system_function(z):
-    return (1 - n.exp(1j*n.pi/4)*z**(-1))*(1 - n.exp(-1j*n.pi)*z**(-1))
-
-# frequency response
-def frequency_response(om):
-    return system_function(n.exp(1j*om))
-
-# marking the zeros on the graph
-x_markers = [n.pi/4,-n.pi]
-y_markers = [frequency_response(n.pi/4),frequency_response(-n.pi)]
-
-# plot the system function with the zeros marked
-plt.plot(om,n.abs(frequency_response(om)))
-plt.plot(x_markers,y_markers,'rx',label="zeros")
-plt.xlabel("$\hat{\omega}$ (rad / sample)")
-plt.ylabel("$|\mathcal{H}(\hat{\omega})|$")
-plt.title("Magnitude response plot")
-plt.legend()
-plt.show()
-\end{lstlisting}
+\lstlisting[language=Python,caption=Script to plot the magnitude response,label=sol_to_c]{ch18/code/ex18_3.py}
 
 Output from Listing \ref{sol_to_c} is shown in Figure \ref{h-plt}.
 
@@ -207,34 +164,8 @@ have $\alpha_k=\{e^{10i\pi/441},e^{-10i\pi/441},e^{20i\pi/441},e^{-20i\pi/441}\}
 \end{marginfigure}
 
 \item Listing \ref{z:code:ex4} provides code to plot the magnitude response for this system.
+\lstlisting[language=Python,caption=Code to plot the magnitude response,label=z:code:ex4]{ch18/code/ex18_4.py}
 
-\begin{lstlisting}[language=Python,caption=Code to plot the magnitude response,label=z:code:ex4]
-import numpy as n
-import matplotlib.pyplot as plt
-
-# function to convert to dB
-def convert_to_decibel(x):
-    return 10*n.log10(n.abs(x)**2)
-
-# partition the interval (-pi,pi)
-om = n.linspace(-n.pi,n.pi,num=10000)
-
-# definition of the system function, H(z):
-def system_function(z):
-    return (1 - n.exp(1j*100*n.pi/441)*z**(-1))*(1 - n.exp(-1j*100*n.pi/441)*z**(-1))*(1 - n.exp(20*1j*n.pi/441)*z**(-1))*(1 - n.exp(-20*1j*n.pi/441)*z**(-1))*z**4
-
-# frequency response
-def frequency_response(om):
-    return system_function(n.exp(1j*om))
-
-# plot the system function with the zeros marked
-plt.plot(om,convert_to_decibel(frequency_response(om)),label="$\mathcal{H}(\hat{\omega})$")
-plt.xlabel("$\hat{\omega}$ (rad / sample)")
-plt.ylabel("$|\mathcal{H}(\hat{\omega})|$")
-plt.title("Magnitude response plot")
-plt.legend()
-plt.show()
-\end{lstlisting}
 Output of Listing \ref{z:code:ex4} is shown in Figure \ref{z:fig:ex4}.
 
 \begin{marginfigure}

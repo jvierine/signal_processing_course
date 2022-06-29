@@ -1,12 +1,10 @@
 import numpy as n
 import scipy.io.wavfile as sio
 import matplotlib.pyplot as plt
+import sys
 
-# amplifier gain
-alpha = 2.0
-
-# cut off
-beta = 0.08
+alpha = 2.0 # amplifier gain
+beta = 0.08 # cut off
 
 # a function to apply distortion to a signal x
 def distortion(x,alpha,beta):
@@ -23,7 +21,7 @@ def distortion(x,alpha,beta):
     return y
 
 # read wav file (read only one stereo channel)
-wav = sio.read("guitar_clean.wav")
+wav = sio.read("../../code/003_guitar/guitar_clean.wav")
 sample_rate = wav[0]
 # read only one stereo channel
 x = wav[1][:,0]
@@ -40,7 +38,9 @@ plt.plot(time_vec,x,label="Original")
 plt.legend()
 plt.xlabel("Time $t$")
 plt.ylabel("Relative air pressure $y(t)$")
-plt.show()
+plt.savefig("../figures/ex9_plot.png")
+if len(sys.argv) == 1:
+    plt.show()
 
 # scale maximum absolute amplitude to 0.9, because 1.0 is the 
 # maximum allowed by the file format

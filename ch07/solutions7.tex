@@ -88,111 +88,17 @@ $$c_{k}=\begin{cases}
 
 \begin{enumerate}[a)]
 \item Using Python, we can implement a simple program for the partial sum with $N=101$. Listing \ref{code:7.3a} shows a way. 
-\begin{lstlisting}[language=Python, caption=Suggested solution to a),label=code:7.3a]
-import numpy as n
-import matplotlib.pyplot as plt
-
-T = 1                   # period
-sample_rate = 1000.0    # sample rate
-N = 101                 # number of terms 
-
-# partition the t-axis
-t = n.arange(int(sample_rate*T))/sample_rate
-
-# allocate an array for the signal
-xn = n.zeros(len(t),dtype=n.complex64)
-
-# function for the Fourier coefficients
-def ck(k):
-    if k == 0:
-        return 1/10
-    else:
-        return 1/(n.pi*k)*n.exp(-1j*n.pi*k/10)*n.sin(n.pi*k/10)
-
-# loop through the indices and add the signal terms
-for i in range(-N,N+1):
-    xn += ck(i)*n.exp(1j*2*n.pi*i*t/T)
-
-# plot the result
-plt.plot(t,xn.real,color="blue")
-plt.plot(t,xn.imag,color="red")
-plt.xlabel("Time (t)")
-plt.ylabel("$x_{N}(t)$")
-plt.show()
-\end{lstlisting}
+\lstinputlisting[language=Python,caption=Suggested solution to a),label=code:7.3a]{ch07/code/ex7_3a}
 
 \item The Fourier coefficients of a delayed signal are related to the undelayed signal by $c_{k}'=e^{-i\frac{2\pi k\tau}{T}}c_{k}$. 
 The script in Listing \ref{code:7.3a} can be modified to account for delay. The delayed version is shown in Listing \ref{code:7.3b}.
-\begin{lstlisting}[language=Python, caption=Suggested solution to b),label=code:7.3b]
-import numpy as n
-import matplotlib.pyplot as plt
-
-T = 1                   # period
-sample_rate = 1000.0    # sample rate
-N = 101                 # number of terms 
-tau = 0.2               # delay
-
-# partition the t-axis
-t = n.arange(int(sample_rate*T))/sample_rate
-
-# allocate an array for the signal
-xn = n.zeros(len(t),dtype=n.complex64)
-
-# function for the Fourier coefficients
-def ck(k):
-    if k == 0:
-        return 1/10
-    else:
-        return 1/(n.pi*k)*n.exp(-1j*n.pi*k/10)*n.sin(n.pi*k/10)
-
-# compute the delayed signal
-for i in range(-N,N+1):
-    xn += ck(i)*n.exp(1j*2*n.pi*i*(t-tau)/T)
-
-# plot the result
-plt.plot(t,xn.real,color="blue")
-plt.plot(t,xn.imag,color="red")
-plt.xlabel("Time (t)")
-plt.ylabel("$x_{N}(t)$")
-plt.show()
-\end{lstlisting}
+\lstinputlisting[language=Python,caption=Suggested solution to b),label=code:7.3b]{ch07/code/ex7_3b}
 
 \item Define $y(t)=\frac{d}{dt}x(t)$. If $c_{k}$ are the Fourier coefficients for $x(t)$, then the Fourier coefficients for $y(t)$ is:
 $$d_{k}(t)=i \frac{2\pi k}{T}c_{k}.$$
 Using Python we have Listing \ref{code:7.3c}.
-\begin{lstlisting}[language=Python, caption=Suggested solution to c),label=code:7.3c]
-import numpy as n
-import matplotlib.pyplot as plt
+\lstinputlisting[language=Python,caption=Suggested solution to c),label=code:7.3c]{ch07/code/ex7_3c}
 
-T = 1                   # period
-sample_rate = 1000.0    # sample rate
-N = 101                 # number of terms 
-tau = 0.0               # delay
-
-# partition the t-axis
-t = n.arange(int(sample_rate*T))/sample_rate
-
-# allocate an array for the signal
-xn = n.zeros(len(t),dtype=n.complex64)
-
-# function for the Fourier coefficients
-def ck(k):
-    if k == 0:
-        return 1/10
-    else:
-        return 1/(n.pi*k)*n.exp(-1j*n.pi*k/10)*n.sin(n.pi*k/10)
-
-# derivative signal
-for i in range(-N,N+1):
-    xn += (1j*2*n.pi*i/T)*ck(i)*n.exp(1j*2*n.pi*i*(t-tau)/T)
-
-# plot the result
-plt.plot(t,xn.real,color="blue")
-plt.plot(t,xn.imag,color="red")
-plt.xlabel("Time (t)")
-plt.ylabel("$y_{N}(t)$")
-plt.show()
-\end{lstlisting}
 \end{enumerate}
 
 

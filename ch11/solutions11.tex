@@ -57,24 +57,8 @@ The sum, is evaluated using known formulas for geometric sums.
 $$\mathcal{H}_{\tau}(\hat{\omega})=\sum_{k=-\infty}^{\infty}h[k]e^{-i\hat{\omega}k}=\sum_{k=-\infty}^{\infty}\delta[k-\tau]e^{-i\hat{\omega}k}=e^{-i\hat{\omega}\tau}.$$
 
 \item The following code can be used to make the plot shown in Figure \ref{freq_responses}:
-\begin{lstlisting}[language=Python, caption=Plotting the frequency response code,label=code14_2]
-import numpy as n
-import matplotlib.pyplot as plt
-import scipy.special as dd
+\lstinputlisting[language=Python, caption=Plotting the frequency response code,label=code14_2]{ch11/code/ex11_2.py}
 
-# partition the interval (-pi,pi) into num points
-om = n.linspace(-n.pi,n.pi,num=1000)
-
-# use M = 11 for the Dirichlet kernel plot
-M = 11
-
-# plot the two functions in the same coordinate system
-plt.plot(om,n.abs(dd.diric(om,n=M))**2,label="$|D_{11}(\hat{\omega})|^{2}$")
-plt.plot(om,n.abs(n.exp(1j*om*(M-1)/2)*dd.diric(om,n=M))**2,label="$|H_{11}(\hat{\omega})|^{2}$")
-plt.xlabel("$\hat{\omega}$")
-plt.legend()
-plt.show()
-\end{lstlisting}
 As expected, the functions are identical. 
 \begin{marginfigure}
     \includegraphics[height=7.0cm,width=7.5cm]{ch11/figures/frequency_responses.png}
@@ -108,25 +92,8 @@ for this LTI system, we get:
 $$\mathcal{H}(\hat{\omega})=T_{s}^{-2}e^{i\hat{\omega}}-2T_{s}^{-2}+T_{s}^{-2}e^{-i\hat{\omega}}=-2T_{s}^{-2}+T_{s}^{-2}2\cos(\hat{\omega})=\frac{2}{T_{s}^{2}}(\cos(\hat{\omega})-1).$$
 
 \item The code shown in Listing \ref{code13_1} can be used to plot the spectral response. 
-\begin{lstlisting}[language=Python, caption=Frequency response for finite difference,label=code13_1]
-import numpy as n
-import matplotlib.pyplot as plt
+\lstinputlisting[language=Python, caption=Frequency response for finite difference,label=code13_1]{ex11_3.py}
 
-# plot in the principal spectrum (-pi,pi)
-om = n.linspace(-n.pi,n.pi,num=1000)
-
-# for simplicity take Ts as 1
-Ts = 1
-
-# definition of the frequency response function
-def freq_resp(om):
-    return 2/(Ts**2)*(n.cos(om)-1)
-
-# plot the frequency response function over (-pi,pi)
-plt.plot(om,n.abs(freq_resp(om)),label="$\mathcal{H}(\hat{\omega})$")
-plt.legend()
-plt.show()
-\end{lstlisting}
 Output of the code is shown in Figure \ref{spec_rep}.
 \begin{marginfigure}
     \includegraphics[width=7.0cm,height=6.5cm]{ch11/figures/freq13.png}

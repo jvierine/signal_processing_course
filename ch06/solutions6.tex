@@ -19,33 +19,8 @@ A simple test program to verify this is shown in Listing \ref{cancel}
 with an arbitrary choice of $\omega$, $\phi$ and $m$. 
 If the code is run, two signals of opposite amplitude are shown, 
 which cancel out when added, as hoped. 
+\lstinputlisting[language=Python,caption={Noise canceling signal},label=cancel]{ch06/code/ex6.1.py}
 
-\begin{lstlisting}[language=Python, caption=Noise canceling signal,label=cancel]
-import numpy as n
-import matplotlib.pyplot as plt
-
-N = 1000    # number of sample points
-om = 2.6    # angular frequency
-phi = 3.1   # phase
-m = 0       # integer
-# compute the phase needed to cancel the signal
-phi_cancel = n.pi - phi + 2*n.pi*m    
-
-# partition the t axis with a range 
-# from 0 to 4pi with N samples
-t = n.linspace(start=0, stop=4*n.pi,num=N)
-
-# original signal
-x = n.cos(om * t + phi)
-
-# noise canceling signal
-y = n.cos(om * t + phi_cancel)
-
-# plot the signals
-plt.plot(t,x)
-plt.plot(t,y)
-plt.show()
-\end{lstlisting}
 \item Have that:
 $$a\cos(\omega t)+b\sin(\omega t)=\frac{a}{2}(e^{i\omega t}+e^{-i\omega t})+\frac{b}{2i}(e^{i\omega t}-e^{-i\omega t}),$$
 or written out:
@@ -104,42 +79,7 @@ $$E(x,t)=\sum_{n}E_{n}e^{i(\omega_{n}/c)x}e^{i\omega_{n}t}\partial_{y},$$
 is also a solution. This follows by the linearity of the wave equation. 
 
 \item The code from the notes has been modified such that the output signal has a frequency of approximately 42.0 Hz. 
-\begin{lstlisting}[language=Python, caption=Adding frequencies,label=sig42]
-import numpy as n
-import matplotlib.pyplot as plt
-
-# time vector 0 to 1 seconds, 1000 Hz sample rate
-t = n.arange(1000)/1000.0
-
-# frequency of 10 Hz
-om0 = 2.0*n.pi*10.0
-
-# frequency of 32 Hz
-om1 = 2.0*n.pi*32.0
-
-# create complex sinusoidal signal
-z = n.exp(1j*om0*t)
-
-# shift z in frequency by multiplying with another 
-# complex sinusoidal signal of frequency om1
-# the result has a frequency of 42.0 Hz = 10.0 Hz + 32.0 Hz
-z_shifted = z*n.exp(1j*om1*t)
-
-# plot the signals
-plt.subplot(211)
-plt.plot(t,z.real,label="Real")
-plt.plot(t,z.imag,label="Imag")
-plt.title("Original signal")
-plt.xlabel("Time (s)")
-plt.legend()
-plt.subplot(212)
-plt.plot(t,z_shifted.real,label="Real")
-plt.plot(t,z_shifted.imag,label="Imag")
-plt.title("New signal")
-plt.xlabel("Time (s)")
-plt.legend()
-plt.show()
-\end{lstlisting}
+\lstinputlisting[language=Python,caption={Adding frequencies},label=sig42]{ch06/code/ex6.6.py}
 Running the code in Listing \ref{sig42} yields the following output:
 \begin{figure}[h!]
     \centering
@@ -150,28 +90,7 @@ Running the code in Listing \ref{sig42} yields the following output:
 \item The following code is a modification that multiplies the signal with a periodic 5.0 Hz signal:
 \begin{itemize}
 \item[a)] Listing \ref{sig42_mod} provides a suggested solution.
-\begin{lstlisting}[language=Python, caption=Modifying signals,label=sig42_mod]
-import numpy as n
-import scipy.io.wavfile as sio
-import matplotlib.pyplot as plt
-
-wav=sio.read("guitar_clean.wav")
-sample_rate=wav[0] # sample rate
-x=wav[1][:,0]      # read only one stereo channel
-
-# create time vector (independent variable)
-time_vec = n.arange(len(x))/float(sample_rate)
-
-out = x*n.cos(2.0*n.pi*time_vec*5.0)
-
-# plot original and modified
-plt.plot(time_vec,out,label="Output 5.0 Hz")
-plt.plot(time_vec,x,label="Original")
-plt.legend()
-plt.xlabel("Time $t$")
-plt.ylabel("Relative air pressure $y(t)$")
-plt.show()
-\end{lstlisting}
+\lstinputlisting[language=Python,caption={Modifying signals},label=sig42_mod]{ch06/code/ex6.7a.py}
 Running Listing \ref{sig42_mod} produces Figure \ref{fig:ex6b}.
 \begin{figure}[h!]
     \centering

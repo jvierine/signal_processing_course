@@ -102,22 +102,7 @@ $$h_{2}[n]=\begin{cases}
 
 To draw the impulse response function, we write a little program to do it. 
 The program is shown in Listing \ref{code12_1}. The impulse response is $0$ for all values of $n$ not shown. 
-\begin{lstlisting}[language=Python, caption=Simple convolution,label=code12_1]
-import numpy as n
-import matplotlib.pyplot as plt
-
-L = 4
-
-h = n.repeat(1/L,L) # add 1/L into an array L times
-
-h2 = n.convolve(h,h,mode="full")    # compute the convolution
-
-plt.stem(h2)
-plt.xlabel("Samples $(n)$")
-plt.ylabel("$h_{2}[n]$")
-plt.title("Impulse response")
-plt.show()
-\end{lstlisting}
+\lstinputlisting[language=Python, caption=Simple convolution,label=code12_1]{ch10/code/ex10_2g.py}
 The output of the program is shown in Figure \ref{h2}.
 
 \begin{marginfigure}
