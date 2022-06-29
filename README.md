@@ -14,7 +14,7 @@ Structure of the repository has been changed. The notes have been divided into c
 | ch08          | Fourier Transform                      | Done   |
 | ch09          | Discrete-time Signals                  | Done   |
 | ch10          | Linear Time-invariant Systems          | Done*  |
-| ch11          | Frequency Response                     | Done*  |
+| ch11          | Frequency Response                     | Done   |
 | ch12          | Discrete-time Fourier Transform (DTFT) | Done   |
 | ch13          | Ideal and Tapered Filters              | Done*  |
 | ch14          | Time-frequency Uncertainty Principle   | Done   |
@@ -22,7 +22,7 @@ Structure of the repository has been changed. The notes have been divided into c
 | ch16          | Spectral Analysis                      | Done   |
 | ch17          | Arbitrary Frequency Response Filters   | Done   |
 | ch18          | Z-transform                            | Done*  |
-| ch19          | Infinite Impulse Response Filters      | Read   |
+| ch19          | Infinite Impulse Response Filters      | Done*  |
 
 Furthermore, each directory has the following structure
 | Directory     | Contains                                                           |
@@ -60,7 +60,7 @@ Furthermore, each directory has the following structure
 - Try to find a heat equation exercise
 - Shorten Gaussian derivation of Fourier transform
 - Add solutions to ch19
-- Look through exam questions to see if there are interesting ones to add as exercises.
+- Add discussion on the inverse z-transform
 
 ### Everything you need to know
 #### Complex Algebra:
