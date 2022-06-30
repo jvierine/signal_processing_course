@@ -183,9 +183,31 @@ now $u[m]$ kills the negative terms as $u[m]=0$ for $m<0$ and $u[m]=1$ for $m\ge
 \end{align*}
 \end{enumerate}
 
-\item 
+\item Consider the diagrams in Figure \ref{fig:exzone}.
+\begin{enumerate}[a)]
+\item The first diagram has a pole at $0$ and three zeros. There is a zero at $z=1$, which corresponds to $\hat{\omega}=0$, thus this frequency is filtered out. The other zeros and poles are barely noticeable, but the function will dip close to the zeros. For diagram b) there is a pole at $z=1$, which is on the unit circle. Therefore, the function will tend towards infinity here. The other poles don't do much in comparison, but some small peaks would occur at these values. The last diagram filters out $\hat{\omega}=\pm\pi$ as there is a zero for $z=-1$. A plot of the magnitude responses is shown in Figure \ref{fig:mag_res_diag}.
 
+\begin{figure}
+    \centering
+    \includegraphics[width=10.5cm,height=8.0cm]{ch19/figures/magn_resp_diag.png}
+    \caption{Magnitude response for the three pole-zero diagrams. Note that the limits of b) has been set to 0-10.}
+    \label{fig:mag_res_diag}
+\end{figure}
 
+\item The system function:
+$$\mathcal{H}(z)=\frac{(z+1)(z-\alpha)(z-\alpha^{*})}{z^{3}}$$
+has zeros corresponding to $z=-1,\alpha,\alpha^{*}$, thus this is the system function corresponding to diagram c) as $\alpha=i(2\sqrt{2})^{-1}-(2\sqrt{2})^{-1}$, which has a negative real part. 
+\item Diagram b) and c) both reduce high frequency components and keeps low frequency components, meaning both of these are low-pass filters. However, only diagram c) is stable. This can be seen from Figure \ref{fig:mag_res_diag} as the magnitude response becomes unbounded at $\hat{\omega}=0$, but we can also see this from the pole-zero diagram, as diagram b) has a pole on the unit circle. Recall that a system function corresponds to a stable BIBO LTI system if all the poles lie inside the unit circle. 
 
+\item The only diagram left is a), as b) and c) are both low-pass filters. Diagram a) is indeed a high-pass filter as $\hat{\omega}=0$ gets sent to $0$ and the high frequencies pass through. The filter is also stable as all the poles lie inside the unit circle. 
 
+\item The filter corresponding to diagram c) filters out $\hat{\omega}=\pi$ completely. 
+
+\item Diagram a) and diagram c) represents a FIR filter, as these only have a pole at $0$. Recall that the system function for a 
+FIR filter can be found by feeding a $\delta[n]$ into the LTI system. Observe:
+$$y[n]=\sum_k b_kx[n-k],$$
+which yield a system function of the form:
+$$\mathcal{H}(z)=\sum b_{k}z^{-k}.$$
+
+\end{enumerate}
 \end{enumerate}

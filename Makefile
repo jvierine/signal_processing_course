@@ -27,7 +27,9 @@ figures:
 	cd ../..
 	cd ch18/code ; python3 ex18_2.py noplot ; python3 ex18_3.py noplot ; python3 ex18_4.py noplot
 	cd ../..
-	
+	cd ch19/code ; python3 ex19_5.py noplot
+	cd ../..
+
 clean:
 	rm -f signal_processing.aux  signal_processing.bbl  signal_processing.blg  signal_processing.idx signal_processing.ilg signal_processing.ind signal_processing.log signal_processing.out signal_processing.toc
 	rm -f signal_processing.pdf
