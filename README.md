@@ -59,7 +59,6 @@ Furthermore, each directory has the following structure
 - Read through Python code and comment it
 - Try to find a heat equation exercise
 - Shorten Gaussian derivation of Fourier transform
-- Add solutions to ch19
 - Add discussion on the inverse z-transform
 
 ### Everything you need to know
