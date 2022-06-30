@@ -16,13 +16,13 @@ Structure of the repository has been changed. The notes have been divided into c
 | ch10          | Linear Time-invariant Systems          | Done*  |
 | ch11          | Frequency Response                     | Done   |
 | ch12          | Discrete-time Fourier Transform (DTFT) | Done   |
-| ch13          | Ideal and Tapered Filters              | Done*  |
+| ch13          | Ideal and Tapered Filters              | Done   |
 | ch14          | Time-frequency Uncertainty Principle   | Done   |
 | ch15          | Discrete Fourier Transform             | Done*  |
 | ch16          | Spectral Analysis                      | Done   |
 | ch17          | Arbitrary Frequency Response Filters   | Done   |
-| ch18          | Z-transform                            | Done*  |
-| ch19          | Infinite Impulse Response Filters      | Done*  |
+| ch18          | Z-transform                            | Done   |
+| ch19          | Infinite Impulse Response Filters      | Done   |
 
 Furthermore, each directory has the following structure
 | Directory     | Contains                                                           |
