@@ -40,15 +40,15 @@ since every LTI system can be expressed as a convolution of the form:
 $$y[n]=h[n]*x[n]=\sum_{k=-\infty}^{\infty}h[k]x[n-k],$$
 with $h[n]=\mathcal{T}\{\delta[n]\}$. 
 
-\item In Listing \ref{code17_2} is a simple program to plot the impulse response for this system. 
-\lstlisting[language=Python, caption=Code to plot the impulse response function,label=code17_2]{ch18/code/ex18_2.py}
+\item In Listing \ref{code18_2} is a simple program to plot the impulse response for this system. 
+\lstinputlisting[language=Python, caption=Code to plot the impulse response function,label=code18_2]{ch18/code/ex18_2.py}
 
-The impulse response plot is shown in Figure \ref{fig17_2}.
+The impulse response plot is shown in Figure \ref{fig18_2}.
 \begin{marginfigure}
     \centering
-    \includegraphics[width=7.5cm,height=7.0cm]{ch18/figures/17_2.png}
-    \caption{Output of Listing \ref{code17_2}}
-    \label{fig17_2}
+    \includegraphics[width=7.5cm,height=7.0cm]{ch18/figures/18_2.png}
+    \caption{Output of Listing \ref{code18_2}}
+    \label{fig18_2}
 \end{marginfigure}
 
 \item If we define a new signal $y_{2}[n]=y[n-2]$, then by the time-shift theorem we have that the new system function will be:
@@ -92,7 +92,7 @@ have $\alpha_k=\{e^{i\pi/4},e^{-i\pi}\}$. Zeros are marked with blue
 \item The poles and zeros of the system function are shown in Figure \ref{z:ex3}. 
 
 \item The following code snippet will plot the magnitude response corresponding to $\mathcal{H}(\hat{\omega})=\mathcal{H}(z)|_{z=e^{i\hat{\omega}}}$:
-\lstlisting[language=Python,caption=Script to plot the magnitude response,label=sol_to_c]{ch18/code/ex18_3.py}
+\lstinputlisting[language=Python,caption=Script to plot the magnitude response,label=sol_to_c]{ch18/code/ex18_3.py}
 
 Output from Listing \ref{sol_to_c} is shown in Figure \ref{h-plt}.
 
@@ -164,7 +164,7 @@ have $\alpha_k=\{e^{10i\pi/441},e^{-10i\pi/441},e^{20i\pi/441},e^{-20i\pi/441}\}
 \end{marginfigure}
 
 \item Listing \ref{z:code:ex4} provides code to plot the magnitude response for this system.
-\lstlisting[language=Python,caption=Code to plot the magnitude response,label=z:code:ex4]{ch18/code/ex18_4.py}
+\lstinputlisting[language=Python,caption=Code to plot the magnitude response,label=z:code:ex4]{ch18/code/ex18_4.py}
 
 Output of Listing \ref{z:code:ex4} is shown in Figure \ref{z:fig:ex4}.
 
@@ -185,12 +185,5 @@ Expanding all of this out, one obtains:
 where $\theta_1=\frac{10\pi}{441}$ and $\theta_2=\frac{10\pi}{147}$. The impulse response is then the inverse $z$-transform:
 $$h[n]=\delta[n]-2(\cos\theta_1+\cos\theta_2)\delta[n-1]+2(2\cos\theta_1\cos\theta_2+1)\delta[n-2]-2(\cos\theta_1+\cos\theta_2)\delta[n-3]+\delta[n-4].$$
 
-
-
-
 \end{enumerate}
-
-
-
-
 \end{enumerate}

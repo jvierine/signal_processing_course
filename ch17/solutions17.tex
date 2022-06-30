@@ -10,30 +10,26 @@ where $|A_{i}|>|a_{j}|$ for every pair $i,j$, here $w_t$ is white noise.
 \footnote{White noise is considered as a random variable with a normal distribution 
 with $\mu=0$ and variance $\sigma^{2}=1$ here} In Listing \ref{code17_1} is code to generate these signals and plot them. 
 
-\lstlisting[language=Python, caption=Example signal code,label=code17_1]{ch17/code/ex17_1.py}
+\lstinputlisting[language=Python, caption=Example signal code,label=code17_1]{ch17/code/ex17_1.py}
 
 \begin{marginfigure}
     \centering
     \includegraphics[width=7.5cm,height=7.2cm]{ch17/figures/ex17_1.png}
     \caption{Noisy signal we want to filter}
-    \label{fig16_1}
+    \label{fig17_1}
 \end{marginfigure}
 
 \begin{enumerate}[a)]
 \item To estimate the spectrum, we use the Hann window to avoid spectral leakage. 
 The code for computing the spectrum using the Hann window is shown in Listing \ref{code17_2}.
 
-\begin{lstlisting}[language=Python, caption=Spectrum for noisy signal in Figure \ref{fig17_1},label=code17_2]
-
-\end{lstlisting}
-
-\lstlisting[language=Python, caption=Spectrum for noisy signal in Figure \ref{fig17_1},label=code17_2]{ex17_1a.py}
+\lstinputlisting[language=Python, caption=Spectrum for noisy signal in Figure \ref{fig17_1},label=code17_2]{ch17/code/ex17_1a.py}
 
 \begin{marginfigure}
     \centering
     \includegraphics[width=7.5cm,height=8.0cm]{ch17/figures/ex17_1a.png}
     \caption{Spectrum in dB for the signal shown in Figure \ref{fig17_1}}
-    \label{fig16_2}
+    \label{fig17_2}
 \end{marginfigure}
 
 \item To filter out the noise, we use a filter that will remove strong spectral components and keep the 
@@ -47,11 +43,7 @@ After doing this we apply the inverse DFT to obtain our filtered signal,
 $$x[k]=\mathcal{F}_{D}^{-1}\{\hat{x}_{w}[k]\hat{h}[k]\}.$$
 The implementation of this is shown in Listing \ref{code17_3}.
 
-\begin{lstlisting}[language=Python, caption=Filtering of the signal,label=code17_3]
-
-\end{lstlisting}
-
-\lstlisting[language=Python, caption=Filtering of the signal,label=code17_3]{ch17/code/ex17_1b.py}
+\lstinputlisting[language=Python, caption=Filtering of the signal,label=code17_3]{ch17/code/ex17_1b.py}
 
 Running this code will generate the plots shown in Figure \ref{spectral_pw17} and \ref{filtered_signal}.
 
@@ -59,7 +51,7 @@ Running this code will generate the plots shown in Figure \ref{spectral_pw17} an
     \centering
     \includegraphics[width=7.5cm,height=7.0cm]{ch17/figures/spectral_pw.png}
     \caption{The comparison of the spectral power}
-    \label{spectral_pw16}
+    \label{spectral_pw17}
 \end{marginfigure}
 
 \begin{figure}

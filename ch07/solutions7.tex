@@ -88,16 +88,16 @@ $$c_{k}=\begin{cases}
 
 \begin{enumerate}[a)]
 \item Using Python, we can implement a simple program for the partial sum with $N=101$. Listing \ref{code:7.3a} shows a way. 
-\lstinputlisting[language=Python,caption=Suggested solution to a),label=code:7.3a]{ch07/code/ex7_3a}
+\lstinputlisting[language=Python,caption=Suggested solution to a),label=code:7.3a]{ch07/code/ex7_3a.py}
 
 \item The Fourier coefficients of a delayed signal are related to the undelayed signal by $c_{k}'=e^{-i\frac{2\pi k\tau}{T}}c_{k}$. 
 The script in Listing \ref{code:7.3a} can be modified to account for delay. The delayed version is shown in Listing \ref{code:7.3b}.
-\lstinputlisting[language=Python,caption=Suggested solution to b),label=code:7.3b]{ch07/code/ex7_3b}
+\lstinputlisting[language=Python,caption=Suggested solution to b),label=code:7.3b]{ch07/code/ex7_3b.py}
 
 \item Define $y(t)=\frac{d}{dt}x(t)$. If $c_{k}$ are the Fourier coefficients for $x(t)$, then the Fourier coefficients for $y(t)$ is:
 $$d_{k}(t)=i \frac{2\pi k}{T}c_{k}.$$
 Using Python we have Listing \ref{code:7.3c}.
-\lstinputlisting[language=Python,caption=Suggested solution to c),label=code:7.3c]{ch07/code/ex7_3c}
+\lstinputlisting[language=Python,caption=Suggested solution to c),label=code:7.3c]{ch07/code/ex7_3c.py}
 
 \end{enumerate}
 
