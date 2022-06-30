@@ -141,24 +141,22 @@ so the system function is:
 $$\mathcal{H}(z)=\frac{5}{1-0.8z^{-1}}.$$
 
 \item A pole-zero diagram for this system is shown in Figure \ref{iir:ex3}.
-\begin{marginfigure}[-5cm]
-\begin{center}
-\begin{tikzpicture}
-	\begin{axis}[axis equal, ymin=-1.5,xmin=-1.5,ymax=1.5,xmax=1.5,  ticks=none,
-    xlabel=$\mathrm{Re}(z)$,
-    ylabel=$\mathrm{Im}(z)$, axis lines = middle, width=7cm, height=7cm]
-	\addplot [gray,domain=0:2*pi,samples=50]({cos(deg(x))},{sin(deg(x))});
-\addplot [red, mark = x,mark size=3pt] coordinates {({0}, {0})} {}; 
-\addplot [red, mark = x, mark size=3pt] coordinates {(0.8,0)};
-\end{axis}
-\end{tikzpicture}
-\end{center}
-\caption{The system function has no zeros in this case. There are two poles, these being at $z=0$ and at $z=0.8$, both marked with red crosses.}
-\label{iir:ex3}
-\end{marginfigure}
-
 The poles for this system function all lie inside the unit circle, so the system is stable. 
-
+\begin{marginfigure}[-5cm]
+    \begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[axis equal, ymin=-1.5,xmin=-1.5,ymax=1.5,xmax=1.5,  ticks=none,
+        xlabel=$\mathrm{Re}(z)$,
+        ylabel=$\mathrm{Im}(z)$, axis lines = middle, width=7cm, height=7cm]
+        \addplot [gray,domain=0:2*pi,samples=50]({cos(deg(x))},{sin(deg(x))});
+    \addplot [red, mark = x,mark size=3pt] coordinates {({0}, {0})} {}; 
+    \addplot [red, mark = x, mark size=3pt] coordinates {(0.8,0)};
+    \end{axis}
+    \end{tikzpicture}
+    \end{center}
+    \caption{The system function has no zeros in this case. There are two poles, these being at $z=0$ and at $z=0.8$, both marked with red crosses.}
+    \label{iir:ex3}
+    \end{marginfigure}
 \item The impulse response function can be found by the inverse $z$-transform of the system function. In this case, we get:
 $$h[n]=\mathcal{Z}^{-1}\left\{\mathcal{H}(z)\right\}=\mathcal{Z}^{-1}\left\{\frac{5}{1-0.8z^{-1}}\right\}=5(0.8)^{n}u[n].$$
 
