@@ -11,12 +11,22 @@
 \end{equation}
 Derive the impulse response for the band-stop filter.
 
+\item Consider the band-stop filter you found in the previous exercise. The goal of this exercise is to implement this filter in Python and apply it to filter audio files.
 
+\begin{enumerate}[a)]
+\item Let $w[n]$ be a tapered window function, like the Hann window of length $N$. Show that the windowed filter can be written as:
+$$h_{w}[n]=\delta[n-N/2]w[n] +  \frac{\sin(\hat{\omega}_{0}(n-N/2))}{(n-N/2)\pi}w[n] - \frac{\sin(\hat{\omega}_{0}(n-N/2))}{(n-N/2)\pi}w[n].$$
 
+\item Implement the filter above using Python. You can use the code in Listing \ref{band_stop} as a starting point. 
+\footnote{Don't worry if you can't understand everything in the code yet, we'll get to it later when we introduce the discrete Fourier transform and the fast Fourier transform algorithm.}
+\lstinputlisting[language=Python,caption=Precode for exercise 2,label=band_stop]{ch13/code/ex13_2_precode.py}
 
+\item Apply the filter to the test signal. The test signal has three frequency components, these being $f_{0}=196$, $f_{1}=2f_{0}$ and $f_{2}=5f_{0}$. 
+Use the stop-band filter to filter out $f_{0}$ and $f_{1}$. Run your implementation and play the audio file filtered.wav. 
+Does it sound correct? Try using adjusting the frequencies and apply your filter on other pieces of music. What happens? 
+\footnote{Ear warning! If you do something wrong, the audio might be very loud or sound horrible, so be careful.}
 
-
-
+\end{enumerate}
 
 
 

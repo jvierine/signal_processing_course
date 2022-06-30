@@ -17,6 +17,8 @@ figures:
 	cd ../..
 	cd ch11/code ; python3 ex11_1.py noplot ; python3 ex11_2.py noplot ; python3 ex11_3.py noplot
 	cd ../..
+	cd ch13/code ; python3 ex13_2.py noplot
+	cd ../..
 	cd ch14/code ; python3 ex14_1.py noplot
 	cd ../..
 	cd ch16/code ; python3 ex16_1b.py noplot ; python3 ex16_1c.py noplot
