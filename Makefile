@@ -5,6 +5,8 @@ all:
 	bibtex signal_processing
 
 figures:
+	cd ch02/code ; python3 ex2_2.py noplot
+	cd ../..
 	cd ch03/code ; python3 ex3.6.py noplot
 	cd ../..
 	cd ch04/code ; python3 ex4.7.py noplot ; python3 ex4.8.py noplot
