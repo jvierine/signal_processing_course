@@ -529,7 +529,7 @@ one zero of the numerator polynomial.
 We can then express the system function of an IIR filter in the
 following form:
 \begin{equation}
-\Hez = \frac{\prod_{k=1}^{M}(z-\alpha_{k})}{\prod_{\ell=1}^{N}(z-\beta_{\ell} )} =  \frac{\prod_{k=1}^{M}(1-\alpha_{k}z^{-1})}{\prod_{\ell=1}^{N}(1-\beta_{\ell} z^{-1})} = \frac{P(z)}{Q(z)}
+\Hez = \frac{\prod_{k=1}^{M}(z-\alpha_{k})}{\prod_{\ell=1}^{N}(z-\beta_{\ell} )} = \frac{P(z)}{Q(z)}
 \end{equation}
 The terms $\beta_{\ell}$ are the \emph{\index{poles}{poles}} of the
 system function. They indicate regions of the complex plane where the
@@ -649,7 +649,8 @@ In order to address the question of filter stability, we can now apply
 our previous BIBO stability result for first order IIR filter impulse
 response. The filter is stable as long as $|\beta_1|<1$ and
 $|\beta_2|<1$. In other words, the filter is stable if all the
-poles of the system function are inside the unit circle.
+poles of the system function are inside the unit circle. This will hold for 
+any system function that can be split using partial fraction decomposition. 
 
 \section{IIR filtering with Scipy}
 
@@ -659,7 +660,8 @@ filtering operation.
 
 The function \verb|lfilter| expects the filter coefficients to be specified in the following format:
 \begin{equation}
-\Hez = \frac{{\color{red}b_0} + {\color{red}b_1} z^{-1} + {\color{red}b_2} z^{-2} + \cdots + {\color{red}b_N} z^{-N}}{{\color{blue}1} + {\color{blue}a_1} z^{-1} + {\color{blue}a_2} z^{-2} + \cdots + {\color{blue}a_M} z^{-M}}
+\Hez = \frac{{\color{red}b_0} + {\color{red}b_1} z^{-1} + {\color{red}b_2} z^{-2} + \cdots 
++ {\color{red}b_N} z^{-N}}{{\color{blue}1} + {\color{blue}a_1} z^{-1} + {\color{blue}a_2} z^{-2} + \cdots + {\color{blue}a_M} z^{-M}}
 \end{equation}
 The example filter that is defined in Equation \ref{eq:coeffs_read} is as follows:
 \begin{align}
@@ -684,7 +686,8 @@ naively implemented without resorting to a library function.
 \begin{center}
 \includegraphics[width=\textwidth]{code/026_iir/ex_psd_hpf.png}
 \end{center}
-\caption{The power spectrum estimate of the filtered white noise signal using the simple high-pass filter specified in Equation \ref{eq:sys_ex}. Compare this with the analytical magnitude response shown in Figure \ref{fig:pz_diag2}}
+\caption{The power spectrum estimate of the filtered white noise signal using the simple high-pass 
+filter specified in Equation \ref{eq:sys_ex}. Compare this with the analytical magnitude response shown in Figure \ref{fig:pz_diag2}}
 \end{marginfigure}
 
 \lstinputlisting[language=Python,caption={\texttt{026\_iir/simple\_hpf.py}},label=lst:simple_hpf]{code/026_iir/simple_hpf.py}
@@ -735,7 +738,70 @@ the power spectrum of the filtered signal.
 \lstinputlisting[language=Python,caption={\texttt{026\_iir/iir\_design.py}},label=lst:iir_design]{code/026_iir/iir_design.py}
 
 
+\section{The inverse $z$-transform [Optional]}
+This section covers some details on the inverse $z$-transform. 
+Although the definition looks complicated, it is pretty straight forward to compute. To do this, we require 
+some tools from complex analysis. Recall that the inverse $z$-transform is defined as:
+\begin{equation}
+    x[n]=\mathcal{Z}^{-1}\{X(z)\}=\frac{1}{2\pi i}\oint_C X(z)z^{n-1}dz.
+\end{equation}
+The contour integral on the right can easily be computed by the residue theorem, which states:
+\begin{equation}
+    \boxed{\oint_C f(z)dz=2\pi i\sum\text{Res}(f,z_{0}).
+    }
+    \label{residue_thm}
+\end{equation}
+The $\text{Res}(f,z_{0})$ means the residue of $f$ at $z_{0}$, where $z_{0}$ is a pole for $f$. 
+The proper definition of the residue of a complex function $f$ doesn't make sense if you haven't 
+seen the concept of a Laurent series, so we'll ignore a proper definition and just state 
+how this quantity is computed. The basic idea is to find this quantity called the residue 
+of $f$ at a pole $z_{0}$ with multiplicity $m$. The formula is given here as:
+\begin{equation}
+    \text{Res}(f,z_{0})=\lim_{z\to z_{0}}\frac{1}{(m-1)!}\frac{d^{m-1}}{dz^{m-1}} [(z-z_{0})^{m}f(z)].
+    \label{residue}
+\end{equation}
+\subsection{Example: Pole without multiplicity}
+As an example, consider $X(z)=\frac{b}{1-az^{-1}}$. The inverse $z$-transform is then:
+$$x[n]=\frac{1}{2\pi i}\oint_{C}\frac{bz^{n-1}}{1-az^{-1}}dz=\sum \text{Res}(f,z_{0}),$$
+where $C$ is a loop going counterclockwise around all the poles of $X(z)$. In this case $X(z)$ has one pole, being $z=a$. We get:
+\begin{align*}
+    \text{Res}(f,a)&=\lim_{z\to a}\frac{1}{0!}(z-a)^{1}\frac{bz^{n-1}}{1-az^{-1}}=\lim_{z\to a}bz^{n}=ba^{n}.
+\end{align*}
+We assume that the sequence $x[n]$ is only valid for $n\ge 0$, so the resulting discrete-time signal is then: 
+\begin{equation}
+    x[n]=ba^{n-1}u[n],
+\end{equation}
+as was shown previously. 
 
+\subsection{Example: Pole with multiplicity}
+Consider a more complicated example. Take $X(z)$ as:
+$$X(z)=\frac{1}{(1-az^{-1})^{m}}.$$
+This can be rewritten as:
+\begin{equation}
+    X(z) = \frac{z^{m}}{(z-a)^{m}},
+\end{equation}
+so we have a pole of order $m$. The inverse $z$-transform is then:
+\begin{equation}
+    x[n] = \frac{1}{2\pi i}\oint_{C}\frac{z^{m}}{(z-a)^{m}}z^{n-1}dz,
+\end{equation}
+where $C$ is a loop going counterclockwise around the pole $z_{0}=a$. 
+Here we use the residue theorem (Equation \ref{residue_thm}) and Equation \ref{residue}:
+\begin{align}
+    \text{Res}(f,a) &= \lim_{z\to a}\frac{1}{(m-1)!}\frac{d^{m-1}}{dz^{m-1}}\left[(z-a)^{m}\frac{z^{m}}{(z-a)^{m}}z^{n-1}\right], \\
+    &= \lim_{z\to a}\frac{1}{(m-1)!}\frac{d^{m-1}}{dz^{m-1}}z^{m+n-1}, \\
+    &= \lim_{z\to a}\frac{1}{(m-1)!}\frac{(m+n-1)!}{(m+n-1-(m-1))!}z^{m+n-1-(m-1)}, \\
+    &= \lim_{z\to a}\frac{1}{(m-1)!}\frac{(m+n-1)!}{n!}z^{n}, \\
+    &= \binom{m+n-1}{m-1}a^{n},
+\end{align}
+where we've used the fact that: 
+\begin{equation}
+    \frac{d^{k}}{dz^{k}}z^{n} = \frac{n!}{(n-k)!} z^{n-k},
+\end{equation}
+and that $\binom{n}{k}=\frac{n!}{(n-k)!k!}$. Therefore, the signal is:
+\begin{equation}
+    x[n] = \binom{m+n-1}{m-1}a^{n}u[n],
+\end{equation}
+assuming $x[n]=0$ for all $n<0$. 
 
 
 
