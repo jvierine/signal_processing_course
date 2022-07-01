@@ -110,8 +110,44 @@ The output of the program is shown in Figure \ref{h2}.
     \caption{Impulse response for $y_{2}[n]$}
     \label{h2}
 \end{marginfigure}
-
 \end{enumerate}
 
+\item Consider the reverb model as shown in Listing \ref{reverb:solution}.
+\begin{enumerate}[a)]
+    \item By running \verb|reverb.py| and listening to \verb|reverb.wav|, one can 
+    hear the reverb effect having been applied to the audio-signal.
+    
+    \item Running the code yields the figure shown in Figure \ref{reverb:audio}.
+    \begin{marginfigure}
+    \includegraphics[width=7.5cm,height=7.0cm]{ch10/figures/reverb_impulse.png}
+    \caption{Impulse response for the reverb LTI system}
+    \label{reverb:audio}
+    \end{marginfigure}
+    
+    \item By changing the \verb|room_length_std| and number of \verb|n_walls| one can get the 
+    effect of a small room or a large one. If one increases \verb|room_length_std| the 
+    room would be bigger as the echo have to travel further. The impulse response is similar, 
+    but the impulse response for a larger room has more peaks at higher times. 
+    
+    \item To determine $n_{0}$, first consider the time it takes the echo to travel 
+    1000 meters and then return. Have that $s=vt$, so $t=s/v$, assuming that 
+    the speed is constant throughout. This means that, to travel back and forth takes:
+    $$t=\frac{2s}{v}$$
+    seconds. The total time in a discrete-time signal is $t=n_{0}T_{s}$, therefore:
+    $$n_{0}=\frac{2s}{vT_{s}}=\frac{2sf_{s}}{v},$$
+    where $f_{s}$ is the sample length, $s$ is the distance to the surface to scatter 
+    from and $v$ is the speed of sound in the corresponding medium. Thus, for an 
+    audio-signal sampled at $44100$ Hz, the delay index should be:
+    $$n_{0}=\frac{2sf_s}{v}=\frac{(2)(1000\ \text{m})(44100)\ \text{Hz}}{343\ \text{m/s}}\approx257142.85,$$
+    or $n_{0}=257143$ to round to the nearest integer. Implementing this with the \verb|reverb.py| 
+    script can be accomplished by setting \verb|room_length_std| as 1000, 
+    then \verb|n_walls| as 1, \verb|c_sound| as 343 and \verb|sr| as 44100.
+    
+    \item The average running filter can be implemented by setting the impulse 
+    response as $h[n]=\frac{1}{M}\sum_k \delta[n-k]$. The effect on the audio is 
+    that the high frequencies are reduced, as expected since the average running filter is a low-pass filter. 
 
+    \lstinputlisting[language=Python,caption=Solution for exercise 3,label=reverb:solution]{ch10/code/ex10_3.py}
+
+\end{enumerate}
 \end{enumerate}
