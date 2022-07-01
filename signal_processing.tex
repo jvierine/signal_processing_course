@@ -103,13 +103,14 @@ this project. All mistakes are purely mine.
 %----------------------------------------------------------------------------------------
 \ifSpIntro
 \chapter{Introduction}
-\input{ch01/text1.tex}
+\input{ch01/text1}
 \fi
 
 \ifSpPython
 \chapter{Python} 
-\input{ch02/text2.tex}
+\input{ch02/text2}
 \input{ch02/exercises2}
+\input{ch02/solutions2}
 \fi
 
 \ifSpComplex
@@ -154,7 +155,9 @@ this project. All mistakes are purely mine.
 \input{Applications/ceph_ex}
 \fi
 
+\ifSpProgA
 \input{Assignments/prog1}
+\fi
 
 \ifSpFourierTra
 \chapter{Fourier Transform}
@@ -188,7 +191,9 @@ this project. All mistakes are purely mine.
 \input{ch11/solutions11}
 \fi
 
+\ifSpProgB
 \input{Assignments/prog2}
+\fi
 
 \ifSpDTFT
 \chapter{Discrete-time Fourier Transform (DTFT)}
@@ -232,7 +237,9 @@ this project. All mistakes are purely mine.
 \input{ch17/solutions17}
 \fi
 
+\ifSpProgC
 \input{Assignments/prog3}
+\fi
 
 \ifSpZFIR
 \chapter{Z-transform}
