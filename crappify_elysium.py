@@ -12,7 +12,7 @@ print(n_samples)
 noise=n.random.randn(n_samples)
 
 # filter length
-nn = n.arange(-1000,1000)+1e-7
+nn = n.arange(-2000,2000)+1e-7
 N=len(nn)
 print(nn)
 
@@ -47,10 +47,10 @@ plt.plot(10.0*n.log10(n.abs(n.fft.fftshift(n.fft.fft(bsf)))**2.0))
 plt.plot(10.0*n.log10(n.abs(n.fft.fftshift(n.fft.fft(bpf)))**2.0))
 plt.show()
 
-uncrap=n.convolve(crap,bsf,mode="same")
-
-uncrap[0:1000]=0.0
-uncrap[(len(uncrap)-1000):len(uncrap)]=0.0
+# use mode="valid" to avoid nasty effects
+# caused by only a partial filter window
+# used
+uncrap=n.convolve(crap,bsf,mode="valid")
 plt.plot(uncrap)
 plt.show()
 
