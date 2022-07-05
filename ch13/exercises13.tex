@@ -15,7 +15,7 @@ Derive the impulse response for the band-stop filter.
 
 \begin{enumerate}[a)]
 \item Let $w[n]$ be a tapered window function, like the Hann window of length $N$. Show that the windowed filter can be written as:
-$$h_{w}[n]=\delta[n-N/2]w[n] +  \frac{\sin(\hat{\omega}_{0}(n-N/2))}{(n-N/2)\pi}w[n] - \frac{\sin(\hat{\omega}_{0}(n-N/2))}{(n-N/2)\pi}w[n].$$
+$$h_{w}[n]=\delta[n-N/2]w[n] +  \frac{\sin(\hat{\omega}_{0}(n-N/2))}{(n-N/2)\pi}w[n] - \frac{\sin(\hat{\omega}_{1}(n-N/2))}{(n-N/2)\pi}w[n].$$
 
 \item Implement the filter above using Python. You can use the code in Listing \ref{band_stop} as a starting point. 
 \footnote{Don't worry if you can't understand everything in the code yet, we'll get to it later when we introduce the discrete Fourier transform and the fast Fourier transform algorithm.}
