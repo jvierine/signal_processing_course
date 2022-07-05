@@ -1,7 +1,6 @@
 import numpy as n
 import scipy.constants as c
 import matplotlib.pyplot as plt
-import sys  # <-- you can remove this 
 
 print("Hello World!")
 # test numpy and scipy
@@ -19,8 +18,17 @@ plt.plot(csin.real,csin.imag,color="blue",label="Unit circle")
 plt.xlabel("$\cos(2\pi440t)$")
 plt.ylabel("$\sin(2\pi440t)$")
 plt.legend()
-plt.savefig("../figures/circle_plot.png") # remove this
+# make axis aspect ratio equal for visually pleasing output
+plt.axes().set_aspect('equal')
+# call this if needed
+# plt.show()
+try:
+    plt.savefig("../figures/circle_plot.png") # remove this
+except:
+    print("couldn't save file")
+#endif
 
-if len(sys.argv) == 1: # <-- remove this line if you want
-    plt.show()         # also remove the indentation, if you remove the previous line
+#import sys  # <-- you can remove this 
+#if len(sys.argv) == 1: # <-- remove this line if you want
+#    plt.show()         # also remove the indentation, if you remove the previous line
 
