@@ -12,14 +12,15 @@ t = n.arange(101)/sample_rate # <-- added 101 to obtain the full circle
 
 csin = n.exp(1j*2.0*n.pi*440.0*t) # A 440 Hz signal
 
+# make axis aspect ratio equal for visually pleasing output
+plt.axes().set_aspect('equal')
+
 # plot a circle using the real and imaginary part of e^(i*2*pi*440*t)
 plt.plot(csin.real,csin.imag,color="blue",label="Unit circle")
 
 plt.xlabel("$\cos(2\pi440t)$")
 plt.ylabel("$\sin(2\pi440t)$")
 plt.legend()
-# make axis aspect ratio equal for visually pleasing output
-plt.axes().set_aspect('equal')
 # call this if needed
 # plt.show()
 try:
