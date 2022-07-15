@@ -2,13 +2,12 @@ import numpy as n
 import matplotlib.pyplot as plt
 import scipy.io.wavfile
 import scipy.signal as ss
-import sys
 
 # function to convert to dB
 def convert_to_decibel(x):
     return 10*n.log10(n.abs(x)**2)
 
-audio = scipy.io.wavfile.read("../../code/023_dynamic_spectrum/b.wav")
+audio = scipy.io.wavfile.read("b.wav")
 sample_rate = audio[0]
 # read only one channel of the stereo signal
 signal = audio[1][:,0]
@@ -61,7 +60,10 @@ plt.xlabel("Time (s)")
 plt.ylabel("Frequency (Hz)")
 plt.ylim(0,1500)
 plt.colorbar()
-plt.savefig("../figures/fur_elise_spectogram.png")
+# call this if needed
+# plt.show()
 
-if len(sys.argv) == 1:
-    plt.show()
+try:
+    plt.savefig("../figures/fur_elise_spectogram.png")
+except:
+    print("couldn't save file")

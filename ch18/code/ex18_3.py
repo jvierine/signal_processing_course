@@ -1,6 +1,5 @@
 import numpy as n
 import matplotlib.pyplot as plt
-import sys
 
 # partition the interval (-pi,pi)
 om = n.linspace(-n.pi,n.pi,num=100)
@@ -24,6 +23,10 @@ plt.xlabel("$\hat{\omega}$ (rad / sample)")
 plt.ylabel("$|\mathcal{H}(\hat{\omega})|$")
 plt.title("Magnitude response plot")
 plt.legend()
-plt.savefig("../figures/magnituderes.png")
-if len(sys.argv) == 1:
-    plt.show()
+# call this if needed
+# plt.show()
+
+try:
+    plt.savefig("../figures/magnituderes.png")
+except:
+    print("couldn't save file")

@@ -41,7 +41,7 @@ $$y[n]=h[n]*x[n]=\sum_{k=-\infty}^{\infty}h[k]x[n-k],$$
 with $h[n]=\mathcal{T}\{\delta[n]\}$. 
 
 \item In Listing \ref{code18_2} is a simple program to plot the impulse response for this system. 
-\lstinputlisting[language=Python, caption=Code to plot the impulse response function,label=code18_2]{ch18/code/ex18_2.py}
+\lstinputlisting[language=Python, caption=Code to plot the impulse response function,label=code18_2,linerange={0-18}]{ch18/code/ex18_2.py}
 
 The impulse response plot is shown in Figure \ref{fig18_2}.
 \begin{marginfigure}
@@ -92,7 +92,7 @@ have $\alpha_k=\{e^{i\pi/4},e^{-i\pi}\}$. Zeros are marked with blue
 \item The poles and zeros of the system function are shown in Figure \ref{z:ex3}. 
 
 \item The following code snippet will plot the magnitude response corresponding to $\mathcal{H}(\hat{\omega})=\mathcal{H}(z)|_{z=e^{i\hat{\omega}}}$:
-\lstinputlisting[language=Python,caption=Script to plot the magnitude response,label=sol_to_c]{ch18/code/ex18_3.py}
+\lstinputlisting[language=Python,caption=Script to plot the magnitude response,label=sol_to_c,linerange={0-27}]{ch18/code/ex18_3.py}
 
 Output from Listing \ref{sol_to_c} is shown in Figure \ref{h-plt}.
 
@@ -164,7 +164,7 @@ have $\alpha_k=\{e^{10i\pi/441},e^{-10i\pi/441},e^{20i\pi/441},e^{-20i\pi/441}\}
 \end{marginfigure}
 
 \item Listing \ref{z:code:ex4} provides code to plot the magnitude response for this system.
-\lstinputlisting[language=Python,caption=Code to plot the magnitude response,label=z:code:ex4]{ch18/code/ex18_4.py}
+\lstinputlisting[language=Python,caption=Code to plot the magnitude response,label=z:code:ex4,linerange={0-26}]{ch18/code/ex18_4.py}
 
 Output of Listing \ref{z:code:ex4} is shown in Figure \ref{z:fig:ex4}.
 

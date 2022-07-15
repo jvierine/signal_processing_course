@@ -1,7 +1,6 @@
 import numpy as n
 import matplotlib.pyplot as plt
 import scipy.signal as ss
-import sys
 
 # function to convert to dB
 def convert_to_decibel(x):
@@ -34,7 +33,10 @@ plt.plot(om_freqs,convert_to_decibel(xw))
 plt.xlabel("$\hat{\omega}$ (rad / sample)")
 plt.ylabel("$|\hat{x}_{w}[k]|^{2}$ (dB)")
 plt.title("Spectrum of $x[n]$")
-plt.savefig("../figures/ex17_1a.png")
+# call this if needed
+# plt.show()
 
-if len(sys.argv) == 1:
-    plt.show()
+try:
+    plt.savefig("../figures/ex17_1a.png")
+except:
+    print("couldn't save file")

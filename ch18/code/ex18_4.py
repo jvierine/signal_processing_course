@@ -1,6 +1,5 @@
 import numpy as n
 import matplotlib.pyplot as plt
-import sys
 
 # function to convert to dB
 def convert_to_decibel(x):
@@ -23,7 +22,10 @@ plt.xlabel("$\hat{\omega}$ (rad / sample)")
 plt.ylabel("$|\mathcal{H}(\hat{\omega})|$")
 plt.title("Magnitude response plot")
 plt.legend()
-plt.savefig("../figures/mag2.png")
+# call this if needed
+# plt.show()
 
-if len(sys.argv) == 1:
-    plt.show()
+try:
+    plt.savefig("../figures/mag2.png")
+except:
+    print("couldn't save file")

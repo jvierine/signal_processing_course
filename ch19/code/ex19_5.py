@@ -1,6 +1,5 @@
 import numpy as n
 import matplotlib.pyplot as plt
-import sys
 
 # partition the range (-pi,pi)
 omhat = n.linspace(-n.pi,n.pi,num=100000)
@@ -42,7 +41,10 @@ for i in range(len(axs)):
     axs[i].set_ylabel("$|\mathcal{H}(\hat{\omega})|$")
 
 plt.tight_layout()
-plt.savefig("../figures/magn_resp_diag")
+# call this if needed
+# plt.show()
 
-if len(sys.argv) == 1:
-    plt.show()
+try:
+    plt.savefig("../figures/magn_resp_diag")
+except:
+    print("couldn't save file")

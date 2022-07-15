@@ -14,7 +14,10 @@ plt.stem(nn,h)
 plt.xlabel("samples [n]")
 plt.ylabel("$h[n]$")
 plt.title("Impulse response")
-plt.savefig("../figures/17_2.png")
+# call this if needed
+# plt.show()
 
-if len(sys.argv) == 1:
-    plt.show()
+try:
+    plt.savefig("../figures/18_2.png")
+except:
+    print("couldn't save file")

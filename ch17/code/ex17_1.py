@@ -1,6 +1,5 @@
 import numpy as n
 import matplotlib.pyplot as plt
-import sys
 
 N = 16384
 nn = n.arange(N)
@@ -24,7 +23,10 @@ x = x1 + x2
 plt.plot(nn,x)
 plt.xlabel("Samples")
 plt.ylabel("$x[n]$")
-plt.savefig("../figures/ex17_1.png")
+# call this if needed
+# plt.show()
 
-if len(sys.argv) == 1:
-    plt.show()
+try:
+    plt.savefig("../figures/ex17_1.png")
+except:
+    print("couldn't save file")

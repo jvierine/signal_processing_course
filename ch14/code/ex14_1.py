@@ -1,6 +1,5 @@
 import numpy as n
 import matplotlib.pyplot as plt
-import sys
 
 # frequency response for the Hann window with T = 1
 def H1(omega):
@@ -24,7 +23,10 @@ plt.plot(x,convert_to_decibel(H2(x)),label="Rectangular window")
 plt.xlabel("$\hat{\omega}$")
 plt.ylim(-120,10)   # limit the y-axis to (-120,10)
 plt.legend()
-plt.savefig("../figures/filters.png")
+# call this if needed
+# plt.show()
 
-if len(sys.argv) == 1:
-    plt.show()
+try:
+    plt.savefig("../figures/filters.png")
+except:
+    print("couldn't save file")

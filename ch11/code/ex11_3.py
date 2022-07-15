@@ -1,6 +1,5 @@
 import numpy as n
 import matplotlib.pyplot as plt
-import sys
 
 # plot in the principal spectrum (-pi,pi)
 om = n.linspace(-n.pi,n.pi,num=1000)
@@ -15,6 +14,10 @@ def freq_resp(om):
 # plot the frequency response function over (-pi,pi)
 plt.plot(om,n.abs(freq_resp(om)),label="$\mathcal{H}(\hat{\omega})$")
 plt.legend()
-plt.savefig("../figures/freq13.png")
-if len(sys.argv) == 1:
-    plt.show()
+# call this if needed
+# plt.plot()
+
+try:
+    plt.savefig("../figures/freq13.png")
+except:
+    print("couldn't save file")

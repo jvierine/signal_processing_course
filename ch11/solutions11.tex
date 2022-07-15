@@ -57,7 +57,7 @@ The sum, is evaluated using known formulas for geometric sums.
 $$\mathcal{H}_{\tau}(\hat{\omega})=\sum_{k=-\infty}^{\infty}h[k]e^{-i\hat{\omega}k}=\sum_{k=-\infty}^{\infty}\delta[k-\tau]e^{-i\hat{\omega}k}=e^{-i\hat{\omega}\tau}.$$
 
 \item The following code can be used to make the plot shown in Figure \ref{freq_responses}:
-\lstinputlisting[language=Python, caption=Plotting the frequency response code,label=code14_2]{ch11/code/ex11_2.py}
+\lstinputlisting[language=Python, caption=Plotting the frequency response code,label=code14_2,,linerange={0-17}]{ch11/code/ex11_2.py}
 
 As expected, the functions are identical. 
 \begin{marginfigure}
@@ -92,7 +92,7 @@ for this LTI system, we get:
 $$\mathcal{H}(\hat{\omega})=T_{s}^{-2}e^{i\hat{\omega}}-2T_{s}^{-2}+T_{s}^{-2}e^{-i\hat{\omega}}=-2T_{s}^{-2}+T_{s}^{-2}2\cos(\hat{\omega})=\frac{2}{T_{s}^{2}}(\cos(\hat{\omega})-1).$$
 
 \item The code shown in Listing \ref{code13_1} can be used to plot the spectral response. 
-\lstinputlisting[language=Python, caption=Frequency response for finite difference,label=code13_1]{ch11/code/ex11_3.py}
+\lstinputlisting[language=Python, caption=Frequency response for finite difference,label=code13_1,linerange={0-18}]{ch11/code/ex11_3.py}
 
 Output of the code is shown in Figure \ref{spec_rep}.
 \begin{marginfigure}

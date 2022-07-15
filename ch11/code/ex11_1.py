@@ -1,6 +1,5 @@
 import numpy as n
 import matplotlib.pyplot as plt
-import sys
 
 om = n.linspace(-7*n.pi,7*n.pi,num=1000)
 
@@ -26,7 +25,10 @@ plt.vlines(7*n.pi,ymin=0,ymax=42,color="red")
 
 plt.title("Dirac comb")
 plt.xlabel("$\omega$")
-plt.savefig("../figures/diractrain.png")
+# call this if needed
+# plt.plot()
 
-if len(sys.argv) == 1:
-    plt.show()
+try:
+    plt.savefig("../figures/diractrain.png")
+except:
+    print("couldn't save figure")
