@@ -1,7 +1,6 @@
 import numpy as n
 import scipy.io.wavfile as sio
 import matplotlib.pyplot as plt
-import sys
 
 # amplifier gain
 alpha = 10.0
@@ -15,7 +14,7 @@ def amplify(x,alpha):
 # Original file name: Guitar clean rif.wav
 
 # the read function returns two arguments, these being the sample rate and the actual data
-wav = sio.read("../../code/003_guitar/guitar_clean.wav")
+wav = sio.read("guitar_clean.wav")
 # read only one stereo channel
 sample_rate = wav[0]
 # returned is a 2-dimensional NumPy array corresponding to the left and right channel
@@ -30,9 +29,8 @@ plt.plot(time_vec,x,label="Original")
 plt.legend()
 plt.xlabel("Time $t$")
 plt.ylabel("Relative air pressure $y(t)$")
-plt.savefig("../figures/ex7_plot.png")
-if len(sys.argv) == 1:
-    plt.show()
+# call this if needed
+# plt.show()
 
 # amplify the signal
 out = amplify(x,alpha)
@@ -45,3 +43,7 @@ out = 0.9*out / n.max(n.abs(out))
 # write compressed output to wav file
 sio.write("guitar_amp.wav",sample_rate,n.array(out,dtype=n.float32))
 
+try:
+    plt.savefig("../figures/ex7_plot.png")
+except:
+    print("couldn't save file")

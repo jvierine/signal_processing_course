@@ -27,9 +27,3 @@ try:
     plt.savefig("../figures/circle_plot.png") # remove this
 except:
     print("couldn't save file")
-#endif
-
-#import sys  # <-- you can remove this 
-#if len(sys.argv) == 1: # <-- remove this line if you want
-#    plt.show()         # also remove the indentation, if you remove the previous line
-

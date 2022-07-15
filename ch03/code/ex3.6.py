@@ -1,6 +1,5 @@
 import numpy as n
 import matplotlib.pyplot as plt
-import sys
 
 # simple function to compute the kth order root of unity of degree m
 def rootUnity(k,m):
@@ -30,7 +29,9 @@ plt.xlabel("x")
 plt.ylabel("y")
 plt.title("Fifth roots of unity")
 ax.set_aspect("equal")
-plt.savefig("../figures/roots.png")
-# if no command line arguments, show window
-if len(sys.argv) == 1:
-    plt.show()
+# call this if needed
+# plt.show()
+try:
+    plt.savefig("../figures/roots.png")
+except:
+    print("couldn't save file")
