@@ -1,6 +1,5 @@
 import numpy as n
 import matplotlib.pyplot as plt
-import sys
 
 L = 4
 h = n.repeat(1/L,L)              # add 1/L into an array L times
@@ -11,6 +10,10 @@ plt.stem(h2)
 plt.xlabel("Samples $(n)$")
 plt.ylabel("$h_{2}[n]$")
 plt.title("Impulse response")
-plt.savefig("../figures/h2.png")
-if len(sys.argv) == 1:
-    plt.show()
+# call this if needed
+# plt.plot()
+
+try:
+    plt.savefig("../figures/h2.png")
+except:
+    print("couldn't save figure")

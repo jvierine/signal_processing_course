@@ -19,7 +19,7 @@ A simple test program to verify this is shown in Listing \ref{cancel}
 with an arbitrary choice of $\omega$, $\phi$ and $m$. 
 If the code is run, two signals of opposite amplitude are shown, 
 which cancel out when added, as hoped. 
-\lstinputlisting[language=Python,caption={Noise canceling signal},label=cancel]{ch06/code/ex6.1.py}
+\lstinputlisting[language=Python,caption={Noise canceling signal},label=cancel,linerange={0-25}]{ch06/code/ex6.1.py}
 
 \item Have that:
 $$a\cos(\omega t)+b\sin(\omega t)=\frac{a}{2}(e^{i\omega t}+e^{-i\omega t})+\frac{b}{2i}(e^{i\omega t}-e^{-i\omega t}),$$
@@ -79,7 +79,7 @@ $$E(x,t)=\sum_{n}E_{n}e^{i(\omega_{n}/c)x}e^{i\omega_{n}t}\partial_{y},$$
 is also a solution. This follows by the linearity of the wave equation. 
 
 \item The code from the notes has been modified such that the output signal has a frequency of approximately 42.0 Hz. 
-\lstinputlisting[language=Python,caption={Adding frequencies},label=sig42]{ch06/code/ex6.6.py}
+\lstinputlisting[language=Python,caption={Adding frequencies},label=sig42,linerange={0-35}]{ch06/code/ex6.6.py}
 Running the code in Listing \ref{sig42} yields the following output:
 \begin{figure}[h!]
     \centering
@@ -90,7 +90,7 @@ Running the code in Listing \ref{sig42} yields the following output:
 \item The following code is a modification that multiplies the signal with a periodic 5.0 Hz signal:
 \begin{itemize}
 \item[a)] Listing \ref{sig42_mod} provides a suggested solution.
-\lstinputlisting[language=Python,caption={Modifying signals},label=sig42_mod]{ch06/code/ex6.7a.py}
+\lstinputlisting[language=Python,caption={Modifying signals},label=sig42_mod,linerange={0-22}]{ch06/code/ex6.7a.py}
 Running Listing \ref{sig42_mod} produces Figure \ref{fig:ex6b}.
 \begin{figure}[h!]
     \centering

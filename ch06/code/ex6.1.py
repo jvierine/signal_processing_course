@@ -1,6 +1,5 @@
 import numpy as n
 import matplotlib.pyplot as plt
-import sys
 
 N = 1000    # number of sample points
 om = 2.6    # angular frequency
@@ -22,5 +21,5 @@ y = n.cos(om * t + phi_cancel)
 # plot the signals
 plt.plot(t,x)
 plt.plot(t,y)
-if len(sys.argv) == 1:
-    plt.show()
+# call this if needed
+# plt.show()

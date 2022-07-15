@@ -1,9 +1,8 @@
 import numpy as n
 import scipy.io.wavfile as sio
 import matplotlib.pyplot as plt
-import sys
 
-wav = sio.read("../../code/003_guitar/guitar_clean.wav")
+wav = sio.read("guitar_clean.wav")
 sample_rate = wav[0] # sample rate
 x = wav[1][:,0]      # read only one stereo channel
 
@@ -19,6 +18,10 @@ plt.plot(time_vec,x,label="Original")
 plt.legend()
 plt.xlabel("Time $t$")
 plt.ylabel("Relative air pressure $y(t)$")
-plt.savefig("../figures/ex6b.png")
-if len(sys.argv) == 1:
-    plt.show()
+# call this if needed
+# plt.show()
+
+try:
+    plt.savefig("../figures/ex6b.png")
+except:
+    print("couldn't save figure")

@@ -2,7 +2,6 @@ import numpy as n
 import matplotlib.pyplot as plt
 import scipy.io.wavfile as sw
 import scipy.signal as ss
-import sys
 
 def reverb_model(room_length_std=30.0,  # room wall to wall distance standard deviation in meters
                  echo_magnitude=0.5,    # how much is reflected from a wall
@@ -33,7 +32,7 @@ def average_running_filter(M):
     return h
 
 # read audio file (wav format)
-ts = sw.read("../../elysium.wav")
+ts = sw.read("elysium.wav")
 sr = ts[0]     # sample rate
 clip = ts[1]   # extract audio file as numpy data vector
 if len(clip.shape)==2: # if stereo, only use one channel
@@ -58,9 +57,7 @@ H = n.zeros(len(omhat),dtype=n.complex64)
 for i in range(len(h)):
     H += h[i]*n.exp(1j*omhat*float(i))
 
-plt.plot(omhat,n.abs(H)**2.0)
-if len(sys.argv) == 1:
-    plt.show()
+# plt.plot(omhat,n.abs(H)**2.0)
 
 # plot the impulse response
 # if the impulse response is short, use stem plot
@@ -72,8 +69,7 @@ plt.title("Impulse response")
 plt.xlabel("Time (s)")
 plt.ylabel("h[n]")
 plt.savefig("../figures/reverb_impulse.png") 
-if len(sys.argv) == 1:
-    plt.show() # <-- impulse response is plotted here
+# plt.show() # <-- impulse response is plotted here
 
 # plot the audio
 time_vec = n.arange(len(clip))
@@ -96,8 +92,7 @@ plt.plot(time_vec[tidx],echo_clip[tidx])
 plt.xlabel("Time (s)")
 plt.ylabel("Amplitude")
 plt.tight_layout()
-if len(sys.argv) == 1:
-    plt.show()
+# plt.show()
 
 # normalize to unity
 echo_clip = echo_clip/(n.max(n.abs(echo_clip)))

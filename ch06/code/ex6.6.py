@@ -1,6 +1,5 @@
 import numpy as n
 import matplotlib.pyplot as plt
-import sys
 
 # time vector 0 to 1 seconds, 1000 Hz sample rate
 t = n.arange(1000)/1000.0
@@ -32,7 +31,10 @@ plt.plot(t,z_shifted.imag,label="Imag")
 plt.title("New signal")
 plt.xlabel("Time (s)")
 plt.legend()
-plt.savefig("../figures/ex6a.png")
+# call this if needed
+# plt.show()
 
-if len(sys.argv) == 1:
-    plt.show()
+try:
+    plt.savefig("../figures/ex6a.png")
+except:
+    print("couldn't save figure")

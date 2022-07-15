@@ -1,6 +1,5 @@
 import numpy as n
 import matplotlib.pyplot as plt
-import sys
 
 T = 1                   # period
 sample_rate = 1000.0    # sample rate
@@ -28,5 +27,5 @@ plt.plot(t,xn.real,color="blue")
 plt.plot(t,xn.imag,color="red")
 plt.xlabel("Time (t)")
 plt.ylabel("$x_{N}(t)$")
-if len(sys.argv) == 1:
-    plt.show()
+# if needed
+# plt.plot()
