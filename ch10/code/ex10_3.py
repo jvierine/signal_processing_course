@@ -57,7 +57,9 @@ H = n.zeros(len(omhat),dtype=n.complex64)
 for i in range(len(h)):
     H += h[i]*n.exp(1j*omhat*float(i))
 
-# plt.plot(omhat,n.abs(H)**2.0)
+plt.plot(omhat,n.abs(H)**2.0)
+# run this if needed
+# plt.show() 
 
 # plot the impulse response
 # if the impulse response is short, use stem plot
@@ -68,7 +70,6 @@ plt.xlim([-0.1*n.max(time_vec),1.1*n.max(time_vec)])
 plt.title("Impulse response")
 plt.xlabel("Time (s)")
 plt.ylabel("h[n]")
-plt.savefig("../figures/reverb_impulse.png") 
 # plt.show() # <-- impulse response is plotted here
 
 # plot the audio
@@ -92,6 +93,7 @@ plt.plot(time_vec[tidx],echo_clip[tidx])
 plt.xlabel("Time (s)")
 plt.ylabel("Amplitude")
 plt.tight_layout()
+# run this if needed
 # plt.show()
 
 # normalize to unity
@@ -100,3 +102,13 @@ echo_clip = echo_clip/(n.max(n.abs(echo_clip)))
 print("Saving reverb.wav")
 # save as .wav file with 44.1 kHz sample rate
 sw.write("reverb.wav",44100,n.array(20e3*echo_clip,dtype=n.int16))
+
+# create figure in solution manual
+plt.subplot(111)
+time_vec = n.arange(len(h))/float(sr)
+plt.plot(omhat,n.abs(H)**2.0)
+plt.xlim([-0.1*n.max(time_vec),1.1*n.max(time_vec)])
+plt.title("Impulse response")
+plt.xlabel("Time (s)")
+plt.ylabel("h[n]")
+plt.savefig("../figures/reverb_impulse.png")
