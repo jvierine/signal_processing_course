@@ -56,7 +56,6 @@ Furthermore, each directory has the following structure
 
 ## To do
 - Shorten Gaussian derivation of Fourier transform
-- ex10_3 still has import sys
 - ex17_1b still has import sys
 - fix exercise in ch13
 
