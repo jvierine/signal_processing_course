@@ -1,7 +1,6 @@
 import numpy as n
 import matplotlib.pyplot as plt
 import scipy.signal as ss
-import sys
 
 # function to convert to dB
 def convert_to_decibel(x):
@@ -46,15 +45,29 @@ plt.plot(om_freqs,convert_to_decibel(xw*h),label="Windowed spectrum")
 plt.xlabel("$\hat{\omega}$ (rad / sample)")
 plt.ylabel("Power of spectrum (dB)")
 plt.legend()
-plt.savefig("../figures/spectral_pw.png")
-if len(sys.argv) == 1:
-    plt.show()
+# call this if needed
+# plt.show()
 
 # finally, inverse DFT to obtain the filtered signal
 filter_signal = n.fft.irfft(h*xw)
 plt.plot(filter_signal)
 plt.xlabel("Samples")
 plt.title("Filtered signal")
+# call this if needed
+# plt.show()
+
+# solution manual figure saving:
+plt.clf()   # clear figures
+plt.plot(om_freqs,convert_to_decibel(xw),label="Original spectrum")
+plt.plot(om_freqs,convert_to_decibel(xw*h),label="Windowed spectrum")
+plt.xlabel("$\hat{\omega}$ (rad / sample)")
+plt.ylabel("Power of spectrum (dB)")
+plt.legend()
+plt.savefig("../figures/spectral_pw.png")
+
+plt.clf()
+filter_signal = n.fft.irfft(h*xw)
+plt.plot(filter_signal)
+plt.xlabel("Samples")
+plt.title("Filtered signal")
 plt.savefig("../figures/filtered_signal.png")
-if len(sys.argv) == 1:
-    plt.show()
