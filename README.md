@@ -55,8 +55,6 @@ Furthermore, each directory has the following structure
 - Added make figures support
 
 ## To do
-- Shorten Gaussian derivation of Fourier transform
-- ex17_1b still has import sys
 - fix exercise in ch13
 
 ### Everything you need to know
