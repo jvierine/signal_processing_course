@@ -23,7 +23,7 @@ $$\int_{-\infty}^{\infty}\delta(\omega-\omega_{0})e^{-i\omega t}d\omega=\underli
 
 \item Consider the integral:
 $$\int_{-\infty}^{\infty}[u(t+L)-u(t-L)]e^{i\omega t}dt.$$
-This corresponds to a rectangular function with height $1$ and width $2L$ centered around $0$. Thus, the integral can be simplified to:
+This corresponds to a rectangular function with height $1$ and width $2L$ centered around $0$, when $L>0$. Thus, the integral can be simplified to:
 $$\int_{-\infty}^{\infty}[u(t+L)-u(t-L)]e^{i\omega t}dt=\int_{-L}^{L}[u(t+L)-u(t-L)]e^{i\omega t}dt.$$
 The function $u(t+L)-u(t-L)\equiv 1$ on the interval $[-L,L]$, hence:
 $$\int_{-L}^{L}[u(t+L)-u(t-L)]e^{i\omega t}dt=\int_{-L}^{L}e^{i\omega t}dt=\left[\frac{1}{i\omega}e^{i\omega t}\right]_{-L}^{L}=\frac{1}{i\omega}(e^{i\omega L}-e^{-i\omega L}).$$
