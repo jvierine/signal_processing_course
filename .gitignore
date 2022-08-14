@@ -1,0 +1,5 @@
+# ignore these, they depend are generated based on rng
+ch17/figures/ex17_1.png
+ch17/figures/ex17_1a.png
+ch17/figures/filtered_signal.png
+ch17/figures/spectral_pw.png
