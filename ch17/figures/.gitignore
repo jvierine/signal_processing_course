@@ -1,3 +1,4 @@
+# ignore these files as they are rng dependent
 ex17_1.png
 ex17_1a.png
 filtered_signal.png
