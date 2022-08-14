@@ -61,7 +61,7 @@ $$h_{w}[n]=\delta[n-N/2]w[n] +  \frac{\sin(\hat{\omega}_{0}(n-N/2))}{(n-N/2)\pi}
 
 \item An implementation of the band-stop filter is shown in Listing \ref{solex13_2}.
 
-\lstinputlisting[language=Python,caption=Band-stop filter,label=solex13_2]{ch13/code/ex13_2.py}
+\lstinputlisting[language=Python,caption=Band-stop filter,label=solex13_2,linerange={0-49}]{ch13/code/ex13_2.py}
 \begin{marginfigure}
 \includegraphics[width=7.0cm,height=6.8cm]{ch13/figures/impulse_response.png}
 \caption{Impulse response for the band-stop filter}
@@ -69,17 +69,16 @@ $$h_{w}[n]=\delta[n-N/2]w[n] +  \frac{\sin(\hat{\omega}_{0}(n-N/2))}{(n-N/2)\pi}
 \end{marginfigure}
 
 In Figure \ref{impulse_stop} a plot of the impulse response for the band-stop filter is shown, both in time and frequency domain. 
-Figure \ref{freq_spec_filter} shows that the frequency components corresponding to the band between $f_{0}$ and $f_{1}$ have been
+In time domain we see the Dirac delta in the middle and also the sinc function behavior. 
+For the frequency domain plot the filter is close to what we would expect. Figure \ref{freq_spec_filter} shows that the 
+frequency components corresponding to the band between $f_{0}$ and $f_{1}$ have been
 reduced in power. This is what one would except from a band-stop filter.
 
 \begin{marginfigure}
-\includegraphics[width=7.5cm,height=7.0cm]{ch13/figures/freq_spec_filter.png}
+\includegraphics[width=7.0cm,height=7.0cm]{ch13/figures/freq_spec_filter.png}
 \caption{Frequency spectrum of the filtered signal}
 \label{freq_spec_filter}
 \end{marginfigure}
-    
-\item Using $f_{0}=190$ Hz and $f_{1}=$ Hz to make sure we include both frequencies in the band to filter out the lower frequencies. 
-When the audio is played the audio contains only a high frequency pitch, as hoped. 
 
 \end{enumerate}
 \end{enumerate}

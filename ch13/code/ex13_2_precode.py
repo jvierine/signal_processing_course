@@ -3,53 +3,27 @@ import matplotlib.pyplot as plt
 import scipy.io.wavfile as sw
 import scipy.signal as ss
 
-# function to convert to decibel
-def convert_to_decibel(x):
-    return 10*n.log10(n.abs(x)**2)
+# read the noisy signal
+ts = sw.read("crappy.wav")
+sr = ts[0]      # get sample-rate
+crap = ts[1]    # some files might be stereo
 
-# read audio file (wav format)
-ts = sw.read("test.wav")
-sr = ts[0]        # sample rate
-clip = ts[1]      # extract audio file as numpy data vector
+# filter length
+N = 4000
 
-if len(clip.shape)==2: # if stereo, only use one channel
-    print("using only one stereo channel. read on")
-    clip = ts[1][:,0]
+# frequencies of noise (units of Hz)
+f0 = 3e3
+f1 = 5e3
 
-# frequency range to filter out
-# set these accordingly
-f0 = 0
-f1 = 1
+# choose a window function
+w = ...
+# ^ see the scipy.signal documentation for a list of window functions
 
-# time-frequency uncertainty; to get the length of the filter
-N = int(100.0*sr*(1.0/(f1 - f0)))
+# implement the filter and apply it here
+uncrap = ... # complete this
 
-# initialize the impulse response as empty
-h = n.zeros(N,dtype=n.float32)
-res = n.zeros(len(clip),dtype=n.float32)
+# scale to 0.9, because 1.0 is the maximum allowed by the .wav file format
+uncrap = 0.9*uncrap/n.max(n.abs(uncrap))
 
-# implement the tapered impulse response here ...
-
-# do some plotting of the impulse response
-plt.subplot(121)
-plt.plot(h)
-plt.subplot(122)
-plt.plot(n.fft.fftshift(n.fft.fftfreq(len(h),d=1.0/sr))/1e3,convert_to_decibel(h))
-plt.show()
-
-# apply the filter to the audio signal here ...
-
-# normalize to unity
-res = res/(n.max(n.abs(res)))
-
-# plot the filtered signal and the frequency 
-# domain representation of the signal
-plt.plot(res)
-plt.show()
-
-plt.plot(n.fft.fftshift(n.fft.fftfreq(len(res),d=1.0/sr))/1e3,convert_to_decibel(res))
-plt.show()
-
-print("Saving filtered.wav")
-# save as .wav file with 44.1 kHz sample rate
-sw.write("filtered.wav",sr,n.array(res,dtype=n.float32))
+# save the filtered audio file
+sw.write("test_uncrappy.wav",sr,n.array(uncrap,dtype=n.float32))

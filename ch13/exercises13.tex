@@ -11,26 +11,25 @@
 \end{equation}
 Derive the impulse response for the band-stop filter.
 
-\item Consider the band-stop filter you found in the previous exercise. The goal of this exercise is to implement this filter in Python and apply it to filter audio files.
+\item Consider the band-stop filter you found in the previous exercise. 
+The goal of this exercise is to implement this filter in Python and apply it to filter an audio file.
 
 \begin{enumerate}[a)]
 \item Let $w[n]$ be a tapered window function, like the Hann window of length $N$. Show that the windowed filter can be written as:
 $$h_{w}[n]=\delta[n-N/2]w[n] +  \frac{\sin(\hat{\omega}_{0}(n-N/2))}{(n-N/2)\pi}w[n] - \frac{\sin(\hat{\omega}_{1}(n-N/2))}{(n-N/2)\pi}w[n].$$
 
-\item Implement the filter above using Python. You can use the code in Listing \ref{band_stop} as a starting point. 
-\footnote{Don't worry if you can't understand everything in the code yet, we'll get to it later when we introduce the discrete Fourier transform and the fast Fourier transform algorithm.}
-\lstinputlisting[language=Python,caption=Precode for exercise 2,label=band_stop]{ch13/code/ex13_2_precode.py}
-
-\item Apply the filter to the test signal. The test signal has three frequency components, these being $f_{0}=196$, $f_{1}=2f_{0}$ and $f_{2}=5f_{0}$. 
-Use the stop-band filter to filter out $f_{0}$ and $f_{1}$. Run your implementation and play the audio file filtered.wav. 
-Does it sound correct? Try using adjusting the frequencies and apply your filter on other pieces of music. What happens? 
-\footnote{Ear warning! If you do something wrong, the audio might be very loud or sound horrible, so be careful.}
-
+\item Download the \verb|crappy.wav| file from the link:
+\begin{center}
+\verb|https://juhamakelinkpls.no| 
+\end{center}
+The audio file contains a guitar playing, but it is impossible to hear due to noise. 
+Your task is to filter out this noise using a band-stop filter. 
+The noise in the signal is contained in a frequency band between $f_{0}=3$ kHz and $f_{1}=5$ kHz, 
+but try to experiment with these to see what happens. Implement a band-stop filter using 
+Python to remove the noise and recover the original audio. You can use the code shown in Listing \ref{bandex} 
+as a starting point. 
 \end{enumerate}
 
-
-
-
-
+\lstinputlisting[language=Python,caption=Band-stop filter starting point,label=bandex]{ch13/code/ex13_2_precode.py}
 
 \end{enumerate}
