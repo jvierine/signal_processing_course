@@ -1,5 +1,4 @@
-# ignore these, they depend are generated based on rng
-ex17_1
-ex17_1a
-filtered_signal
-spectral_pw
+/ex17_1.png
+/ex17_1a.png
+/filtered_signal.png
+/spectral_pw.png
