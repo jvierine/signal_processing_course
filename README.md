@@ -53,9 +53,9 @@ Furthermore, each directory has the following structure
 - Moved Fur Elise to Spectral Analysis (ch16)
 - Added exercise with solution for ch15 (DFT)
 - Added make figures support
+- fixed exercise in ch13
 
 ## To do
-- fix exercise in ch13
 
 ### Everything you need to know
 #### Complex Algebra:
