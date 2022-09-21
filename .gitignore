@@ -1,0 +1,14 @@
+# pdf related and latex files
+*.aux
+*.log
+*.out
+*.toc
+
+# bibtex files
+*.bbl
+*.blg
+
+# index related
+*.idx
+*.ilg
+*.ind
