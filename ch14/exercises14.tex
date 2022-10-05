@@ -165,30 +165,55 @@ band. Which one you should use will depend on your application.
 \begin{equation}
 \Psi(x) = \frac{1}{\sqrt{2T}}[u(x + T) - u(x - T)].
 \end{equation}
-The function $|\Psi(x)|^{2}$ describes the probability density of finding a particle at position $x$. 
+The function $|\Psi(x)|^{2}$ describes the probability density of
+finding a particle at position $x$.
 
 \begin{enumerate}[a)]
 \item Show that:
 \begin{align*}
-\phi(p)&= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\Psi(x)e^{-ip x}dx, \\
-            &= \frac{1}{\sqrt{T\pi}}\frac{\sin(p T)}{p}.
+\hat{\Psi}(k)&= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\Psi(x)e^{-ik x}dx, \\
+            &= \frac{1}{\sqrt{T\pi}}\frac{\sin(k T)}{k}.
 \end{align*}
-Here $\phi(p)$ is the unitary Fourier transform of $\Psi(x)$. The function $|\phi(p)|^{2}$ is the probability density function
-for the particle having a momentum of $p$. 
+Here $\hat{\Psi}(k)$ is the unitary Fourier transform\sidenote[][-3cm]{The
+unitary Fourier transform pair is defined
+as:\begin{align*}
+\hat{f}(\omega)&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}
+f(t) e^{-i\omega t}dt \\
+f(t) &=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} \hat{f}(\omega)
+e^{i\omega t}d\omega
+\end{align*}
+This version of the Fourier transform results in the following variant of Plancherel's theorem:
+\begin{equation*}
+\int_{-\infty}^{\infty} \hat{f}(\omega)\hat{g}^*(\omega) d\omega = \int_{-\infty}^{\infty} f(t)g^*(t) dt.
+\end{equation*}
+This theorem was derived in the Fourier transform chapter (see Equation \ref{eq:ft_plancherel_theorem}).
 
-\item Define the width of the wave functions $\Psi(x)$ and $\phi(p)$.
-\footnote{A solution to the Schrödinger equation is called a wave function. If you haven't seen quantum mechanics,
-just think of it as an ordinary function.} The width is defined in the following way:
+} of $\Psi(x)$. The function $|\hat{\Psi}(k)|^{2}$ is the probability
+density function for the particle having the wavenumber $k$. If $x$
+has units of meters, then $k$ has units of rad/m. In this case, the
+particle momentum and wavenumber of a particle are related as follows:
+$p = \hbar k$ with units of kg$\cdot$m$/$s.
+
+\item Define the width of the wave functions $\Psi(x)$ and $\hat{\Psi}(k)$.
+\footnote{A solution to the Schrödinger equation is called a wave function. If you aren't familiar with quantum mechanics, just think of it as an ordinary function.} We'll define the width of the wavefunctions in the following way:
 $$\Delta x = \min\{x : |\Psi(x)|^{2}=0,x>0\},$$
 and 
-$$\Delta p = \min\{p : |\phi(p)|^{2}=0,p>0\},$$
-or, in other words, $\Delta x$ and $\Delta p$ are the smallest positive values for which the functions $|\Psi(x)|^{2}$ and $|\phi(p)|^{2}$ are $0$. Determine $\Delta x$ and $\Delta p$ for the functions $\Psi(x)$ and $\phi(p)$ and come up with a relation between $\Delta x$ and $\Delta p$.
+$$\Delta k = \min\{k : |\phi(k)|^{2}=0,k>0\},$$
+or, in other words, $\Delta x$ and $\Delta k$ are the smallest positive values for which the functions $|\Psi(x)|^{2}$ and $|\hat{\Psi}(k)|^{2}$ are $0$. Determine $\Delta x$ and $\Delta k$ for the functions $\Psi(x)$ and $\hat{\Psi}(k)$ and come up with a relation between $\Delta x$ and $\Delta k$.
 
-\item Sketch the functions $\Psi(x)$ and $\phi(p)$ and indicate $\Delta x$ and $\Delta p$ in your drawing. 
+\item Sketch the functions $\Psi(x)$ and $\hat{\Psi}(k)$ and indicate $\Delta x$ and $\Delta k$ in your drawing. 
 
 \item Show that:
-$$\int_{-\infty}^{\infty} |\phi(p)|^{2}dp=1.$$
-The meaning of this integral is that we are 100\% certain that a particle will have a momentum in the range $-\infty<p<\infty$.
+$$\int_{-\infty}^{\infty} |\hat{\Psi}(k)|^{2}dk=1.$$ The meaning of this
+integral is that we are 100\% certain that a particle will have a
+a value of momentum in the range $-\infty<p<\infty$.
+
+\item Now consider another wavefunction that describes the position of a particle:
+\begin{equation}
+\Psi(x) = \delta(x-x_0),
+\end{equation}
+where $x_0$ is the position of the particle. Can you say that one
+value of momentum or wavenumber is more probable than another?
 
 \end{enumerate}
 
