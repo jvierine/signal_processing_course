@@ -21,12 +21,14 @@ $$\hat{x}(\omega)=\underline{\underline{e^{-2i\omega}[u(\omega+100\pi)-u(\omega-
 
 \item Take:
 $$x(t)=e^{-t}u(t)-e^{-t}u(t-4),$$
-then by linearity the Fourier transform is:
+then by linearity, the Fourier transform is:
 $$\hat{x}(\omega)=\mathcal{F}\{x(t)\}=\mathcal{F}\{e^{-t}u(t)\}-\mathcal{F}\{e^{-t}u(t-4)\}.$$
-The last term can be simplified using the time shift property with $\tau=-4$ giving:
-$$\hat{x}(\omega)=\mathcal{F}\{e^{-t}u(t)\}-e^{-4i\omega}\mathcal{F}\{e^{-t}u(t)\}.$$
-The Fourier transform of $e^{-t}u(t)$ is easily found as it is an exponential decay with $\beta=1$, hence:
-$$\hat{x}(\omega)=\frac{1}{1+i\omega}-e^{-4i\omega}\frac{1}{1+i\omega}=\underline{\underline{\frac{1}{1+i\omega}\left(1-e^{-4i\omega}\right)}}.$$
+The last term can be computed as follows:
+$$\mathcal{F}\{e^{-t}u(t-4)\} = \int_{-\infty}^{\infty}e^{-t}u(t-4)e^{-i\omega t}dt=\int_{4}^{\infty}e^{-t}e^{-i\omega t}dt=\int_{4}^{\infty}e^{-(1+\omega i)t}dt,$$
+which gives:
+$$\mathcal{F}\{e^{-t}u(t-4)\} = \left[-\frac{1}{1+i\omega}e^{-(1+i\omega)t}\right]_{4}^{\infty}=\frac{1}{1+i\omega}e^{-4(1+i\omega)}.$$
+The first term is easily found as it is an exponential decay with $\beta=1$, giving:
+$$\hat{x}(\omega)=\frac{1}{1+i\omega}-e^{-4(1+i\omega)}\frac{1}{1+i\omega}=\underline{\underline{\frac{1}{1+i\omega}\left(1-e^{-4(1+i\omega)}\right)}}.$$
 \end{enumerate}
 
 \item
@@ -34,7 +36,7 @@ $$\hat{x}(\omega)=\frac{1}{1+i\omega}-e^{-4i\omega}\frac{1}{1+i\omega}=\underlin
 \item Let $\hat{x}(\omega)=2+\cos\omega$, then the inverse Fourier transform is:
 \begin{align*}
     x(t)&=\mathcal{F}^{-1}\{\hat{x}(\omega)\}=\mathcal{F}^{-1}\{2\}+\mathcal{F}^{-1}\{\cos\omega\}, \\
-    &=2\delta(t)+\frac{1}{2}(\mathcal{F}^{-1}\{e^{i\omega}\}+\mathcal{F}^{-1}\{e^{-i\omega})\}, \\ 
+    &=2\delta(t)+\frac{1}{2}(\mathcal{F}^{-1}\{e^{i\omega}\}+\mathcal{F}^{-1}\{e^{-i\omega}\}), \\ 
     &=\underline{\underline{2\delta(t)+\frac{1}{2}(\delta(t+1)+\delta(t-1))}},
 \end{align*}
 as $\mathcal{F}^{-1}\{e^{i\omega\tau}\}=\delta(t+\tau)$.
