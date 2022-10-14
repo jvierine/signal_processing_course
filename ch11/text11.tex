@@ -245,7 +245,7 @@ y[n] &= x[n]*h[n]\\
 \begin{marginfigure}
 \begin{center}
 \begin{tikzpicture}
-	\begin{axis}[width=7cm,domain=(-3.14):(3.14),samples=200, xmin=-4,xmax=4, ymin=0,ymax=1.2,
+	\begin{axis}[width=6cm,height=4cm,domain=(-3.14):(3.14),samples=200, xmin=-4,xmax=4, ymin=0,ymax=1.2,
     legend style={draw=none,at={(.99,.1)},anchor=south east},
         xlabel={$\hat{\omega}$},
 	    ylabel={$|\He|$},
@@ -258,7 +258,7 @@ y[n] &= x[n]*h[n]\\
     \end{axis}
 \end{tikzpicture}
 \begin{tikzpicture}
-	\begin{axis}[width=7cm,domain=(-3.14):(3.14),samples=200, xmin=-4,xmax=4, ymin=-3.3,ymax=3.3,
+	\begin{axis}[width=6cm,height=4cm,domain=(-3.14):(3.14),samples=200, xmin=-4,xmax=4, ymin=-3.3,ymax=3.3,
     legend style={draw=none,at={(.99,.1)},anchor=south east},
         xlabel={$\hat{\omega}$},
 	    ylabel={$\angle \He$},
@@ -319,7 +319,7 @@ h[n] = \left\{\begin{array}{cc}
 \begin{marginfigure}
 \begin{center}
         \begin{tikzpicture}
-        \begin{axis}[width=6cm,height=6cm,ymin=0,ymax=2.5,xmin=-2,xmax=10,
+        \begin{axis}[width=6cm,height=4cm,ymin=0,ymax=2.5,xmin=-2,xmax=10,
     xlabel={$n$}, ylabel={$h[n]$}, axis lines = center]
     
    \addplot+[ycomb] plot coordinates {(-2,0) (-1,0) (0,1) (1,2) (2,1) (3,0) (4,0) (5,0)};
@@ -341,21 +341,10 @@ The frequency response can be determined using Equation \ref{eq:dt_fr}:
     &= h[0]e^{-i\hat{\omega}0} + h[1]e^{-i\hat{\omega}1} + h[2]e^{-i\hat{\omega}2}\\
     &= 1 + 2 e^{-i\hat{\omega}} + e^{-i2\hat{\omega}} \,\,.
 \end{align}
-We can tidy this up a bit by multiplying the equation with
-$1=e^{-i\hat{\omega}}e^{i\hat{\omega}}$ so that we get a conjugate
-symmetric pairing of complex exponential functions, which allows us to
-represent $\He$ conveniently in polar form:
-\begin{align}
-\He &=  e^{-i\hat{\omega}}\left(e^{i\hat{\omega}} + 2 + e^{-i\hat{\omega}}\right)\\
-    &= \underbrace{[2+2\cos(\hat{\omega})]}_{\mathrm{magnitude}}\underbrace{e^{-i\hat{\omega}}}_{\mathrm{phase}} \,\, _.
-\end{align}
-The magnitude response is $|\He|=2+2\cos(\hat{\omega})$ and the phase
-response is $\angle \He = -\hat{\omega}$. These are shown in
-Figure \ref{fig:lp_mr_fr}.
 \begin{marginfigure}
 \begin{center}
 \begin{tikzpicture}
-	\begin{axis}[width=7cm,domain=(-3.14):(3.14),samples=200, xmin=-4,xmax=4, ymin=0,ymax=5,
+	\begin{axis}[width=6cm,height=4cm,domain=(-3.14):(3.14),samples=200, xmin=-4,xmax=4, ymin=0,ymax=5,
     legend style={draw=none,at={(.99,.1)},anchor=south east},
         xlabel={$\hat{\omega}$},
 	    ylabel={$|\He|$},
@@ -368,7 +357,7 @@ Figure \ref{fig:lp_mr_fr}.
     \end{axis}
 \end{tikzpicture}
 \begin{tikzpicture}
-	\begin{axis}[width=7cm,domain=(-3.14):(3.14),samples=200, xmin=-4,xmax=4, ymin=-3.3,ymax=3.3,
+	\begin{axis}[width=6cm,height=4cm,domain=(-3.14):(3.14),samples=200, xmin=-4,xmax=4, ymin=-3.3,ymax=3.3,
     legend style={draw=none,at={(.99,.1)},anchor=south east},
         xlabel={$\hat{\omega}$},
 	    ylabel={$\angle \He$},
@@ -384,6 +373,17 @@ Figure \ref{fig:lp_mr_fr}.
 \caption{Magnitude and phase response of low pass filter $\{h[n]\}_{n=0}^{2} = \{1,2,1\}$.}
 \label{fig:lp_mr_fr}
 \end{marginfigure}
+\noindent We can tidy this up a bit by multiplying the equation with
+$1=e^{-i\hat{\omega}}e^{i\hat{\omega}}$ so that we get a conjugate
+symmetric pairing of complex exponential functions, which allows us to
+represent $\He$ conveniently in polar form:
+\begin{align}
+\He &=  e^{-i\hat{\omega}}\left(e^{i\hat{\omega}} + 2 + e^{-i\hat{\omega}}\right)\\
+    &= \underbrace{[2+2\cos(\hat{\omega})]}_{\mathrm{magnitude}}\underbrace{e^{-i\hat{\omega}}}_{\mathrm{phase}} \,\, _.
+\end{align}
+The magnitude response is $|\He|=2+2\cos(\hat{\omega})$ and the phase
+response is $\angle \He = -\hat{\omega}$. These are shown in
+Figure \ref{fig:lp_mr_fr}.
 
 Based on the magnitude response, we can see that the filter is
 a \emph{low-pass filter}. It reduces the magnitude of high frequency
@@ -428,28 +428,10 @@ Using Equation \ref{eq:dt_fr}, we obtain the frequency response:
 \He & = \sum_k h[k] e^{-i\hat{\omega}k}\\
     & = 1 -  e^{-i\hat{\omega}} \,\,.
 \end{align}
-If we multiply this with $1=e^{-i\frac{\hat{\omega}}{2}}e^{i\frac{\hat{\omega}}{2}}$, we obtain:
-\begin{equation}
-\He = e^{-i\frac{\hat{\omega}}{2}}\left(e^{i\frac{\hat{\omega}}{2}}-e^{-i\frac{\hat{\omega}}{2}}\right) \,\,.
-\end{equation}
-We know that $\frac{1}{2i}(e^{i\alpha} - e^{-i\alpha}) = \sin(\alpha)$, therefore:
-\begin{equation}
-\He = e^{-i\frac{\hat{\omega}}{2}} 2i \sin(\frac{\hat{\omega}}{2}) \,\,.
-\end{equation}
-We also know that $i=e^{i\frac{\pi}{2}}$, so 
-\begin{equation}
-\He = 2\sin(\frac{\hat{\omega}}{2}) e^{-i\frac{1}{2}(\hat{\omega}-\pi)} \,\,.
-\end{equation}
-In order to inspect the magnitude and phase response, we need to
-obtain the frequency response in the following form:
-\begin{equation}
-\He =|\He |e^{i\angle \He} \,\,.
-\end{equation} 
-
 \begin{marginfigure}
 \begin{center}
 \begin{tikzpicture}
-	\begin{axis}[width=7cm,domain=(-3.14):(3.14),samples=200, xmin=-4,xmax=4, ymin=0,ymax=2.5,
+	\begin{axis}[width=7cm,height=3cm,domain=(-3.14):(3.14),samples=200, xmin=-4,xmax=4, ymin=0,ymax=2.5,
     legend style={draw=none,at={(.99,.1)},anchor=south east},
         xlabel={$\hat{\omega}$},
 	    ylabel={$|\He|$},
@@ -463,7 +445,7 @@ obtain the frequency response in the following form:
 \end{tikzpicture}
 
 \begin{tikzpicture}
-	\begin{axis}[width=7cm,domain=(-3.14):(3.14),samples=200, xmin=-4,xmax=4, ymin=-2,ymax=2,
+	\begin{axis}[width=7cm,height=3cm,domain=(-3.14):(3.14),samples=200, xmin=-4,xmax=4, ymin=-2,ymax=2,
     legend style={draw=none,at={(.99,.1)},anchor=south east},
         xlabel={$\hat{\omega}$},
 	    ylabel={$\angle \He$},
@@ -482,6 +464,24 @@ obtain the frequency response in the following form:
 \caption{Top: The magnitude response of the high-pass filter. Bottom: The phase response of the same filter.}
 \label{fig:hp_filter_ex}
 \end{marginfigure}
+If we multiply this with $1=e^{-i\frac{\hat{\omega}}{2}}e^{i\frac{\hat{\omega}}{2}}$, we obtain:
+\begin{equation}
+\He = e^{-i\frac{\hat{\omega}}{2}}\left(e^{i\frac{\hat{\omega}}{2}}-e^{-i\frac{\hat{\omega}}{2}}\right) \,\,.
+\end{equation}
+We know that $\frac{1}{2i}(e^{i\alpha} - e^{-i\alpha}) = \sin(\alpha)$, therefore:
+\begin{equation}
+\He = e^{-i\frac{\hat{\omega}}{2}} 2i \sin(\frac{\hat{\omega}}{2}) \,\,.
+\end{equation}
+We also know that $i=e^{i\frac{\pi}{2}}$, so 
+\begin{equation}
+\He = 2\sin(\frac{\hat{\omega}}{2}) e^{-i\frac{1}{2}(\hat{\omega}-\pi)} \,\,.
+\end{equation}
+In order to inspect the magnitude and phase response, we need to
+obtain the frequency response in the following form:
+\begin{equation}
+\He =|\He |e^{i\angle \He} \,\,.
+\end{equation} 
+
 
 \noindent We can do this using a phase shift by $\pi$ to flip the phase $-1 = e^{-i\pi}$. This allows us to take into account the fact that $\sin(\hat{\omega}/2)$ is negative when $-\pi < \hat{\omega} < 0$. The frequency response can now be written as:
 \begin{equation}
@@ -516,17 +516,6 @@ signal will be amplified. For input signal spectral components with
 frequencies at $\hat{\omega}=\pm \pi$, the filter output signal
 spectral components will have twice the original magnitude.
 
-This type of filter is called a \emph{\index{high-pass
-filter}{high-pass filter}}, as it attenuates low frequency spectral
-components relative to high frequency spectral components.
-
-\section{Example: band-pass filter}
-
-Let's now investigate the frequency response of the following filter:
-\begin{align}
-y[n] & = 0.5 x[n+1] - 0.5 x[n-1] \,\,.
-\end{align}
-The impulse response  $h[n]=0.5\delta[n+1]-0.5\delta[n-1]$ of this system is shown in Figure \ref{fig:example0_bpf_h}.
 \begin{marginfigure}
 \begin{center}
         \begin{tikzpicture}
@@ -540,6 +529,18 @@ The impulse response  $h[n]=0.5\delta[n+1]-0.5\delta[n-1]$ of this system is sho
 \caption{The impulse response of a simple band-pass filter.}
 \label{fig:example0_bpf_h}
 \end{marginfigure}
+
+This type of filter is called a \emph{\index{high-pass
+filter}{high-pass filter}}, as it attenuates low frequency spectral
+components relative to high frequency spectral components.
+
+\section{Example: band-pass filter}
+
+Let's now investigate the frequency response of the following filter:
+\begin{align}
+y[n] & = 0.5 x[n+1] - 0.5 x[n-1] \,\,.
+\end{align}
+The impulse response  $h[n]=0.5\delta[n+1]-0.5\delta[n-1]$ of this system is shown in Figure \ref{fig:example0_bpf_h}.
 
 \begin{marginfigure}
 \begin{center}
@@ -650,6 +651,18 @@ Figure \ref{fig:shift_freq_resp}. This filter does not modify the
 magnitude of any spectral components. However, it applies a phase
 shift to spectral components, which results in a time delay.
 
+
+This may seem trivial now, but the frequency domain representation for
+a time-shift will later be useful; when defining more advanced,
+fractional sample, time-shift filters for discrete-time signals. In
+this case, $n_0 \in \mathbb{R}$ is not an integer. We'll need to
+define the inverse discrete-time Fourier transform in order to derive
+the filter impulse response in this case.
+
+
+\section{Example: Continuous-time low-pass filter}
+
+
 \begin{marginfigure}
 \begin{center}
 
@@ -722,16 +735,6 @@ shift to spectral components, which results in a time delay.
 \caption{Top: the impulse response of an averaging filter. Middle: The magnitude response. Bottom: The phase response.}
 \label{fig:sinc_lp}
 \end{marginfigure}
-
-This may seem trivial now, but the frequency domain representation for
-a time-shift will later be useful; when defining more advanced,
-fractional sample, time-shift filters for discrete-time signals. In
-this case, $n_0 \in \mathbb{R}$ is not an integer. We'll need to
-define the inverse discrete-time Fourier transform in order to derive
-the filter impulse response in this case.
-
-
-\section{Example: Continuous-time low-pass filter}
 
 Consider a continuous-time LTI system, which uniformly averages the
 input signal around a region of length $T$:
@@ -964,6 +967,14 @@ zero crossing approaches $\hat{\omega}=0$. This means that the
 bandwidth of the filter approaches zero and passes through only
 signals with frequencies $\hat{\omega}=2\pi k$.
 
+\begin{marginfigure}
+\begin{center}
+\includegraphics[width=\textwidth]{code/019_frequency_response/dirichlet21.png}
+\end{center}
+\caption{The output of the program in Listing \ref{lst:dirichlet}, which shows the magnitude and phase response of the 21-point running average filter. As one can see of the plot, the two methods have equivalent magnitude response.}
+\label{fig:output_dirichlet}
+\end{marginfigure}
+
 From Equation \ref{eq:dirac_comb_dirichlet} it is easy to see that the Dirichlet kernel is $2\pi$-periodic. This is a general property that
 applies to the frequency response of any discrete-time LTI system,
 and is due to dicretization of the signal.
@@ -973,12 +984,5 @@ can be used to plot the magnitude and phase response of the running
 average filter. The output of this program is shown in
 Figure \ref{fig:output_dirichlet}.
 
-\begin{marginfigure}
-\begin{center}
-\includegraphics[width=\textwidth]{code/019_frequency_response/dirichlet21.png}
-\end{center}
-\caption{The output of the program in Listing \ref{lst:dirichlet}, which shows the magnitude and phase response of the 21-point running average filter. As one can see of the plot, the two methods have equivalent magnitude response.}
-\label{fig:output_dirichlet}
-\end{marginfigure}
 
 \lstinputlisting[language=Python,caption={\texttt{019\_frequency\_response/dirichlet.py}},label=lst:dirichlet]{code/019_frequency_response/dirichlet.py}
