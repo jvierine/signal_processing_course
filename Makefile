@@ -1,6 +1,10 @@
-all:
+all: figures
 	pdflatex signal_processing.tex
 	bibtex signal_processing
+	pdflatex signal_processing.tex
+	bibtex signal_processing
+
+pdf:
 	pdflatex signal_processing.tex
 	bibtex signal_processing
 
@@ -23,6 +27,8 @@ figures:
 	cd ../..
 	cd ch14/code ; python3 ex14_1.py noplot
 	cd ../..
+	cd ch15/code ; python3 ex15_2.py noplot
+	cd ../..
 	cd ch16/code ; python3 ex16_1b.py noplot ; python3 ex16_1c.py noplot
 	cd ../..
 	cd ch17/code ; python3 ex17_1.py noplot ; python3 ex17_1a.py noplot ; python3 ex17_1b.py noplot
@@ -31,6 +37,7 @@ figures:
 	cd ../..
 	cd ch19/code ; python3 ex19_5.py noplot
 	cd ../..
+
 
 clean:
 	rm -f signal_processing.aux  signal_processing.bbl  signal_processing.blg  signal_processing.idx signal_processing.ilg signal_processing.ind signal_processing.log signal_processing.out signal_processing.toc
