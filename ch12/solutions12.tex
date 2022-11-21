@@ -48,7 +48,7 @@ since this an LTI system, where:
 $$h[n]=h_{1}[n]*h_{2}[n]*h_{3}[n].$$
 In frequency domain, we have:
 $$\mathcal{H}(\hat{\omega})=\mathcal{H}_{1}(\hat{\omega})\mathcal{H}_{2}(\hat{\omega})\mathcal{H}_{3}(\hat{\omega}).$$
-Each $\mathcal{H}_{1}$ is found by the discrete-time Fourier transform:
+Each $\mathcal{H}_{i}$ is found by the discrete-time Fourier transform of $h_{i}[n]$:
 \begin{align*}
     \mathcal{H}_{1}(\hat{\omega})&=1-e^{-i\hat{\omega}}, \\
     \mathcal{H}_{2}(\hat{\omega})&=1+e^{-2i\hat{\omega}}, \\

@@ -125,7 +125,7 @@ In order to see what the signals look like, you will need to plot the data.
 \begin{enumerate}[a)]
 \item Plot the signals $x_H[n]$ and $x_L[n]$, with time in seconds on
   the horizontal axis and strain on the vertical axis. Assume that
-  time at the beginning of the signal array starts at 0 seconds. Label
+  time at the beginning of the signal array starts at $0$ seconds. Label
   the axes of your plot. Use separate plots for $x_H[n]$ and $x_L[n]$
   signals. Hint: you can use the \verb|plt.plot(t,signal)| command found in Matplotlib. Use an array \verb|t| to denote the seconds of each sample of the array \verb|signal|.
   
@@ -164,12 +164,13 @@ DFT. This function is available in Python as \verb|numpy.fft.fft|.
 \begin{equation}
   x[n]=\cos(2\pi f  n/f_s)
 \end{equation}
-  with frequency $f=31.5$ Hz, which is sampled at $f_s=4096$
-  Hz. Sample signal at $n\in[0,1,2,\cdots,4095]$. Make a plot of the
-  signal $x[n]$ and the windowed signal $w[n]x[n]$. Use a window of
-  the same length as your signal $N=4096$. Hint: You can use \verb|numpy.arange(N)| to create a sequence of integers between $0$ and $N-1$.
+with frequency $f=31.5$ Hz, which is sampled at $f_s=4096$
+Hz. Sample signal at $n\in[0,1,2,\cdots,4095]$. Make a plot of the
+signal $x[n]$ and the windowed signal $w[n]x[n]$. Use a window of
+the same length as your signal $N=4096$. Hint: You can use \verb|numpy.arange(N)| to create a sequence of integers between $0$ and $N-1$.
 
-\item The FFT algorithm will evaluate $\hat{x}[k]$ at integer values of $k$ between $0$ and $N-1$. What frequencies $f_k$ in hertz do frequencies $\hat{\omega}_k = 2\pi k/N$ in radians per second correspond to on the principal spectrum ($-f_s/2 < f_k < f_s/2$)? 
+\item The FFT algorithm will evaluate $\hat{x}[k]$ at integer values of $k$ between $0$ and $N-1$. What frequencies $f_k$ in hertz do frequencies 
+$\hat{\omega}_k = 2\pi k/N$ in radians per sample correspond to on the principal spectrum ($-f_s/2 < f_k < f_s/2$)? 
 
 \item Which values of $k$ correspond to a frequency $f_k$ that is nearest to $31.5$ and $-31.5$ hertz?
 

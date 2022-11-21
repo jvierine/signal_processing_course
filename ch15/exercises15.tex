@@ -31,7 +31,7 @@ Here $n$ and $k$ are integers.
 
 \item The code in Listing \ref{code:ex152} creates a discrete-time signal consisting of three sinusoidal signals:
 \begin{equation}
-x[n]=cos(\hat{\omega}_0 n)+2cos(\hat{\omega}_1 n)+3cos(\hat{\omega}_2 n)
+x[n]=\cos(\hat{\omega}_0 n)+2\cos(\hat{\omega}_1 n)+3\cos(\hat{\omega}_2 n)
 \label{eq:ex15_2}
 \end{equation}
 and calculates the magnitude spectrum $\hat{x}[k]$ of this signal. The spectrum is shown in Figure \ref{fig:ch15_ex15_2}.
@@ -39,9 +39,18 @@ and calculates the magnitude spectrum $\hat{x}[k]$ of this signal. The spectrum 
 \lstinputlisting[language=Python,caption=Create a signal consisting of three sinusoids and analyze the magnitude spectrum calculated using FFT.,label=code:ex152,linerange={1-2,4-14}]{ch15/code/ex15_2.py}
 
 \begin{enumerate}[a)]
+%<<<<<<< HEAD
     \item What are the numerical values of $\hat{\omega}_0$, $\hat{\omega}_1$, and $\hat{\omega}_2$ in units of radians per sample? Show that they correspond to frequencies $f_0=4000$, $f_1=1000$, and $f_0=2500$ in units of hertz.
     \item Show that signal $x[n]$ is periodic ($x[n]=x[n+N]$). Determine the fundamental period of this signal in samples and in units of seconds. 
     \item Modify the code so that the figure produced by the code, shown in Figure \ref{fig:ch15_ex15_2}, displays frequency on the horizontal axis units of hertz. Make sure that you plot both the positive and negative frequency components of the signal, recalling that a real valued cosine signal consists of a positive and negative frequency complex sinusoidal signal. Verify that you get the correct frequency axis by looking at the relative magnitudes of the six non-zero frequency components of the signal. Hint: you may find Python functions \verb|numpy.fft.fftshift| and \verb|numpy.fft.fftfreq| useful for this exercise.
+%=======
+%    \item Show that frequencies $\hat{\omega}_0$, $\hat{\omega}_1$, and $\hat{\omega}_2$ in units of radians per sample correspond to frequencies $f_0=4000$, $f_1=1000$, and $f_3=2500$ in units of hertz.
+%    \item Show that the signal $x[n]$ is periodic ($x[n]=x[n+N]$). Determine the fundamental period of this signal in samples and in units of seconds. 
+%    \item Modify the code so that the figure produced by the code, shown in Figure \ref{fig:ch15_ex15_2}, displays frequency on the horizontal axis in units of hertz. 
+%    Make sure that you plot both the positive and negative frequency components of the signal, recalling that a cosine signal consists of a positive and a negative frequency component. 
+%    Verify that you get the correct frequency axis by looking at the relative magnitudes of the six non-zero frequency components of the signal. 
+%    Hint: you may find Python functions \verb|numpy.fft.fftshift| and \verb|numpy.fft.fftfreq| useful for this exercise.
+%>>>>>>> e41a90a597f34e79925e43292313ea9f2bd0a4b8
 \end{enumerate}
 
 
