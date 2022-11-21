@@ -296,22 +296,17 @@ Let's apply this in practice:
 \Hez &= \frac{1}{1+0.9 z^{-1}} - z^{-1}\frac{0.5}{1+ 0.9 z^{-1}},\\
      &= \frac{1-0.5z^{-1}}{1+0.9 z^{-1}} \label{eq:coeffs_read}.
 \end{align}
+By comparing the system function in Equation \ref{eq:coeffs_read} with
+Equations \ref{eq:iir_def} and \ref{eq:iir_system_gen}, we can see
+that the system is described using the following difference equation:
+\begin{equation}
+y[n] = -0.9 y[n-1] +x[n] - 0.5x[n-1]
+\end{equation}
 \begin{marginfigure}
 \includegraphics[width=\textwidth]{code/026_iir/z_mag_angle_iir.png}
 \caption{The magnitude of the system function given in Equation \ref{eq:example_iir_system_hpf}. The white cross indicates the pole at $z=-0.9$ and the white circle indicates the zero at $z=0.5$. The black circle indicates the unit circle.}
 \label{fig:pz_diag}
 \end{marginfigure}
-By comparing the system function in Equation \ref{eq:coeffs_read} with
-Equations \ref{eq:iir_def} and \ref{eq:iir_system_gen}, we can see
-that the system is described using the following difference equation:
-\begin{marginfigure}
-\includegraphics[width=\textwidth]{code/026_iir/z_mag_angle_iir2.png}
-\caption{The magnitude and frequency response of the system given in Equation \ref{eq:example_iir_system_hpf}. This filter is a high-pass filter.}
-\label{fig:pz_diag2}
-\end{marginfigure}
-\begin{equation}
-y[n] = -0.9 y[n-1] +x[n] - 0.5x[n-1]
-\end{equation}
 
 The impulse response is a polynomial fraction. We can multiply this by
 $z/z$ to obtain:
@@ -336,6 +331,12 @@ a white cross, and the zero at $z=0.5$ is indicated with a white
 circle. We can see the implication of the zeros and the poles of the
 system function. The system function has a large magnitude near the
 poles and low values in the region near the zeros.
+
+\begin{marginfigure}
+\includegraphics[width=\textwidth]{code/026_iir/z_mag_angle_iir2.png}
+\caption{The magnitude and frequency response of the system given in Equation \ref{eq:example_iir_system_hpf}. This filter is a high-pass filter.}
+\label{fig:pz_diag2}
+\end{marginfigure}
 
 A plot like the one shown in Figure \ref{fig:pz_diag} is known as a
 \emph{\index{pole-zero diagram}{pole-zero diagram}}. Typically such a diagram only depicts the locations
@@ -496,12 +497,12 @@ When $|a|<1$, we get:
 \end{equation}
 The system is BIBO stable when $|a|<1$.
 
-\begin{marginfigure}[-5cm]
+\begin{marginfigure}
 \includegraphics[width=\textwidth]{code/026_iir/ex1.png}
 \caption{A band-stop filter.}
 \label{fig:pzex1}
 \end{marginfigure}
-\begin{marginfigure}[-5cm]
+\begin{marginfigure}
 \includegraphics[width=\textwidth]{code/026_iir/ex4.png}
 \caption{A low-pass filter.}
 \label{fig:pzex2}
@@ -539,13 +540,14 @@ $\mathcal{H}(\beta_{\ell})\rightarrow \infty$.
 The terms $\alpha_{k}$ are the \emph{\index{zeros}{zeros}} of the
 system function. They indicate regions of the complex plane where the
 system function magnitude becomes zero valued $\mathcal{H}(\alpha_{k}) = 0$.
-\begin{marginfigure}[-5cm]
+
+\subsection{Example: Pole-zero diagrams}
+
+\begin{marginfigure}
 \includegraphics[width=\textwidth]{code/026_iir/ex7.png}
 \caption{A band-pass filter that passes through positive frequencies. The resulting signal will be complex valued, even if a real valued signal is fed into the system.}
 \label{fig:pzex3}
 \end{marginfigure}
-
-\subsection{Example: Pole-zero diagrams}
 
 By knowing the poles and zeros of the system function, it is possible
 to analytically say quite a lot about the behavior of the
