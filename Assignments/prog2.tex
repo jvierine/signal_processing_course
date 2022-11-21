@@ -22,9 +22,9 @@ instead of acoustic waves.
 In order to implement a simple sonar, I have used a loudspeaker and a
 microphone connected to a sound card to transmit and receive acoustic
 signals. The sampling rate of the audio recording is $f_s=44.1\cdot
-10^3$ hertz. This setup allows me to also control what type of
-signal is being transmitted. The loudspeaker and the microphone are
-spaced apart by approximately 30 cm.
+10^3$ hertz, which results in a sample-spacing of $T_s=2.2676\cdot
+10^{-5}$ s. The loudspeaker and the microphone are spaced apart by
+approximately 30 cm.
  
 If we ignore measurement errors, the acoustic signal can be modeled using
 a discrete-time convolution equation:
@@ -71,8 +71,8 @@ where $A$ is a constant. In the case of chirp-like signals, an often used deconv
 \end{equation}
 where $n_0$ is a suitable time shift. 
 
-For this assignment, I have used an amplitude tapered chirp-like waveform
-of the following form:
+For this assignment, I have used an amplitude tapered chirp-like
+waveform with a linearly increasing frequency of the following form:
 \begin{equation}
   x[n] = \left\{
 \begin{array}{ccc}
@@ -83,8 +83,10 @@ of the following form:
 Here $N$ is the integer length of the chirp pulse in samples and
 $\beta = \frac{1}{2 N T_s}f_{\mathrm{max}}$ is the chirp-rate, which
 determines how fast the instantaneous frequency of the signal
-increases as a function of time. Figure \ref{fig:tx_pulse_chirp} shows
-this waveform with $N=1000$ and $\beta = 486202.5\ \text{s}^{-2}$.     
+increases as a function of time, with $f_{\mathrm{max}}$ the maximum
+frequency used of the chirp (in hertz) at the end of the transmit
+pulse. Figure \ref{fig:tx_pulse_chirp} shows this waveform with
+$N=1000$ and $\beta = 486202.5\ \text{s}^{-2}$.
 
 \begin{marginfigure}
   \begin{center}
@@ -150,13 +152,10 @@ for i in range(N_ipps):
     echoes = m[(i*interpulse_period):(i*interpulse_period+interpulse_period)]
     plt.plot(echoes)
     plt.show()
-
-    # convolve echo with deconvolution filter
-    # deconvolved = n.convolve(echo,deconvolution_filter,mode="same")
 \end{lstlisting}
-In this listing I have also added a hint for you on how you can
-implement the deconvolution operation $A h[n] \approx
-\lambda[n]*m[n]$ for each interpulse period consisting of 10000 samples.
+%In this listing I have also added a hint for you on how you can
+%implement the deconvolution operation $A h[n] \approx
+%\lambda[n]*m[n]$ for each interpulse period consisting of 10000 samples.
 
 For this assignment, you are to perform the following tasks. Write a
 short report describing what you did and what results you got. The
@@ -169,7 +168,7 @@ help each other on Perusall. It is fine to give hints, but please try
 not to give away the \emph{exact solution}.
 
 \begin{enumerate}[a)]
-\item How many meters of distance\sidenote{I mean total distance, \emph{not half the total distance}, which is often used in sonar and radar to take into account the fact that the wave has to travel to the target and back.} does an acoustic pulse travel during one sample duration $T_s = f_s^{-1}$? Assume sound speed in a typical lecture room at UiT.
+\item How many meters of distance\sidenote{I mean total distance, \emph{not half the total distance}, which is often used in sonar and radar to take into account the fact that the wave has to travel to the target and back.} does an acoustic pulse travel during one sample duration $T_s = f_s^{-1}$? Assume sound speed in a typical lecture room at UiT (343 m/s).
 
   \item How long is the transmitted pulse read from file \verb|chirp.bin| in seconds?  
 

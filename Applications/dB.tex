@@ -50,7 +50,6 @@ dB & linear \\
 \caption{Here is a table of commonly encountered decibel values in linear scale.}
 \end{margintable}
 
-
 Here are some examples of dynamic range. Humans are very good at
 perceiving a relative difference in a quantity only if it has a small
 dynamic range. It is very easy to judge that an apple costing \$2 is
@@ -69,7 +68,6 @@ where the exponents (-6 and 24) tell you the order of magnitude of
 these numbers. And now by subtracting -6 from 24, you can tell that
 the Earth's weight corresponds to approximately $10^{30}$ grains of
 sand. This is essentially the idea behind the decibel scale, too. 
-
 
 \newthought{Here's an example of using decibels in radio engineering}. Let us assume
 that the electric potential of a sinusoidal signal is $A=0.316$ volts,
@@ -96,14 +94,24 @@ that the frequency of the signal is fairly small.
 \end{marginfigure}
 
 A typical reference power level in radio engineering is one milliwatt
-of power, or $P_0 = 10^{-3}$ watts. In this case, the
+($0.001$ W) of power, or $P_0 = 10^{-3}$ watts. In this case, the
 acronym \index{dBm}{dBm} is typically used to denote the signal in
 decibel scale, relative to one milliwatt. In this scale, our example
 signal given in Equation \ref{eq:dbmsignal} with an amplitude of
 $A=0.316$ volts would correspond to 0 dBm of power. The EISCAT
-incoherent scatter radar, transmitting 1 MW of power, would be 90 dBm
-in this scale.
+incoherent scatter radar, transmitting 1000000 W of power, would be 90
+dBm in this scale.
 
-
+\newthought{The SI order of magnitude prefix system} is another example of a
+logarithmic scale that you are probably already used to. These are the
+familiar milli-, kilo-, mega-, and giga- prefixes that are often used
+in science. But they often require more memory and thinking than the
+decibel system, because there is a conversion of a word to an order of
+magnitude. For example, there is a good chance you did't know that the
+prefix \emph{yocto-} is $10^{-24}$ or that the \emph{zetta-} prefix
+means $10^{21}$. But you could very easily determine that $-240$ dB is
+$10^{-24}$ and $210$ dB is $10^{21}$ if you were familiar with the
+decibel system. Perhaps due to this reason, decibel units are often
+used in engineering.
 
 

@@ -1150,6 +1150,13 @@ values of $z$. This code is shown in Listing
 \ref{lst:third_order}. The plot is shown in Figure
 \ref{fig:third_order_pz}.
 
+
+From this plot, one can see that $|\mathcal{H}(z)|$ obtains very low
+values near the locations of the zeros of $\mathcal{H}(z)$. This means
+that signals with normalized frequencies near $\hat{\omega}_1=0$,
+$\hat{\omega}_2=\frac{\pi}{3}$, and $\hat{\omega}_3=-\frac{\pi}{3}$
+are also reduced in amplitude as a result of the filtering operation.
+
 \begin{marginfigure}
 \begin{center}
 \includegraphics[width=\textwidth]{code/025_system_function/z_mag_angle.png}
@@ -1157,12 +1164,6 @@ values of $z$. This code is shown in Listing
 \caption{The magnitude and phase angle of the system function plotted on the complex plane. The unit circle is shown in white.}
 \label{fig:third_order_pz}
 \end{marginfigure}
-
-From this plot, one can see that $|\mathcal{H}(z)|$ obtains very low
-values near the locations of the zeros of $\mathcal{H}(z)$. This means
-that signals with normalized frequencies near $\hat{\omega}_1=0$,
-$\hat{\omega}_2=\frac{\pi}{3}$, and $\hat{\omega}_3=-\frac{\pi}{3}$
-are also reduced in amplitude as a result of the filtering operation.
 
 The magnitude of $\Hez$ is larger than unity on the left-hand side of
 the plot. This means that complex sinusoidal signals with sufficiently
@@ -1279,7 +1280,7 @@ The $z$-transform of this filter is:
 \Hez &= \sum_{k=-\infty}^{\infty} h[k]z^{-k}, \\
      &= \frac{1}{M}\sum_{k=-N}^{N} z^{-k}.
 \end{align}
-\begin{marginfigure}[15cm]
+\begin{marginfigure}
   \begin{center}
     \includegraphics[width=\textwidth]{code/025_system_function/z_mag_angle_rm.png}
 \end{center}
@@ -1334,7 +1335,7 @@ all along the unit circle (shown with a white circle). Only the region
 near $z=1$ doesn't have a null. This corresponds to the pass-band
 region of this filter. Figure \ref{fig:rma_l20} also shows the phase
 angle of the same system function.
-\begin{marginfigure}[5cm]
+\begin{marginfigure}
 \begin{center}
 \includegraphics[width=\textwidth]{code/025_system_function/rma_magresp.png}
 \end{center}
@@ -1422,7 +1423,7 @@ white circle). Only the region near $z=1$ doesn't have a null. This
 corresponds to the pass-band region of this filter. Figure
 \ref{fig:rma_l20_phase} shows the phase angle of the same system
 function.
-\begin{marginfigure}[5cm]
+\begin{marginfigure}
 \begin{center}
 \includegraphics[width=\textwidth]{code/025_system_function/rma_magresp.png}
 \end{center}
