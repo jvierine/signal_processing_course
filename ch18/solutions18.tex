@@ -183,7 +183,7 @@ Expanding all of this out, one obtains:
     \mathcal{H}(z)&=z^{4} -2(\cos(\theta_1)+\cos(\theta_2))z^{3} + 2(2\cos\theta_1\cos\theta_2 + 1)z^{2} -2(\cos\theta_1+\cos\theta_2) z + 1,
 \end{align*}
 where $\theta_1=\frac{10\pi}{441}$ and $\theta_2=\frac{10\pi}{147}$. The impulse response is then the inverse $z$-transform:
-$$h[n]=\delta[n]-2(\cos\theta_1+\cos\theta_2)\delta[n-1]+2(2\cos\theta_1\cos\theta_2+1)\delta[n-2]-2(\cos\theta_1+\cos\theta_2)\delta[n-3]+\delta[n-4].$$
+$$h[n]=\delta[n] - 2(\cos\theta_1 + \cos\theta_2)\delta[n + 1] + 2(2\cos\theta_1\cos\theta_2+1)\delta[n + 2]-2(\cos\theta_1+\cos\theta_2)\delta[n + 3]+\delta[n + 4].$$
 
 \end{enumerate}
 \end{enumerate}
