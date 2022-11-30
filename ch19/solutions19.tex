@@ -20,7 +20,7 @@ Assume $h[n]=0$ for $n<0$, then by iterating, we have:
 as we wanted to show.
 
 \item This is an infinite impulse response filter as it can be written as:
-$$y[n]=\sum_{l=1}^{2} a_{l}y[n-l]+\sum_{k=0}^{1} b_{k}x[n-l],$$
+$$y[n]=\sum_{l=1}^{2} a_{l}y[n-l]+\sum_{k=0}^{1} b_{k}x[n-k],$$
 with $a_{1}=a_{2}=1$, $b_{0}=0$ and $b_{1}=1$. 
 
 \item Calculating the $z$-transform, one gets
@@ -149,12 +149,13 @@ The poles for this system function all lie inside the unit circle, so the system
         xlabel=$\mathrm{Re}(z)$,
         ylabel=$\mathrm{Im}(z)$, axis lines = middle, width=7cm, height=7cm]
         \addplot [gray,domain=0:2*pi,samples=50]({cos(deg(x))},{sin(deg(x))});
-    \addplot [red, mark = x,mark size=3pt] coordinates {({0}, {0})} {}; 
+    \addplot [blue, mark = o,mark size=3pt] coordinates {({0}, {0})} {}; 
     \addplot [red, mark = x, mark size=3pt] coordinates {(0.8,0)};
     \end{axis}
     \end{tikzpicture}
     \end{center}
-    \caption{The system function has no zeros in this case. There are two poles, these being at $z=0$ and at $z=0.8$, both marked with red crosses.}
+    \caption{The system function has one zeros and one pole in this case. There is a zero at $z=0$ and a pole at $z=0.8$. Zero displayed as a blue circle
+    and pole as a red cross.}
     \label{iir:ex3}
     \end{marginfigure}
 \item The impulse response function can be found by the inverse $z$-transform of the system function. In this case, we get:
@@ -194,8 +195,14 @@ now $u[m]$ kills the negative terms as $u[m]=0$ for $m<0$ and $u[m]=1$ for $m\ge
 
 \item The system function:
 $$\mathcal{H}(z)=\frac{(z+1)(z-\alpha)(z-\alpha^{*})}{z^{3}}$$
-has zeros corresponding to $z=-1,\alpha,\alpha^{*}$, thus this is the system function corresponding to diagram c) as $\alpha=i(2\sqrt{2})^{-1}-(2\sqrt{2})^{-1}$, which has a negative real part. 
-\item Diagram b) and c) both reduce high frequency components and keeps low frequency components, meaning both of these are low-pass filters. However, only diagram c) is stable. This can be seen from Figure \ref{fig:mag_res_diag} as the magnitude response becomes unbounded at $\hat{\omega}=0$, but we can also see this from the pole-zero diagram, as diagram b) has a pole on the unit circle. Recall that a system function corresponds to a stable BIBO LTI system if all the poles lie inside the unit circle. 
+has zeros corresponding to $z=-1,\alpha,\alpha^{*}$, thus this is the system function 
+corresponding to diagram c) as $\alpha=i(2\sqrt{2})^{-1}-(2\sqrt{2})^{-1}$, which has a negative real part. 
+
+\item Diagram b) and c) both reduce high frequency components and keeps low frequency components, 
+meaning both of these are low-pass filters. However, only diagram c) is stable. 
+This can be seen from Figure \ref{fig:mag_res_diag} as the magnitude response becomes unbounded at $\hat{\omega}=0$, 
+but we can also see this from the pole-zero diagram, as diagram b) has a pole on the unit circle. Recall that a system 
+function corresponds to a stable BIBO LTI system if all the poles lie inside the unit circle. 
 
 \item The only diagram left is a), as b) and c) are both low-pass filters. Diagram a) is indeed a high-pass filter as $\hat{\omega}=0$ gets sent to $0$ and the high frequencies pass through. The filter is also stable as all the poles lie inside the unit circle. 
 
