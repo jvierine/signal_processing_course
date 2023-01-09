@@ -219,9 +219,13 @@ with $\omega_{0}=2\pi30$ and $\omega_{1}=2\pi40$ radians per second. Here we use
 \end{axis}
 \end{tikzpicture}
 \end{center}
+The frequency shifted copies do not overlap due to the sample-rate satisfying the Shannon-sampling theorem, but here
+the signal is undersampled, as it is confined in another interval than the typical $+\omega_{s}/2$.
+Recall that the goal of sampling is exactly to avoid the shifted copies overlapping, which can be done with the provided 
+sample-rate if we use a different area as to avoid aliasing. 
 
 \item The condition $f_{s}>2f_{\text{max}}$ is violated in this case. 
-This condition applies to real signals but assumes the frequencies fall in the principal spectrum of $|f|<f_{s}/2$ which is not the case here. 
+This condition applies to real signals, but assumes the frequencies fall in the principal spectrum of $|f|<f_{s}/2$ which is not the case here. 
 However, the sample rate satisfy:
 $$n\frac{\omega_{s}}{2}\le|\omega|\le(n+1)\frac{\omega_{s}}{2},$$
 or
