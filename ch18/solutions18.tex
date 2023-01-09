@@ -52,7 +52,7 @@ The impulse response plot is shown in Figure \ref{fig18_2}.
 \end{marginfigure}
 
 \item If we define a new signal $y_{2}[n]=y[n-2]$, then by the time-shift theorem we have that the new system function will be:
-$$Y_{2}(z)=z^{-n_{0}}\mathcal{H}(z)=z^{-2}\mathcal{H}(z)=z^{-1}+z^{-2}+3z^{-3}-0.2z^{-4}+4z^{-12},$$
+$$Y_{2}(z)=z^{-n_{0}}\mathcal{H}(z)=z^{-2}\mathcal{H}(z)=z^{-1}+z^{-2}+3z^{-3}-0.5z^{-4}+4z^{-12},$$
 this new system function will describe a system that is delayed by 2 samples compared to $\mathcal{H}(z)$.
 \end{enumerate}
 
@@ -108,7 +108,7 @@ Output from Listing \ref{sol_to_c} is shown in Figure \ref{h-plt}.
 \begin{align*}
     \mathcal{H}(z) &=(z-e^{i\pi/4})(z-e^{-i\pi})z^{-2}, \\
                    &=1-e^{i\pi/4}z^{-1}-e^{-i\pi}z^{-1}+e^{-i3\pi/4}z^{-2}, \\
-                   &=1 -(e^{i\pi/4}+e^{-i\pi})z^{-1} + e^{-i3\pi/4})z^{-2}
+                   &=1 -(e^{i\pi/4}+e^{-i\pi})z^{-1} + (e^{-i3\pi/4})z^{-2}
 \end{align*}
 The non-zero values for $\beta{k}$ are $\beta_1=\alpha_{1}+\alpha_{2}$ and $\beta_2=\alpha_{1}\alpha_{2}$. 
 
@@ -124,12 +124,13 @@ If the impulse response is real-valued, then the output signal will also be real
 \item Let $f_{s}=44.1\cdot 10^{3}$ Hz. 
 
 \begin{enumerate}[a)]
-\item To filter out the frequencies, we require that the system function has four zeros. These being at frequencies corresponding to $\pm5000$ and $\pm1500$ Hz. Thus, the system function will be a polynomial of degree four with four distinct roots. That is, the system function looks like:
+\item To filter out the frequencies, we require that the system function has four zeros. These being at frequencies corresponding to $\pm5000$ and $\pm1500$ Hz. 
+Thus, the system function will be a polynomial of degree four with four distinct roots. That is, the system function looks like:
 $$\mathcal{H}(z)=(z-\alpha_1)(z-\alpha_2)(z-\alpha_3)(z-\alpha_4)$$
 The frequencies in hertz corresponds to discrete-time angular frequencies of $\hat{\omega}_k=\omega T_s=2\pi f_k/fs$. This gives:
 \begin{align*}
-    \hat{\omega}_{0} &=  2\pi5000/44100 =  10\pi/441,\\
-    \hat{\omega}_{1} &= -2\pi5000/44100 = -10\pi/441,\\
+    \hat{\omega}_{0} &=  2\pi5000/44100 =  100\pi/441,\\
+    \hat{\omega}_{1} &= -2\pi5000/44100 = -100\pi/441,\\
     \hat{\omega}_{2} &=  2\pi1500/44100 =  10\pi/147,\\
     \hat{\omega}_{3} &= -2\pi1500/44100 = -10\pi/147.
 \end{align*}
