@@ -6,7 +6,7 @@ import numpy as n
 import matplotlib.pyplot as plt
 import scipy.signal as s
 # input signals to be convolved
-a=n.arange(10)
+a=n.flip(n.arange(10))
 b=n.ones(20)
 
 # zero-padded FFT (10+20=30)
