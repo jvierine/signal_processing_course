@@ -216,8 +216,12 @@ impulse serves a similar function as its continuous-time equivalent.
         axis y line=middle, axis x line=bottom]
 
 
-\addplot[color=blue] plot coordinates {(-3,0) (0.00001,0) (0.0,1.0) (10,1.0) };
-\addplot+[only marks,mark=o,color=blue] plot coordinates {(0,0) (0.0,1)};
+% \addplot[color=blue] plot coordinates {(-3,0) (0.00001,0) (0.0,1.0) (10,1.0) };
+%\addplot[color=blue] plot coordinates {(-3,0) (0.00001,0)};
+%\addplot[color=blue] plot coordinates {(0.0,1.0) (10,1.0)};
+\addplot[color=red] plot coordinates {(-3,0) (0.00001,0)};
+\addplot[color=red] plot coordinates {(0.0,1.0) (10,1.0)};
+\addplot+[only marks,mark=o,color=red] plot coordinates {(0,0) (0.0,1)};
 
 
 %\addplot[color=red] plot coordinates {(-3,0) (0.99,0) (1.0,1.0) (10,1.0) };
