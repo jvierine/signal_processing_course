@@ -3,12 +3,12 @@ domain representation of discrete-time signals. A special case of the
 $z$-transform is the discrete-time Fourier transform.
 
 The main benefit of the $z$-transform is that it allows us to use
-algebraic manipulations of complex valued polynomials to study the
+algebraic manipulations of complex-valued polynomials to study the
 frequency domain behavior of discrete-time signals. This can simplify
 calculations and provide further mathematical intuition. The
 $z$-transform also provides a framework that can be used to derive
-numerically efficient low-order filters\footnote{filters that require only a small 
-number of computations to apply on signals}. The $z$-transform
+numerically efficient low-order filters\footnote{filters that require only a 
+few computations to apply on signals}. The $z$-transform
 also has applications, e.g., in statistics and statistical signal
 processing.
 
@@ -65,7 +65,7 @@ function}{system function}} of the LTI system:
 \label{eq:system_function_eq}
 \end{equation}
 Sometimes the term \emph{\index{transfer function}{transfer function}}
-is used instead of the system function\sidenote{The term transfer function is used e.g., by the SciPy $z$-transform functions.}. 
+is used instead of the system function \sidenote{The term transfer function is used e.g., by the SciPy $z$-transform functions.}. 
 They both refer to $\mathcal{H}(z)$. 
 
 The system function also happens to be a transformation called
@@ -944,7 +944,7 @@ The system function of an FIR filter $\Hez$ is a polynomial. The
 the system function evaluates to zero: $\mathcal{H}(\alpha_k) = 0$.
 
 The location of the zeros determine the frequency domain behavior of
-an FIR system. This allows us to use analysis of complex valued polynomials
+an FIR system. This allows us to use analysis of complex-valued polynomials
 to investigate the frequency domain behavior of LTI systems.
 
 A zero of the system function means that the LTI system will
@@ -1177,7 +1177,7 @@ high normalized angular frequencies are amplified by the system.
 In order to obtain the frequency response, evaluate $\Hez$ on the unit
 circle $z=e^{i\hat{\omega}}$ for $\hat{\omega}\in[-\pi,\pi]$:
 \begin{equation}
-\He = (1-e^{-i\hat{\omega}})(1-e^{i(\frac{\pi}{3}-\hat{\omega})})(1-e^{-i(\frac{\pi}{3}+\hat{\omega})}) )
+\He = (1-e^{-i\hat{\omega}})(1-e^{i(\frac{\pi}{3}-\hat{\omega})})(1-e^{-i(\frac{\pi}{3}+\hat{\omega})})
 \end{equation}
 The magnitude response $|\mathcal{H}(\hat{\omega})|$ is shown in Figure
 \ref{fig:mag_resp_third}. This is a high-pass filter. Compare
@@ -1329,7 +1329,7 @@ $z^{N}$ means that there is a time-shift (negative delay) by $N$ samples.
 
 The magnitude of the running average system function $|\Hez|$ is shown
 in Figure \ref{fig:rma_l20} for $N=5$ ($M=2N+1 = 11$). This system
-function has 10 nulls at complex valued positions
+function has 10 nulls at complex-valued positions
 $\alpha_k=e^{i\frac{2\pi}{11}k}$ with $k\in {1,2,\cdots,10}$. They are
 all along the unit circle (shown with a white circle). Only the region
 near $z=1$ doesn't have a null. This corresponds to the pass-band
@@ -1352,110 +1352,3 @@ the system. The magnitude and phase response shown in Figure
 \ref{fig:magresp} looks exactly like the one we obtained earlier using
 a discrete-time Fourier transform for the same running average filter.
 
-
-
-\if 0
-\section{Running average filter}
-\label{r_avg_z}
-
-In the frequency response chapter, we analyzed the frequency response
-of the \index{running average}{running average} filter. Now we will
-analyze the z-transform of the same filter. In this case, we'll use a
-causal filter, which averages $L$ values of the input signal.
-
-This running average filter is defined using the following definition:
-\begin{equation}
-y[n] = \frac{1}{L}\sum_{k=0}^{L-1} x[n-k]
-\end{equation}
-This system has the following impulse response:
-\begin{equation}
-h[n] = \frac{1}{L}\sum_{k=0}^{L-1} \delta[n-k].
-\end{equation}
-The z-transform of this filter is:
-\begin{align}
-\Hez &= \sum_{k=-\infty}^{\infty} h[k]z^{-k} \\
-     &= \frac{1}{L}\sum_{k=0}^{L-1} z^{-k} 
-\end{align}
-This is a \emph{\index{geometric series}{geometric series}}. We can solve it using the following manipulations:
-\begin{align}
-\Hez &= \frac{1}{L}\sum_{k=0}^{L-1} z^{-k} ~~~~~~| \cdot z^{-1}\\
-z^{-1}\Hez &= \frac{1}{L}\sum_{k=1}^{L} z^{-k}
-\end{align}
-If we now subtract the first line from the second line, we obtain:
-\begin{align}
-\Hez - z^{-1}\Hez &= \frac{1}{L}(1 - z^{-L})\\
-\Hez(1 - z^{-1}) &= \frac{1}{L}(1 - z^{-L})\\
-\Hez &= \frac{1}{L}\frac{1 - z^{-L}}{1-z^{-1}}.
-\end{align}
-Multiplying the right-hand side with $z^L/z^L$ gives:
-\begin{equation}
-\Hez = \frac{1}{L}\frac{z^L - 1}{z^{(L-1)}(z-1)}.
-\end{equation}
-The system function is zero when $z^L -1=0$, or $z^L = 1$. Since $1 =
-e^{i2\pi k}$ for $k\in\mathbb{Z}$, it follows that the roots of the
-$L$th order polynomial are $\alpha_k=e^{i\frac{2\pi}{L}k}$. This has
-$L$ unique values when $k\in [0,1,2,\cdots, L-1]$.
-
-We can now express the system function in factorized form:
-\begin{align}
-\Hez &= \frac{1}{L} \frac{1}{(z-1)z^{L-1}}\prod_{k=0}^{L-1}(z-e^{i\frac{2\pi}{L}k}) \\
- &= \frac{1}{L} \frac{1}{\cancel{(z-1)}z^{L-1}} \cancel{(z-1)}\prod_{k=1}^{L-1}(z-e^{i\frac{2\pi}{L}k}) \\
- &= \frac{1}{L} \frac{1}{z^{L-1}} \prod_{k=1}^{L-1}(z-e^{i\frac{2\pi}{L}k}) 
-\end{align}
-Notice that one of the zeros of the denominator polynomial coincides
-with a zero of the numerator $\alpha_0=1$. This means that this root
-of the system function polynomial cancels out.
-
-If we then multiply out the $1/z^{L-1}$ term, we get:
-\begin{align}
-\Hez &= \frac{1}{L} \prod_{k=1}^{L-1}(1-e^{i\frac{2\pi}{L}k}z^{-1}).
-\end{align}
-This is the same form as Equation \ref{eq:blocking_filter}. This means
-that the running average filter is actually a set of blocking filters
-which block frequencies $\hat{\omega}_k=\frac{2\pi}{L}k$ with
-$k=[1,2,\cdots,L-1]$. 
-
-The magnitude of the running average system function $|\Hez|$ is shown
-in Figure \ref{fig:rma_l20} for $L=20$. This figure has 19 nulls at
-complex valued positions $\alpha_k=e^{i\frac{2\pi}{L}k}$ with $k\in
-{1,2,\cdots,L-1}$. They are all along the unit circle (shown with a
-white circle). Only the region near $z=1$ doesn't have a null. This
-corresponds to the pass-band region of this filter. Figure
-\ref{fig:rma_l20_phase} shows the phase angle of the same system
-function.
-\begin{marginfigure}
-\begin{center}
-\includegraphics[width=\textwidth]{code/025_system_function/rma_magresp.png}
-\end{center}
-\caption{The magnitude and phase response of the running average filter.}
-\label{fig:magresp}
-\end{marginfigure}
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=\textwidth]{ch18/figures/zcol2.png}
-\end{center}
-\caption{The running average system function magnitude
-  $|\mathcal{H}(z)|$ plotted on the complex plane. The $L-1$ zeros of
-  the system function are evenly distributed
-  $\alpha_k=e^{i\frac{2\pi}{L}k}$ with $k\in {1,2,\cdots,L-1}$. These
-  are the frequencies that are perfectly cancelled out. The unit
-  circle $e^{i\hat{\omega}}$ is denoted with a white line.}
-\label{fig:rma_l20}
-\end{figure}
-
-
-\begin{figure}
-\begin{center}
-\includegraphics[width=\textwidth]{ch18/figures/zcol2p.png}
-\end{center}
-\caption{The phase angle of the system function corresponding to a running average filter.}
-\label{fig:rma_l20_phase}
-\end{figure}
-
-If we evaluate the value of the system function on the unit circle
-$z=e^{i\hat{\omega}}$, we obtain the magnitude and phase response of
-the system. This is shown in Figure \ref{fig:magresp}. This is a
-low-pass filter.
-
-\fi

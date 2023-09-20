@@ -52,7 +52,7 @@ domain representation of signals (the Fourier transform).
   \end{tikzpicture}
  % }
 \end{center}
-\caption{An ideal continuous time to Discrete-time (C-to-D) converter.}
+\caption{An ideal continuous-time to Discrete-time (C-to-D) converter.}
 \end{marginfigure}
 
 
@@ -65,7 +65,7 @@ by sampling it. This can be idealized as a system that performs the following op
 \end{equation}
 In this process, a continuous function $x(t) \in \mathbb{C}$ is converted into an ordered sequence of numbers $x[n] \in \mathbb{C}$, where $n\in\mathbb{Z}$ indicates the order of the numbers.
 
-The reason why we consider complex valued signals in addition to real valued signals is that there are many applications where the signals are naturally complex valued. Radio signal processing is one example. 
+The reason why we consider complex-valued signals in addition to real-valued signals is that there are many applications where the signals are naturally complex-valued. Radio signal processing is one example. 
 
 The \index{sample-spacing}{sample-spacing} $T_s$ determines how densely samples of the continuous-time signal are taken. Sample-spacing is related with the \index{sample-rate}{sample-rate} or \index{sampling-rate}{sampling-rate} $f_s$ as follows:
 \begin{equation}
@@ -325,20 +325,20 @@ Solving the problem of aliasing, by ensuring that there is a uniquely one-to-one
 for all the spectral components of a signal, leads to the Shannon-Nyquist sampling theorem, which is introduced at the end of this chapter.
 
 \subsection{Real-valued signals}
-The concept of aliasing of complex sinusoidal signals allows us to inspect aliasing of real valued sinusoidal signals, which come in pairs of positive and negative frequency spectral components. 
-Understanding aliasing for real valued signals is slightly more complicated than understanding complex valued signals, because of the symmetric pairing of the positive and negative frequency components.
+The concept of aliasing of complex sinusoidal signals allows us to inspect aliasing of real-valued sinusoidal signals, which come in pairs of positive and negative frequency spectral components. 
+Understanding aliasing for real-valued signals is slightly more complicated than understanding complex-valued signals, because of the symmetric pairing of the positive and negative frequency components.
 
 The Fourier transform of a real-valued signal $x(t)\in\mathbb{R}$ is conjugate symmetric
 \begin{equation}
   \hat{x}(\omega) = \hat{x}^*(-\omega)\,\,.
 \end{equation}
-This means that real valued signals are composed of conjugate
+This means that real-valued signals are composed of conjugate
 symmetric pairs of positive and negative frequency spectral
 components:
 \begin{equation}
 A \cos(\omega t + \phi) = \frac{A}{2}(e^{i\phi}e^{i\omega t} + e^{-i\phi}e^{-i\omega t})\,\,.
 \end{equation}
-In order to understand how aliasing affects real valued signals, we
+In order to understand how aliasing affects real-valued signals, we
  need to investigate how pairs of positive and negative frequency spectral components are affected.
 \begin{marginfigure}
 \begin{center}
@@ -358,7 +358,7 @@ In order to understand how aliasing affects real valued signals, we
 \end{axis}
         \end{tikzpicture}
 \end{center}
-\caption{A real valued signal consists of a positive and negative frequency spectral component, which are conjugate symmetric.}
+\caption{A real-valued signal consists of a positive and negative frequency spectral component, which are conjugate symmetric.}
 \end{marginfigure}
 A conjugate symmetric pairing of positive and negative frequencies means that there is no distinction between a positive and a negative frequency 
 signal\footnote{For complex sinusoidal signals $e^{-i \omega t}$ and $e^{i \omega t}$ are two unique signals.}. 
@@ -366,14 +366,14 @@ For example, let's say we have a signal with angular frequency $\omega = -0.1$:
 \begin{equation}
 A \cos(-0.1 t + \phi) = \frac{A}{2}(e^{i\phi}e^{-i0.1  t} + e^{-i\phi}e^{i0.1 t})\,\,.
 \end{equation}
-This is the same thing as a cosine signal with frequency $0.1$ but a sign flipped phase:
+This is the same thing as a cosine signal with frequency $0.1$, but a sign flipped phase:
 \begin{align}
   \frac{A}{2}(e^{-i\phi}e^{i 0.1 t} + e^{i\phi}e^{-i 0.1 t}) &= A \cos(0.1 t - \phi)\\
   &= A \cos(-0.1 t + \phi)\,\,.
 \end{align}
-This means that you can always represent a real valued sinusoidal signal using only positive valued frequencies. This does not apply for complex valued signals.
+This means that you can always represent a real-valued sinusoidal signal using only positive valued frequencies, but it does not apply for complex-valued signals.
 
-In the case of real valued signals, the frequency alias corresponding to a negative frequency is called a \emph{\index{folded alias}{folded alias}}. 
+In the case of real-valued signals, the frequency alias corresponding to a negative frequency is called a \emph{\index{folded alias}{folded alias}}. 
 For complex sinusoidal signals, a folded alias does not exist, as positive and negative frequency components are not necessarily paired.
 
 \subsection{Example: Sinusoidal signal with $f_0=1$ Hz and $f_s=10$ Hz}
@@ -547,7 +547,7 @@ Figure \ref{fig:ti_folding} shows an illustration by Texas Instruments, which ni
 Folding implies that at frequencies between $[f_s/2+k f_s,f_s + kf_s]$ with $k=0,1,2,\ldots$, the order of the spectral components are flipped. Note that this only occurs if the signal is real-valued, 
 as folding relies on a pairing of positive and negative frequency spectral components.
 
-\newthought{The following example demonstrates folding using three real valued sinusoidal signals}. Let us consider three sinusoidal signals:
+\newthought{The following example demonstrates folding using three real-valued sinusoidal signals}. Let us consider three sinusoidal signals:
 \begin{align}
     x_1(t) &= A\cos(2\pi f_0 t), \\
     x_2(t) &= A\cos(2\pi f_1 t), \\
@@ -729,7 +729,7 @@ If this criterion is not satisfied, then the signal is said to be \emph{undersam
 
 When deriving the Shannon-Nyquist sampling theorem, we will see that it is in some cases possible to retain information even when the signal is undersampled. Undersampling is a technique that is often used for sampling radio signals.
 
-\newthought{For example}, the Nyquist frequency $f_{\mathrm{max}}$ of a real valued signal sampled at $f_s=44.1$ kHz is $f_{\mathrm{max}}=22.05$ kHz. The sample rate 44.1 kHz is often used when digitizing audio, because audio signals within the human hearing range are between $0<f<20$ kHz and signals conveying audio signals only contain spectral components within this range.
+\newthought{For example}, the Nyquist frequency $f_{\mathrm{max}}$ of a real-valued signal sampled at $f_s=44.1$ kHz is $f_{\mathrm{max}}=22.05$ kHz. The sample rate 44.1 kHz is often used when digitizing audio, because audio signals within the human hearing range are between $0<f<20$ kHz and signals conveying audio signals only contain spectral components within this range.
 
 \subsection{Nyquist zones}
 \begin{marginfigure}
@@ -769,10 +769,12 @@ When deriving the Shannon-Nyquist sampling theorem, we will see that it is in so
 \label{fig:nyq_zones}
 \end{marginfigure}
 
-If spectral components of a real-valued continuous-time signal are only located between $k f_s/2\le|f|<(k+1)f_s/2$ for only one value of $k$ and if there are no non-zero spectral components elsewhere, then one can still recover the continuous-time signal from the discrete-time representation of the signal, using the a priori information that the signals are within this range of frequencies. This is the more general sampling criterion for real valued signals.
+If spectral components of a real-valued continuous-time signal are only located between $k f_s/2\le|f|<(k+1)f_s/2$ for only one value of $k$ and if there are no non-zero spectral components elsewhere, then one can still recover the continuous-time signal from the discrete-time representation of the signal, 
+using the a priori information that the signals are within this range of frequencies. This is the more general sampling criterion for real-valued signals.
 
-These regions, which are shown in Figure \ref{fig:nyq_zones}, are called Nyquist zones. In each of these cases, all the low frequency aliases of the signal will be confined with the principal spectrum $\pm \pi$. 
-Because no signals from outside the specific Nyquist zone are present, there is no chance of two continuous-time spectral components mapping to the same normalized angular frequency within the principal spectrum.
+These regions, which are shown in Figure \ref{fig:nyq_zones}, are called Nyquist zones. In each of these cases, all the low frequency aliases of the signal will be confined 
+with the principal spectrum $\pm \pi$. Because no signals from outside the specific Nyquist zone are present, there is no chance of two continuous-time spectral 
+components mapping to the same normalized angular frequency within the principal spectrum.
 
 \begin{marginfigure}
 \begin{center}
@@ -833,8 +835,8 @@ When $k=0$, this case is called an \emph{oversampled} signal. This is the specia
 There are many cases, especially with modern software defined radios, where undersampling or folded undersampling at Nyquist zones $k>0$ are used. This violates the simple $f_s > 0.5 f_{\mathrm{max}}$ Nyquist oversampling criterion, but is still perfectly fine, as long as the original continuous-time signal has spectral components confined within a Nyquist zone.
 
 
-\subsection{Complex valued signals}
-For complex valued signals, the \emph{principal spectrum} is the same as it is for real-valued signals. In discrete-time angular frequency it is $-\pi<\hat{\omega}<\pi$ and in continuous-time frequency $-\frac{1}{2}f_s<f<\frac{1}{2}f_s$. However, because there are no conjugate symmetric negative frequency pairs, both negative and positive frequencies can be used in this frequency band. Therefore, the effective bandwidth is twice that of real valued signals sampled at the sample rate $f_s$, as both positive and negative frequency components can be used independently to encode information.
+\subsection{Complex-valued signals}
+For complex-valued signals, the \emph{principal spectrum} is the same as it is for real-valued signals. In discrete-time angular frequency it is $-\pi<\hat{\omega}<\pi$ and in continuous-time frequency $-\frac{1}{2}f_s<f<\frac{1}{2}f_s$. However, because there are no conjugate symmetric negative frequency pairs, both negative and positive frequencies can be used in this frequency band. Therefore, the effective bandwidth is twice that of real-valued signals sampled at the sample rate $f_s$, as both positive and negative frequency components can be used independently to encode information.
 
 To ensure a one-to-one relationship between the discrete-time signal and the continuous-time signal, the sample rate $f_s$ has to be at least the difference between the largest and smallest frequency component
 \begin{equation}
@@ -842,7 +844,8 @@ To ensure a one-to-one relationship between the discrete-time signal and the con
     f_s > f_{\mathrm{max}}-f_{\mathrm{min}}
     }\,\,.
 \end{equation}
-if the frequency domain representation of the complex valued signal is within a continuous range of frequencies between $f_{\mathrm{min}}$ and $f_{\mathrm{max}}$. This avoids having two continuous-time spectral components with different frequencies aliasing onto the same discrete-time frequency within the principal spectrum\sidenote{The most general sampling criterion involves investigating the relationship between the frequency domain representation of the continuous-time signal and the frequency domain representation of the discretized signal, which we will discuss later when deriving the Shannon sampling theorem.}. This is another form of the Shannon-Nyquist sampling criterion, which applies only to complex valued signals.
+if the frequency domain representation of the complex-valued signal is within a continuous range of frequencies between $f_{\mathrm{min}}$ and $f_{\mathrm{max}}$. This avoids having two continuous-time spectral components with different frequencies aliasing onto the same discrete-time frequency within the principal spectrum\sidenote{The most general sampling criterion involves investigating the relationship between the frequency domain representation of the continuous-time signal and the frequency domain representation of the discretized signal, which we will discuss later when deriving the Shannon sampling theorem.}. 
+This is another form of the Shannon-Nyquist sampling criterion, which applies only to complex-valued signals.
 
 Figure \ref{fig:complex_aliasing} below illustrates aliasing with complex sinusoidal signals. Here, a complex sinusoidal signal with frequency $1.2\frac{f_s}{2}$ that is sampled with frequency $f_s$ aliases to $-0.8\frac{f_s}{2}$ in the principal spectrum.
 
@@ -876,7 +879,7 @@ z(t)=a_1 e^{i 2\pi f_1 t} + a_2 e^{i 2\pi f_2 t}\,\,,
 with frequencies $f_1= 1.2 f_s/2$ and $f_2=0.8 f_s/2$.
 
 When this signal is sampled with a sample-rate of $f_s$, the Nyquist oversampling criterion for real-valued signals is violated, because $f_1 > f_s/2$. 
-However, this is a complex-valued signal, and we only need $f_{\mathrm{max}} - f_{\mathrm{min}} < f_s$ to hold in the more general case for complex valued signals.
+However, this is a complex-valued signal, and we only need $f_{\mathrm{max}} - f_{\mathrm{min}} < f_s$ to hold in the more general case for complex-valued signals.
 
 This condition is not violated. To see that everything is fine, we
 translate both of the sinusoidal signals into the principal spectrum:
@@ -1037,7 +1040,7 @@ The generated continuous-time signal looks like the one shown in Figure \ref{fig
 \end{marginfigure}
 
 The zero-order hold filter only needs one sample at a time. However, the continuous-time signal has large steps. 
-The zero-order hold filter approaches the continuous time signal only when $T_s\rightarrow 0$ -- i.e., when the sample rate is infinitely large.
+The zero-order hold filter approaches the continuous-time signal only when $T_s\rightarrow 0$ -- i.e., when the sample rate is infinitely large.
 
 \newthought{A Linear interpolation filter} is defined as follows:
 \begin{equation}
@@ -1136,7 +1139,7 @@ its discrete-time representation? This is the question that Shannon studied, and
   \caption{Sir Eduard Whittaker. Photo: National Portrait Gallery.}
 \end{marginfigure}
 
-In the idealized case, sampling of a signal is selection of samples from a continuous time signal:
+In the idealized case, sampling of a signal is selection of samples from a continuous-time signal:
 \begin{equation}
 x[n] = x(nT_s)
 \end{equation}
@@ -1274,7 +1277,7 @@ In this case, positive and negative frequency components of the original spectru
 making it impossible to determine what the original value of $\hat{x}(\omega)$ is within the overlapping region.
 
 \subsection{Complex-valued signal}
-For a complex valued signal $x(t)\in \mathbb{C}$, a sufficient condition for avoiding $\hat{x}(\omega)$ overlapping with itself in $\hat{x}_s(\omega)$ (aliasing) is that $\omega_s > \omega_{\mathrm{max}}-\omega_{\mathrm{min}}$.
+For a complex-valued signal $x(t)\in \mathbb{C}$, a sufficient condition for avoiding $\hat{x}(\omega)$ overlapping with itself in $\hat{x}_s(\omega)$ (aliasing) is that $\omega_s > \omega_{\mathrm{max}}-\omega_{\mathrm{min}}$.
 
 Aliasing with complex signals is illustrated with the following plots. Consider a signal, which spans between frequencies $0.11\omega_s$ and $1.1\omega_s$. 
 In this case, the signal crosses $\omega_s/2$, which violates aliasing rules for real-valued signals. However, $\omega_s > \omega_{\mathrm{max}}-\omega_{\mathrm{min}}$.
@@ -1331,7 +1334,7 @@ $\hat{x}_s(\omega)$. The commonly described criterion that requires the sample-r
 \begin{equation}
 f_s > 2 f_\mathrm{max} 
 \end{equation}
-is just one possible solution, which assumes that the spectral components within the original signal $\hat{x}(\omega)$ are confined to $|f| < f_s/2$. As we discussed above, complex valued signals and under sampled signals result in different sampling criteria.
+is just one possible solution, which assumes that the spectral components within the original signal $\hat{x}(\omega)$ are confined to $|f| < f_s/2$. As we discussed above, complex-valued signals and under sampled signals result in different sampling criteria.
 
 \subsection{Reconstruction}
 This reconstruction strategy only applies to a real-valued signal $x(t) \in \mathbb{R}$ within the principal spectrum. 
@@ -1400,7 +1403,7 @@ x(t) = \frac{1}{2\pi}\int_{-\infty}^{\infty} \hat{x}(\omega) e^{i\omega t}d\omeg
 \end{equation}
 If $\hat{x}_s(\omega)$ contains overlapping copies of $\hat{x}(\omega)$, then the original spectrum $\hat{x}(\omega)$, and therefore the original signal $x(t)$, cannot be reconstructed.
 
-For a complex valued signal, we would need to apply an ideal band-pass filter, which only retains signals between $\omega_{\mathrm{min}}$ and
+For a comple- valued signal, we would need to apply an ideal band-pass filter, which only retains signals between $\omega_{\mathrm{min}}$ and
 $\omega_{\mathrm{max}}$, instead of the ideal low-pass filter. The same applies to an undersampled signal.
 
 \subsection{Ideal reconstruction filter}
@@ -1437,5 +1440,5 @@ When applying this reconstruction filter in time domain, one convolves the sampl
 This reconstruction formula now perfectly reproduces $x(t)$ from
 samples $x[n]$, provided that $\omega_s \ge 2\omega_{\mathrm{max}}$.
 
-For an undersampled real-valued signal, or a complex valued band limited signal, the ideal reconstruction filter would be different. 
+For an undersampled real-valued signal, or a complex-valued band limited signal, the ideal reconstruction filter would be different. 
 In this case, it would correspond to the impulse response of an ideal band-pass filter.

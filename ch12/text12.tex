@@ -228,7 +228,7 @@ valued signals. This is just a special case of this more general
 property that is applied to discrete-time signals.
 
 A corollary of Equation \ref{eq:conj_symmetry_lti} of this is that the
-magnitude response of an LTI system with a real valued impulse
+magnitude response of an LTI system with a real-valued impulse
 response is always symmetric around zero:
 \begin{equation}
 \boxed{
@@ -236,11 +236,10 @@ response is always symmetric around zero:
 }
 \end{equation}
 
-\subsection{Example: real valued cosine and real valued impulse response}
+\subsection{Example: real-valued cosine and real-valued impulse response}
 
-Let's investigate the output of an LTI system with a real valued
-impulse response $h[n]\in\mathbb{R}$ when the input signal is a real
-valued cosine signal
+Let's investigate the output of an LTI system with a real-valued
+impulse response $h[n]\in\mathbb{R}$ when the input signal is a real-valued cosine signal
 \begin{equation}
 x[n] = A\cos(\hat{\omega} n + \phi)\,\,.
 \end{equation}
@@ -265,7 +264,7 @@ This means that we can write the output signal as a sum:
 \begin{align}
 y[n] &= \He \frac{A}{2}e^{i\phi}e^{i\hat{\omega} n} +  \He^*\frac{A}{2}e^{-i\phi} e^{-i\hat{\omega} n}\,\,.
 \end{align}
-Which means that the spectral components are conjugate symmetric. The output of the real valued sinusoidal signal is then:
+Which means that the spectral components are conjugate symmetric. The output of the real-valued sinusoidal signal is then:
 \begin{align}
 y[n] &= |\He|\frac{A}{2} e^{i(\phi + \angle \He)}e^{i\hat{\omega} n} + |\He|\frac{A}{2}e^{-i(\phi + \angle \He)} e^{-i\hat{\omega} n} \\
  & = |\He| A \cos(\hat{\omega} n + \phi + \angle \He)\,\,.
