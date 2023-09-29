@@ -32,7 +32,7 @@ $$y[n]=\mathcal{T}\{x[n]\}=\frac{1}{L}\sum_{k=0}^{L-1}x[n-k].$$
 \item Consider two discrete-time signals $x_{1}[n]$ and $x_{2}[n]$ with arbitrary constants $c_{1},c_{2}$, then:
 \begin{align*}
     \mathcal{T}\{c_{1}x_{1}[n]+c_{2}x_{2}[n]\}&=\frac{1}{L}\sum_{j=0}^{L-1}[c_{1}x_{1}[n-j]+c_{2}x_{2}[n-j]], \\
-    c_{1}\mathcal{T}\{x_{1}[n]\}+c_{2}\mathcal{T}\{x_{2}[n]\}&=c_{1}\frac{1}{L}\sum_{k=0}^{L-1}x_{1}[n-k]+c_{2}\frac{1}{L}\sum_{l=0}^{L-1}x_{1}[n-l],
+    c_{1}\mathcal{T}\{x_{1}[n]\}+c_{2}\mathcal{T}\{x_{2}[n]\}&=c_{1}\frac{1}{L}\sum_{k=0}^{L-1}x_{1}[n-k]+c_{2}\frac{1}{L}\sum_{l=0}^{L-1}x_{2}[n-l],
 \end{align*}
 which are equal. 
 
@@ -54,22 +54,23 @@ $$h[n]=\begin{cases}
 \item The impulse response has $L$ nonzero values, all of them being $1/L$. 
 
 \item Let $x[n]=e^{i\hat{\omega}_{0}n}$, then if we feed this into our system we get (using the formula for a geometric sum):
-$$y[n]=\frac{1}{L}\sum_{k=0}^{L-1}e^{i\hat{\omega}_{0}(n-k)}=\frac{1}{L}e^{i\hat{\omega}_{0}n}\sum_{k=0}^{L-1}e^{-i\hat{\omega}_{0}k}=\frac{1}{L}e^{i\hat{\omega}_{0}n}\left(\frac{1-(e^{-i\hat{\omega}_{0}})^{L}}{1-e^{-i\hat{\omega}_{0}}}\right).$$
+$$y[n]=\frac{1}{L}\sum_{k=0}^{L-1}e^{i\hat{\omega}_{0}(n-k)}=\frac{1}{L}e^{i\hat{\omega}_{0}n}\sum_{k=0}^{L-1}e^{-i\hat{\omega}_{0}k}
+=\frac{1}{L}e^{i\hat{\omega}_{0}n}\left(\frac{1-(e^{-i\hat{\omega}_{0}})^{L}}{1-e^{-i\hat{\omega}_{0}}}\right).$$
 The output signal can then be rewritten as:
 $$y[n] = \frac{1}{L}e^{i\hat{\omega}_{0}n}\frac{e^{-i\hat{\omega}_{0}L/2}}{e^{-i\hat{\omega}_{0}/2}}\left(\frac{e^{i\hat{\omega}_{0}L/2} - e^{-i\hat{\omega}_{0}L/2}}{e^{i\hat{\omega}_{0}/2} - e^{-i\hat{\omega}_{0}/2}}\right),$$
 then use the definition of $\sin(\theta)$ for complex values to obtain:
-$$y[n] = \frac{1}{L}e^{i\hat{\omega}_{0}n}e^{-i\hat{\omega}_{0}(L +1)/2}\frac{\sin(\hat{\omega}_{0}L)}{\sin(\hat{\omega}_{0})}.$$
-Later, we'll introduce this as a filter that contains two parts, one part being a Dirichlet kernel which dictates how the magnitude of the frequencies are filtered, the other part
-is a time-delay, which tells us how the filter delays the signal. We can see this somewhat already, as we have:
-$$y[n] = \left(\frac{1}{L}e^{-i\hat{\omega}_{0}(L +1)/2}\frac{\sin(\hat{\omega}_{0}L)}{\sin(\hat{\omega}_{0})}\right)x[n].$$
+$$y[n] = \frac{1}{L}e^{i\hat{\omega}_{0}n}e^{-i\hat{\omega}_{0}(L - 1)/2}\frac{\sin(\hat{\omega}_{0}L/2)}{\sin(\hat{\omega}_{0}/2)}.$$
+Later, we'll introduce this as a filter that contains two parts, one part being a Dirichlet kernel which dictates how the magnitude of the frequencies are filtered, 
+the other part is a time-delay, which tells us how the filter delays the signal. We can see this somewhat already, as we have:
+$$y[n] = \left(\frac{1}{L}e^{-i\hat{\omega}_{0}(L - 1)/2}\frac{\sin(\hat{\omega}_{0}L/2)}{\sin(\hat{\omega}_{0}/2)}\right)x[n].$$
 Here we see that:
-$$D_{L}(\hat{\omega}_{0})=\frac{1}{L}\frac{\sin(\hat{\omega}_{0}L)}{\sin(\hat{\omega}_{0})},$$
+$$D_{L}(\hat{\omega}_{0})=\frac{1}{L}\frac{\sin(\hat{\omega}_{0}L/2)}{\sin(\hat{\omega}_{0}/2)},$$
 changes the magnitude, while:
-$$e^{-i\hat{\omega}_{0}(L +1)/2}$$
+$$e^{-i\hat{\omega}_{0}(L - 1)/2}$$
 delays the signal. 
 
 \item Take $L=4$, then:
-$$y[n]=\frac{1}{4}e^{-i\hat{\omega}_{0}5/2}\frac{\sin(\hat{\omega}_{0})4}{\sin(\hat{\omega}_{0})}x[n].$$
+$$y[n]=\frac{1}{4}e^{-i\hat{\omega}_{0}3/2}\frac{\sin(2\hat{\omega}_{0})}{\sin(\hat{\omega}_{0}/2)}x[n].$$
 Next, consider the cases of input frequencies:
 \begin{align*}
     \hat{\omega}&=0,\\
@@ -79,11 +80,12 @@ Next, consider the cases of input frequencies:
 from our discussion above, we know that the amplitude is dependent on the $D_{L}(\hat{\omega}_{0})$ function only. 
 In these cases the amplitude of the output is:
 \begin{align*}
-    A&=\lim_{\hat{\omega}\to 0}\frac{1}{4}\frac{\sin(4\hat{\omega}_{0})}{\sin(\hat{\omega}_{0})} = \lim_{\hat{\omega}_{0}\to 0}\frac{1}{4}\frac{4\cos(\hat{\omega}_{0})}{\cos(\hat{\omega}_{0})} = 1, \\
+    A&=\lim_{\hat{\omega_{0}}\to 0}\frac{1}{4}\frac{\sin(2\hat{\omega}_{0})}{\sin(\hat{\omega}_{0}/2)} = \lim_{\hat{\omega}_{0}\to 0}\frac{1}{4}\frac{2\cos(2\hat{\omega}_{0})}{\frac{1}{2}\cos(\hat{\omega}_{0}/2)} = 1, \\
     A&=\frac{1}{4}\frac{\sin(4\pi)}{\sin(\pi)} = 0,\\
     A&=\frac{1}{4}\frac{\sin(4\pi/2)}{\sin(\pi/2)} = 0.\\
 \end{align*}
-The filter seems to behave as a low-pass filter, passing low frequencies and removing high frequencies. 
+We have used L'Hôpital's rule to determine the behavior of the filter at $\omega_{0} = 0$, otherwise, just plug in the value for $\omega_0$. 
+The filter seems to behave as a low-pass filter, passing low frequencies and removing high frequencies.  
 
 \item The system $y[n]=\mathcal{T}\{x[n]\}$ is an LTI system and can be written as $y[n]=h[n]*x[n]$, where $h[n]$ is the impulse response function as defined above. 
 Then the system can be described as:
