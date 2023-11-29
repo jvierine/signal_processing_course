@@ -1,190 +1,248 @@
+% Author: Jørn Olav Jensen
+
 \newpage
 \section{Suggested solutions: $Z$-transform}
 
 \begin{enumerate}
-\item Given a discrete time signal $x[n]$, then the $z$-transform is defined as:
-$$X(z)=\sum_{k=-\infty}^{\infty}x[k]z^{-k}.$$
+    % Exercise 1
+    \item Given a discrete time signal $x[n]$, then the $z$-transform is defined as:
+          \[X(z)=\sum_{k=-\infty}^{\infty}x[k]z^{-k}.\]
 
-\begin{enumerate}[a)]
+          \begin{enumerate}[a)]
 
-\item Using the definition, we have:
-$$X(z)=\mathcal{Z}\{\delta[n]\}=\sum_{k=-\infty}^{\infty}\delta[k]z^{-k}=\delta[0]z^{-0}=1,$$
-since the impulse function is only non-zero for $n=0$, for which the value is $1$. 
+              % Exercise 1a)
+              \item Using the definition, we have:
+                    \[X(z)=\mathcal{Z}\{\delta[n]\}=\sum_{k=-\infty}^{\infty}\delta[k]z^{-k}=\delta[0]z^{-0}=1,\]
+                    since the impulse function is only non-zero for $n=0$, for which the value is $1$.
 
-\item The $z$-transform is linear and for a time-shift, we then have:
-\begin{align*}
-    X(z)&=\mathcal{Z}\{2\delta[n+4]\}=2\mathcal{Z}\{\delta[n+4]\}, \\
-    &=2\sum_{k=-\infty}^{\infty}\delta[k+4]z^{-k}, \\
-    &=2z^{4}\mathcal{Z}\{\delta[n]\}, \\
-    &=2z^{4},
-\end{align*}
-since by the previous exercise $\mathcal{Z}\{\delta[n]\}=1$.
+                    % Exercise 1b)
+              \item The $z$-transform is linear and for a time-shift, we then have:
+                    \begin{align*}
+                        X(z) & =\mathcal{Z}\{2\delta[n+4]\}=2\mathcal{Z}\{\delta[n+4]\}, \\
+                             & =2\sum_{k=-\infty}^{\infty}\delta[k+4]z^{-k},             \\
+                             & =2z^{4}\mathcal{Z}\{\delta[n]\},                          \\
+                             & =2z^{4},
+                    \end{align*}
+                    since by the previous exercise $\mathcal{Z}\{\delta[n]\}=1$.
 
-\item The $z$-transform of $h[n]=-41\delta[n-42]$ is done in the same way as the previous problem. Skipping the details, we obtain:
-$$X(z)=\mathcal{Z}\{-41\delta[n-42]\}=-41z^{-42},$$
-again by linearity and the time-shift theorem.
+                    % Exercise 1c)
+              \item The $z$-transform of $h[n]=-41\delta[n-42]$ is done in the same way as the previous problem. Skipping the details, we obtain:
+                    \[X(z)=\mathcal{Z}\{-41\delta[n-42]\}=-41z^{-42},\]
+                    again by linearity and the time-shift theorem.
 
-\item For $h[n]=\delta[n+1]-2\delta[n-1]+4\delta[n-4]$ we obtain again by linearity and the time-shift property:
-$$X(z)=\mathcal{Z}\{h[n]\}=z-2z^{-1}+4z^{-4}.$$
-\end{enumerate}
+                    % Exercise 1d)
+              \item For $h[n]=\delta[n+1]-2\delta[n-1]+4\delta[n-4]$ we obtain again by linearity and the time-shift property:
+                    \[X(z)=\mathcal{Z}\{h[n]\}=z-2z^{-1}+4z^{-4}.\]
+          \end{enumerate}
 
-\item Let the system function for an LTI system be $\mathcal{H}(z)=z^{1}+1+3z^{-1}-0.5z^{-2}+4z^{-10}$.
+          % Exercise 2
+    \item Let the system function for an LTI system be $\mathcal{H}(z)=z^{1} + 1 + 3z^{-1} -0.5z^{-2} + 4z^{-10}$.
 
-\begin{enumerate}[a)]
+          \begin{enumerate}[a)]
 
-\item If the system function is defined as above, then the impulse response is found by taking the inverse $z$-transform of $\mathcal{H}(z)$. We get:
-$$h[n]=\delta[n+1]+\delta[n]+3\delta[n-1]-0.5\delta[n-2]+4\delta[n-10],$$
-from this we conclude that the difference equation for the system is:
-$$y[n]=x[n+1]+x[n]+3x[n-1]-0.5x[n-2]+4x[n-10],$$
-since every LTI system can be expressed as a convolution of the form:
-$$y[n]=h[n]*x[n]=\sum_{k=-\infty}^{\infty}h[k]x[n-k],$$
-with $h[n]=\mathcal{T}\{\delta[n]\}$. 
+              % Exercise 2a)
+              \item If the system function is defined as above, then the impulse response is found by taking the inverse $z$-transform of $\mathcal{H}(z)$. We get:
+                    \[h[n] = \delta[n+1] + \delta[n] + 3\delta[n-1] - 0.5\delta[n-2] + 4\delta[n-10],\]
+                    from this we conclude that the difference equation for the system is:
+                    \[y[n] = x[n+1] + x[n] + 3x[n-1] - 0.5x[n-2] + 4x[n-10],\]
+                    since every LTI system can be expressed as a convolution of the form:
+                    \[y[n] = h[n]*x[n] = \sum_{k=-\infty}^{\infty}h[k]x[n-k],\]
+                    with $h[n]=\mathcal{T}\{\delta[n]\}$.
 
-\item In Listing \ref{code18_2} is a simple program to plot the impulse response for this system. 
-\lstinputlisting[language=Python, caption=Code to plot the impulse response function,label=code18_2,linerange={0-18}]{ch18/code/ex18_2.py}
+                    % Exercise 2b)
+              \item In Listing \ref{code18_2} is a simple program to plot the impulse response for this system.
+                    \lstinputlisting[language=Python, caption=Code to plot the impulse response function, label=code18_2, linerange={0-17}]{ch18/code/ex18_2.py}
 
-The impulse response plot is shown in Figure \ref{fig18_2}.
-\begin{marginfigure}
-    \centering
-    \includegraphics[width=7.5cm,height=7.0cm]{ch18/figures/18_2.png}
-    \caption{Output of Listing \ref{code18_2}}
-    \label{fig18_2}
-\end{marginfigure}
+                    The impulse response plot is shown in Figure \ref{fig18_2}.
+                    \begin{marginfigure}
+                        \centering
+                        \includegraphics[width=7.5cm, height=7.0cm]{ch18/figures/18_2.png}
+                        \caption{Output of Listing \ref{code18_2}}
+                        \label{fig18_2}
+                    \end{marginfigure}
 
-\item If we define a new signal $y_{2}[n]=y[n-2]$, then by the time-shift theorem we have that the new system function will be:
-$$Y_{2}(z)=z^{-n_{0}}\mathcal{H}(z)=z^{-2}\mathcal{H}(z)=z^{-1}+z^{-2}+3z^{-3}-0.5z^{-4}+4z^{-12},$$
-this new system function will describe a system that is delayed by 2 samples compared to $\mathcal{H}(z)$.
-\end{enumerate}
+                    % Exercise 2c)
+              \item If we define a new signal $y_{2}[n]=y[n-2]$, then by the time-shift theorem we have that the new system function will be:
+                    \[Y_{2}(z) = z^{-2}Y(z) = z^{-2}\mathcal{H}(z)X(z)\]
+                    which gives:
+                    \[\mathcal{H}_{2}(z) = z^{-2}\mathcal{H}(z) = z^{-1} + z^{-2} + 3z^{-3} - 0.5z^{-4} + 4z^{-12},\]
+                    this new system function will describe a system that is delayed by 2 samples compared to $\mathcal{H}(z)$.
+          \end{enumerate}
 
-\item Let the system function of a discrete-time LTI system be defined as:
-$$\mathcal{H}(z)=(z-e^{i\pi/4})(z-e^{-i\pi})z^{-2}.$$
+          % Exercise 3
+    \item Let the system function of a discrete-time LTI system be defined as:
+          \[\mathcal{H}(z) = (z-e^{i\pi/4})(z-e^{-i\pi})z^{-2}.\]
 
-\begin{enumerate}[a)]
-\item To determine the effect of this system, factor it:
-$$\mathcal{H}(z)=z(1-e^{i\pi}z^{-1})z(1-e^{-i\pi}z^{-1})z^{-2}=(1-e^{i\pi/4}z^{-1})(1-e^{-i\pi}z^{-1}).$$
-Then we can view the system function as a cascade of two elementary systems of the form:
-\begin{align*}
-    \mathcal{H}_{1}(z)&=1-e^{i\pi/4}z^{-1},\\
-    \mathcal{H}_{2}(z)&=1-e^{-i\pi}z^{-1}.
-\end{align*}
-This filter blocks sinusoidal signals where $\alpha_{1}=e^{i\pi/4}$ and $\alpha_{2}=e^{-i\pi}$, which correspond to normalized angular frequencies of $\hat{\omega}=\pi/4$ and $\hat{\omega}=-\pi$.
+          \begin{enumerate}[a)]
+              % Exercise 3a)
+              \item One can view the system function as a cascade of three systems of the form:
+                    \begin{align*}
+                        \mathcal{H}_{1}(z) & = z - e^{i\pi/4}, \\
+                        \mathcal{H}_{2}(z) & = z - e^{-i\pi},  \\
+                        \mathcal{H}_{3}(z) & = z^{-2},
+                    \end{align*}
+                    where the effect is to null-out a frequency for $\mathcal{H}_1$ and $\mathcal{H}_2$, the frequencies being
+                    $\pi/4$ and $\pi$, respectively. The last elementary system $\mathcal{H}_3$ will delay by $2$ samples.
+                    To determine the overall effect of this system, factor it:
+                    \[\mathcal{H}(z) = z(1-e^{i\pi}z^{-1})z(1-e^{-i\pi}z^{-1})z^{-2}=(1-e^{i\pi/4}z^{-1})(1-e^{-i\pi}z^{-1}).\]
+                    Then we can view the system function as a cascade of two elementary systems of the form:
+                    \begin{align*}
+                        \mathcal{H}_{1}(z) & =1-e^{i\pi/4}z^{-1}, \\
+                        \mathcal{H}_{2}(z) & =1-e^{-i\pi}z^{-1}.
+                    \end{align*}
+                    This filter blocks sinusoidal signals where $\alpha_{1}=e^{i\pi/4}$ and $\alpha_{2}=e^{-i\pi}$,
+                    which correspond to normalized angular frequencies of $\hat{\omega}=\pi/4$ and $\hat{\omega}=\pi$.
 
-\begin{marginfigure}
-\begin{center}
-\begin{tikzpicture}
-	\begin{axis}[axis equal, ymin=-1.5,xmin=-1.5,ymax=1.5,xmax=1.5,  ticks=none,
-    xlabel=$\mathrm{Re}(z)$,
-    ylabel=$\mathrm{Im}(z)$, axis lines = middle, width=7cm, height=7cm]
-	\addplot [gray,domain=0:2*pi,samples=50]({cos(deg(x))},{sin(deg(x))});
+                    \begin{marginfigure}
+                        \begin{center}
+                            \begin{tikzpicture}
+                                \begin{axis}[axis equal,
+                                        ymin=-1.5,
+                                        xmin=-1.5,
+                                        ymax=1.5,
+                                        xmax=1.5,
+                                        ticks=none,
+                                        xlabel=$\mathrm{Re}(z)$,
+                                        ylabel=$\mathrm{Im}(z)$,
+                                        axis lines = middle,
+                                        width=7cm,
+                                        height=7cm]
+                                    \addplot [gray,domain=0:2*pi,samples=50]({cos(deg(x))}, {sin(deg(x))});
+                                    \addplot [blue, mark = o,mark size=3pt] coordinates {({cos(45)}, {sin(45)})} {};
+                                    \addplot [blue, mark = o,mark size=3pt] coordinates {({cos(180)}, {sin(180)})} {};
+                                    \addplot [red, mark = x,mark size=3pt] coordinates {({0}, {0})} {};
+                                \end{axis}
+                            \end{tikzpicture}
+                        \end{center}
+                        \caption{The zeros of the system function $\mathcal{H}(z)$,
+                        have $\alpha_k=\{e^{i\pi/4},e^{-i\pi}\}$. Zeros are marked with blue
+                        circles and poles are marked with red crosses.}
+                        \label{z:ex3}
+                    \end{marginfigure}
 
-\addplot [blue, mark = o,mark size=3pt] coordinates {({cos(45)}, {sin(45)})} {};   
-\addplot [blue, mark = o,mark size=3pt] coordinates {({cos(180)}, {sin(180)})} {};  
-\addplot [red, mark = x,mark size=3pt] coordinates {({0}, {0})} {}; 
-\end{axis}
-\end{tikzpicture}
-\end{center}
-\caption{The zeros of the system function $\mathcal{H}(z)$,
-have $\alpha_k=\{e^{i\pi/4},e^{-i\pi}\}$. Zeros are marked with blue
-    circles and poles are marked with red crosses.}
-\label{z:ex3}
-\end{marginfigure}
+                    % Exercise 3b)
+              \item The poles and zeros of the system function are shown in Figure \ref{z:ex3}.
 
-\item The poles and zeros of the system function are shown in Figure \ref{z:ex3}. 
+                    % Exercise 3c)
+              \item The following code snippet will plot the magnitude response corresponding to $\mathcal{H}(\hat{\omega})=\mathcal{H}(z)|_{z=e^{i\hat{\omega}}}$:
+                    \lstinputlisting[language=Python, caption=Script to plot the magnitude response, label=sol_to_c, linerange={0-28}]{ch18/code/ex18_3.py}
 
-\item The following code snippet will plot the magnitude response corresponding to $\mathcal{H}(\hat{\omega})=\mathcal{H}(z)|_{z=e^{i\hat{\omega}}}$:
-\lstinputlisting[language=Python,caption=Script to plot the magnitude response,label=sol_to_c,linerange={0-27}]{ch18/code/ex18_3.py}
+                    Output from Listing \ref{sol_to_c} is shown in Figure \ref{h-plt}.
 
-Output from Listing \ref{sol_to_c} is shown in Figure \ref{h-plt}.
+                    \begin{marginfigure}
+                        \includegraphics[width=7.5cm, height=7.0cm]{ch18/figures/magnituderes.png}
+                        \caption{Plot of $|\mathcal{H}(\hat{\omega})|$, which has zeros at $\hat{\omega}=\pi/4$ and $\hat{\omega}=-\pi$.}
+                        \label{h-plt}
+                    \end{marginfigure}
 
-\begin{marginfigure}
-\includegraphics[width=7.5cm,height=7.0cm]{ch18/figures/magnituderes.png}
-\caption{Plot of $|\mathcal{H}(\hat{\omega})|$, which has zeros at $\hat{\omega}=\pi/4$ and $\hat{\omega}=-\pi$.}
-\label{h-plt}
-\end{marginfigure}
+                    % Exercise 3d)
+              \item The zeros of the magnitude response will get completely removed by the system. The original system has a
+                    system function $\mathcal{H}(z)$ which has two zeros, these being $\alpha_{1}=e^{i\pi/4}$ and $\alpha_{2}=e^{-i\pi}$.
+                    These correspond to $\hat{\omega}=\pi/4$ and $\hat{\omega}=-\pi$ in units of radians per sample.
+                    These discrete-time angular frequencies will be completely removed by the system.
 
-\item The zeros of the magnitude response will get completely removed by the system. The original system has a system function $\mathcal{H}(z)$ which has two zeros, these being $\alpha_{1}=e^{i\pi/4}$ and $\alpha_{2}=e^{-i\pi}$. These correspond to $\hat{\omega}=\pi/4$ and $\hat{\omega}=-\pi$ in units of radians per sample. These discrete-time angular frequencies will be completely removed by the system. 
+                    % Exercise 3e)
+              \item From the original definition of the system, we have:
+                    \begin{align*}
+                        \mathcal{H}(z) & =(z-e^{i\pi/4})(z-e^{-i\pi})z^{-2},                     \\
+                                       & =1-e^{i\pi/4}z^{-1}-e^{-i\pi}z^{-1}+e^{-i3\pi/4}z^{-2}, \\
+                                       & =1 -(e^{i\pi/4}+e^{-i\pi})z^{-1} + (e^{-i3\pi/4})z^{-2}
+                    \end{align*}
+                    The non-zero values for $\beta_{k}$ are $\beta_1=\alpha_{1}+\alpha_{2}$ and $\beta_2=\alpha_{1}\alpha_{2}$.
 
-\item From the original definition of the system, we have:
-\begin{align*}
-    \mathcal{H}(z) &=(z-e^{i\pi/4})(z-e^{-i\pi})z^{-2}, \\
-                   &=1-e^{i\pi/4}z^{-1}-e^{-i\pi}z^{-1}+e^{-i3\pi/4}z^{-2}, \\
-                   &=1 -(e^{i\pi/4}+e^{-i\pi})z^{-1} + (e^{-i3\pi/4})z^{-2}
-\end{align*}
-The non-zero values for $\beta{k}$ are $\beta_1=\alpha_{1}+\alpha_{2}$ and $\beta_2=\alpha_{1}\alpha_{2}$. 
+                    % Exercise 3f)
+              \item To find the impulse response, we find the inverse $z$-transform of the system function. The impulse response $h[n]$ is then:
+                    \[ h[n]=\delta[n]-(e^{i\pi/4}+e^{-i\pi})\delta[n-1]+e^{-i3\pi/4}\delta[n-2]. \]
 
-\item To find the impulse response, we find the inverse $z$-transform of the system function. The impulse response $h[n]$ is then:
-$$h[n]=\delta[n]-(e^{i\pi/4}+e^{-i\pi})\delta[n-1]+e^{-i3\pi/4}\delta[n-2]$$
+                    % Exercise 3g)
+              \item For any discrete-time LTI system, we have:
+                    \[ y[n]=h[n]*x[n]. \]
+                    If the impulse response is real-valued, then the output signal will also be real-valued.
+                    If $h[n]$ is real-valued, it must satisfy: $h[n]^{*}=h[n]$. We can easily see that the impulse response
+                    doesn't satisfy this property, therefore a real-valued signal is not necessarily real-valued after applying this system.
+                    This can also be seen from the pole-zero diagram. The positive and negative frequencies are not treated the same,
+                    as the frequency $\hat{\omega} = \pi/4$ gets filtered out, while $\hat{\omega} = -\pi/4$ passed through.
 
-\item For any discrete-time LTI system, we have:
-$$y[n]=h[n]*x[n].$$
-If the impulse response is real-valued, then the output signal will also be real-valued. If $h[n]$ is real-valued, it must satisfy: $h[n]^{*}=h[n]$. We can easily see that the impulse response doesn't satisfy this property, therefore a real-valued signal is not necessarily real-valued after applying this system. 
+          \end{enumerate}
 
-\end{enumerate}
+          % Exercise 4
+    \item Let $f_{s} = 44.1\cdot 10^{3}$ Hz.
 
-\item Let $f_{s}=44.1\cdot 10^{3}$ Hz. 
+          \begin{enumerate}[a)]
+              % Exercise 4a)
+              \item To filter out the frequencies, we require that the system function has four zeros. These being at frequencies corresponding to $\pm5000$ and $\pm1500$ Hz.
+                    Thus, the system function will be a polynomial of degree four with four distinct roots. That is, the system function looks like:
+                    \[ \mathcal{H}(z)=(z-\alpha_1)(z-\alpha_2)(z-\alpha_3)(z-\alpha_4) \]
+                    The frequencies in hertz corresponds to discrete-time angular frequencies of $\hat{\omega}_k=\omega T_s=2\pi f_k/fs$. This gives:
+                    \begin{align*}
+                        \hat{\omega}_{0} & =  2\pi5000/44100 =  100\pi/441, \\
+                        \hat{\omega}_{1} & = -2\pi5000/44100 = -100\pi/441, \\
+                        \hat{\omega}_{2} & =  2\pi1500/44100 =  10\pi/147,  \\
+                        \hat{\omega}_{3} & = -2\pi1500/44100 = -10\pi/147.
+                    \end{align*}
+                    Finally, the system function is therefore of the form:
+                    \begin{align*}
+                        \mathcal{H}(z) & =(z-e^{10i\pi/441})(z-e^{-10i\pi/441})(z-e^{10i\pi/147})(z-e^{-10i\pi/147}),                                                              \\
+                                       & =(1-e^{\frac{10\pi}{441}i}z^{-1})(1-e^{-\frac{10\pi}{441}i}z^{-1})(1-e^{\frac{10\pi}{147}i}z^{-1})(1-e^{-\frac{10\pi}{147}i}z^{-1})z^{4}, \\
+                                       & =(1-2\cos\left(\frac{10\pi}{441}\right)z^{-1}+z^{-2})(1-2\cos\left(\frac{10\pi}{147}\right)z^{-1}+z^{-2})z^{4}.
+                    \end{align*}
 
-\begin{enumerate}[a)]
-\item To filter out the frequencies, we require that the system function has four zeros. These being at frequencies corresponding to $\pm5000$ and $\pm1500$ Hz. 
-Thus, the system function will be a polynomial of degree four with four distinct roots. That is, the system function looks like:
-$$\mathcal{H}(z)=(z-\alpha_1)(z-\alpha_2)(z-\alpha_3)(z-\alpha_4)$$
-The frequencies in hertz corresponds to discrete-time angular frequencies of $\hat{\omega}_k=\omega T_s=2\pi f_k/fs$. This gives:
-\begin{align*}
-    \hat{\omega}_{0} &=  2\pi5000/44100 =  100\pi/441,\\
-    \hat{\omega}_{1} &= -2\pi5000/44100 = -100\pi/441,\\
-    \hat{\omega}_{2} &=  2\pi1500/44100 =  10\pi/147,\\
-    \hat{\omega}_{3} &= -2\pi1500/44100 = -10\pi/147.
-\end{align*}
-Finally, the system function is therefore of the form:
-\begin{align*}
-    \mathcal{H}(z)&=(z-e^{10i\pi/441})(z-e^{-10i\pi/441})(z-e^{10i\pi/147})(z-e^{-10i\pi/147}), \\
-    &=(1-e^{\frac{10\pi}{441}i}z^{-1})(1-e^{-\frac{10\pi}{441}i}z^{-1})(1-e^{\frac{10\pi}{147}i}z^{-1})(1-e^{-\frac{10\pi}{147}i}z^{-1})z^{4},\\
-    &=(1-2\cos\left(\frac{10\pi}{441}\right)z^{-1}+z^{-2})(1-2\cos\left(\frac{10\pi}{147}\right)z^{-1}+z^{-2})z^{4}.
-\end{align*}
+                    % Exercise 4b)
+              \item A pole-zero diagram for the system function $\mathcal{H}(z)$ is shown in Figure \ref{z:ex4}.
 
-\item A pole-zero diagram for the system function $\mathcal{H}(z)$ is shown in Figure \ref{z:ex4}.
+                    \begin{marginfigure}
+                        \begin{center}
+                            \begin{tikzpicture}
+                                \begin{axis}[axis equal,
+                                        ymin=-1.5,
+                                        xmin=-1.5,
+                                        ymax=1.5,
+                                        xmax=1.5,
+                                        ticks=none,
+                                        xlabel=$\mathrm{Re}(z)$,
+                                        ylabel=$\mathrm{Im}(z)$,
+                                        axis lines = middle,
+                                        width=7cm,
+                                        height=7cm]
+                                    \addplot [gray,domain=0:2*pi,samples=50]({cos(deg(x))},{sin(deg(x))});
 
-\begin{marginfigure}
-\begin{center}
-\begin{tikzpicture}
-	\begin{axis}[axis equal, ymin=-1.5,xmin=-1.5,ymax=1.5,xmax=1.5,  ticks=none,
-    xlabel=$\mathrm{Re}(z)$,
-    ylabel=$\mathrm{Im}(z)$, axis lines = middle, width=7cm, height=7cm]
-	\addplot [gray,domain=0:2*pi,samples=50]({cos(deg(x))},{sin(deg(x))});
+                                    \addplot [blue, mark = o,mark size=3pt] coordinates {({cos(40)}, {sin(40)})} {};
+                                    \addplot [blue, mark = o,mark size=3pt] coordinates {({cos(-40)}, {sin(-40)})} {};
+                                    \addplot [blue, mark = o,mark size=3pt] coordinates {({cos(12.2)}, {sin(12.2)})} {};
+                                    \addplot [blue, mark = o,mark size=3pt] coordinates {({cos(-12.2)}, {sin(-12.2)})} {};
+                                    \addplot [red, mark = x,mark size=3pt] coordinates {({0}, {0})} {};
+                                \end{axis}
+                            \end{tikzpicture}
+                        \end{center}
+                        \caption{The zeros of the system function $\mathcal{H}(z)$,
+                        have $\alpha_k=\{e^{10i\pi/441},e^{-10i\pi/441},e^{20i\pi/441},e^{-20i\pi/441}\}$.
+                        Zeros are marked with blue circles and poles are marked with red crosses.}
+                        \label{z:ex4}
+                    \end{marginfigure}
 
-\addplot [blue, mark = o,mark size=3pt] coordinates {({cos(40)}, {sin(40)})} {};  
-\addplot [blue, mark = o,mark size=3pt] coordinates {({cos(-40)}, {sin(-40)})} {};   
-\addplot [blue, mark = o,mark size=3pt] coordinates {({cos(12.2)}, {sin(12.2)})} {};  
-\addplot [blue, mark = o,mark size=3pt] coordinates {({cos(-12.2)}, {sin(-12.2)})} {};  
-\addplot [red, mark = x,mark size=3pt] coordinates {({0}, {0})} {}; 
-\end{axis}
-\end{tikzpicture}
-\end{center}
-\caption{The zeros of the system function $\mathcal{H}(z)$,
-have $\alpha_k=\{e^{10i\pi/441},e^{-10i\pi/441},e^{20i\pi/441},e^{-20i\pi/441}\}$. Zeros are marked with blue circles and poles are marked with red crosses.}
-\label{z:ex4}
-\end{marginfigure}
+                    % Exercise 4c)
+              \item Listing \ref{z:code:ex4} provides code to plot the magnitude response for this system.
+                    \lstinputlisting[language=Python, caption=Code to plot the magnitude response, label=z:code:ex4, linerange={0-29}]{ch18/code/ex18_4.py}
 
-\item Listing \ref{z:code:ex4} provides code to plot the magnitude response for this system.
-\lstinputlisting[language=Python,caption=Code to plot the magnitude response,label=z:code:ex4,linerange={0-26}]{ch18/code/ex18_4.py}
+                    Output of Listing \ref{z:code:ex4} is shown in Figure \ref{z:fig:ex4}.
 
-Output of Listing \ref{z:code:ex4} is shown in Figure \ref{z:fig:ex4}.
+                    \begin{marginfigure}
+                        \includegraphics[width=7.5cm,height=7.0cm]{ch18/figures/mag2.png}
+                        \caption{Plot of the magnitude response in dB}
+                        \label{z:fig:ex4}
+                    \end{marginfigure}
 
-\begin{marginfigure}
-\includegraphics[width=7.5cm,height=7.0cm]{ch18/figures/mag2.png}
-\caption{Plot of the magnitude response in dB}
-\label{z:fig:ex4}
-\end{marginfigure}
+                    % Exercise 4d)
+              \item Having found the system function, one can easily determine the impulse response function by using the inverse $z$-transform. Have that:
+                    \begin{align*}
+                        \mathcal{H}(z) & =(1 - 2\cos\left(\frac{10\pi}{441}\right)z^{-1}+z^{-2})(1-2\cos\left(\frac{10\pi}{147}\right)z^{-1}+z^{-2})z^{4}.
+                    \end{align*}
+                    Expanding all of this out, one obtains:
+                    \begin{align*}
+                        \mathcal{H}(z) & =z^{4} - 2(\cos(\theta_1)+\cos(\theta_2))z^{3} + 2(2\cos\theta_1\cos\theta_2 + 1)z^{2} -2(\cos\theta_1+\cos\theta_2) z + 1,
+                    \end{align*}
+                    where $\theta_1=\frac{10\pi}{441}$ and $\theta_2=\frac{10\pi}{147}$. The impulse response is then the inverse $z$-transform:
+                    \[ h[n]=\delta[n] - 2(\cos\theta_1 + \cos\theta_2)\delta[n + 1] + 2(2\cos\theta_1\cos\theta_2+1)\delta[n + 2]-2(\cos\theta_1+\cos\theta_2)\delta[n + 3]+\delta[n + 4]. \]
 
-\item Having found the system function, one can easily determine the impulse response function by using the inverse $z$-transform. Have that:
-\begin{align*}
-    \mathcal{H}(z)&=(1-2\cos\left(\frac{10\pi}{441}\right)z^{-1}+z^{-2})(1-2\cos\left(\frac{10\pi}{147}\right)z^{-1}+z^{-2})z^{4}. 
-\end{align*}
-Expanding all of this out, one obtains:
-\begin{align*}
-    \mathcal{H}(z)&=z^{4} -2(\cos(\theta_1)+\cos(\theta_2))z^{3} + 2(2\cos\theta_1\cos\theta_2 + 1)z^{2} -2(\cos\theta_1+\cos\theta_2) z + 1,
-\end{align*}
-where $\theta_1=\frac{10\pi}{441}$ and $\theta_2=\frac{10\pi}{147}$. The impulse response is then the inverse $z$-transform:
-$$h[n]=\delta[n] - 2(\cos\theta_1 + \cos\theta_2)\delta[n + 1] + 2(2\cos\theta_1\cos\theta_2+1)\delta[n + 2]-2(\cos\theta_1+\cos\theta_2)\delta[n + 3]+\delta[n + 4].$$
-
-\end{enumerate}
+          \end{enumerate}
 \end{enumerate}
