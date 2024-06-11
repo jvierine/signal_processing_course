@@ -2,38 +2,43 @@
 \section{Exercises: Arbitrary Frequency Response Filters}
 
 \begin{enumerate}
-\item The Python code in Listing \ref{lst:fftex} creates a signal consisting of narrowband sinusoids with large amplitudes ($x_1[n]$), and three time shifted unit impulses with weak amplitudes ($x_2[n]$):
-  \begin{equation}
-    x[n]=x_1[n]+x_2[n]
-    \end{equation}
 
-  \lstinputlisting[language=Python,caption={\texttt{fftex.py}},label=lst:fftex]{ch17/code/fftex.py}
-  
-  \begin{enumerate}[a)]
-  \item Estimate the spectrum of the signal $x[n]$ using a Hann window $w[n]$ of length $N=16384$ to reduce spectral leakage.
-    \begin{equation}
-      \hat{x}_w[k]= \sum_{n=0}^{N-1}w[n]x[n]e^{-i\frac{2\pi}{N}nk}
-      \end{equation}
-      Use FFT to evaluate the DFT.
+    % Exercise 1
+    \item The Python code in Listing \ref{lst:fftex} creates a signal consisting of narrowband sinusoids with large amplitudes ($x_1[n]$), and three time shifted unit impulses with weak amplitudes ($x_2[n]$):
+          \begin{equation}
+              x[n] = x_1[n] + x_2[n]
+          \end{equation}
 
-    Make a plot of the magnitude spectrum with power in dB scale
-    $10\log_{10}|\hat{x}_w[\hat{\omega}_k]|^2$. Only plot the positive
-    frequencies between 0 and $\pi$ with units of radians per
-    sample. Identify the frequency ranges that are occupied by strong
-    narrowband spectral components.
-    
-  \item Filter out the large magnitude frequency components in
-    frequency domain and inverse DFT to obtain a time domain
-    representation of the signal.
-    \begin{equation}
-    y[n]= \mathcal{F}_D^{-1}\left\{ \hat{h}[k]\hat{x}_w[k] \right\}
-    \end{equation}
-    Use FFT to evaluate the inverse DFT. Your plot should look like
-    Figure \ref{fig:filtered_weak_signal}.
-    
-    \item Explain why the filtered signal $y[n]$ still looks like the
-      original weak signal $x_2[n]$ consisting of unit impulses, even
-      though it is missing some frequency components.
-    \end{enumerate}
-    
+          \lstinputlisting[language=Python, caption={\texttt{fftex.py}}, label=lst:fftex]{ch17/code/fftex.py}
+
+          \begin{enumerate}[a)]
+              % Exercise 1a)
+              \item Estimate the spectrum of the signal $x[n]$ using a Hann window $w[n]$ of length $N=16384$ to reduce spectral leakage.
+                    \begin{equation}
+                        \hat{x}_w[k]= \sum_{n=0}^{N-1}w[n]x[n]e^{-i\frac{2\pi}{N}nk}
+                    \end{equation}
+                    Use FFT to evaluate the DFT.
+
+                    Make a plot of the magnitude spectrum with power in dB scale
+                    $10\log_{10}|\hat{x}_w[\hat{\omega}_k]|^2$. Only plot the positive
+                    frequencies between 0 and $\pi$ with units of radians per
+                    sample. Identify the frequency ranges that are occupied by strong
+                    narrowband spectral components.
+
+                    % Exercise 1b)
+              \item Filter out the large magnitude frequency components in
+                    frequency domain and inverse DFT to obtain a time domain
+                    representation of the signal.
+                    \begin{equation}
+                        y[n]= \mathcal{F}_D^{-1}\left\{ \hat{h}[k]\hat{x}_w[k] \right\}
+                    \end{equation}
+                    Use FFT to evaluate the inverse DFT. Your plot should look like
+                    Figure \ref{fig:filtered_weak_signal}.
+
+                    % Exercise 1c)
+              \item Explain why the filtered signal $y[n]$ still looks like the
+                    original weak signal $x_2[n]$ consisting of unit impulses, even
+                    though it is missing some frequency components.
+          \end{enumerate}
+
 \end{enumerate}
