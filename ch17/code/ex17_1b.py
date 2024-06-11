@@ -1,72 +1,75 @@
-import numpy as n
+import numpy as np
 import matplotlib.pyplot as plt
-import scipy.signal as ss
+from scipy.signal.windows import hann
 
-# function to convert to dB
-def convert_to_decibel(x):
-    return 10*n.log10(n.abs(x)**2)
+
+def convert_to_decibel(x: np.ndarray) -> np.ndarray:
+    """Function to convert to dB."""
+    return 10*np.log10(np.abs(x)**2)
+
 
 N = 16384
-nn = n.arange(N)
-freqs = [0.0003,0.012,0.055,0.102,0.85] # x1[n] frequencies
-A = [1e5,5e5,1e3,1e4,0.5e4]             # x1[n] amplitudes
-x1 = n.zeros(N)
+n = np.arange(N)
+freqs = [0.0003, 0.012, 0.055, 0.102, 0.85]  # x1[n] frequencies
+A = [1e5, 5e5, 1e3, 1e4, 0.5e4]              # x1[n] amplitudes
+x1 = np.zeros(N)
 
-# create the first signal
-for i,f in enumerate(freqs):
-    x1 += A[i]*n.cos(n.pi*freqs[i]*nn + n.random.randn(1))
+# Create the first signal.
+for i, f in enumerate(freqs):
+    x1 += A[i]*np.cos(np.pi*f*n + np.random.randn(1))
 
-# create the second signal (the weak signal)
-x2 = n.zeros(N)
-x2[int(N/2)] = 10.0
-x2[int(N/2)+1000] = -5.0
-x2[int(N/2)-1000] = 1.0
+# Create the second signal (the weak signal).
+x2 = np.zeros(N)
+x2[N//2] = 10.0
+x2[N//2 + 1000] = -5.0
+x2[N//2 - 1000] = 1.0
 
 x = x1 + x2
 
-w = ss.hann(N)  # Hann window to reduce spectral leakage
+# Hann window to reduce spectral leakage.
+w = hann(N)
 
-xw = n.fft.rfft(w*x,2*N)    # use FFT to compute the spectrum
-om_freqs = n.linspace(0,n.pi,num=len(xw)) # partition the interval (0,pi)
+xw = np.fft.rfft(w*x, 2*N)                     # Use FFT to compute the spectrum.
+om_freqs = np.linspace(0, np.pi, num=len(xw))  # Partition the interval (0, pi).
 
-# define a filter to reduce strong spectral components
-h = n.ones(len(xw)) # initialize each entry to 1
+# Define a filter to reduce strong spectral components.
+h = np.ones(len(xw))  # Initialize each entry to 1.
 
-# lower the strong spectral components
-# look at the previous exercise output plot to determine the intervals
-# alternatively, plot the spectrum with samples on x-axis instead of \hat{\omega}
-h[0:1050] = 1.0/n.abs(xw[0:1050])
-h[1500:1860] = 1.0/n.abs(xw[1500:1860])
-h[13500:14200] = 1.0/n.abs(xw[13500:14200])
+# Lower the strong spectral components.
+# Look at the previous exercise output plot to determine the intervals
+# alternatively, plot the spectrum with samples on x-axis instead of \hat{\omega}.
+h[:1050] = 1.0/np.abs(xw[:1050])
+h[1500:1860] = 1.0/np.abs(xw[1500:1860])
+h[13500:14200] = 1.0/np.abs(xw[13500:14200])
 
-# plot the spectral power to compare the two signals
-plt.plot(om_freqs,convert_to_decibel(xw),label="Original spectrum")
-plt.plot(om_freqs,convert_to_decibel(xw*h),label="Windowed spectrum")
-plt.xlabel("$\hat{\omega}$ (rad / sample)")
+# Plot the spectral power to compare the two signals.
+plt.plot(om_freqs, convert_to_decibel(xw), label="Original spectrum")
+plt.plot(om_freqs, convert_to_decibel(xw*h), label="Windowed spectrum")
+plt.xlabel(r"$\hat{\omega}$ (rad / sample)")
 plt.ylabel("Power of spectrum (dB)")
 plt.legend()
-# call this if needed
+# Call this if needed:
 # plt.show()
 
-# finally, inverse DFT to obtain the filtered signal
-filter_signal = n.fft.irfft(h*xw)
+# Finally, inverse DFT to obtain the filtered signal.
+filter_signal = np.fft.irfft(h*xw)
 plt.plot(filter_signal)
 plt.xlabel("Samples")
 plt.title("Filtered signal")
-# call this if needed
+# Call this if needed:
 # plt.show()
 
-# solution manual figure saving:
+# Solution manual figure saving:
 plt.clf()   # clear figures
-plt.plot(om_freqs,convert_to_decibel(xw),label="Original spectrum")
-plt.plot(om_freqs,convert_to_decibel(xw*h),label="Windowed spectrum")
-plt.xlabel("$\hat{\omega}$ (rad / sample)")
+plt.plot(om_freqs, convert_to_decibel(xw), label="Original spectrum")
+plt.plot(om_freqs, convert_to_decibel(xw*h), label="Windowed spectrum")
+plt.xlabel(r"$\hat{\omega}$ (rad / sample)")
 plt.ylabel("Power of spectrum (dB)")
 plt.legend()
 plt.savefig("../figures/spectral_pw.png")
 
 plt.clf()
-filter_signal = n.fft.irfft(h*xw)
+filter_signal = np.fft.irfft(h*xw)
 plt.plot(filter_signal)
 plt.xlabel("Samples")
 plt.title("Filtered signal")
