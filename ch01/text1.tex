@@ -1,16 +1,27 @@
-\newthought{Many aspects of the life of a modern human} depend on the theory of \index{signal processing}{signal processing}. Here are a few examples. When you are listening to a digital audio recording of music, displaying an image on your computer, or using a wireless internet connection, you are relying on mathematical concepts that are taught in a basic course on signal processing. These same concepts are encountered when, e.g., solving differential equations, applying deep learning techniques, measuring the gravitational wave signature of colliding neutron stars with a laser interferometer, or making an image of a black hole using a worldwide network of radio telescopes. The theory of \emph{\index{signals and systems}{signals and systems}} is a collection of applied mathematical tools that have important applications in science, technology, and engineering. The term signal processing and the terminology of signal processing have origins in electrical engineering.
+\newthought{Many aspects of the life of a modern human} depend on the theory of
+\index{signal processing}{signal processing}. Here are a few examples.
+When you are listening to a digital audio recording of music,
+displaying an image on your computer, or using a wireless internet connection,
+you are relying on mathematical concepts that are taught in a basic course on signal processing.
+These same concepts are encountered when, e.g., solving differential equations,
+applying deep learning techniques, measuring the gravitational wave signature of
+colliding neutron stars with a laser interferometer, or making an image of a black hole
+using a worldwide network of radio telescopes.
+The theory of \emph{\index{signals and systems}{signals and systems}} is a collection of
+applied mathematical tools that have important applications in science, technology, and engineering.
+The term signal processing and the terminology of signal processing have origins in electrical engineering.
 
 \begin{marginfigure}[-4.2cm]
-\begin{center}
-\includegraphics[width=\textwidth]{ch01/figures/prism.png}
-\end{center}
-\caption{Light can be viewed as a superposition of electromagnetic waves
-with different amplitudes, phases, and frequencies. This can be
-investigated in practice with the help of a prism or a diffraction
-grating. My hope is that after taking this course, you will
-metaphorically be able to ``see'' arbitrary signals as a sum of
-periodic harmonic functions or \emph{spectral components}.}
-\label{fig:prism}
+	\begin{center}
+		\includegraphics[width=\textwidth]{ch01/figures/prism.png}
+	\end{center}
+	\caption{Light can be viewed as a superposition of electromagnetic waves
+		with different amplitudes, phases, and frequencies. This can be
+		investigated in practice with the help of a prism or a diffraction
+		grating. My hope is that after taking this course, you will
+		metaphorically be able to ``see'' arbitrary signals as a sum of
+		periodic harmonic functions or \emph{spectral components}.}
+	\label{fig:prism}
 \end{marginfigure}
 
 \newthought{Let's look more closely at the audio example}. When you
@@ -33,18 +44,18 @@ audio signal is $x(t)$, which represents air pressure as a function of
 time. Using the \index{Fourier series}{Fourier series} we can use the
 following type of sum to approximate $x(t)$:
 \begin{equation}
-x(t) \approx \sum_{n=1}^{N} A_n \sin(\omega_n t + \phi_n) \,\,,
-\label{ch01:eq:fourier_ser}
+	x(t) \approx \sum_{n=1}^{N} A_n \sin(\omega_n t + \phi_n) \,\,,
+	\label{ch01:eq:fourier_ser}
 \end{equation}
 with each sinusoidal signal only described by three parameters: an
 amplitude $A_n \in \mathbb{R}$, a phase $\phi_n \in \mathbb{R}$, and an angular frequency $\omega_n \in \mathbb{R}$.
 
 \begin{marginfigure}
-\begin{center}
-  \includegraphics[width=\textwidth]{ch01/figures/euler.jpg}
-\end{center}
-\caption{Leonhard Euler. Credit: Jakob Handmann (1753)}
-\label{fig:euler_pic}
+	\begin{center}
+		\includegraphics[width=\textwidth]{ch01/figures/euler.jpg}
+	\end{center}
+	\caption{Leonhard Euler. Credit: Jakob Handmann (1753)}
+	\label{fig:euler_pic}
 \end{marginfigure}
 
 If the value of $N$ in Equation \ref{ch01:eq:fourier_ser} is
@@ -54,7 +65,8 @@ less than what would be required if the signal was just sampled with a
 fixed sample spacing and the amplitude of the waveform at each sampled
 point would be stored.
 
-Here's an example. Let's say that you want to store 1024 \emph{samples}\sidenote{One sample is a number representing the audio signal amplitude at one instant of time} of
+Here's an example. Let's say that you want to store 1024
+\emph{samples}\sidenote{One sample is a number representing the audio signal amplitude at one instant of time} of
 audio signal. With the signal represented using 44100 samples per second,
 this would be approximately 0.023 seconds of signal. You'd need to
 store 1024 numbers without compression. With 16 bits per sample, this
@@ -64,9 +76,9 @@ components, you'd only need to store 30 numbers to retain the
 information about the phase, amplitude and frequency of each
 sinusoidal component. This is only approximately 3\% of the original
 data, or 480 bits of storage space at 16 bits per number\sidenote{One
-"bit" of information is an answer to a yes or no question. One bit
-would allow you to say that a number is either 0 or 1. A two bit
-signal would allow you to say that a number is either 0, 1, 2, or 3.}.
+	"bit" of information is an answer to a yes or no question. One bit
+	would allow you to say that a number is either 0 or 1. A two bit
+	signal would allow you to say that a number is either 0, 1, 2, or 3.}.
 
 Most of the videos, images, and music that you access over the
 internet is compressed in this manner. Without spectral compression
@@ -82,93 +94,96 @@ compression methods.
 %poor internet connection -- it is represented with only a small number
 %of sinusoidal components. 
 
-\newthought{We often use more general complex-valued sinusoidal functions} instead of real-valued ones when describing the theory of signal
+\newthought{We often use more general complex-valued sinusoidal functions}
+instead of real-valued ones when describing the theory of signal
 processing. These are defined as follows:
 \begin{equation}
-A e^{i\phi }e^{i\omega t} = A[\cos(\omega t+\phi) + i\sin(\omega
-t+\phi)] \,\,.
-\label{ch01:eq:euler}
+	A e^{i\phi }e^{i\omega t} = A[\cos(\omega t+\phi) + i\sin(\omega
+			t+\phi)] \,\,.
+	\label{ch01:eq:euler}
 \end{equation}
 Just like a real-valued sinusoid, the complex sinusoid is also
 represented using an amplitude $A \in \mathbb{R}$, phase
 $\phi \in \mathbb{R}$, and angular frequency $\omega \in \mathbb{R}$. Note
 that the above equation is just an application of Euler's
 formula\sidenote[][1cm]{The famous physicist \index{Richard
-Feynman}{Richard Feynman} had this to say about \index{Euler's
-formula}{Euler's formula}: ``We summarize with this, the most
-remarkable formula in mathematics. This is our jewel.'' (Feynman
-Lectures on Physics, Vol I). He had clearly benefited greatly from
-this formula.}, which is probably the most frequently occurring
+		Feynman}{Richard Feynman} had this to say about \index{Euler's
+		formula}{Euler's formula}: ``We summarize with this, the most
+	remarkable formula in mathematics. This is our jewel.'' (Feynman
+	Lectures on Physics, Vol I). He had clearly benefited greatly from
+	this formula.}, which is probably the most frequently occurring
 equation in signal processing. If you master this equation, you'll
 have covered already most of this course!
 
 If you are not familiar with complex algebra,
 Equation \ref{ch01:eq:euler} might at first seem intractable. But
 don't worry. If you have a hard time grasping the function $A e^{i\phi
-}e^{i\omega t}$, just think of it as a periodic function like
+		}e^{i\omega t}$, just think of it as a periodic function like
 $A\cos(\omega t + \phi)$, but with a real and imaginary sinusoidal
 component. The reason for using the complex sinusoidal signal instead
 of the real-valued one is that most of the mathematical calculations
 are greatly simplified.
 
 \begin{marginfigure}
-\begin{center}
-\begin{tikzpicture}
-% \begin{pgfinterruptboundingbox}
-\begin{axis}[width=1.5\textwidth, height=30em,
-%	title={Discrete-time signal},
-axis x line=none,
-axis y line=none
-]
-\addplot[domain=-100:100,samples=200] {27+
-cos( deg(2*3.1415*0.01*0.5*x))+
-cos( deg(2*3.1415*0.01*0.5*2*x) )+
-cos( deg(2*3.1415*0.01*0.5*3*x) )+
-cos( deg(2*3.1415*0.01*0.5*4*x) )+
-cos( deg(2*3.1415*0.01*0.5*5*x) )+
-cos( deg(2*3.1415*0.01*0.5*6*x) )+
-cos( deg(2*3.1415*0.01*0.5*7*x) )+
-cos( deg(2*3.1415*0.01*0.5*8*x) ) };
+	\begin{center}
+		\begin{tikzpicture}
+			% \begin{pgfinterruptboundingbox}
+			\begin{axis}[width=1.5\textwidth, height=30em,
+					%	title={Discrete-time signal},
+					axis x line=none,
+					axis y line=none
+				]
+				\addplot[domain=-100:100,samples=200] {27+
+					cos( deg(2*3.1415*0.01*0.5*x))+
+					cos( deg(2*3.1415*0.01*0.5*2*x) )+
+					cos( deg(2*3.1415*0.01*0.5*3*x) )+
+					cos( deg(2*3.1415*0.01*0.5*4*x) )+
+					cos( deg(2*3.1415*0.01*0.5*5*x) )+
+					cos( deg(2*3.1415*0.01*0.5*6*x) )+
+					cos( deg(2*3.1415*0.01*0.5*7*x) )+
+					cos( deg(2*3.1415*0.01*0.5*8*x) ) };
 
-\node at (axis cs:0,22) {$=$};
-\node at (axis cs:0,15) {$+$};
-\node at (axis cs:0,9) {$+$};
-\node at (axis cs:0,3) {$+$};
-\node at (axis cs:0,-3) {$+$};
-\node at (axis cs:0,-9) {$+$};
-\node at (axis cs:0,-15) {$+$};
+				\node at (axis cs:0,22) {$=$};
+				\node at (axis cs:0,15) {$+$};
+				\node at (axis cs:0,9) {$+$};
+				\node at (axis cs:0,3) {$+$};
+				\node at (axis cs:0,-3) {$+$};
+				\node at (axis cs:0,-9) {$+$};
+				\node at (axis cs:0,-15) {$+$};
 
-\addplot[domain=-100:100,samples=200] {-18+cos( deg(2*3.1415*0.01*0.5*x) ) };
-\addplot[domain=-100:100,samples=200] {-12+cos( deg(2*3.1415*0.01*0.5*2*x) ) };
-\addplot[domain=-100:100,samples=200] {-6+cos( deg(2*3.1415*0.01*0.5*3*x) ) };
-\addplot[domain=-100:100,samples=200] {0+cos( deg(2*3.1415*0.01*0.5*4*x) ) };
-\addplot[domain=-100:100,samples=200] {6+cos( deg(2*3.1415*0.01*0.5*5*x) ) };
-\addplot[domain=-100:100,samples=200] {12+cos( deg(2*3.1415*0.01*0.5*6*x) ) };
-\addplot[domain=-100:100,samples=200] {18+cos( deg(2*3.1415*0.01*0.5*7*x) ) };
-\end{axis}
-%\end{pgfinterruptboundingbox}
-%\draw[use as bounding box] ([xshift=0cm,yshift=0cm]current axis.south west) 
-%    rectangle ([xshift=0cm,yshift=0cm]current axis.north east);
-\end{tikzpicture}
-\end{center}
-\caption{Spectral decomposition of a narrow pulse that consists of seven sinusoidal signals.}
-\label{fig:dtfig0}
+				\addplot[domain=-100:100,samples=200] {-18+cos( deg(2*3.1415*0.01*0.5*x) ) };
+				\addplot[domain=-100:100,samples=200] {-12+cos( deg(2*3.1415*0.01*0.5*2*x) ) };
+				\addplot[domain=-100:100,samples=200] {-6+cos( deg(2*3.1415*0.01*0.5*3*x) ) };
+				\addplot[domain=-100:100,samples=200] {0+cos( deg(2*3.1415*0.01*0.5*4*x) ) };
+				\addplot[domain=-100:100,samples=200] {6+cos( deg(2*3.1415*0.01*0.5*5*x) ) };
+				\addplot[domain=-100:100,samples=200] {12+cos( deg(2*3.1415*0.01*0.5*6*x) ) };
+				\addplot[domain=-100:100,samples=200] {18+cos( deg(2*3.1415*0.01*0.5*7*x) ) };
+			\end{axis}
+			%\end{pgfinterruptboundingbox}
+			%\draw[use as bounding box] ([xshift=0cm,yshift=0cm]current axis.south west) 
+			%    rectangle ([xshift=0cm,yshift=0cm]current axis.north east);
+		\end{tikzpicture}
+	\end{center}
+	\caption{Spectral decomposition of a narrow pulse that consists of seven sinusoidal signals.}
+	\label{fig:dtfig0}
 \end{marginfigure}
 
 \begin{marginfigure}
-\begin{center}
-  \includegraphics[width=\textwidth]{ch01/figures/fourier_head.jpg}
-\end{center}
-\caption{Jean-Baptiste Joseph Fourier}
-\label{fig:joe_fourier}
+	\begin{center}
+		\includegraphics[width=\textwidth]{ch01/figures/fourier_head.jpg}
+	\end{center}
+	\caption{Jean-Baptiste Joseph Fourier}
+	\label{fig:joe_fourier}
 \end{marginfigure}
 
-\newthought{A general frequency domain decomposition of signals is known as the \emph{\index{Fourier transform}{Fourier transform}}}. This is just an extended version of the sum of sinusoidal signals given in Equation \ref{ch01:eq:fourier_ser}. The
+\newthought{A general frequency domain decomposition of signals is known as the
+	\emph{\index{Fourier transform}{Fourier transform}}}.
+This is just an extended version of the sum of sinusoidal signals given in Equation \ref{ch01:eq:fourier_ser}. The
 reverse and forward Fourier transforms allow transforming a signal
 between a time domain and a frequency domain representation:
 \begin{align}
-x(t) &= \frac{1}{2\pi}\int_{-\infty}^{\infty} \hat{x}(\omega) e^{i\omega t} d\omega \\
-\hat{x}(\omega) &= \int_{-\infty}^{\infty} x(t) e^{-i\omega t} dt \,\,.
+	x(t)            & = \frac{1}{2\pi}\int_{-\infty}^{\infty} \hat{x}(\omega) e^{i\omega t} d\omega \\
+	\hat{x}(\omega) & = \int_{-\infty}^{\infty} x(t) e^{-i\omega t} dt \,\,.
 \end{align}
 The Fourier transform allows nearly any function to be expressed as an
 infinite sum of complex sinusoidal functions, or in other words, an
@@ -203,10 +218,10 @@ body allowed him to analytically solve the heat equation, because
 solving differential equations is relatively straightforward for
 sinusoidal functions. Even though this brilliant mathematical
 discovery occurred 200 years ago, we are still coming up with new ways
-to apply it\sidenote{For example, your smart phone relies on the Fourier
-transform in several different ways for enabling transfer of data over
-radio waves, and for displaying pictures and videos, and playing audio
-files. }. I would say that the ability to divide nearly any function you
+to apply it\sidenote{For example, your smartphone relies on the Fourier
+	transform in several ways for enabling transfer of data over
+	radio waves, and for displaying pictures and videos, and playing audio
+	files.}. I would say that the ability to divide nearly any function you
 encounter into a superposition of simple elementary sinusoidal waves
 (the concept of the Fourier transform) is the most useful idea you
 will learn from a basic course on signal processing.
@@ -247,13 +262,13 @@ material and spend more time on the application examples.
 %areas where basic signal processing concepts are useful.
 
 \if 0
-\begin{marginfigure}[1.0cm]
-\begin{center}
-  \includegraphics[width=\textwidth]{up.jpg}
-\end{center}
-\caption{Arecibo Observatory radio telescope measurements of the first pulsar ever discovered, CP1919. The vertical axis represents received signal power and the horizontal axis represents time. Successive pulses of the pulsar are shown on each row. The figure is originally from “Radio Observations of the Pulse Profiles and Dispersion Measures of Twelve Pulsars,” by Harold D. Craft, Jr. (September
-1970). Signal processing is an important part of practical radio astronomy.}
-\end{marginfigure}
+	\begin{marginfigure}[1.0cm]
+		\begin{center}
+			\includegraphics[width=\textwidth]{up.jpg}
+		\end{center}
+		\caption{Arecibo Observatory radio telescope measurements of the first pulsar ever discovered, CP1919. The vertical axis represents received signal power and the horizontal axis represents time. Successive pulses of the pulsar are shown on each row. The figure is originally from “Radio Observations of the Pulse Profiles and Dispersion Measures of Twelve Pulsars,” by Harold D. Craft, Jr. (September
+			1970). Signal processing is an important part of practical radio astronomy.}
+	\end{marginfigure}
 \fi
 
 
@@ -294,54 +309,54 @@ material and spend more time on the application examples.
 
 
 \begin{marginfigure}%
-\begin{center}
-\begin{tikzpicture}
-\begin{axis}[width=\textwidth,
-	xticklabels=\empty,
-	yticklabels=\empty,		
-	xmin=-1.5,xmax=6,
-	axis x line=bottom,
-	axis y line=left,
-	xlabel={Independent variable $t$},
-	xlabel style={below},
-	ylabel={Dependent variable $x(t)$},
-    xlabel style={ yshift = { 1em } },
-    ylabel style={ yshift = { -2.2em } }
-]
-\addplot[draw=blue,domain=-1:7,samples=150] {(x>0)*exp(-x)};
-\end{axis}
-\end{tikzpicture}
-\end{center}
-\caption{Continuous-time signal.}
-\label{fig:ctfig_intro}
+	\begin{center}
+		\begin{tikzpicture}
+			\begin{axis}[width=\textwidth,
+					xticklabels=\empty,
+					yticklabels=\empty,
+					xmin=-1.5,xmax=6,
+					axis x line=bottom,
+					axis y line=left,
+					xlabel={Independent variable $t$},
+					xlabel style={below},
+					ylabel={Dependent variable $x(t)$},
+					xlabel style={ yshift = { 1em } },
+					ylabel style={ yshift = { -2.2em } }
+				]
+				\addplot[draw=blue,domain=-1:7,samples=150] {(x>0)*exp(-x)};
+			\end{axis}
+		\end{tikzpicture}
+	\end{center}
+	\caption{Continuous-time signal.}
+	\label{fig:ctfig_intro}
 \end{marginfigure}
 
 \begin{marginfigure}%
-\begin{center}
-\begin{tikzpicture}
-\begin{axis}[width=\textwidth,
-%	title={Discrete-time signal},
-	xticklabels=\empty,
-	yticklabels=\empty,	
-	xmin=-1.5,xmax=6,
-	axis x line=bottom,
-	axis y line=left,
-	xlabel={Independent variable $n$},
-	xlabel style={below},
-	ylabel={Dependent variable $x[n]$},
-    xlabel style={ yshift = { 1em } },
-    ylabel style={ yshift = { -2.2em } }
-]
-\addplot+[ycomb,domain=-1:5,samples=15] {(x>0)*exp(-x)};
-\end{axis}
-\end{tikzpicture}
-\end{center}
-\caption{Discrete-time signal.}
-\label{fig:dtfig_intro}
+	\begin{center}
+		\begin{tikzpicture}
+			\begin{axis}[width=\textwidth,
+					%	title={Discrete-time signal},
+					xticklabels=\empty,
+					yticklabels=\empty,
+					xmin=-1.5,xmax=6,
+					axis x line=bottom,
+					axis y line=left,
+					xlabel={Independent variable $n$},
+					xlabel style={below},
+					ylabel={Dependent variable $x[n]$},
+					xlabel style={ yshift = { 1em } },
+					ylabel style={ yshift = { -2.2em } }
+				]
+				\addplot+[ycomb,domain=-1:5,samples=15] {(x>0)*exp(-x)};
+			\end{axis}
+		\end{tikzpicture}
+	\end{center}
+	\caption{Discrete-time signal.}
+	\label{fig:dtfig_intro}
 \end{marginfigure}
 
 \newthought{Signal processing is an interdisciplinary field, where mathematics,
-physics, computer science, and engineering intersect}. The theoretical
+	physics, computer science, and engineering intersect}. The theoretical
 aspects of signal processing are essentially just applied mathematics,
 which often have already been introduced hundreds of years
 ago. However, applying the theory to solve real world problems
@@ -398,7 +413,7 @@ book that I recommend is ``Applied Digital Signal Processing: Theory
 and Practice'' by D. G. Manolakis and V. K. Ingle.
 
 
- %\footnote{For some bizarre reason, the University recently
+%\footnote{For some bizarre reason, the University recently
 % changed
 %its name to \emph{UiT - The Arctic University of Norway}, where UiT is
 %a Norwegian language acronym for University of Troms\o{}. Why there is
@@ -409,19 +424,48 @@ and Practice'' by D. G. Manolakis and V. K. Ingle.
 %confusion related to the name of the institution.}.
 
 
-\newthought{You might be asking yourself: why should I learn about signal processing?} This may be in the minds of, especially those for who have this as a mandatory course, and this is the primary reason that you are attending it. I believe that the elementary concepts taught in a basic course on this topic will provide you with the tools to be a good scientist. You will encounter the mathematical tools introduced in this course throughout science, technology, and engineering, where knowledge of these tools can often be seen as prerequisite background knowledge that allows you to understand more advanced concepts.
+\newthought{You might be asking yourself: why should I learn about signal processing?}
+This may be in the minds of, especially those for who have this as a mandatory course,
+and this is the primary reason that you are attending it.
+I believe that the elementary concepts taught in a basic course on this topic will provide
+you with the tools to be a good scientist. You will encounter the mathematical tools
+introduced in this course throughout science, technology, and engineering, where knowledge
+of these tools can often be seen as prerequisite background knowledge
+that allows you to understand more advanced concepts.
 
-Perhaps the most powerful practical tool you will learn during this course is the Fast Fourier Transform (FFT), which is a specific algorithm used to compute a discrete Fourier transformation. It will allow you to perform a wide range of different calculations efficiently, using techniques that are not trivial unless you understand the basic concepts of signal processing. The FFT algorithm can be used e.g., for spectral analysis, evaluation of a convolution operation, to efficiently solve certain types of matrix operations, or to solve differential equations. Any time when processing signals
+Perhaps the most powerful practical tool you will learn during this course
+is the Fast Fourier Transform (FFT), which is a specific algorithm used to compute a
+discrete Fourier transformation. It will allow you to perform a wide range of different
+calculations efficiently, using techniques that are not trivial unless you understand the
+basic concepts of signal processing. The FFT algorithm can be used e.g., for spectral analysis,
+evaluation of a convolution operation, to efficiently solve certain types of matrix operations,
+or to solve differential equations. Any time when processing signals
 later on in your life, there is a good chance that you will find the FFT algorithm to be highly useful.
 
 \begin{marginfigure}[1cm]
-\begin{center}
-  \includegraphics[width=\textwidth]{ch01/figures/cnn.png}
-\end{center}
-\caption{Simplified diagram of a convolutional neural network, where a convolution operation is one of the fundamental components. Figure adapted from \citep{maier2019gentle}.}
-\label{fig:cnn}
+	\begin{center}
+		\includegraphics[width=\textwidth]{ch01/figures/cnn.png}
+	\end{center}
+	\caption{Simplified diagram of a convolutional neural network, where a convolution operation is one of the fundamental components. Figure adapted from \citep{maier2019gentle}.}
+	\label{fig:cnn}
 \end{marginfigure}
 
-If you go on to work with e.g. machine learning, this course will teach you the concept of convolution, which is a mathematical operation that describes an arbitrary linear time invariant system, and thus plays a major role in signal processing. You may have heard of convolutional neural networks, right? This course will not teach you anything about statistics or neural networks, but it will teach you the concept of a convolution sum, which is often a fundamental
-building block of image processing or deep learning
-algorithms\cite{maier2019gentle}.
+If you go on to work with e.g. machine learning, this course will teach you the concept of convolution,
+which is a mathematical operation that describes an arbitrary linear time-invariant system, and thus plays
+a major role in signal processing. You may have heard of convolutional neural networks, right?
+This course will not teach you anything about statistics or neural networks, but it will teach you
+the concept of a convolution sum, which is often a fundamental
+building block of image processing or deep learning algorithms\cite{maier2019gentle}.
+
+
+% \newthought{Outline of these notes}: The main tool and equation that governs all we do in the course
+% is the Fourier transform. We state the transform here, even though it does not make sense (yet!)
+% \begin{equation}
+% 	\hat{x}(\omega) = \int_{-\infty}^{\infty} x(t)e^{-i\omega t}dt
+% 	\label{eq:fourier-transform}
+% \end{equation}
+% The idea is to learn what this means. Firstly, what is $x(t)$? Well, this is the signal we will
+% be "processing", typically being dependent on time. We define what this means in the chapter on 
+% signals and systems. Secondly, what is the deal with $e^{-i\omega t}$? 
+% This is a complex exponential! Understanding this term will be the focus 
+% of the complex algebra chapter and the chapters leading up to the Fourier series. 
