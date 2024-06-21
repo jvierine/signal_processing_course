@@ -1,23 +1,22 @@
 \begin{marginfigure}
-\includegraphics[width=\textwidth]{ch02/figures/pylogo.jpg}
-\caption{The Python programming language is an open source language that is increasingly popular for data science and signal processing.}
+  \includegraphics[width=\textwidth]{ch02/figures/pylogo.jpg}
+  \caption{The Python programming language is an open source language that is increasingly popular for data science and signal processing.}
 \end{marginfigure}
 
 \newthought{We'll demonstrate various signal processing topics using
   programming} examples. Why \index{Python}{Python} and not some other
 language? Here are three justifications:
 \begin{itemize}
-\item It is free for everyone to use,
-\item there are a wide range of efficient numerical libraries available,
-\item and Python is nowadays the language that students are most familiar with.
-%\item Python has a built-in complex data type, both in single precision and double precision
+  \item It is free for everyone to use,
+  \item there are a wide range of efficient numerical libraries available,
+  \item and Python is nowadays the language that students are most familiar with.
 \end{itemize}
 
 \begin{marginfigure}
-\begin{center}
-\includegraphics[width=0.5\textwidth]{ch02/figures/numpylogo.png}
-\end{center}
-\caption{The NumPy package implements a large collection of numerical routines that can be used for signal processing.}
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{ch02/figures/numpylogo.png}
+  \end{center}
+  \caption{The NumPy package implements a large collection of numerical routines that can be used for signal processing.}
 \end{marginfigure}
 
 All the programming examples we'll show in these lecture notes will
@@ -27,10 +26,10 @@ of library dependencies. The main libraries you will need are:
 readily available for nearly every operating system.
 
 \begin{marginfigure}
-\begin{center}
-\includegraphics[width=0.68\textwidth]{ch02/figures/scipy.jpg}
-\end{center}
-\caption{The Scipy package contains a number of signal processing routines for Python.}
+  \begin{center}
+    \includegraphics[width=0.68\textwidth]{ch02/figures/scipy.jpg}
+  \end{center}
+  \caption{The SciPy package contains a number of signal processing routines for Python.}
 \end{marginfigure}
 
 If you don't know how to obtain Python for your computer, you could
@@ -40,15 +39,15 @@ this distribution by visiting the anaconda web page:
 \url{http://anaconda.org} and downloading the installer for your
 platform.
 
-The Anaconda package manager will allow you to install Numpy, Scipy,
+The Anaconda package manager will allow you to install NumPy, SciPy,
 and Matplotlib. Anaconda also comes with a Python development
 environment as well. If you don't have your mind set on a specific
 programming editor yet, you could try out the Spyder development
 environment that comes with Anaconda.
 
 \begin{marginfigure}
-\includegraphics[width=\textwidth]{ch02/figures/matplotlib.png}
-\caption{Matplotlib implements a basic plotting routines for Python.}
+  \includegraphics[width=\textwidth]{ch02/figures/matplotlib.png}
+  \caption{Matplotlib implements basic plotting routines for Python.}
 \end{marginfigure}
 
 If you are using Linux, like I am most of the time, it is
@@ -59,10 +58,10 @@ sudo apt-get install python3 python3-numpy python3-scipy python3-imageio python3
 \end{lstlisting}
 
 \begin{marginfigure}[3cm]
-\includegraphics[width=0.68\textwidth]{ch02/figures/analogo.jpg}
-\caption{The Anaconda distribution is currently one of the most
-  popular distributions of the Python programming language, offering
-  nearly all existing open source modules.}
+  \includegraphics[width=0.68\textwidth]{ch02/figures/analogo.jpg}
+  \caption{The Anaconda distribution is currently one of the most
+    popular distributions of the Python programming language, offering
+    nearly all existing open source modules.}
 \end{marginfigure}
 
 After installing Python and the required modules, I recommend that you
@@ -77,8 +76,8 @@ Matplotlib.  If you can run this program without getting any errors,
 you are all set. The output should look something like this:
 
 \begin{figure}
-\includegraphics[width=\textwidth]{ch02/figures/testscreen1.png}
-\caption{Output of the \texttt{hello.py} test program.}
+  \includegraphics[width=\textwidth]{ch02/figures/testscreen1.png}
+  \caption{Output of the \texttt{hello.py} test program.}
 \end{figure}
 
 \newthought{Code examples} that are spread throughout these lecture
@@ -91,19 +90,17 @@ these lecture notes, you can also use git on the command line:
 git clone https://github.com/jvierine/signal_processing
 \end{lstlisting}
 \begin{marginfigure}
-\includegraphics[width=\textwidth]{ch02/figures/downloadgit.png}
-\caption{If you are not familiar with git, you can easily download the code from the GitHub webpage as a zip file instead of using the git clone command.}
+  \includegraphics[width=\textwidth]{ch02/figures/downloadgit.png}
+  \caption{If you are not familiar with git, you can easily download the code from the GitHub webpage as a zip file instead of using the git clone command.}
 \end{marginfigure}
 If you are using Anaconda, you will have to install git (if you don't
 have it already) by typing in
 \begin{lstlisting}[language=sh,caption=Obtaining the source code for the programming examples with git,label=lst:download]
   conda install -c anaconda git
 \end{lstlisting}
-Then you can proceed with the command shown above. 
-
-
+Then you can proceed with the command shown above.
 
 \begin{marginfigure}
-\includegraphics[width=0.68\textwidth]{ch02/figures/gitlogo.png}
-\caption{Program examples from these lecture notes are available on GitHub.}
+  \includegraphics[width=0.68\textwidth]{ch02/figures/gitlogo.png}
+  \caption{Program examples from these lecture notes are available on GitHub.}
 \end{marginfigure}

@@ -1,3 +1,3 @@
-import numpy as n
+import numpy as np
 
-print(n.exp(1j*n.pi)+1)
+print(np.exp(1j*np.pi)+1)
