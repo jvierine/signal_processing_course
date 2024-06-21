@@ -1,29 +1,29 @@
-import numpy as n
+import numpy as np
 import matplotlib.pyplot as plt
 
 N = 16384
-nn = n.arange(N)
-freqs = [0.0003,0.012,0.055,0.102,0.85] # x1[n] frequencies
-A = [1e5,5e5,1e3,1e4,0.5e4]             # x1[n] amplitudes
-x1 = n.zeros(N)
+n = np.arange(N)
+freqs = [0.0003, 0.012, 0.055, 0.102, 0.85]  # x1[n] frequencies
+A = [1e5, 5e5, 1e3, 1e4, 0.5e4]              # x1[n] amplitudes
+x1 = np.zeros(N)
 
-# create the first signal
-for i,f in enumerate(freqs):
-    x1 += A[i]*n.cos(n.pi*freqs[i]*nn + n.random.randn(1))
+# Create the first signal.
+for i, f in enumerate(freqs):
+    x1 += A[i]*np.cos(np.pi*f*n + np.random.randn(1))
 
-# create the second signal (the weak signal)
-x2 = n.zeros(N)
-x2[int(N/2)] = 10.0
-x2[int(N/2)+1000] = -5.0
-x2[int(N/2)-1000] = 1.0
+# Create the second signal (the weak signal).
+x2 = np.zeros(N)
+x2[N//2] = 10.0
+x2[N//2 + 1000] = -5.0
+x2[N//2 - 1000] = 1.0
 
 x = x1 + x2
 
-# plot the signals
-plt.plot(nn,x)
+# Plot the signals.
+plt.plot(n, x)
 plt.xlabel("Samples")
 plt.ylabel("$x[n]$")
-# call this if needed
+# Call this if needed:
 # plt.show()
 
 try:

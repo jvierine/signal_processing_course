@@ -443,7 +443,8 @@ A Hann window is shown on the bottom panel of Figure
 
 A selection of commonly used window function implementations can be
 found in the \verb|scipy.signal| module. This includes an
-implementation of the Hann window function\sidenote{The Wikipedia page on Window functions \url{https://en.wikipedia.org/wiki/Window_function} contains a relatively comprehensive visual catalog of the frequency responses of different tapering window functions.}.
+implementation of the Hann window function\sidenote{The Wikipedia page on Window functions \url{https://en.wikipedia.org/wiki/Window_function} 
+contains a relatively comprehensive visual catalog of the frequency responses of different tapering window functions.}.
 
 
 \section{Example: Frequency selective filter}
@@ -491,11 +492,11 @@ implementation of the Hann window function\sidenote{The Wikipedia page on Window
   \caption{Top: Frequency selective filter impulse response using a rectangular window. Bottom: Frequency selective 
   filter impulse response using a Hann window. In both cases, the length of the window function is $N=22$. 
   The window functions $w(n)$ are shown in red, and the filter impulse response in blue.}
-  \label{fig:window_functions}
+  \label{fig:window_functions2}
 \end{marginfigure}
 
 
-The ideal point-frequency filter for a real valued signal with frequency
+The ideal point-frequency filter for a real-valued signal with frequency
 $\hat{\omega}_0$ was shown in the discrete-time Fourier transform
 chapter to be:
 \begin{equation}

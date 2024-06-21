@@ -59,7 +59,7 @@ We will explore the following topics:
 x(t) = \sum_{k=1}^N c_k e^{i\omega_k t} \,\,.
 \label{eq:general_spectrum}
 \end{equation}
-The symbol $c_k = A_k e^{i\phi_k} \in \mathbb{C}$ is used for complex valued constants that contain information about the 
+The symbol $c_k = A_k e^{i\phi_k} \in \mathbb{C}$ is used for complex-valued constants that contain information about the 
 amplitudes $A_k \in \mathbb{R}_{\ge 0}$ and phases $\phi_k \in \mathbb{R}$ of the complex exponential signals with angular frequencies $\omega_k \in \mathbb{R}$.
 
 It is possible to plot the complex coefficients $c_k$ as a function of angular frequency $\omega$ as shown in Figure \ref{fig:spec_rep}, which depicts a function of the form:
@@ -94,7 +94,7 @@ We will derive Equation \ref{eq:freq_deltas} later when discussing the continuou
 \end{axis}
         \end{tikzpicture}
 \end{center}
-\caption{A spectral representation of a cosine signal consists of two frequency components: $\frac{1}{2}Ae^{i\phi}e^{i\omega t}$ and $\frac{1}{2}Ae^{-i\phi}e^{-i\omega t}$. Here $A$ is a non-negative real valued amplitude. Blue denotes the real and the red denotes the imaginary component of $c_k$.}
+\caption{A spectral representation of a cosine signal consists of two frequency components: $\frac{1}{2}Ae^{i\phi}e^{i\omega t}$ and $\frac{1}{2}Ae^{-i\phi}e^{-i\omega t}$. Here $A$ is a non-negative real-valued amplitude. Blue denotes the real and the red denotes the imaginary component of $c_k$.}
 \label{fig:exspecsin}
 \end{marginfigure}
 
@@ -111,7 +111,7 @@ x(t) & = \frac{A}{2}e^{i\phi}e^{i\omega t} + \frac{A}{2}e^{-i\phi}e^{-i\omega t}
 The second line is simply representing the first line in the format of Equation \ref{eq:general_spectrum}.
 
 Note that there is symmetry within the frequency components. The pairing of frequencies exists as $\omega_{1}=-\omega_{-1}$. 
-The complex constants are also conjugate symmetric $c_{-1} = c_{1}^*$. We'll later on see that this type of conjugate symmetry exists for the frequency components of all real valued signals.
+The complex constants are also conjugate symmetric $c_{-1} = c_{1}^*$. We'll later on see that this type of conjugate symmetry exists for the frequency components of all real-valued signals.
 
 \newthought{A Fourier series is a spectral representation of a signal where each frequency is a multiple of some common base frequency $\omega$}:
 \begin{equation}
@@ -335,7 +335,7 @@ c_k = \frac{1}{T} \int_T x(t) e^{-i \frac{2\pi}{T}kt} dt
 } \,\,.
 \end{equation}
 
-\newthought{What about real valued signals?} We can use Euler's formula to look at the real part of the Fourier series synthesis formula. I'll assume again that $x(t)$ is a periodic function that can be represented using an infinite sum of complex sinusoidal signals:
+\newthought{What about real-valued signals?} We can use Euler's formula to look at the real part of the Fourier series synthesis formula. I'll assume again that $x(t)$ is a periodic function that can be represented using an infinite sum of complex sinusoidal signals:
 \begin{equation}
 x(t) = \sum_{\ell = -\infty}^{\infty} c_{\ell} e^{i\frac{2\pi}{T}\ell t}.
 \end{equation}
@@ -349,11 +349,11 @@ The real part of the signal $x(t)$ is:
 \end{align}
 For the last part, I've introduced new variables: $A_0= \frac{1}{2}(c_0 + c_0^*) \in \mathbb{R}$, $A_\ell = |c_{\ell} +c^*_{-\ell}|\in \mathbb{R}_{\ge 0}$ and $\phi_\ell = \angle (c_{\ell} + c^*_{-\ell}) \in \mathbb{R}$. 
 
-When analyzing Fourier series coefficients for a real valued function, you will find that they come in conjugate symmetric pairs, 
+When analyzing Fourier series coefficients for a real-valued function, you will find that they come in conjugate symmetric pairs, 
 which will allow you to write the Fourier series synthesis equation in the form shown on the last line of Equation \ref{eq:real_fourier_series}. 
 Also, the Fourier series synthesis equation is sometimes introduced in this form in older texts.
 
-\newthought{The zero frequency or the direct current (DC) frequency component $c_0$} often has a special meaning. In the case of real valued signals, 
+\newthought{The zero frequency or the direct current (DC) frequency component $c_0$} often has a special meaning. In the case of real-valued signals, 
 this is the only frequency component that does not have a positive and negative frequency conjugate symmetric pairing. The DC component also has the meaning that it is the mean value of the signal:
 \begin{equation}
 c_0 = \frac{1}{T} \int_{T} x(t) dt \,\,.
