@@ -1,26 +1,27 @@
 #!/usr/bin/env python3
-import numpy as n
-import scipy.constants as c
 import matplotlib.pyplot as plt
+import numpy as np
+import scipy.constants as c
 
-x=n.linspace(-2.5,1.5,num=2000,dtype=n.float32)
-y=n.linspace(-2,2,num=2000,dtype=n.float32)
-cx,cy=n.meshgrid(x,y)
-c=cx+1j*cy
+x = np.linspace(-2.5, 1.5, num=2000, dtype=np.float32)
+y = np.linspace(-2, 2, num=2000, dtype=np.float32)
+cx, cy = np.meshgrid(x, y)
+c = cx + 1j*cy
 
-# figure out what is the datatype of variable c
-# to make sure it's complex64
+# Figure out what is the datatype of variable c
+# to make sure it's complex64.
 print(c.dtype)
 
-z=n.zeros(c.shape,dtype=n.complex64)
+z = np.zeros(c.shape, dtype=np.complex64)
 
-for iteration in range(12):
-    z=z**2+c
-z[n.isnan(z)]=0.0
-z[n.isinf(z)]=0.0
+for _ in range(12):
+    z = z**2 + c
 
-plt.imshow(n.angle(z),extent=[-2.5,1.5,-2,2],cmap="hsv")
+z[np.isnan(z)] = 0.0
+z[np.isinf(z)] = 0.0
+
+plt.imshow(np.angle(z), extent=[-2.5, 1.5, -2, 2], cmap="hsv")
 plt.colorbar()
-plt.xlabel("$\mathrm{Re}\{c\}$")
-plt.ylabel("$\mathrm{Im}\{c\}$")
+plt.xlabel(r"$\mathrm{Re}\{c\}$")
+plt.ylabel(r"$\mathrm{Im}\{c\}$")
 plt.show()
