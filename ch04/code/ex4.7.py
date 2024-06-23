@@ -15,11 +15,13 @@ def amplify(x: np.ndarray, alpha: float) -> np.ndarray:
 # Original file name: Guitar clean rif.wav
 
 
-# The read function returns two arguments, these being the sample rate and the actual data.
+# The read function returns two arguments, 
+# these being the sample rate and the actual data.
 wav = sio.read("guitar_clean.wav")
 # Read only one stereo channel.
 sample_rate = wav[0]
-# Returned is a 2-dimensional NumPy array corresponding to the left and right channel.
+# Returned is a 2-dimensional NumPy array corresponding 
+# to the left and right channel.
 x = wav[1][:, 0]
 
 # Create time vector (independent variable).
@@ -37,8 +39,8 @@ plt.ylabel("Relative air pressure $y(t)$")
 # Amplify the signal.
 out = amplify(x, alpha)
 
-# Scale maximum absolute amplitude to 0.9, because 1.0 is the maximum allowed
-# by the file format.
+# Scale maximum absolute amplitude to 0.9, because 1.0 is
+# the maximum allowed by the file format.
 out = 0.9*out / np.max(np.abs(out))
 
 # Write compressed output to wav file.
