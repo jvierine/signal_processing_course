@@ -2,75 +2,128 @@
 \section{Exercises: Linear Time-invariant Systems}
 \begin{enumerate}
 
-\item Prove that the convolution operation is commutative. That is, show that $a[n]*b[n]=b[n]*a[n]$. In addition, show that this holds true for the continuous-time convolution operation. 
+  % Exercise 1
+  \item Prove that the convolution operation is commutative.
+        That is, show that $a[n]*b[n]=b[n]*a[n]$. In addition, show that
+        this holds true for the continuous-time convolution operation.
 
-\item A running average system is defined as:
-  \begin{equation}
-    y[n] = \mathcal{T}\{x[n]\} = \frac{1}{L}\sum_{k=0}^{L-1} x[n-k]
-  \end{equation}
+  % Exercise 2
+  \item A running average system is defined as:
+        \begin{equation}
+          y[n] = \mathcal{T}\{x[n]\} = \frac{1}{L}\sum_{k=0}^{L-1} x[n-k]
+        \end{equation}
 
-  \begin{enumerate}[a)]
-    \item Show that the running average system is a linear time
-      invariant system using the test for linearity and time
-      invariance.
-    \item What is the impulse response $h[n] =
-      \mathcal{T}\{\delta[n]\}$ of the running average system?
-    \item How many non-zero values does the impulse response $h[n]$ have?
-    \item We feed a discrete-time complex sinusoidal signal
-      $x[n]=e^{i\hat{\omega}_0 n}$ into the system. Show that the
-      output is of the form $y[n]=A e^{i\phi} e^{i\hat{\omega}_0 n}$,
-      in other words, a discrete-time complex sinusoidal signal with
-      the same frequency as the input signal.
-      \item Continue with task d). Let us assume that
-        $L=4$. What is the amplitude of the output signal $A$ when we
-        have a normalized angular frequency of:
-        \begin{enumerate}
-        \item $\hat{\omega}_0 = 0$ radians per sample?
-        \item $\hat{\omega}_0 = \pi$ radians per sample?
-        \item $\hat{\omega}_0 = 0.5\pi$ radians per sample?          
+        \begin{enumerate}[a)]
+          % Exercise 2a)
+          \item Show that the running average system is a linear time
+                invariant system using the test for linearity and time
+                invariance.
+          % Exercise 2b)
+          \item What is the impulse response $h[n] =
+                  \mathcal{T}\{\delta[n]\}$ of the running average system?
+          % Exercise 2c)
+          \item How many non-zero values does the impulse response $h[n]$ have?
+          % Exercise 2d)
+          \item We feed a discrete-time complex sinusoidal signal
+                $x[n]=e^{i\hat{\omega}_0 n}$ into the system. Show that the
+                output is of the form $y[n]=A e^{i\phi} e^{i\hat{\omega}_0 n}$,
+                in other words, a discrete-time complex sinusoidal signal with
+                the same frequency as the input signal.
+          % Exercise 2e)
+          \item Continue with task d). Let us assume that
+                $L=4$. What is the amplitude of the output signal $A$ when we
+                have a normalized angular frequency of:
+                \begin{enumerate}
+                  \item $\hat{\omega}_0 = 0$ radians per sample?
+                  \item $\hat{\omega}_0 = \pi$ radians per sample?
+                  \item $\hat{\omega}_0 = 0.5\pi$ radians per sample?
+                \end{enumerate}
+
+          % Exercise 2f)
+          \item Show that system $y_2[n]=\mathcal{T}\{ \mathcal{T}\{x[n]\} \}$ is also an LTI system.
+          % Exercise 2g)
+          \item What is the impulse response $h_2[n]=\mathcal{T}\{\mathcal{T}\{\delta[n]\}\}$?
+                Sketch a plot of the non-zero values $h_2[n]$.
         \end{enumerate}
-      
-    \item Show that system $y_2[n]=\mathcal{T}\{ \mathcal{T}\{x[n]\} \}$ is also an LTI system.
-    \item What is the impulse response $h_2[n]=\mathcal{T}\{\mathcal{T}\{\delta[n]\}\}$? Sketch a plot of the non-zero values $h_2[n]$.
-  \end{enumerate}
-  
+
+  % Exercise 3
+  \item Consider the following running average filter:
+        \begin{equation}
+          y[n] = \frac{1}{L}\sum_{k = 0}^{L - 1}x[n - k].
+          \label{eq:ex:filter}
+        \end{equation}
+
+        \begin{enumerate}[a)]
+          % Exercise 3a)
+          \item Let $x[n]$ be the signal:
+                \[
+                  x[n] = \begin{cases}
+                    1.2, \quad n = 0, \\
+                    4.3, \quad n = 1, \\
+                    4.7, \quad n = 2, \\
+                    3.3, \quad n = 3, \\
+                    2.9, \quad n = 4.
+                  \end{cases}
+                \]
+                Compute the resulting signal $y[n]$ from using the filter in \ref*{eq:ex:filter}
+                by hand, using $L = 3$. Values of $n$ for which $n \notin \{0, 1, 2, 3, 4\}$
+                are treated as $0$.
+
+          % Exercise 3b)
+          \item Implement a function \verb|running_average_filter(L, x)| that computes the running average filter
+                for a given $L$ and signal $x$. Apply the filter on the signal $x$ from the previous exercise
+                to verify that you get the same answer (up to some rounding errors).
+          % Exercise 3c)
+          \item The code shown in Listing \ref*{ch10:precode1} makes plots of a noisy signal
+                along with the filtered signal, using the running average filter from Equation \ref*{eq:ex:filter}.
+                Add the function you wrote from the previous exercise to the code, and verify that the noisy
+                signal has been smoothened by the filter. It should look similar to Figure \ref*{fig:avg_filter}.
+                \lstinputlisting[language=Python, caption=Given code for exercise 3c, label=ch10:precode1]{ch10/code/starting_code1_ex3c.py}
+          % Exercise 3d)
+          \item Download \verb|7na.wav| from the course GitHub examples, 
+                \url{https://github.com/jvierine/signal_processing/tree/master/018_reverb}. 
+                Apply the running average filter in Equation \ref{eq:ex:filter} to the audio using 
+                $L = 4, 25, 50, 100$. Can you detect with your ear what happens to the
+                low and high frequency components of the signal as a result of
+                the operation?
+        \end{enumerate}
+
+  % Exercise 4
   \item Obtain the demonstration code that implements a reverb effect
-    using a convolution operation:
-    \begin{equation}
-      y[n]=h[n]*x[n],
-      \end{equation}
-    where $x[n]$ is the input signal, $h[n]$ is the impulse response
-    of a room, and $y[n]$ is the output signal with the reverb
-    effect. Download \verb|7na.wav| from the course GitHub examples,
-    \url{https://github.com/jvierine/signal_processing/tree/master/018_reverb}
-    or alternatively use your own audio file.
+        using a convolution operation:
+        \begin{equation}
+          y[n] = h[n]*x[n],
+        \end{equation}
+        where $x[n]$ is the input signal, $h[n]$ is the impulse response
+        of a room, and $y[n]$ is the output signal with the reverb
+        effect. Download \verb|7na.wav| from the course GitHub examples,
+        \url{https://github.com/jvierine/signal_processing/tree/master/018_reverb}
+        or alternatively use your own audio file.
 
-\begin{enumerate}[a)]
+        \begin{enumerate}[a)]
 
-\item Run the example code and verify that the filtered signal indeed sounds like it
-is played in a large room by playing \verb|7na.wav| and the file \verb|reverb.wav|
-produced by the script.
+          % Exercise 4a)
+          \item Run the example code and verify that the filtered signal indeed sounds like it
+                is played in a large room by playing \verb|7na.wav| and the file \verb|reverb.wav|
+                produced by the script.
 
-\item Find the part in the code where a convolution between the audio
-  signal and the impulse response is evaluated. Plot the impulse
-  response of the FIR filter applied to the input signal.
+          % Exercise 4b)
+          \item Find the part in the code where a convolution between the audio
+                signal and the impulse response is evaluated. Plot the impulse
+                response of the FIR filter applied to the input signal.
 
-\item Figure out how to increase and reduce the amount of reverb, i.e.,
-to make it sound like the audio signal is played in a large or small
-room with many surfaces that reflect sound waves. What does the
-impulse response for a large room and a small room look like?
+          % Exercise 4c)
+          \item Figure out how to increase and reduce the amount of reverb, i.e.,
+                to make it sound like the audio signal is played in a large or small
+                room with many surfaces that reflect sound waves. What does the
+                impulse response for a large room and a small room look like?
 
-\item Now try to create an impulse response of an echo from a distance
-  of 1000 meters using the following impulse response
-  $h[n]=\delta[n]+0.5\delta[n-n_0]$. Assuming that the propagation velocity of
-  sound is 343 $\frac{\mathrm{m}}{\mathrm{s}}$, determine a suitable value for $n_0$.
-
-\item Implement several length running average filters to
-  the audio signal (e.g., Equation \ref{eq:running_mean}), which
-  average together 4, 8, 16, and 100 samples. Can you detect
-  with your ear what happens to the low and high frequency components
-  of the signal as a result of the operation?
-\end{enumerate}
-
+          % Exercise 4d)
+          \item Now try to create an impulse response of an echo from a distance
+                of 1000 meters using the following impulse response
+                $h[n] = \delta[n] + 0.5\delta[n-n_0]$. Assuming that the propagation velocity of
+                sound is 343 $\frac{\mathrm{m}}{\mathrm{s}}$, determine 
+                a suitable value for $n_0$.
+        \end{enumerate}
 
 \end{enumerate}
