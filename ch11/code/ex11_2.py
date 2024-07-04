@@ -1,19 +1,19 @@
-import numpy as n
+import numpy as np
 import matplotlib.pyplot as plt
 import scipy.special as dd
 
-# partition the interval (-pi,pi) into num points
-om = n.linspace(-n.pi,n.pi,num=1000)
+# Partition the interval (-pi,pi) into num points.
+om = np.linspace(-np.pi, np.pi, num=1000)
 
-# use M = 11 for the Dirichlet kernel plot
+# Use M = 11 for the Dirichlet kernel plot.
 M = 11
 
-# plot the two functions in the same coordinate system
-plt.plot(om,n.abs(dd.diric(om,n=M))**2,label="$|D_{11}(\hat{\omega})|^{2}$")
-plt.plot(om,n.abs(n.exp(1j*om*(M-1)/2)*dd.diric(om,n=M))**2,label="$|H_{11}(\hat{\omega})|^{2}$")
-plt.xlabel("$\hat{\omega}$")
+# Plot the two functions in the same coordinate system.
+plt.plot(om, np.abs(dd.diric(om, n=M))**2, label=r"$|D_{11}(\hat{\omega})|^{2}$")
+plt.plot(om, np.abs(np.exp(1j*om*(M-1)/2)*dd.diric(om, n=M))**2, label=r"$|H_{11}(\hat{\omega})|^{2}$")
+plt.xlabel(r"$\hat{\omega}$")
 plt.legend()
-# call this if needed
+# Call this if needed.
 # plt.plot()
 
 try:

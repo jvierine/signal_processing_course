@@ -1,31 +1,24 @@
-import numpy as n
+import numpy as np
 import matplotlib.pyplot as plt
 
-om = n.linspace(-7*n.pi,7*n.pi,num=1000)
+# Partition the interval -7pi to 7pi.
+om = np.linspace(-7*np.pi, 7*np.pi, num=1000)
 
-def freq_resp(om):
-    return 42*(n.heaviside(om+5.5*n.pi,0)-n.heaviside(om-5.5*n.pi,0))
 
-plt.plot(om,n.abs(freq_resp(om)),color="green")
-plt.vlines(-7*n.pi,ymin=0,ymax=42,color="red")
-plt.vlines(-6*n.pi,ymin=0,ymax=42,color="red")
-plt.vlines(-5*n.pi,ymin=0,ymax=42,color="red")
-plt.vlines(-4*n.pi,ymin=0,ymax=42,color="red")
-plt.vlines(-3*n.pi,ymin=0,ymax=42,color="red")
-plt.vlines(-2*n.pi,ymin=0,ymax=42,color="red")
-plt.vlines(-n.pi,ymin=0,ymax=42,color="red")
-plt.vlines(0,ymin=0,ymax=42,color="red")
-plt.vlines(n.pi,ymin=0,ymax=42,color="red")
-plt.vlines(2*n.pi,ymin=0,ymax=42,color="red")
-plt.vlines(3*n.pi,ymin=0,ymax=42,color="red")
-plt.vlines(4*n.pi,ymin=0,ymax=42,color="red")
-plt.vlines(5*n.pi,ymin=0,ymax=42,color="red")
-plt.vlines(6*n.pi,ymin=0,ymax=42,color="red")
-plt.vlines(7*n.pi,ymin=0,ymax=42,color="red")
+def freq_resp(om: np.ndarray) -> np.ndarray:
+    """Function for the frequency response."""
+    return 42*(np.heaviside(om+5.5*np.pi, 0) - np.heaviside(om-5.5*np.pi, 0))
+
+
+plt.plot(om, np.abs(freq_resp(om)), color="green")
+
+# Plot each line in red from -7 to 7.
+for k in range(-7, 8):
+    plt.vlines(k*np.pi, ymin=0, ymax=42, color="red")
 
 plt.title("Dirac comb")
-plt.xlabel("$\omega$")
-# call this if needed
+plt.xlabel(r"$\omega$")
+# Call this if needed.
 # plt.plot()
 
 try:

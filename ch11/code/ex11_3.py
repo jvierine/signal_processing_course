@@ -1,20 +1,21 @@
-import numpy as n
+import numpy as np
 import matplotlib.pyplot as plt
 
-# plot in the principal spectrum (-pi,pi)
-om = n.linspace(-n.pi,n.pi,num=1000)
+# Plot in the principal spectrum (-pi, pi).
+om = np.linspace(-np.pi, np.pi, num=1000)
 
-# for simplicity take Ts as 1
+# For simplicity take Ts as 1.
 Ts = 1
 
-# definition of the frequency response function
-def freq_resp(om):
-    return 2/(Ts**2)*(n.cos(om)-1)
+def freq_resp(om: np.ndarray) -> np.ndarray:
+    """Definition of the frequency response function."""
+    return 2/(Ts**2)*(np.cos(om)-1)
 
-# plot the frequency response function over (-pi,pi)
-plt.plot(om,n.abs(freq_resp(om)),label="$\mathcal{H}(\hat{\omega})$")
+
+# Plot the frequency response function over (-pi, pi).
+plt.plot(om, np.abs(freq_resp(om)), label=r"$\mathcal{H}(\hat{\omega})$")
 plt.legend()
-# call this if needed
+# Call this if needed.
 # plt.plot()
 
 try:
