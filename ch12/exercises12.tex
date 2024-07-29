@@ -42,7 +42,8 @@
   \item Show that if $\hat{x}(\hat{\omega}) \in \mathbb{R}$, then $x[n]=x^*[-n]$.
 
   % Exercise 3
-  \item Show that $\mathcal{F}^{-1}\{42 i\}=42i\delta[n]$ using Equation \ref{eq:idtft_def}. Here $\mathcal{F}^{-1}$ is the inverse discrete-time Fourier transform.
+  \item Show that $\mathcal{F}^{-1}\{42 i\}=42i\delta[n]$ using Equation \ref{eq:idtft_def}. 
+        Here $\mathcal{F}^{-1}$ is the inverse discrete-time Fourier transform.
 
   % Exercise 4
   \item Consider three systems: $\mathcal{T}_1\{x[n]\} = x[n]-x[n-1]$,  $\mathcal{T}_2\{x[n]\} = x[n]+x[n-2]$, and
@@ -58,12 +59,12 @@
   \item Inverse DTFT the following functions:
         \begin{enumerate}[a)]
           % Exercise 5a)
-          \item $\hat{x}(\hat{\omega})=1-2e^{i\hat{\omega}3}$
+          \item $\hat{x}(\hat{\omega})=1-2e^{3i\hat{\omega}}$
           % Exercise 5b)
-          \item $\hat{x}(\hat{\omega})=2e^{-i\hat{\omega}3}\cos(\hat{\omega})$
+          \item $\hat{x}(\hat{\omega})=2e^{-3i\hat{\omega}}\cos(\hat{\omega})$
           % Exercise 5c)
-          \item $\hat{x}(\hat{\omega})=e^{-i 42 \hat{\omega}} \frac{\sin(10.5 \hat{\omega})}{\sin(\hat{\omega}/2)}$.\\
-                Hint: Look at the derivation for the Dirichlet kernel.
+          \item $\hat{x}(\hat{\omega})=e^{-42i\hat{\omega}} \frac{\sin(10.5 \hat{\omega})}{\sin(\hat{\omega}/2)}$.\\
+          Hint: Look at the derivation for the Dirichlet kernel.
         \end{enumerate}
 
 \end{enumerate}
