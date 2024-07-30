@@ -5,8 +5,7 @@ from scipy.signal.windows import hann
 
 # Read the noisy signal.
 ts = sw.read("crappy.wav")
-sr = ts[0]
-crap = ts[1]
+sr, crap = ts
 
 # Filter length.
 N = 4000
@@ -29,13 +28,14 @@ h = np.zeros(N)
 # Use a Hann window.
 w = hann(N)
 
+n = np.arange(N)
 
-# The band-stop filter we found in a) with a Hann window function.
-for i in range(N):
-    if i == N // 2:   # Careful to avoid the 0/0 problem.
-        h[i] = (1 + (om0 - om1)/(np.pi))*w[i]
-    else:
-        h[i] = (np.sin(om0 * (i - N // 2)) / ((i - N // 2) * np.pi) - np.sin(om1 * (i - N // 2)) / ((i - N // 2) * np.pi)) * w[i]
+# Create a mask to compute the filter. Otherwise a zero-division occurs.
+mask = (n != N//2)
+
+# Compute the impulse response. Add the N//2 value afterwards.
+h[mask] = (np.sin(om0*(n[mask] - N//2)) / ((n[mask] - N//2)*np.pi) - np.sin(om1*(n[mask] - N//2)) / ((n[mask] - N//2)*np.pi))*w[mask]
+h[N//2] = (1 + (om0 - om1) / np.pi) * w[N//2]
 
 # In frequency domain, we multiply the filter with the spectral representation.
 # Multiplication in frequency domain correspond to convolution in time domain
@@ -51,7 +51,7 @@ sw.write("test_uncrappy.wav", sr, np.array(uncrap, dtype=np.float32))
 
 
 def convert_to_decibel(x: np.ndarray) -> np.ndarray:
-    return 10*np.log10(np.abs(x)**2)
+    return 10.0*np.log10(np.power(np.abs(x), 2.0))
 
 
 plt.subplot(121)

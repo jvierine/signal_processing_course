@@ -341,7 +341,7 @@ One method for designing filters is to take these infinitely
 long ideal filters and truncate these to get a filter with finite length.
 Approximating an ideal filter with an FIR filter can be accomplished by using \emph{\index{window functions}{window
     functions}} or \emph{\index{tapering windows}{tapering windows}}.
-A window function is a function that is 0 outside an interval,
+A window function is a function that is $0$ outside an interval,
 so the effect of multiplying with a window function is that the window
 function truncates the filter, making it finite.
 
@@ -514,8 +514,8 @@ implement this filter in practice. The windowed version of this filter
 of length $N$ in the case of a rectangular window function would be:
 \begin{equation}
   h_{R,\hat{\omega}_0}[n] =\left\{ \begin{array}{cc}
-    \cos(\hat{\omega}_0 (n-N/2)). & 0 \le n \le N-1     \\
-    0                             & \mathrm{otherwise}.
+    \cos(\hat{\omega}_0 (n-N/2)) & 0 \le n \le N-1     \\
+    0                            & \mathrm{otherwise}.
   \end{array}
   \right.
 \end{equation}
