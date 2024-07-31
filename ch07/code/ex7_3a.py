@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 T = 1                   # Period.
 sample_rate = 1000.0    # Sample rate.

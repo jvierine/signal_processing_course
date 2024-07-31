@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 # A sweep of -\pi to \pi in normalized angular frequency.
 omhat = np.linspace(-np.pi, np.pi, num=500)

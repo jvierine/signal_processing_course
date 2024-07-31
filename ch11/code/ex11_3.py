@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 # Plot in the principal spectrum (-pi, pi).
 om = np.linspace(-np.pi, np.pi, num=1000)

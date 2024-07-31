@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 # Simple function to compute the kth order root of unity of degree m.
 def root_unity(k: int, m: int) -> float:

@@ -55,7 +55,8 @@ delta_n = 40
 # Compute the spectrogram.
 spect = spectrogram(signal, delta_n, N, M)
 
-# Partition the axes correctly with units of Hertz and seconds.
+# Partition the axes correctly with 
+# units of Hertz and seconds.
 freqs = np.fft.fftfreq(M, d=1.0/sample_rate)
 time = delta_n*np.arange(spect.shape[0])/sample_rate
 

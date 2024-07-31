@@ -11,7 +11,8 @@ signal = audio[1][:, 0]
 # The sample rate is:
 print(sample_rate)  # output is 44100 Hz.
 
-# Partition the interval such that the units become seconds.
+# Partition the interval such that the 
+# units become seconds.
 t = np.arange(len(signal))/(sample_rate)
 
 plt.plot(t, signal)

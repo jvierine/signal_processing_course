@@ -10,7 +10,7 @@
 import scipy.io.wavfile
 audio = scipy.io.wavfile.read("b.wav")
 sample_rate = audio[0]
-# read only one channel of the stereo signal
+# Read only one channel of the stereo signal.
 signal = audio[1][:,0]
 \end{lstlisting}
 

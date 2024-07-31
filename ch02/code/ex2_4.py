@@ -1,6 +1,6 @@
 # Import some libraries.
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 import scipy.constants as c
 
 # Partition the interval (-2.5, 1.5) or (-2, 2) into 2000 numbers.

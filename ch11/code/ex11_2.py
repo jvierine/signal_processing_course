@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 import scipy.special as dd
 
 # Partition the interval (-pi,pi) into num points.

@@ -1,8 +1,7 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 import scipy.io.wavfile as sio
 
-# Read .wav format audio file.
 wav = sio.read("guitar_clean.wav")
 # Figure out what the sample-rate is.
 sample_rate = wav[0]
@@ -15,7 +14,7 @@ N_samples = 1024
 
 # Calculate spectral components using FFT
 # (discrete-time Fourier series.)
-c_k = np.fft.fft(x[0:N_samples])
+c_k = np.fft.fft(x[:N_samples])
 
 # Time in seconds.
 time_vec = np.arange(N_samples)/float(sample_rate)

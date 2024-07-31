@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 # Time vector 0 to 1 seconds, 1000 Hz sample rate.
 t = np.arange(1000)/1000.0

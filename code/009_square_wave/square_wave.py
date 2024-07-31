@@ -1,7 +1,5 @@
-#!/usr/bin/env python
-
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 P = 0.1
 T = 1.0
@@ -16,6 +14,7 @@ N = 101
 ks = np.arange(-N, N+1)
 cks = np.zeros(2*N+1, dtype=np.complex64)
 ki = 0
+
 for k in range(-N, N+1):
     if k == 0:
         zn += P/T

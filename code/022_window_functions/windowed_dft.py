@@ -2,10 +2,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scipy.signal.windows import hann
 
-# Using windowed DFT for spectral analysis of
-# signals Demonstrate that a window function allows weak signals to be
-# found better, due to less spectral leakage than if a rectangular
-# window is used.
+# Using windowed DFT for spectral analysis of signals. 
+# Demonstrate that a window function allows weak 
+# signals to be found better, due to less spectral 
+# leakage than if a rectangular window is used.
 
 N = 4096
 n = np.arange(N)
@@ -32,7 +32,8 @@ plt.xlabel("Sample ($n$)")
 plt.ylabel("$x_2[n]$")
 plt.title(r"Weak signal $\hat{\omega}=%1.2f$" % (freq2))
 plt.subplot(313)
-# Weak signal is impossible to see, because it has a 1e6 smaller amplitude.
+# Weak signal is impossible to see, 
+# because it has a 1e6 smaller amplitude.
 plt.plot(n, y)
 plt.xlabel("Sample ($n$)")
 plt.ylabel("$y[n]=x_1[n]+x_2[n]$")
@@ -41,8 +42,7 @@ plt.tight_layout()
 plt.savefig("windowed_signals.png")
 plt.show()
 
-# Analyze spectrum
-# zero padded DFT to be of length 2*N.
+# Analyze spectrum zero padded DFT to be of length 2*N.
 Y = np.fft.fft(y, 2*N)
 # Windowed zero-padded DFT.
 w = hann(N)

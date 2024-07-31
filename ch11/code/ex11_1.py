@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 # Partition the interval -7pi to 7pi.
 om = np.linspace(-7*np.pi, 7*np.pi, num=1000)

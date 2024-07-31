@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 # Time vector 0 to 1 seconds, 1000 Hz sampler rate.
 t = np.arange(1000)/float(1000.0)
@@ -9,7 +9,7 @@ om0 = 2.0*np.pi*10.0
 om1 = 2.0*np.pi*5.0
 # Create complex sinusoidal signal.
 z = np.exp(1j*om0*t)
-# Shift z in frequency by multiplying with another 
+# Shift z in frequency by multiplying with another
 # complex sinusoidal signal of frequency om1.
 z_shifted = z*np.exp(1j*om1*t)
 
