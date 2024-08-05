@@ -1,35 +1,41 @@
+% Author: Jørn Olav Jensen
+
 \newpage
 \section{Exercises: Ideal and Tapered Filters}
 
 \begin{enumerate}
-\item Define the ideal band-stop filter as: \footnote{that is $\mathcal{H}_{\mathrm{BS}}(\hat{\omega})=1 - \mathcal{H}_{\mathrm{BP}}(\hat{\omega})$.}
-\begin{equation}
-\mathcal{H}_{\mathrm{BS}}(\hat{\omega}) = \left\{ \begin{array}{cc}
-0 & \hat{\omega}_0 < |\hat{\omega}| < \hat{\omega}_1 \\
-1 & \mathrm{otherwise}
-\end{array}\right.\,\,.
-\end{equation}
-Derive the impulse response for the band-stop filter.
+  % Exercise 1
+  \item Define the ideal band-stop filter as: \footnote{That is $\mathcal{H}_{\mathrm{BS}}(\hat{\omega})=1 - \mathcal{H}_{\mathrm{BP}}(\hat{\omega})$.}
+        \begin{equation}
+          \mathcal{H}_{\mathrm{BS}}(\hat{\omega}) = \left\{ \begin{array}{cc}
+            0 & \hat{\omega}_0 < |\hat{\omega}| < \hat{\omega}_1 \\
+            1 & \mathrm{otherwise}
+          \end{array}\right.\,\,.
+        \end{equation}
+        Derive the impulse response for the band-stop filter.
 
-\item Consider the band-stop filter you found in the previous exercise. 
-The goal of this exercise is to implement this filter in Python and apply it to filter an audio file.
+  % Exercise 2
+  \item Consider the band-stop filter you found in the previous exercise.
+        The goal of this exercise is to implement this filter in Python and apply it to filter an audio file.
 
-\begin{enumerate}[a)]
-\item Let $w[n]$ be a tapered window function, like the Hann window of length $N$. Show that the windowed filter can be written as:
-$$h_{w}[n]=\delta[n-N/2]w[n] +  \frac{\sin(\hat{\omega}_{0}(n-N/2))}{(n-N/2)\pi}w[n] - \frac{\sin(\hat{\omega}_{1}(n-N/2))}{(n-N/2)\pi}w[n].$$
+        \begin{enumerate}[a)]
+          % Exercise 2a)
+          \item Let $w[n]$ be a tapered window function, like the Hann window of length $N$. Show that the windowed filter can be written as:
+                \[ h_{w}[n]=\delta[n-N/2]w[n] + \frac{\sin(\hat{\omega}_{0}(n-N/2))}{(n-N/2)\pi}w[n] - \frac{\sin(\hat{\omega}_{1}(n-N/2))}{(n-N/2)\pi}w[n]. \]
 
-\item Download the \verb|crappy.wav| file from the link:
-\begin{center}
-\verb|https://bit.ly/3CvE89s| 
-\end{center}
-The audio file contains a guitar playing, but it is impossible to hear due to noise. 
-Your task is to filter out this noise using a band-stop filter. 
-The noise in the signal is contained in a frequency band between $f_{0}=3$ kHz and $f_{1}=5$ kHz, 
-but try to experiment with these to see what happens. Implement a band-stop filter using 
-Python to remove the noise and recover the original audio. You can use the code shown in Listing \ref{bandex} 
-as a starting point. 
-\end{enumerate}
+          % Exercise 2b)
+          \item Download the \verb|crappy.wav| file from the link:
+                \begin{center}
+                  \verb|https://bit.ly/3CvE89s|
+                \end{center}
+                The audio file contains a guitar playing, but it is impossible to hear due to noise.
+                Your task is to filter out this noise using a band-stop filter.
+                The noise in the signal is contained in a frequency band between $f_{0}=3$ kHz and $f_{1}=5$ kHz,
+                but try to experiment with these to see what happens. Implement a band-stop filter using
+                Python to remove the noise and recover the original audio. You can use the code shown in Listing \ref{bandex}
+                as a starting point.
+        \end{enumerate}
 
-\lstinputlisting[language=Python,caption=Band-stop filter starting point,label=bandex]{ch13/code/ex13_2_precode.py}
+        \lstinputlisting[language=Python, caption=Band-stop filter starting point, label=bandex]{ch13/code/ex13_2_precode.py}
 
 \end{enumerate}

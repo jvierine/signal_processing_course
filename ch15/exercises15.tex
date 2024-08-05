@@ -2,57 +2,75 @@
 \section{Exercises: Discrete Fourier Transform}
 
 \begin{enumerate}
-\item Let $x(t)$ be some continuous-time signal that is sampled. The signal is discretized with a sampling rate of $f_{s}=17$ kHz, giving a discrete-time signal $x[n]$ of length $N$. We apply a discrete Fourier transform
-\begin{equation}
-\hat{x}[k] = \sum_{n=0}^{N-1} x[n] e^{-i\frac{2\pi}{N}kn}
-\end{equation}
-to the discrete-time signal $x[n]$, giving the signal
-$\hat{x}[k]$. This allows us to represent the signal $x[n]$ as a sum of $N$
-unique complex sinusoidal terms (spectral components):
-\begin{equation}
-x[n] = \frac{1}{N}\sum_{k=0}^{N-1} \hat{x}[k] e^{i\frac{2\pi}{N}kn}.
-\end{equation}
-Here $n$ and $k$ are integers.
+  % Exercise 1
+  \item Let $x(t)$ be some continuous-time signal that is sampled. The signal is discretized with a sampling rate of $f_{s}=17$ kHz, giving a discrete-time signal $x[n]$ of length $N$. We apply a discrete Fourier transform
+        \begin{equation}
+          \hat{x}[k] = \sum_{n=0}^{N-1} x[n] e^{-i\frac{2\pi}{N}kn}
+        \end{equation}
+        to the discrete-time signal $x[n]$, giving the signal
+        $\hat{x}[k]$. This allows us to represent the signal $x[n]$ as a sum of $N$
+        unique complex sinusoidal terms (spectral components):
+        \begin{equation}
+          x[n] = \frac{1}{N}\sum_{k=0}^{N-1} \hat{x}[k] e^{i\frac{2\pi}{N}kn}.
+        \end{equation}
+        Here $n$ and $k$ are integers.
 
-\begin{enumerate}[a)]
-    \item What are the $N$ frequencies of the complex sinusoids that make up signal $x[n]$ in units of radians per sample? What are these in units of hertz?
-    
-    \item When using a DFT for spectral analysis, the value of $N$ influences the spectral resolution, i.e., the spacing if frequencies of the spectral components that are used to represent the signal. What value of $N$ gives a frequency resolution of $0.1$ Hz when analyzing the signal $x[n]$ using a DFT?
-\end{enumerate}
+        \begin{enumerate}[a)]
+          % Exercise 1a)
+          \item What are the $N$ frequencies of the complex sinusoids that make up signal $x[n]$ in units of radians per sample? What are these in units of hertz?
 
-\item Show that $|\hat{x}[k]|=|\hat{x}[-k]|$ when $x[n] \in \mathbb{R}$. Here $\hat{x}[k]$ is the DFT of signal $x[n]$. Hint: investigate $\hat{x}^*[k]$.
+          % Exercise 1b)
+          \item When using a DFT for spectral analysis, the value of $N$ influences the spectral resolution, i.e., the spacing if frequencies of the spectral components that are used to represent the signal. What value of $N$ gives a frequency resolution of $0.1$ Hz when analyzing the signal $x[n]$ using a DFT?
+        \end{enumerate}
 
+  % Exercise 2
+  \item Show that $|\hat{x}[k]|=|\hat{x}[-k]|$ when $x[n] \in \mathbb{R}$. Here $\hat{x}[k]$ is the DFT of signal $x[n]$. Hint: investigate $\hat{x}^*[k]$.
 
-\begin{marginfigure}
-\includegraphics[width=7.0cm,height=6.8cm]{ch15/figures/ex152.png}
-\caption{The magnitudes of six spectral components of the signal defined in Equation \ref{eq:ex15_2}}
-\label{fig:ch15_ex15_2}
-\end{marginfigure}
+        \begin{marginfigure}
+          \includegraphics[width=7.0cm,height=6.8cm]{ch15/figures/ex152.png}
+          \caption{The magnitudes of six spectral components of the signal defined in Equation \ref{eq:ex15_2}}
+          \label{fig:ch15_ex15_2}
+        \end{marginfigure}
 
-\item The code in Listing \ref{code:ex152} creates a discrete-time signal consisting of three sinusoidal signals:
-\begin{equation}
-x[n]=\cos(\hat{\omega}_0 n)+2\cos(\hat{\omega}_1 n)+3\cos(\hat{\omega}_2 n)
-\label{eq:ex15_2}
-\end{equation}
-and calculates the magnitude spectrum $\hat{x}[k]$ of this signal. The spectrum is shown in Figure \ref{fig:ch15_ex15_2}.
+  % Exercise 3
+  \item The code in Listing \ref{code:ex152} creates a discrete-time signal consisting of three sinusoidal signals:
+        \begin{equation}
+          x[n]=\cos(\hat{\omega}_0 n)+2\cos(\hat{\omega}_1 n)+3\cos(\hat{\omega}_2 n)
+          \label{eq:ex15_2}
+        \end{equation}
+        and calculates the magnitude spectrum $\hat{x}[k]$ of this signal. 
+        The spectrum is shown in Figure \ref{fig:ch15_ex15_2}.
 
-\lstinputlisting[language=Python,caption=Create a signal consisting of three sinusoids and analyze the magnitude spectrum calculated using FFT.,label=code:ex152,linerange={1-2,4-14}]{ch15/code/ex15_2.py}
+        \lstinputlisting[language=Python, caption=Create a signal consisting of three sinusoids and 
+        analyze the magnitude spectrum calculated using FFT., label=code:ex152, linerange={1-3, 5-14}]{ch15/code/ex15_2.py}
 
-\begin{enumerate}[a)]
-%<<<<<<< HEAD
-    \item What are the numerical values of $\hat{\omega}_0$, $\hat{\omega}_1$, and $\hat{\omega}_2$ in units of radians per sample? Show that they correspond to frequencies $f_0=4000$, $f_1=1000$, and $f_2=2500$ in units of hertz.
-    \item Show that signal $x[n]$ is periodic ($x[n]=x[n+N]$). Determine the fundamental period of this signal in samples and in units of seconds. 
-    \item Modify the code so that the figure produced by the code, shown in Figure \ref{fig:ch15_ex15_2}, displays frequency on the horizontal axis units of hertz. Make sure that you plot both the positive and negative frequency components of the signal, recalling that a real-valued cosine signal consists of a positive and negative frequency complex sinusoidal signal. Verify that you get the correct frequency axis by looking at the relative magnitudes of the six non-zero frequency components of the signal. Hint: you may find Python functions \verb|numpy.fft.fftshift| and \verb|numpy.fft.fftfreq| useful for this exercise.
-%=======
-%    \item Show that frequencies $\hat{\omega}_0$, $\hat{\omega}_1$, and $\hat{\omega}_2$ in units of radians per sample correspond to frequencies $f_0=4000$, $f_1=1000$, and $f_3=2500$ in units of hertz.
-%    \item Show that the signal $x[n]$ is periodic ($x[n]=x[n+N]$). Determine the fundamental period of this signal in samples and in units of seconds. 
-%    \item Modify the code so that the figure produced by the code, shown in Figure \ref{fig:ch15_ex15_2}, displays frequency on the horizontal axis in units of hertz. 
-%    Make sure that you plot both the positive and negative frequency components of the signal, recalling that a cosine signal consists of a positive and a negative frequency component. 
-%    Verify that you get the correct frequency axis by looking at the relative magnitudes of the six non-zero frequency components of the signal. 
-%    Hint: you may find Python functions \verb|numpy.fft.fftshift| and \verb|numpy.fft.fftfreq| useful for this exercise.
-%>>>>>>> e41a90a597f34e79925e43292313ea9f2bd0a4b8
-\end{enumerate}
+        \begin{enumerate}[a)]
+          %<<<<<<< HEAD
+          % Exercise 3a)
+          \item What are the numerical values of $\hat{\omega}_0$, $\hat{\omega}_1$, 
+                and $\hat{\omega}_2$ in units of radians per sample? Show that they 
+                correspond to frequencies $f_0=4000$, $f_1=1000$, and $f_2=2500$ in units of hertz.
+          
+          % Exercise 3b)
+          \item Show that signal $x[n]$ is periodic ($x[n]=x[n+N]$). Determine the fundamental period of 
+                this signal in samples and in units of seconds.
 
-
+          % Exercise 3c)
+          \item Modify the code so that the figure produced by the code, shown in Figure \ref{fig:ch15_ex15_2}, 
+                displays frequency on the horizontal axis in units of hertz. Make sure that you plot both the 
+                positive and negative frequency components of the signal, recalling that a real-valued cosine 
+                signal consists of a positive and negative frequency complex sinusoidal signal. Verify that you 
+                get the correct frequency axis by looking at the relative magnitudes of the six non-zero frequency 
+                components of the signal. Hint: you may find Python 
+                functions \verb|numpy.fft.fftshift| and \verb|numpy.fft.fftfreq| useful for this exercise.
+                %=======
+                %    \item Show that frequencies $\hat{\omega}_0$, $\hat{\omega}_1$, and $\hat{\omega}_2$ in units of radians per sample correspond to frequencies $f_0=4000$, $f_1=1000$, and $f_3=2500$ in units of hertz.
+                %    \item Show that the signal $x[n]$ is periodic ($x[n]=x[n+N]$). Determine the fundamental period of this signal in samples and in units of seconds. 
+                %    \item Modify the code so that the figure produced by the code, shown in Figure \ref{fig:ch15_ex15_2}, displays frequency on the horizontal axis in units of hertz. 
+                %    Make sure that you plot both the positive and negative frequency components of the signal, recalling that a cosine signal consists of a positive and a negative frequency component. 
+                %    Verify that you get the correct frequency axis by looking at the relative magnitudes of the six non-zero frequency components of the signal. 
+                %    Hint: you may find Python functions \verb|numpy.fft.fftshift| and \verb|numpy.fft.fftfreq| useful for this exercise.
+                %>>>>>>> e41a90a597f34e79925e43292313ea9f2bd0a4b8
+        \end{enumerate}
 
 \end{enumerate}

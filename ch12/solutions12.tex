@@ -1,89 +1,103 @@
+% Author: Jørn Olav Jensen
+
 \newpage
 \section{Suggested solutions: Discrete-time Fourier Transform (DTFT)}
 \begin{enumerate}
-\item Suppose $x[n]$ is a real discrete-time signal, then by definition:
-$$\hat{x}(\hat{\omega})=\sum_{n=-\infty}^{\infty}x[n]e^{-i\hat{\omega}n}.$$
-Apply complex conjugation to obtain:
-$$\hat{x}^{*}(\hat{\omega})=\sum_{n=-\infty}^{\infty}(x[n]e^{-i\hat{\omega}n})^{*}=\sum_{n=-\infty}^{\infty}x[n]^{*}e^{i\hat{\omega}n}.$$
-Since the signal $x[n]$ is real, we obtain $x^{*}[n]=x[n]$. Then evaluating at $\hat{x}^{*}(-\hat{\omega})$ is:
-$$\hat{x}^{*}(-\hat{\omega})=\sum_{n=-\infty}^{\infty}x[n]e^{-i\hat{\omega}n},$$
-which is equal to $\hat{x}(\hat{\omega})$. 
 
-\item Suppose $\hat{x}(\hat{\omega})$ is a real signal, then consider:
-$$x[n]=\frac{1}{2\pi}\int_{-\pi}^{\pi}\hat{x}(\hat{\omega})e^{i\hat{\omega}n}d\hat{\omega},$$
-thus:
-$$\hat{x}^{*}[n]=\frac{1}{2\pi}\int_{-\pi}^{\pi}(\hat{x}(\hat{\omega})e^{i\hat{\omega}n})^{*}d\hat{\omega}=\frac{1}{2\pi}\int_{-\pi}^{\pi}\hat{x}(\hat{\omega})^{*}e^{-i\hat{\omega}n}d\hat{\omega},$$
-and since $\hat{x}(\hat{\omega})$ is real we obtain $\hat{x}^{*}(\hat{\omega})=\hat{x}(\hat{\omega})$, then evaluating $\hat{x}^{*}[n]$ at $-n$ gives
-$$\hat{x}^{*}[-n]=\frac{1}{2\pi}\int_{-\pi}^{\pi}\hat{x}(\hat{\omega})e^{i\hat{\omega}n}d\hat{\omega},$$
-which is equal to $x[n]$. 
+  % Exercise 1
+  \item Suppose $x[n]$ is a real discrete-time signal, then by definition:
+        \[ \hat{x}(\hat{\omega})=\sum_{n=-\infty}^{\infty}x[n]e^{-i\hat{\omega}n}. \]
+        Apply complex conjugation to obtain:
+        \[ \hat{x}^{*}(\hat{\omega})=\sum_{n=-\infty}^{\infty}(x[n]e^{-i\hat{\omega}n})^{*}=\sum_{n=-\infty}^{\infty}x^{*}[n]e^{i\hat{\omega}n}. \]
+        Since the signal $x[n]$ is real: $x^{*}[n]=x[n]$. 
+        Then evaluating at $\hat{x}^{*}(\hat{\omega})$ at $-\hat{\omega}$:
+        \[ \hat{x}^{*}(-\hat{\omega})=\sum_{n=-\infty}^{\infty}x[n]e^{-i\hat{\omega}n}, \]
+        which is equal to $\hat{x}(\hat{\omega})$.
 
-\item Let $\hat{x}(\hat{\omega})=1$, then the inverse discrete-time Fourier transform is:
-$$x[n]=\frac{1}{2\pi}\int_{-\pi}^{\pi}\hat{x}(\hat{\omega})e^{i\hat{\omega}n}d\hat{\omega}=\frac{1}{2\pi}\int_{-\pi}^{\pi}e^{i\hat{\omega}n}d\hat{\omega}=\frac{1}{2\pi}\left[\frac{1}{in}e^{i\hat{\omega}n}\right]_{-\pi}^{\pi},$$
-which gives:
-$$x[n]=\frac{1}{2\pi in}(e^{i\pi n}-e^{-i\pi n})=\frac{1}{\pi n}\sin(\pi n).$$
-If $n\neq 0$, then this is $0$. If $n=0$ we get, using L'Hôpital's rule:
-$$\lim_{n\to 0}\frac{\sin(\pi n)}{\pi n}=1.$$
-Hence, this corresponds to a Dirac-delta $\delta[n]$, so by linearity we get $42i\delta[n]$. 
+  % Exercise 2
+  \item Suppose $\hat{x}(\hat{\omega})$ is a real signal, then consider:
+        \[ x[n]=\frac{1}{2\pi}\int_{-\pi}^{\pi}\hat{x}(\hat{\omega})e^{i\hat{\omega}n}d\hat{\omega}. \]
+        Conjugating:
+        \[ \hat{x}^{*}[n]=\frac{1}{2\pi}\int_{-\pi}^{\pi}(\hat{x}(\hat{\omega})e^{i\hat{\omega}n})^{*}d\hat{\omega}=\frac{1}{2\pi}\int_{-\pi}^{\pi}\hat{x}^{*}(\hat{\omega})e^{-i\hat{\omega}n}d\hat{\omega}, \]
+        and since $\hat{x}(\hat{\omega})$ is real, we obtain $\hat{x}^{*}(\hat{\omega})=\hat{x}(\hat{\omega})$, 
+        then evaluating $\hat{x}^{*}[n]$ at $-n$ gives:
+        \[ \hat{x}^{*}[-n]=\frac{1}{2\pi}\int_{-\pi}^{\pi}\hat{x}(\hat{\omega})e^{i\hat{\omega}n}d\hat{\omega}, \]
+        which is equal to $x[n]$.
 
-\item Consider three systems:
-\begin{align*}
-    \mathcal{T}_{1}\{x[n]\}&=x[n]-x[n-1], \\
-    \mathcal{T}_{2}\{x[n]\}&=x[n]+x[n-2], \\
-    \mathcal{T}_{3}\{x[n]\}&=x[n-1]+x[n-2].
-\end{align*}
+  % Exercise 3
+  \item Let $\hat{x}(\hat{\omega})=1$, then the inverse discrete-time Fourier transform is:
+        \[ x[n]=\frac{1}{2\pi}\int_{-\pi}^{\pi}\hat{x}(\hat{\omega})e^{i\hat{\omega}n}d\hat{\omega}=\frac{1}{2\pi}\int_{-\pi}^{\pi}e^{i\hat{\omega}n}d\hat{\omega}=\frac{1}{2\pi}\left[\frac{1}{in}e^{i\hat{\omega}n}\right]_{-\pi}^{\pi}, \]
+        which gives:
+        \[ x[n]=\frac{1}{2\pi in}(e^{i\pi n}-e^{-i\pi n})=\frac{1}{\pi n}\sin(\pi n). \]
+        If $n\neq 0$, then this is $0$. If $n=0$ we get, using L'Hôpital's rule:
+        \[ \lim_{n\to 0}\frac{\sin(\pi n)}{\pi n}=1. \]
+        Hence, this corresponds to a Dirac-delta $\delta[n]$, so by linearity we get $42i\delta[n]$.
 
-\begin{enumerate}[a)]
-\item The impulse responses are given as $h_{i}[n]=\mathcal{T}_{i}\{\delta[n]\}$ for $i=1,2,3$. We get:
-\begin{align*}
-    h_{1}[n]&=\delta[n]-\delta[n-1], \\
-    h_{2}[n]&=\delta[n]+\delta[n-2], \\
-    h_{3}[n]&=\delta[n-1]+\delta[n-2].
-\end{align*}
+  % Exercise 4
+  \item Consider three systems:
+        \begin{align*}
+          \mathcal{T}_{1}\{x[n]\} & =x[n]-x[n-1],   \\
+          \mathcal{T}_{2}\{x[n]\} & =x[n]+x[n-2],   \\
+          \mathcal{T}_{3}\{x[n]\} & =x[n-1]+x[n-2].
+        \end{align*}
 
-\item In time domain we have:
-$$y[n]=\mathcal{T}_{1}\{\mathcal{T}_{2}\{\mathcal{T}_{3}\{x[n]\}\}\}$$
-which can be written as:
-$$y[n]=h[n]*x[n],$$
-since this an LTI system, where:
-$$h[n]=h_{1}[n]*h_{2}[n]*h_{3}[n].$$
-In frequency domain, we have:
-$$\mathcal{H}(\hat{\omega})=\mathcal{H}_{1}(\hat{\omega})\mathcal{H}_{2}(\hat{\omega})\mathcal{H}_{3}(\hat{\omega}).$$
-Each $\mathcal{H}_{i}$ is found by the discrete-time Fourier transform of $h_{i}[n]$:
-\begin{align*}
-    \mathcal{H}_{1}(\hat{\omega})&=1-e^{-i\hat{\omega}}, \\
-    \mathcal{H}_{2}(\hat{\omega})&=1+e^{-2i\hat{\omega}}, \\
-    \mathcal{H}_{3}(\hat{\omega})&=e^{-i\hat{\omega}}+e^{-2i\hat{\omega}}.
-\end{align*}
-Then:
-$$\mathcal{H}(\hat{\omega})=(1-e^{-i\hat{\omega}})(1+e^{-2i\hat{\omega}})(e^{-i\hat{\omega}}+e^{-2i\hat{\omega}})=e^{-i\hat{\omega}}-e^{-5i\hat{\omega}},$$
-as we wanted to show. 
-\end{enumerate}
+        \begin{enumerate}[a)]
+          % Exercise 4a)
+          \item The impulse responses are given as $h_{i}[n]=\mathcal{T}_{i}\{\delta[n]\}$ for $i=1,2,3$. We get:
+                \begin{align*}
+                  h_{1}[n] & =\delta[n]-\delta[n-1],   \\
+                  h_{2}[n] & =\delta[n]+\delta[n-2],   \\
+                  h_{3}[n] & =\delta[n-1]+\delta[n-2].
+                \end{align*}
 
-\item
+          % Exercise 4b)
+          \item In time domain we have:
+                \[ y[n] = \mathcal{T}_{1}\{\mathcal{T}_{2}\{\mathcal{T}_{3}\{x[n]\}\}\}, \]
+                which can be written as:
+                \[ y[n] = h[n]*x[n], \]
+                since this an LTI system, where:
+                \[ h[n] = h_{1}[n]*h_{2}[n]*h_{3}[n]. \]
+                In frequency domain, we have:
+                \[ \mathcal{H}(\hat{\omega})=\mathcal{H}_{1}(\hat{\omega})\mathcal{H}_{2}(\hat{\omega})\mathcal{H}_{3}(\hat{\omega}). \]
+                Each $\mathcal{H}_{i}$ is found by the discrete-time Fourier transform of $h_{i}[n]$:
+                \begin{align*}
+                  \mathcal{H}_{1}(\hat{\omega}) & =1-e^{-i\hat{\omega}},                   \\
+                  \mathcal{H}_{2}(\hat{\omega}) & =1+e^{-2i\hat{\omega}},                  \\
+                  \mathcal{H}_{3}(\hat{\omega}) & =e^{-i\hat{\omega}}+e^{-2i\hat{\omega}}.
+                \end{align*}
+                Then:
+                \[ \mathcal{H}(\hat{\omega})=(1-e^{-i\hat{\omega}})(1+e^{-2i\hat{\omega}})(e^{-i\hat{\omega}}+e^{-2i\hat{\omega}})=e^{-i\hat{\omega}}-e^{-5i\hat{\omega}}, \]
+                as we wanted to show.
+        \end{enumerate}
 
-\begin{enumerate}[a)]
-\item If $\hat{x}(\hat{\omega})=1-2e^{3i\hat{\omega}}$, then the IDTFT is:
-$$x[n]=\delta[n]-2\delta[n+3].$$
+  % Exercise 5
+  \item
+        \begin{enumerate}[a)]
+          % Exercise 5a)
+          \item If $\hat{x}(\hat{\omega})=1-2e^{3i\hat{\omega}}$, then the IDTFT is:
+                \[ \underline{\underline{x[n] = \delta[n] - 2\delta[n + 3]}}. \]
 
-\item If $\hat{x}(\hat{\omega})=2e^{-3i\hat{\omega}}\cos(\hat{\omega})$ then by rewriting the function as follows:
-$$\hat{x}(\hat{\omega})=2e^{-3i\hat{\omega}}\frac{1}{2}(e^{i\hat{\omega}}+e^{-i\hat{\omega}})=e^{-3i\hat{\omega}}(e^{i\hat{\omega}}+e^{-i\hat{\omega}})=e^{-2i\hat{\omega}}+e^{-4i\hat{\omega}},$$
-which gives that:
-$$x[n]=\delta[n-2]+\delta[n-4].$$
+          % Exercise 5b)
+          \item If $\hat{x}(\hat{\omega})=2e^{-3i\hat{\omega}}\cos(\hat{\omega})$ then by rewriting the function as follows:
+                \[ \hat{x}(\hat{\omega})=2e^{-3i\hat{\omega}}\frac{1}{2}(e^{i\hat{\omega}}+e^{-i\hat{\omega}})=e^{-3i\hat{\omega}}(e^{i\hat{\omega}}+e^{-i\hat{\omega}})=e^{-2i\hat{\omega}}+e^{-4i\hat{\omega}}, \]
+                which gives that:
+                \[ \underline{\underline{x[n] = \delta[n - 2] + \delta[n - 4]}}. \]
 
-\item For the function $\hat{x}(\hat{\omega})=e^{-i42\hat{\omega}}\frac{\sin(10.5\hat{\omega})}{\sin(\hat{\omega}/2)}$, we notice that $\frac{\sin(10.5\hat{\omega})}{\sin(\hat{\omega}/2)}$ is a Dirichlet kernel with $L=21$. Therefore, it can be rewritten as:
-$$\frac{\sin(10.5\hat{\omega})}{\sin(\hat{\omega}/2)}=\sum_{k=0}^{20}e^{-i\hat{\omega}k},$$
-giving:
-$$\hat{x}(\hat{\omega})=e^{-i42\hat{\omega}}\sum_{k=0}^{20}e^{-i\hat{\omega}k}=\sum_{k=0}^{20}e^{-i\hat{\omega}(k+42)}=\sum_{k=42}^{62}e^{-i\hat{\omega}k}.$$
-The IDTFT is then:
-$$x[n]=\frac{1}{2\pi}\int_{-\pi}^{\pi}\sum_{k=42}^{62}e^{-i\hat{\omega}k}e^{i\hat{\omega}n}d\hat{\omega} =\sum_{k=42}^{62}\delta[n-k].$$
-\end{enumerate}
+          % Exercise 5c)
+          \item For the function $\hat{x}(\hat{\omega}) = e^{-42i\hat{\omega}}\frac{\sin(10.5\hat{\omega})}{\sin(\hat{\omega}/2)}$, we notice
+                the similarity to the Dirichlet kernel. Therefore, we start by rewriting the function and do the Dirichlet calculation
+                backwards. 
+                \[ \hat{x}(\hat{\omega}) = e^{-42i\hat{\omega}}\left[ \frac{e^{-10.5i\hat{\omega}} - e^{10.5i\hat{\omega}}}{e^{-i\hat{\omega}/2} - e^{i\hat{\omega}/2}} \right]. \]
+                We've flipped the sign in the numerator and denominator and canceled the common $2i$. Next, multiply by $e^{i\hat{\omega}/2}$.
+                \begin{align*}
+                  \hat{x}(\hat{\omega}) &= e^{-42i\hat{\omega}}\left[ \frac{e^{i\hat{\omega}/2}}{e^{i\hat{\omega}/2}}\frac{e^{-10.5i\hat{\omega}} - e^{10.5i\hat{\omega}}}{e^{-i\hat{\omega}/2} - e^{i\hat{\omega}/2}} \right], \\
+                                        &= e^{-42i\hat{\omega}}\left[ \frac{e^{-10i\hat{\omega}} - e^{11i\hat{\omega}}}{1 - e^{i\hat{\omega}}} \right],
+                \end{align*}
+                This last expression is a geometric sum, with $N = 10$, giving:
+                \[ \hat{x}(\hat{\omega}) = e^{-42i\hat{\omega}}\sum_{k = -10}^{10}e^{-i\hat{\omega}k} = \sum_{k = -10}^{10}e^{-i\hat{\omega}(k + 42)}. \]
+                The IDTFT is then:
+                \[ \underline{\underline{x[n] = \sum_{k = -10}^{10}\delta[n - k - 42]}}. \]
 
-
-
-
-
-
-
-
+        \end{enumerate}
 
 \end{enumerate}

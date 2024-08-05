@@ -1,23 +1,24 @@
-import numpy as n
 import matplotlib.pyplot as plt
+import numpy as np
 
-# sample indices for 10000 samples
-m = n.arange(10000)
+# Sample indices for 10000 samples.
+m = np.arange(10000)
 
-# sample period
+# Sample period.
 Ts = 1e-4
 
-# create a signal consisting of three sinusoids
-x = n.cos(2*n.pi*4000.0*Ts*m) + 2*n.cos(2*n.pi*1000.0*Ts*m) + 3*n.cos(2*n.pi*2500.0*Ts*m)
+# Create a signal consisting of three sinusoids.
+x = np.cos(2*np.pi*4000.0*Ts*m) + 2*np.cos(2*np.pi*1000.0*Ts*m) + 3*np.cos(2*np.pi*2500.0*Ts*m)
 
-# call fftfreq to compute the frequencies in units of hertz
-# the function takes in the first argument, which is the length of the window and second argument for the stepsize (Ts)
-# use fftshift to shift the frequencies to have zero in the middle; this includes both positive and negative frequencies
-freq = n.fft.fftshift(n.fft.fftfreq(len(m),d=Ts))
+# Call fftfreq to compute the frequencies in units of hertz.
+# The function takes in the first argument, which is the length of the window and second argument for the stepsize (Ts),
+# use fftshift to shift the frequencies to have zero in the middle; this includes both positive and negative frequencies.
+freq = np.fft.fftshift(np.fft.fftfreq(len(m), d=Ts))
 
-# plot the magnitude of sinusoids using fft
-plt.plot(freq,n.abs(n.fft.fft(x))/len(m))
-# call this if needed
+# Plot the magnitude of sinusoids using fft.
+plt.plot(freq, np.abs(np.fft.fft(x))/len(m))
+plt.xlabel("Frequency (Hz)")
+# Call this if needed.
 # plt.show()
 
 try:

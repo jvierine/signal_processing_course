@@ -1,29 +1,28 @@
-import numpy as n
 import matplotlib.pyplot as plt
+import numpy as np
 import scipy.io.wavfile as sw
 import scipy.signal as ss
 
-# read the noisy signal
+# Read the noisy signal.
 ts = sw.read("crappy.wav")
-sr = ts[0]      # get sample-rate
-crap = ts[1]    # some files might be stereo
+sr, crap = ts
 
-# filter length
+# Filter length.
 N = 4000
 
-# frequencies of noise (units of Hz)
+# Frequencies of noise (units of Hz).
 f0 = 3e3
 f1 = 5e3
 
-# choose a window function
+# Choose a window function.
 w = ...
-# ^ see the scipy.signal documentation for a list of window functions
+# ^ See the scipy.signal documentation for a list of window functions.
 
-# implement the filter and apply it here
-uncrap = ... # complete this
+# Implement the filter and apply it here.
+uncrap = ...  # Complete this.
 
-# scale to 0.9, because 1.0 is the maximum allowed by the .wav file format
-uncrap = 0.9*uncrap/n.max(n.abs(uncrap))
+# Scale to 0.9, because 1.0 is the maximum allowed by the .wav file format.
+uncrap = 0.9*uncrap/np.max(np.abs(uncrap))
 
-# save the filtered audio file
-sw.write("test_uncrappy.wav",sr,n.array(uncrap,dtype=n.float32))
+# Save the filtered audio file.
+sw.write("test_uncrappy.wav", sr, np.array(uncrap, dtype=np.float32))

@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from scipy.signal.windows import hann
 
 
@@ -60,7 +60,7 @@ plt.title("Filtered signal")
 # plt.show()
 
 # Solution manual figure saving:
-plt.clf()   # clear figures
+plt.clf()   # Clear figures.
 plt.plot(om_freqs, convert_to_decibel(xw), label="Original spectrum")
 plt.plot(om_freqs, convert_to_decibel(xw*h), label="Windowed spectrum")
 plt.xlabel(r"$\hat{\omega}$ (rad / sample)")

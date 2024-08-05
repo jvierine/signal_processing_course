@@ -1,105 +1,128 @@
+% Author: Jørn Olav Jensen
+
 \newpage
 \section{Suggested solutions: Fourier Series}
 
 \begin{enumerate}
-\item Let $x(t)$ be the signal:
-$$x(t)=7\sin(3\pi t+0.2\pi)+3\cos(7\pi t+0.5\pi).$$
+  % Exercise 1
+  \item Let $x(t)$ be the signal:
+        \[ x(t) = 7\sin(3\pi t+0.2\pi) + 3\cos(7\pi t+0.5\pi). \]
 
-\begin{enumerate}[a)]
-\item Have that:
-\begin{align*}
-    \sin\theta&=\frac{1}{2i}(e^{i\theta}-e^{-i\theta}), \\
-    \cos\theta&=\frac{1}{2}(e^{i\theta}+e^{-i\theta}).
-\end{align*}
-This gives:
-\begin{align*}
-    x(t)&=\frac{7}{2i}(e^{i(3\pi t+0.2\pi)}-e^{-i(3\pi t+0.2\pi)})+ \frac{3}{2}(e^{i(7\pi t+0.5\pi)}+e^{-i(7\pi t+0.5\pi)}), \\
-    &=\left(\frac{7}{2i}e^{i0.2\pi}\right)e^{i3\pi t}-\left(\frac{7}{2i}e^{-i0.2\pi}\right)e^{-i3\pi t} + \left(\frac{3}{2}e^{i0.5\pi}\right)e^{i7\pi t}+\left(\frac{3}{2}e^{-i0.5\pi}\right)e^{-i7\pi t},
-\end{align*}
-giving:
-$$c_{k}=\left(\frac{3}{2}e^{-i0.5\pi},-\frac{7}{2i}e^{-i0.2\pi},\frac{7}{2i}e^{i0.2\pi},\frac{3}{2}e^{i0.5\pi}\right),$$
-for which the corresponding angular frequencies are:
-$$\omega_{k}=(-7\pi,-3\pi,3\pi,7\pi).$$
+        \begin{enumerate}[a)]
+          % Exercise 1a)
+          \item Have that:
+                \begin{align*}
+                  \sin\theta & =\frac{1}{2i}(e^{i\theta}-e^{-i\theta}), \\
+                  \cos\theta & =\frac{1}{2}(e^{i\theta}+e^{-i\theta}).
+                \end{align*}
+                This gives:
+                \begin{align*}
+                  x(t) & = \frac{7}{2i}(e^{i(3\pi t+0.2\pi)}-e^{-i(3\pi t+0.2\pi)})+ \frac{3}{2}(e^{i(7\pi t+0.5\pi)}+e^{-i(7\pi t+0.5\pi)}),                                                                                   \\
+                       & = \left(\frac{7}{2i}e^{i0.2\pi}\right)e^{i3\pi t}-\left(\frac{7}{2i}e^{-i0.2\pi}\right)e^{-i3\pi t} + \left(\frac{3}{2}e^{i0.5\pi}\right)e^{i7\pi t}+\left(\frac{3}{2}e^{-i0.5\pi}\right)e^{-i7\pi t},
+                \end{align*}
+                giving:
+                \[ c_{k} = \left(\frac{3}{2}e^{-i0.5\pi},-\frac{7}{2i}e^{-i0.2\pi},\frac{7}{2i}e^{i0.2\pi},\frac{3}{2}e^{i0.5\pi}\right), \]
+                for which the corresponding angular frequencies are:
+                \[ \omega_{k}=(-7\pi,-3\pi,3\pi,7\pi). \]
 
-\item For any real signal, the Fourier coefficients satisfy $c_{-k}=c_{k}^{*}$ and $x(t)$ is real. 
+          % Exercise 1b)
+          \item For any real signal, the Fourier coefficients satisfy $c_{-k}=c_{k}^{*}$ and $x(t)$ is real.
 
-\item The signal is periodic if $\omega_{i}/\omega_{j}\in\mathbb{Q}$ for every pair $i,j\in \{-7,-3,3,7\}$ with $i\neq j$. In this case every $\omega_{i}$ is an integer multiply of $\pi$, so every ratio is a rational number as all the $\pi$s cancel.
+          % Exercise 1c)
+          \item The signal is periodic if $\omega_{i}/\omega_{j}\in\mathbb{Q}$ for every 
+                pair $i,j\in \{-7,-3,3,7\}$ with $i\neq j$. In this case every $\omega_{i}$ is an 
+                integer multiple of $\pi$, so every ratio is a rational number as all the $\pi$ cancel.
 
-\item Using Euclid's algorithm we have:
-\begin{align*}
-    &(3\pi,7\pi), \\
-    &(3\pi,7\pi-3\pi), \\
-    &(3\pi,4\pi), \\
-    &(3\pi,4\pi-3\pi), \\
-    &(3\pi,\pi), \\
-    &(3\pi-\pi,\pi), \\
-    &(2\pi,\pi), \\
-    &(2\pi-\pi,\pi), \\
-    &(\pi,\pi).
-\end{align*}
-Hence, the fundamental angular frequency is $\omega=\pi\ \text{rad/s}$. In units of hertz, we have that $\omega=2\pi f$, so
-$$f=\frac{\omega}{2\pi}=\frac{\pi}{2\pi}=\frac{1}{2}.$$
-Thus, the fundamental frequency is $f=1/2\ \text{Hz}$. 
+          % Exercise 1d)
+          \item Using Euclid's algorithm we have:
+                \begin{align*}
+                   & (3\pi,7\pi),      \\
+                   & (3\pi,7\pi-3\pi), \\
+                   & (3\pi,4\pi),      \\
+                   & (3\pi,4\pi-3\pi), \\
+                   & (3\pi,\pi),       \\
+                   & (3\pi-\pi,\pi),   \\
+                   & (2\pi,\pi),       \\
+                   & (2\pi-\pi,\pi),   \\
+                   & (\pi,\pi).
+                \end{align*}
+                Hence, the fundamental angular frequency is $\omega=\pi\ \text{rad/s}$. 
+                In units of hertz, we have that $\omega=2\pi f$, so
+                \[ f = \frac{\omega}{2\pi}=\frac{\pi}{2\pi}=\frac{1}{2}. \]
+                Thus, the fundamental frequency is $f=1/2\ \text{Hz}$.
 
-\item If the fundamental angular frequency is $\omega=\pi$, then the fundamental period is related by $T=2\pi/\omega$, hence
-$$T=\frac{2\pi}{\omega}=\frac{2\pi}{\pi}=2\ \text{seconds}.$$
+          % Exercise 1e)
+          \item If the fundamental angular frequency is $\omega=\pi$, then the fundamental period is related by $T=2\pi/\omega$, hence
+                \[ T = \frac{2\pi}{\omega}=\frac{2\pi}{\pi}=2\ \text{seconds}. \]
 
-\item Define a new signal $y(t)=x(t-\frac{1}{2})$. That is, we delay the signal $x(t)$ by $\frac{1}{2}$. We get:
-$$y(t)=7\sin(3\pi \left(t-\frac{1}{2}\right)+0.2\pi)+3\cos(7\pi \left(t-\frac{1}{2}\right)+0.5\pi).$$
-Simplifying gives:
-$$y(t)=7\sin(3\pi t-1.3\pi)+3\cos(7\pi t-3\pi).$$
-Hence, $\phi_{0}=-1.3\pi$ and $\phi_{1}=-3\pi$. 
+          % Exercise 1f)
+          \item Define a new signal $y(t)=x(t-\frac{1}{2})$. That is, we delay the signal $x(t)$ by $\frac{1}{2}$. We get:
+                \[ y(t) = 7\sin(3\pi \left(t-\frac{1}{2}\right)+0.2\pi) + 3\cos(7\pi \left(t-\frac{1}{2}\right)+0.5\pi). \]
+                Simplifying gives:
+                \[ y(t) = 7\sin(3\pi t-1.3\pi) + 3\cos(7\pi t-3\pi). \]
+                Hence, $\phi_{0} = -1.3\pi$ and $\phi_{1}=-3\pi$.
 
-\item Define another signal $z(t)=x(t)+e^{i\sqrt{2}+13}$. This new signal is not commensurable since we have a factor of $\sqrt{2}$, the signal is also not real-valued since we don't have a corresponding complex conjugate pair. 
-\end{enumerate}
+          % Exercise 1g)
+          \item Define another signal $z(t) = x(t) + e^{i\sqrt{2}+13}$. 
+                This new signal is not periodic as the frequencies are not commensurable, since we have a factor of $\sqrt{2}$, 
+                the signal is also not real-valued since we don't have a corresponding complex conjugate pair.
+        \end{enumerate}
 
-\item Let $x(t)$ be a signal defined as:
-$$x(t)=e^{-i(6\pi t+0.3)}+4e^{i(60\pi t+0.42)}+4e^{-i(60\pi t+0.42)}+e^{i(6\pi t+0.3)},$$
-where $t$ is measured in seconds. 
-\begin{enumerate}[a)]
-\item This signal is real-valued since we have two pairs, each with the same frequency, but different signs. Thus, the signal can be written as a real signal for which it takes the following form:
-$$x(t)=8\cos(60\pi t+0.42)+2\cos(6\pi t+0.3).$$
-\item In this case, we have the angular frequencies of $\omega_{1}=60\pi$ and $\omega_{2}=6\pi$ for which $\omega_{1}/\omega_{2}=60\pi/6\pi=10$. We get a rational number, so the signal is periodic. 
-\item To find the fundamental angular frequency, we use Euclid's algorithm. This gives:
-\begin{align*}
-    &(60\pi,6\pi), \\
-    &(54\pi,6\pi), \\
-    &(48\pi,6\pi), \\
-    &(42\pi,6\pi), \\
-    &(36\pi,6\pi), \\
-    &(30\pi,6\pi), \\
-    &(24\pi,6\pi), \\
-    &(18\pi,6\pi), \\
-    &(12\pi,6\pi), \\
-    &(6\pi,6\pi), 
-\end{align*}
-therefore, the fundamental angular frequency is $6\pi$ in units of radians per second. 
+  % Exercise 2
+  \item Let $x(t)$ be a signal defined as:
+        \[ x(t) = e^{-i(6\pi t+0.3)} + 4e^{i(60\pi t+0.42)} + 4e^{-i(60\pi t+0.42)} + e^{i(6\pi t+0.3)}, \]
+        where $t$ is measured in seconds.
+        \begin{enumerate}[a)]
+          % Exercise 2a)
+          \item This signal is real-valued since we have two pairs, each with the same frequency, but different signs. Thus, the signal can be written as a real signal for which it takes the following form:
+                \[ x(t) = 8\cos(60\pi t + 0.42) + 2\cos(6\pi t + 0.3). \]
+          % Exercise 2b)
+          \item In this case, we have the angular frequencies of $\omega_{1}=60\pi$ and $\omega_{2}=6\pi$ for which $\omega_{1}/\omega_{2}=60\pi/6\pi=10$. We get a rational number, so the signal is periodic.
+          % Exercise 2c)
+          \item To find the fundamental angular frequency, we use Euclid's algorithm. This gives:
+                \begin{align*}
+                   & (60\pi,6\pi), \\
+                   & (54\pi,6\pi), \\
+                   & (48\pi,6\pi), \\
+                   & (42\pi,6\pi), \\
+                   & (36\pi,6\pi), \\
+                   & (30\pi,6\pi), \\
+                   & (24\pi,6\pi), \\
+                   & (18\pi,6\pi), \\
+                   & (12\pi,6\pi), \\
+                   & (6\pi,6\pi),
+                \end{align*}
+                therefore, the fundamental angular frequency is $6\pi$ in units of radians per second.
 
-\item The fundamental period is:
-$$T=\frac{2\pi}{\omega}=\frac{2\pi}{6\pi}=\frac{1}{3},$$
-hence $T=\frac{1}{3}$ in units of seconds.
-\end{enumerate}
+          % Exercise 2d)
+          \item The fundamental period is:
+                \[ T = \frac{2\pi}{\omega} = \frac{2\pi}{6\pi}=\frac{1}{3}, \]
+                hence $T=\frac{1}{3}$ in units of seconds.
+        \end{enumerate}
 
-\item Let the Fourier series coefficients of a periodic signal $x(t)$ with fundamental period $T=1$ be:
-$$c_{k}=\begin{cases}
-    \frac{1}{10}, \hspace{2.3cm}\quad k=0, \\
-    \frac{1}{\pi k}e^{-i\frac{\pi}{10}k}\sin(\frac{\pi}{10}k),\quad \text{otherwise}.
-\end{cases}$$
+  % Exercise 3
+  \item Let the Fourier series coefficients of a periodic signal $x(t)$ with fundamental period $T=1$ be:
+        \[c_{k} = \begin{cases}
+            \frac{1}{10}, \hspace{2.3cm}\quad k=0, \\
+            \frac{1}{\pi k}e^{-i\frac{\pi}{10}k}\sin(\frac{\pi}{10}k),\quad \text{otherwise}.
+          \end{cases}\]
 
-\begin{enumerate}[a)]
-\item Using Python, we can implement a simple program for the partial sum with $N=101$. Listing \ref{code:7.3a} shows a way. 
-\lstinputlisting[language=Python,caption=Suggested solution to a),label=code:7.3a]{ch07/code/ex7_3a.py}
+        \begin{enumerate}[a)]
+          % Exercise 3a)
+          \item Using Python, we can implement a simple program for the partial sum with $N=101$. Listing \ref{code:7.3a} shows a way.
+                \lstinputlisting[language=Python, caption=Suggested solution to a), label=code:7.3a]{ch07/code/ex7_3a.py}
 
-\item The Fourier coefficients of a delayed signal are related to the undelayed signal by $c_{k}'=e^{-i\frac{2\pi k\tau}{T}}c_{k}$. 
-The script in Listing \ref{code:7.3a} can be modified to account for delay. The delayed version is shown in Listing \ref{code:7.3b}.
-\lstinputlisting[language=Python,caption=Suggested solution to b),label=code:7.3b]{ch07/code/ex7_3b.py}
+          % Exercise 3b)
+          \item The Fourier coefficients of a delayed signal are related to the undelayed signal by $c_{k}'=e^{-i\frac{2\pi k\tau}{T}}c_{k}$.
+                The script in Listing \ref{code:7.3a} can be modified to account for delay. The delayed version is shown in Listing \ref{code:7.3b}.
+                \lstinputlisting[language=Python, caption=Suggested solution to b), label=code:7.3b]{ch07/code/ex7_3b.py}
 
-\item Define $y(t)=\frac{d}{dt}x(t)$. If $c_{k}$ are the Fourier coefficients for $x(t)$, then the Fourier coefficients for $y(t)$ is:
-$$d_{k}(t)=i \frac{2\pi k}{T}c_{k}.$$
-Using Python we have Listing \ref{code:7.3c}.
-\lstinputlisting[language=Python,caption=Suggested solution to c),label=code:7.3c]{ch07/code/ex7_3c.py}
+          % Exercise 3c)
+          \item Define $y(t)=\frac{d}{dt}x(t)$. If $c_{k}$ are the Fourier coefficients for $x(t)$, then the Fourier coefficients for $y(t)$ is:
+                \[ d_{k}(t)=i \frac{2\pi k}{T}c_{k}. \]
+                Using Python we have Listing \ref{code:7.3c}.
+                \lstinputlisting[language=Python, caption=Suggested solution to c), label=code:7.3c]{ch07/code/ex7_3c.py}
 
-\end{enumerate}
-
+        \end{enumerate}
 
 \end{enumerate}

@@ -1,25 +1,24 @@
-import numpy as n
 import matplotlib.pyplot as plt
+import numpy as np
 
-N = 1000    # number of sample points
-om = 2.6    # angular frequency
-phi = 3.1   # phase
-m = 0       # integer
-# compute the phase needed to cancel the signal
-phi_cancel = n.pi - phi + 2*n.pi*m    
+N = 1000    # Number of sample points.
+om = 2.6    # Angular frequency.
+phi = 3.1   # Phase.
+m = 0       # Integer.
+# Compute the phase needed to cancel the signal.
+phi_cancel = np.pi - phi + 2*np.pi*m
 
-# partition the t axis with a range 
-# from 0 to 4pi with N samples
-t = n.linspace(start=0, stop=4*n.pi,num=N)
+# Partition the t axis with a range from
+# 0 to 4pi with N samples.
+t = np.linspace(start=0, stop=4*np.pi, num=N)
 
-# original signal
-x = n.cos(om * t + phi)
+# Original signal.
+x = np.cos(om * t + phi)
 
-# noise canceling signal
-y = n.cos(om * t + phi_cancel)
+# Noise canceling signal.
+y = np.cos(om * t + phi_cancel)
 
-# plot the signals
-plt.plot(t,x)
-plt.plot(t,y)
-# call this if needed
+plt.plot(t, x)
+plt.plot(t, y)
+# Call this if needed.
 # plt.show()

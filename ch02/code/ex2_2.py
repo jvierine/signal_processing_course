@@ -1,29 +1,29 @@
-import numpy as n
-import scipy.constants as c
 import matplotlib.pyplot as plt
+import numpy as np
+import scipy.constants as c
 
 print("Hello World!")
-# test numpy and scipy
-print(n.pi)
+# Test NumPy and SciPy.
+print(np.pi)
 print(c.pi)
 
-sample_rate = 44100.0 # 44100 samples per second
-t = n.arange(101)/sample_rate # <-- added 101 to obtain the full circle
+sample_rate = 44100.0  # 44100 samples per second.
+t = np.arange(101)/sample_rate  # <-- Added 101 to obtain the full circle.
 
-csin = n.exp(1j*2.0*n.pi*440.0*t) # A 440 Hz signal
+csin = np.exp(1j*2.0*np.pi*440.0*t)  # A 440 Hz signal.
 
-# make axis aspect ratio equal for visually pleasing output
+# Make axis aspect ratio equal for visually pleasing output.
 plt.axes().set_aspect('equal')
 
-# plot a circle using the real and imaginary part of e^(i*2*pi*440*t)
-plt.plot(csin.real,csin.imag,color="blue",label="Unit circle")
+# Plot a circle using the real and imaginary part of e^(i*2*pi*440*t).
+plt.plot(csin.real, csin.imag, color="blue", label="Unit circle")
 
-plt.xlabel("$\cos(2\pi440t)$")
-plt.ylabel("$\sin(2\pi440t)$")
+plt.xlabel(r"$\cos(2\pi440t)$")
+plt.ylabel(r"$\sin(2\pi440t)$")
 plt.legend()
-# call this if needed
+# Call this if needed.
 # plt.show()
 try:
-    plt.savefig("../figures/circle_plot.png") # remove this
+    plt.savefig("../figures/circle_plot.png")  # Remove this.
 except:
     print("couldn't save file")

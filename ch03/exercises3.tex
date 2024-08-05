@@ -2,53 +2,76 @@
 \section{Exercises: Complex Algebra}
 
 \begin{enumerate}
-\item Prove $e^{i\pi}+1=0$ using Euler's formula. 
-\item Use Euler's formula to write $1/i$ into polar form $Ae^{i\phi}$ with $A,\phi\in\mathbb{R}$. What is the phase angle $\phi$?
-\item Show that $i^{i}$ is real-valued using Euler's formula. Use Python to calculate this value and verify that it is real. 
-\item Use Euler's formula to show that de Moivre's formula is valid for $n\in\mathbb{Z}$:
-$$[\cos(x)+i\sin(x)]^{n}=\cos(nx)+i\sin(nx)$$
+  % Exercise 1
+  \item Prove $e^{i\pi}+1=0$ using Euler's formula.
 
-\item Using Euler's formula, it is possible to determine the $n$th root of unity. What this means is that we look for all unique values of $z$ which satisfy the following equation where $n$ is a positive integer:
-\begin{equation}
-    z^{n}=1.
-    \label{ch03:eq_unity}
-\end{equation}
-You probably already know the answer in the case of $n=2$, for which there are two solutions: $z_{0}=1$ and $z_{1}=-1$ as both $1^{2}=1$ and $(-1)^{2}=1$. \\
-Provide a general formula that gives $n$ unique values of $z\in\mathbb{C}$ that
-satisfy Equation \ref{ch03:eq_unity}. How many unique solutions of $z$ are there
-for each value of $n$? Hint: remember that $e^{i 2\pi k} = 1$ where
-$k$ is an integer. 
-\item Consider the equation $z^{5}=1$, where $z\in\mathbb{C}$. 
-\begin{itemize}
-    \item[a)] Find the five solutions $w_{k}$ for $k=0,1,2,3,4$, to the equation $z^{5}=1$. 
-    \item[b)] Create a Python program to plot the solutions to this equation in the complex plane. Add lines to your plot which connect the point $w_{k}$ to $w_{k-1}$ mod $5$. What is the shape drawn?
-    \item[c)] Add the unit circle to the plot you found in b). 
-\end{itemize}
+  % Exercise 2
+  \item Use Euler's formula to write $1/i$ into polar form $Ae^{i\phi}$ with $A,\phi\in\mathbb{R}$.
+        What is the phase angle $\phi$?
 
-\item Use the inverse Euler formula to convert $(1-i) e^{-i \omega t} + (1+i) e^{i
-  \omega t}$ into the following form:
-\begin{equation*}
-    A \cos(\omega t  + \phi)
-\end{equation*}
-with $A\in \mathbb{R}$. What is $A$ and what is $\phi$?
+  % Exercise 3
+  \item Show that $i^{i}$ is real-valued using Euler's formula.
+        Use Python to calculate this value and verify that it is real.
 
-\item Prove using Euler's formula that:
-\begin{equation*}
-    \cos(3\theta)= \cos^3(\theta)-3\cos(\theta)\sin^2(\theta).
-\end{equation*}
+  % Exercise 4
+  \item Use Euler's formula to show that de Moivre's formula is valid for $n\in\mathbb{Z}$:
+        \[[\cos(x)+i\sin(x)]^{n}=\cos(nx)+i\sin(nx)\]
 
-\item Use Euler's formula to prove the following trigonometric identity:
-\begin{align*}
-\cos(\alpha + \beta)&=\cos(\alpha)\cos(\beta) - \sin(\alpha)\sin(\beta)\,\,.
-\end{align*}
+  % Exercise 5
+  \item Using Euler's formula, it is possible to determine the $n$th root of unity.
+        What this means is that we look for all unique values of $z$ which
+        satisfy the following equation where $n$ is a positive integer:
+        \begin{equation}
+          z^{n} = 1.
+          \label{ch03:eq_unity}
+        \end{equation}
+        You probably already know the answer in the case of $n=2$, for which there are two solutions:
+        $z_{0}=1$ and $z_{1}=-1$ as both $1^{2}=1$ and $(-1)^{2}=1$. \\
+        Provide a general formula that gives $n$ unique values of $z\in\mathbb{C}$ that
+        satisfy Equation \ref{ch03:eq_unity}. How many unique solutions of $z$ are there
+        for each value of $n$? Hint: remember that $e^{i 2\pi k} = 1$ where
+        $k$ is an integer.
 
-\item Another definition of $e^{z}$ (the complex exponential) is by an extension of the Taylor series expansion of $e^{x}$ (the real exponential), as follows
-$$e^{z}:=\sum_{k=0}^{\infty}\frac{z^{k}}{k!}, \quad\quad \text{for}\ z\in\mathbb{C}.$$
-That is, $e^{z}$ is taken to mean this infinite series. Use this Taylor series expansion definition to show that
-\begin{equation}
-  e^{i\theta} = \cos(\theta) + i\sin(\theta).
-  \label{ch03:euler_formula}
-\end{equation}
-To do this, compute the Taylor series expansion of $e^{i\theta}$. 
+  % Exercise 6
+  \item Consider the equation $z^{5}=1$, where $z\in\mathbb{C}$.
+        \begin{itemize}
+          % Exercise 6a)
+          \item[a)] Find the five solutions $w_{k}$ for $k=0,1,2,3,4$, to the equation $z^{5}=1$.
+          % Exercise 6b)
+          \item[b)] Create a Python program to plot the solutions to this equation in the complex plane. Add lines to your plot which connect the point $w_{k}$ to $w_{k-1}$ mod $5$. What is the shape drawn?
+          % Exercise 6c)
+          \item[c)] Add the unit circle to the plot you found in b).
+        \end{itemize}
+
+  % Exercise 7
+  \item Use the inverse Euler formula to convert $(1-i) e^{-i \omega t} + (1+i) e^{i\omega t}$
+        into the following form:
+        \begin{equation*}
+          A \cos(\omega t  + \phi)
+        \end{equation*}
+        with $A\in \mathbb{R}$. What is $A$ and what is $\phi$?
+
+  % Exercise 8
+  \item Prove, using Euler's formula that:
+        \begin{equation*}
+          \cos(3\theta) = \cos^3(\theta)-3\cos(\theta)\sin^2(\theta).
+        \end{equation*}
+
+  % Exercise 9
+  \item Use Euler's formula to prove the following trigonometric identity:
+        \begin{align*}
+          \cos(\alpha + \beta) & =\cos(\alpha)\cos(\beta) - \sin(\alpha)\sin(\beta)\,\,.
+        \end{align*}
+
+  % Exercise 10
+  \item Another definition of $e^{z}$ (the complex exponential) is by an extension of the Taylor series
+        expansion of $e^{x}$ (the real exponential), as follows
+        \[e^{z} := \sum_{k=0}^{\infty}\frac{z^{k}}{k!}, \quad\quad \text{for}\ z\in\mathbb{C}.\]
+        That is, $e^{z}$ is taken to mean this infinite series. Use this Taylor series expansion definition to show that:
+        \begin{equation}
+          e^{i\theta} = \cos(\theta) + i\sin(\theta).
+          \label{ch03:euler_formula}
+        \end{equation}
+        To do this, compute the Taylor series expansion of $e^{i\theta}$.
 
 \end{enumerate}

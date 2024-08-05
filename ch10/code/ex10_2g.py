@@ -1,16 +1,16 @@
-import numpy as n
 import matplotlib.pyplot as plt
+import numpy as np
 
 L = 4
-h = n.repeat(1/L,L)              # add 1/L into an array L times
+h = np.repeat(1/L, L)                # Add 1/L into an array L times.
 
-h2 = n.convolve(h,h,mode="full") # compute the convolution
+h2 = np.convolve(h, h, mode="full")  # Compute the convolution.
 
 plt.stem(h2)
 plt.xlabel("Samples $(n)$")
 plt.ylabel("$h_{2}[n]$")
 plt.title("Impulse response")
-# call this if needed
+# Call this if needed.
 # plt.plot()
 
 try:

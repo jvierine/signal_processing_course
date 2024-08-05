@@ -3,55 +3,69 @@
 \section{Exercises: Discrete-time Fourier Transform (DTFT)}
 
 \begin{marginfigure}
-\begin{center}
-  \begin{tikzpicture}[node distance=3cm,auto,>=latex']
+  \begin{center}
+    \begin{tikzpicture}[node distance=3cm,auto,>=latex']
 
-    \node [int] (a) {LTI $(h_1[n])$};
-    \node [above of=a, node distance=1cm] (in) {$x[n]$};
-    \node [int, below of=a, node distance=1cm] (b) {LTI $(h_2[n])$};
-    \node [int, below of=b, node distance=1cm] (c) {LTI $(h_3[n])$};    
-    \node [below of=c, node distance=1cm] (out) {$y[n]$};
-    \path[->] (a) -> (b);
-    \draw[->] (a) -> (b);
-    \path[->] (in) -> (a);
-    \draw[->] (in) -> (a);
-    \path[->] (b) -> (c);
-    \draw[->] (b) -> (c);    
-    \path[->] (c) -> (out);
-    \draw[->] (c) -> (out);
-    
-    \node [int, right of=a,node distance=2cm] (a3) {LTI $(h_4[n])$};
-    \node [above of=a3, node distance=1cm] (in3) {$x[n]$};
-    \node [below of=a3, node distance=1cm] (out3) {$y[n]$};
-    \path[->] (in3) -> (a3);
-    \draw[->] (in3) -> (a3);
-    \path[->] (a3) -> (out3);
-    \draw[->] (a3) -> (out3);
-    
-\end{tikzpicture}
-\end{center}
-\caption{A cascade of LTI systems defined by impulse responses $h_1[n]$, $h_2[n]$, and $h_3[n]$ is equivalent to a single LTI system defined by an impulse response $h_4[n]$.}
-\label{fig:cascade_lti_ex}
+      \node [int] (a) {LTI $(h_1[n])$};
+      \node [above of=a, node distance=1cm] (in) {$x[n]$};
+      \node [int, below of=a, node distance=1cm] (b) {LTI $(h_2[n])$};
+      \node [int, below of=b, node distance=1cm] (c) {LTI $(h_3[n])$};
+      \node [below of=c, node distance=1cm] (out) {$y[n]$};
+      \path[->] (a) -> (b);
+      \draw[->] (a) -> (b);
+      \path[->] (in) -> (a);
+      \draw[->] (in) -> (a);
+      \path[->] (b) -> (c);
+      \draw[->] (b) -> (c);
+      \path[->] (c) -> (out);
+      \draw[->] (c) -> (out);
+
+      \node [int, right of=a,node distance=2cm] (a3) {LTI $(h_4[n])$};
+      \node [above of=a3, node distance=1cm] (in3) {$x[n]$};
+      \node [below of=a3, node distance=1cm] (out3) {$y[n]$};
+      \path[->] (in3) -> (a3);
+      \draw[->] (in3) -> (a3);
+      \path[->] (a3) -> (out3);
+      \draw[->] (a3) -> (out3);
+
+    \end{tikzpicture}
+  \end{center}
+  \caption{A cascade of LTI systems defined by impulse responses $h_1[n]$, $h_2[n]$, and $h_3[n]$ is equivalent to a single LTI system defined by an impulse response $h_4[n]$.}
+  \label{fig:cascade_lti_ex}
 \end{marginfigure}
 
-\begin{enumerate} 
-\item Show that if $x[n] \in \mathbb{R}$, then $\hat{x}(\hat{\omega}) = \hat{x}^*(-\hat{\omega})$.
-\item Show that if $\hat{x}(\hat{\omega}) \in \mathbb{R}$, then $x[n]=x^*[-n]$.
+\begin{enumerate}
+  % Exercise 1
+  \item Show that if $x[n] \in \mathbb{R}$, then $\hat{x}(\hat{\omega}) = \hat{x}^*(-\hat{\omega})$.
 
-\item Show that $\mathcal{F}^{-1}\{42 i\}=42i\delta[n]$ using Equation \ref{eq:idtft_def}. Here $\mathcal{F}^{-1}$ is the inverse discrete-time Fourier transform.
-\item Consider three systems: $\mathcal{T}_1\{x[n]\} = x[n]-x[n-1]$,  $\mathcal{T}_2\{x[n]\} = x[n]+x[n-2]$, and 
- $\mathcal{T}_3\{x[n]\} = x[n-1]+x[n-2]$.
- \begin{enumerate}[a)]
- \item What are the impulse responses for these three LTI systems: $h_1[n]=\mathcal{T}_1\{\delta[n]\}$, $h_2[n]=\mathcal{T}_2\{\delta[n]\}$, and ,  $h_3[n]=\mathcal{T}_3\{\delta[n]\}$?
- \item Show that the frequency response of the system $y[n]=\mathcal{T}_1\{\mathcal{T}_2\{\mathcal{T}_3\{x[n]\}\}\}$ is $e^{-i\hat{\omega}}-e^{-5i\hat{\omega}}$.
- \end{enumerate}      
- \item Inverse DTFT the following functions:
- \begin{enumerate}[a)]
- \item $\hat{x}(\hat{\omega})=1-2e^{i\hat{\omega}3}$
- \item $\hat{x}(\hat{\omega})=2e^{-i\hat{\omega}3}\cos(\hat{\omega})$
- \item $\hat{x}(\hat{\omega})=e^{-i 42 \hat{\omega}} \frac{\sin(10.5 \hat{\omega})}{\sin(\hat{\omega}/2)}$.\\
- Hint: Look at the derivation for the Dirichlet kernel.
-\end{enumerate}
+  % Exercise 2
+  \item Show that if $\hat{x}(\hat{\omega}) \in \mathbb{R}$, then $x[n]=x^*[-n]$.
+
+  % Exercise 3
+  \item Show that $\mathcal{F}^{-1}\{42 i\}=42i\delta[n]$ using Equation \ref{eq:idtft_def}. 
+        Here $\mathcal{F}^{-1}$ is the inverse discrete-time Fourier transform.
+
+  % Exercise 4
+  \item Consider three systems: $\mathcal{T}_1\{x[n]\} = x[n]-x[n-1]$,  $\mathcal{T}_2\{x[n]\} = x[n]+x[n-2]$, and
+        $\mathcal{T}_3\{x[n]\} = x[n-1]+x[n-2]$.
+        \begin{enumerate}[a)]
+          % Exercise 4a)
+          \item What are the impulse responses for these three LTI systems: $h_1[n]=\mathcal{T}_1\{\delta[n]\}$, $h_2[n]=\mathcal{T}_2\{\delta[n]\}$, and ,  $h_3[n]=\mathcal{T}_3\{\delta[n]\}$?
+          % Exercise 4b)
+          \item Show that the frequency response of the system $y[n]=\mathcal{T}_1\{\mathcal{T}_2\{\mathcal{T}_3\{x[n]\}\}\}$ is $e^{-i\hat{\omega}}-e^{-5i\hat{\omega}}$.
+        \end{enumerate}
+
+  % Exercise 5
+  \item Inverse DTFT the following functions:
+        \begin{enumerate}[a)]
+          % Exercise 5a)
+          \item $\hat{x}(\hat{\omega})=1-2e^{3i\hat{\omega}}$
+          % Exercise 5b)
+          \item $\hat{x}(\hat{\omega})=2e^{-3i\hat{\omega}}\cos(\hat{\omega})$
+          % Exercise 5c)
+          \item $\hat{x}(\hat{\omega})=e^{-42i\hat{\omega}} \frac{\sin(10.5 \hat{\omega})}{\sin(\hat{\omega}/2)}$.\\
+          Hint: Look at the derivation for the Dirichlet kernel.
+        \end{enumerate}
 
 \end{enumerate}
 
