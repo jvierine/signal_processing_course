@@ -2,9 +2,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 L = 4
-h = np.repeat(1/L, L)                # Add 1/L into an array L times.
+h = np.repeat(1/L, L)  # Add 1/L into an array L times.
 
-h2 = np.convolve(h, h, mode="full")  # Compute the convolution.
+# Compute the convolution.
+h2 = np.convolve(h, h, mode="full")
 
 plt.stem(h2)
 plt.xlabel("Samples $(n)$")
