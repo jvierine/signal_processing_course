@@ -1,5 +1,8 @@
 # Signal Processing
 
+<img width="847" alt="Screenshot 2024-08-06 at 10 13 41" src="https://github.com/user-attachments/assets/a723dba9-9435-4ec0-85bf-70f3be17eb68">
+
+
 By Juha Vierinen, and Jørn Olav Jensen (2016-today). With contributions from numerous other students, teaching assistants, and educators. 
 
 This project consists of material, a book, intended to be used for a first course in signal processing on an undergraduate level. The main focus is on digital signal processing through practical real world programming tasks, including e.g., processing the laser gravitational wave interferometric observatory (LIGO) measurements. The material includes continuous-time theory out of necessity, as this froms the basis digital signal processing. Any course in signal processing would be incomplete and not stand on a firm foundation if we would have left this out. The programming examples are provided in the Python programming language. As with any mathematical course, we also include pencil and paper exercises that are intended to reinforce the learning of theoretical concepts. 
