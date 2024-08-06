@@ -14,7 +14,13 @@ The book is free for everyone to use. We have licensed it with the CC BY-NC 4.0.
 
 The easiest way to get started is to simply download the file signal_processing.pdf. It is the compiled book in pdf format, containing all the chapters, exercises, and programming tasks. The programming exercises can be found in the subdirectory: code. 
 
-In case you want to modify or edit the content, feel free to browse the chapter_config.tex file to configure what content is included. To make the pdf file of the book, simply type make. 
+In case you want to modify or edit the content, feel free to browse the chapter_config.tex file to configure what content is included. To make the pdf file of the book, simply type: 
+
+<code>
+> make 
+</code>
+
+The course book will be compiled in signal_processing.pdf
 
 ## Contributing to the project
 
