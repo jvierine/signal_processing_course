@@ -41,7 +41,7 @@ if __name__ == "__main__":
     x = np.cumsum(np.random.randn(N))
 
     # Apply the running average filter.
-    y = running_average_filter(L=3, x=x)
+    y = running_average_filter(L=L, x=x)
 
     plt.plot(t, x, label="Original", color="red")
     plt.plot(t, y, label="Running average filtered", color="blue")

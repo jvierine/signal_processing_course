@@ -19,7 +19,7 @@ figures:
 	cd ../..
 	cd ch07/code ; python3 ex7_3a.py noplot ; python3 ex7_3b.py noplot ; python3 ex7_3c.py noplot
 	cd ../..
-	cd ch10/code ; python3 ex10_2g.py noplot ; python3 ex10_3.py noplot
+	cd ch10/code ; python3 ex10_2g.py noplot ; python3 ex10_3c.py 15
 	cd ../..
 	cd ch11/code ; python3 ex11_1.py noplot ; python3 ex11_2.py noplot ; python3 ex11_3.py noplot
 	cd ../..
