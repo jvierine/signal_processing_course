@@ -57,15 +57,18 @@ One of the main objectives of a sonar measurement is to recover the impulse
 response $h[n]$ from measurements $m[n]$. This is trivial when the
 transmit pulse is a unit impulse $x[n]=A\delta[n]$. With longer
 transmit signals, we need to deconvolve the transmitted signal. This
-is typically achieved by convolving the received signal $m[n]$ with a deconvolution filter $\lambda[n]$:
+is typically achieved by convolving the received signal $m[n]$ with a 
+deconvolution filter $\lambda[n]$:
 \begin{equation}
   \lambda[n]*m[n] = \lambda[n] * x[n] * h[n].
 \end{equation}
-The deconvolution filter needs to have the following property\sidenote{One way to determine $\lambda[n]$ is to solve for it in frequency domain, but this is beyond the scope of this exercise.}:
+The deconvolution filter needs to have the following property\sidenote{One way to determine $\lambda[n]$ 
+is to solve for it in frequency domain, but this is beyond the scope of this exercise.}:
 \begin{equation}
   \lambda[n]*x[n] \approx A\delta[n],
 \end{equation}
-where $A$ is a constant. In the case of chirp-like signals, an often used deconvolution filter is the time reversed chirp signal:
+where $A$ is a constant. In the case of chirp-like signals, an often used 
+deconvolution filter is the time reversed chirp signal:
 \begin{equation}
   \lambda[n] = x[-n + n_0],
 \end{equation}
@@ -111,22 +114,22 @@ also borrow my equipment in order to make your own measurements.
 
 You can read these signals into a
 computer as follows:
-\begin{lstlisting}[language=Python,numbers=none]
-import numpy as n
+\begin{lstlisting}[language=Python, numbers=none]
 import matplotlib.pyplot as plt
+import numpy as np
 
-# read chirp waveform
-chirp=n.fromfile("chirp.bin",dtype=n.float32)
-# read microphone recording 
-m=n.fromfile("sonar_meas.bin",dtype=n.float32)
+# Read chirp waveform.
+chirp = np.fromfile("chirp.bin", dtype=np.float32)
+# Read microphone recording.
+m = np.fromfile("sonar_meas.bin", dtype=n.float32)
 
 plt.plot(chirp)
 plt.xlabel("Time (samples)")
 plt.ylabel("Transmitted signal $x[n]$")
 plt.show()
 
-# plot the first three interpulse periods 
-plt.plot(m[0:30000])
+# Plot the first three interpulse periods.
+plt.plot(m[:30000])
 plt.xlabel("Time (samples)")
 plt.ylabel("Received signal $m[n]$")
 plt.show()
@@ -140,16 +143,16 @@ $10000$ samples and the transmitted signal actually looks like this:
 In this task, you should treat each segment of 10000 samples as an
 independent sonar measurement, which will allow you to study how the
 impulse response evolves over time. You can do this as follows:
-\begin{lstlisting}[language=Python,numbers=none]
-import numpy as n
+\begin{lstlisting}[language=Python, numbers=none]
 import matplotlib.pyplot as plt
+import numpy as np
 
-m=n.fromfile("sonar_meas.bin",dtype=n.float32)
+m = np.fromfile("sonar_meas.bin", dtype=np.float32)
 
-interpulse_period=10000
-N_ipps = int(n.floor(len(m)/interpulse_period))
+interpulse_period = 10000
+N_ipps = int(np.floor(len(m)/interpulse_period))
 for i in range(N_ipps):
-    echoes = m[(i*interpulse_period):(i*interpulse_period+interpulse_period)]
+    echoes = m[(i*interpulse_period):(i*interpulse_period + interpulse_period)]
     plt.plot(echoes)
     plt.show()
 \end{lstlisting}
@@ -168,40 +171,43 @@ help each other on Perusall. It is fine to give hints, but please try
 not to give away the \emph{exact solution}.
 
 \begin{enumerate}[a)]
-\item How many meters of distance\sidenote{I mean total distance, \emph{not half the total distance}, which is often used in sonar and radar to take into account the fact that the wave has to travel to the target and back.} does an acoustic pulse travel during one sample duration $T_s = f_s^{-1}$? Assume sound speed in a typical lecture room at UiT (343 m/s).
+  \item How many meters of distance\sidenote{I mean total distance, \emph{not half the total distance}, 
+        which is often used in sonar and radar to take into account the fact that the wave has to travel 
+        to the target and back.} does an acoustic pulse travel during one sample duration $T_s = f_s^{-1}$? 
+        Assume sound speed in a typical lecture room at UiT (343 m/s).
 
   \item How long is the transmitted pulse read from file \verb|chirp.bin| in seconds?  
 
-  \item How long is the measurement in seconds? You can figure this out by looking at the length of the signal \verb|sonar_meas.bin| and using the known sample-rate of $44.1 \cdot 10^3$ samples per second.
+  \item How long is the measurement in seconds? You can figure this out by looking at the length of 
+        the signal \verb|sonar_meas.bin| and using the known sample-rate of $44.1 \cdot 10^3$ samples per second.
     
   \item How many transmit pulses are contained in the measurement? One
-    pulse is transmitted every 10000 samples.
+        pulse is transmitted every 10000 samples.
     
- \item Why does the deconvolution filter $\lambda[n]$ need to have the
-  property: $\lambda[n]*x[n] \approx A\delta[n]$, where $A$ is a
-  constant?
+  \item Why does the deconvolution filter $\lambda[n]$ need to have the
+        property: $\lambda[n]*x[n] \approx A\delta[n]$, where $A$ is a constant?
    
- \item Evaluate the autocorrelation function of the transmitted signal
-   $c[n]=x[n]*x[-n]$. Use the signal that you read from
-   \verb|chirp.bin|. You can time-reverse a signal in Python using
-   \verb|deconvolution_filter = x[::-1]|. Make a plot of $c[n]$
-   zooming into the portion of the signal that has significantly
-   non-zero values.
+  \item Evaluate the autocorrelation function of the transmitted signal
+        $c[n]=x[n]*x[-n]$. Use the signal that you read from
+        \verb|chirp.bin|. You can time-reverse a signal in Python using
+        \verb|deconvolution_filter = x[::-1]|. Make a plot of $c[n]$
+        zooming into the portion of the signal that has significantly
+        non-zero values.
 
- \item How close is $c[n]$ in your opinion to a scaled unit
-   impulse $A\delta[n]$? How will deviations from the unit impulse
-   affect deconvolution quality when using $\lambda[n]=x[-n]$ as a
-   deconvolution filter?
+  \item How close is $c[n]$ in your opinion to a scaled unit
+        impulse $A\delta[n]$? How will deviations from the unit impulse
+        affect deconvolution quality when using $\lambda[n]=x[-n]$ as a
+        deconvolution filter?
 
- \item Make a plot of the scattered power as a function of time and
-   range. Use one pulse for each column of the array that you are
-   plotting.  You should get something similar to the plot in Figure
-   \ref{fig:ex_rti_plot}. Use decibel scale for power. Use time in
-   seconds on the x-axis and total propagation distance in meters on
-   the y-axis. Total propagation distance means the total travelled
-   distance between the loudspeaker and the microphone. You can use,
-   e.g., the \verb|pcolormesh| command from Python's Matplotlib to
-   make this plot.
+  \item Make a plot of the scattered power as a function of time and
+        range. Use one pulse for each column of the array that you are
+        plotting.  You should get something similar to the plot in Figure
+        \ref{fig:ex_rti_plot}. Use decibel scale for power. Use time in
+        seconds on the x-axis and total propagation distance in meters on
+        the y-axis. Total propagation distance means the total travelled
+        distance between the loudspeaker and the microphone. You can use,
+        e.g., the \verb|pcolormesh| command from Python's Matplotlib to
+        make this plot.
 
   \begin{figure}
   \begin{center}

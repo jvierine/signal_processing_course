@@ -67,30 +67,30 @@ ylabel={$x(t)$}
 
   Here's some partial code, which almost does the
   job, but has several things wrong.
-\begin{lstlisting}[language=Python,numbers=none]
-import numpy as n
+\begin{lstlisting}[language=Python, numbers=none]
 import matplotlib.pyplot as plt
-# define the sample rate (Hz)
-sample_rate=10000.0
-# create time array 0 to 1 seconds
-t=n.arange(1.0*sample_rate)/sample_rate
-# initialize empty vector to hold Fourier series
-sig=n.zeros(len(t),dtype=n.complex64)
-N=10
-# add together complex sinusoids multiplied with Fourier series coefficients
-for k in range(-N,N):
+import numpy as np
+# Define the sample rate (Hz).
+sample_rate = 10000.0
+# Create time array 0 to 1 seconds.
+t = np.arange(1.0*sample_rate)/sample_rate
+# Initialize empty vector to hold Fourier series.
+sig = np.zeros(len(t), dtype=np.complex64)
+N = 10
+# Add together complex sinusoids multiplied with Fourier series coefficients.
+for k in range(-N, N):
     print(k)
-    sig+=...# complete this line
+    sig += ... # Complete this line.
     
-plt.plot(t,sig.real)
-plt.plot(t,sig.imag)
+plt.plot(t, sig.real)
+plt.plot(t, sig.imag)
 plt.xlabel("Time (s)")
 plt.show()
 \end{lstlisting}
-If implemented correctly, the Fourier series should be real
-  valued. The imaginary part should only deviate from zero by only a
-  very small number due to numerical errors in finite precision
-  accuracy of floating point numbers.
+If implemented correctly, the Fourier series should be real-valued. 
+The imaginary part should only deviate from zero by only a
+very small number due to numerical errors in finite precision
+accuracy of floating point numbers.
   
 \item[b)] Figure out what modification you need to make to the Fourier series coefficients $c_k$ in order to delay the signal by 0.2 seconds.
 
