@@ -10,8 +10,11 @@ l=(n.array(l[:,:,0],dtype=n.float32)+n.array(l[:,:,1],dtype=n.float32)+n.array(l
 
 
 plt.subplot(221)
+plt.title("Zebra")
 plt.imshow(z)
+
 plt.subplot(222)
+plt.title("Leopard")
 plt.imshow(l)
 #plt.show()
 print(z.shape)
@@ -30,9 +33,12 @@ L=n.fft.fft2(l[:,:])
 leobra[:,:] = n.fft.ifft2(n.abs(L)*n.exp(1j*n.angle(Z)))
 zebard[:,:] = n.fft.ifft2(n.abs(Z)*n.exp(1j*n.angle(L)))
 plt.subplot(223)
+plt.title(r"LeoBra $|\hat{L}|e^{\angle  \hat{Z}}$")
 plt.imshow(leobra.real)
 plt.subplot(224)
+plt.title(r"ZePard $|\hat{Z}|e^{\angle  \hat{L}}$")
 plt.imshow(zebard.real)
+plt.tight_layout()
 plt.show()
     
 
