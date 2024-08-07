@@ -53,8 +53,8 @@ The course is divided into chapters. The order is the recommended sequence that 
 | ch15          | Discrete Fourier Transform             | Done   |
 | ch16          | Spectral Analysis                      | Done   |
 | ch17          | Arbitrary Frequency Response Filters   | Done   |
-| ch18          | Z-transform                            | Done   |
-| ch19          | Infinite Impulse Response Filters      | Done   |
+| ch18          | Z-transform, Finite Impulse Response   | Done   |
+| ch19          | Z-Transform, Infinite Impulse Response | Done   |
 
 Furthermore, each directory has the following structure
 | Directory     | Contains                                                           |
