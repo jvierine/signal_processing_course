@@ -24,6 +24,7 @@ To only compile the LaTeX document without running the Python examples, type:
 <code>
 make pdf
 </code>
+Note that if you have never run the programming examples, you will be missing some figures. 
 
 ## Contributing to the project
 
