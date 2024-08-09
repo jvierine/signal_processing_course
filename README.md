@@ -1,6 +1,6 @@
 # Signal Processing
 
-By Juha Vierinen, and Jørn Olav Jensen (2016-today). With contributions from numerous other students, teaching assistants, and educators. 
+By Juha Vierinen and Jørn Olav Jensen (2016-today). With contributions from numerous other students, teaching assistants, and educators. 
 
 <img width="447" alt="Sum of sinusoids tends towards and infinitely narrow pulse" src="https://github.com/user-attachments/assets/a723dba9-9435-4ec0-85bf-70f3be17eb68">
 
