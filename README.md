@@ -4,6 +4,8 @@ By Juha Vierinen, and Jørn Olav Jensen (2016-today). With contributions from nu
 
 <img width="447" alt="Sum of sinusoids tends towards and infinitely narrow pulse" src="https://github.com/user-attachments/assets/a723dba9-9435-4ec0-85bf-70f3be17eb68">
 
+Get the <a href="https://github.com/jvierine/signal_processing_course/blob/main/signal_processing.pdf">PDF here</a>.
+
 This project consists of material, a book, intended to be used for a first course in signal processing on an undergraduate level. The main focus is on digital signal processing through practical real world programming tasks, including e.g., processing the laser gravitational wave interferometric observatory (LIGO) measurements. The material includes continuous-time theory out of necessity, as this froms the basis digital signal processing. Any course in signal processing would be incomplete and not stand on a firm foundation if we would have left this out. The programming examples are provided in the Python programming language. As with any mathematical course, we also include pencil and paper exercises that are intended to reinforce the learning of theoretical concepts. 
 
 The course was developed for the Department of Physics and Technology students at University of Tromsø. The background of the students is highly varied, from e.g., electrical engineering, physics, computer science, machine learning, biology, and medical sciences. Because of the diversity of students, we have opted to include also mathematical concepts that might have not been included for students coming from purely an engineering background. 
