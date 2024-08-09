@@ -1,68 +1,65 @@
-#!/usr/bin/env python
-
-import numpy as n
 import matplotlib.pyplot as plt
+import numpy as np
 
-# load data
-# download data from:
+# Load data, download data from:
 # http://kaira.uit.no/fys2006/lcb1.dat
-d=n.loadtxt("lcb1.dat")
+d = np.loadtxt("lcb1.dat")
 
-# measurement times
-m_error=d[:,2]
+# Measurement times.
+m_error = d[:, 2]
 
-# select find measurements that don't have large errors
-good_idx=n.where(n.abs(m_error)<1.0)[0]
+# Select find measurements that don't have large errors.
+good_idx = np.where(np.abs(m_error) < 1.0)[0]
 
-# measurement time (units of days)
-m_t=d[good_idx,0]
+# Measurement time (units of days.)
+m_t = d[good_idx, 0]
 
-# magnitude measurements (relative magnitude of star)
-m_mag=d[good_idx,1]
+# Magnitude measurements (relative magnitude of star.)
+m_mag = d[good_idx, 1]
 
-# fundamental period
-T=13.124349
+# Fundamental period.
+T = 13.124349
 
-# time, modulo period
-m_modulo_t=n.mod(m_t,T)
+# Time, modulo period.
+m_modulo_t = np.mod(m_t, T)
 
-plt.plot(m_modulo_t,m_mag,".")
+plt.plot(m_modulo_t, m_mag, ".")
 
-# number of Fourier series coefficients
-N=10
-N_meas=len(m_mag)
+# Number of Fourier series coefficients.
+N = 10
+N_meas = len(m_mag)
 
-# frequency indices
-k_idx=n.arange(-N,N+1)
+# Frequency indices.
+k_idx = np.arange(-N, N+1)
 
-# theory matrix
-A=n.zeros([N_meas,len(k_idx)],dtype=n.complex)
+# Theory matrix.
+A = np.zeros([N_meas, len(k_idx)], dtype=np.complex64)
 
-for ki,k in enumerate(k_idx):
-    # setup theory matrix row
-    A[:,ki]=n.exp(1j*(2.0*n.pi/T)*k*m_modulo_t)
+for ki, k in enumerate(k_idx):
+    # Setup theory matrix row.
+    A[:, ki] = np.exp(1j*(2.0*np.pi/T)*k*m_modulo_t)
 
-# find maximum likelihood estimate for Fourier Series coefficients c_k
-S=n.linalg.inv(n.dot(n.transpose(n.conj(A)),A))
-c_k=n.dot(n.dot(S,n.transpose(n.conj(A))),m_mag)
+# Find maximum likelihood estimate for Fourier Series coefficients c_k.
+S = np.linalg.inv(np.dot(np.transpose(np.conj(A)), A))
+c_k = np.dot(np.dot(S, np.transpose(np.conj(A))), m_mag)
 print(c_k.shape)
 # Evaluate the Fourier Series for the maximum likelihood estimate of
-# coefficients c_k
-N_model=100
-model_t=n.linspace(0,T,num=N_model)
-model = n.zeros(N_model,dtype=n.complex64)
+# coefficients c_k.
+N_model = 100
+model_t = np.linspace(0, T, num=N_model)
+model = np.zeros(N_model, dtype=np.complex64)
 
-# sum together signal for all Fourier series coefficients a_k
-for ki,k in enumerate(k_idx):
-    # figure out what to put here. 
-    # array "model_t" contains time
-    # array "c_k" contains the Fourier series coefficients
-    # we want the array "model" to contain the Fourier Series
-    # vector
-    model+=c_k[ki]*n.exp(1j*2*n.pi*k*model_t/T)  # ... figure out what to put here
-        
-plt.plot(model_t,model.real,label="Model")
-plt.plot(m_modulo_t,m_mag,"x",label="Measurements")
+# Sum together signal for all Fourier series coefficients a_k.
+for ki, k in enumerate(k_idx):
+    # Figure out what to put here.
+    # array "model_t" contains time.
+    # array "c_k" contains the Fourier series coefficients.
+    # We want the array "model" to contain the Fourier Series
+    # vector.
+    model += c_k[ki]*np.exp(1j*2*np.pi*k*model_t/T)
+
+plt.plot(model_t, model.real, label="Model")
+plt.plot(m_modulo_t, m_mag, "x", label="Measurements")
 plt.title("Fourier series model for Cepheid variable star")
 plt.xlabel("Time (days)")
 plt.ylabel("Relative Magnitude")
