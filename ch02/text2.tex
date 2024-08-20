@@ -9,7 +9,7 @@ language? Here are three justifications:
 \begin{itemize}
   \item It is free for everyone to use,
   \item there are a wide range of efficient numerical libraries available,
-  \item and Python is nowadays the language that students are most familiar with.
+  \item and Python is currently the language that students are most familiar with.
 \end{itemize}
 
 \begin{marginfigure}
@@ -39,11 +39,11 @@ this distribution by visiting the anaconda web page:
 \url{http://anaconda.org} and downloading the installer for your
 platform.
 
-The Anaconda package manager will allow you to install NumPy, SciPy,
-and Matplotlib. Anaconda also comes with a Python development
+The \index{Anaconda}{Anaconda} package manager will allow you to install \index{NumPy}{NumPy}, \index{SciPy}{SciPy},
+and \index{Matplotlib}{Matplotlib}. Anaconda also comes with a Python development
 environment as well. If you don't have your mind set on a specific
 programming editor yet, you could try out the Spyder development
-environment that comes with Anaconda.
+environment that comes with Anaconda. Another popular development environment is Microsoft's \index{Visual Studio Code}{Visual Studio Code}.
 
 \begin{marginfigure}
   \includegraphics[width=\textwidth]{ch02/figures/matplotlib.png}
@@ -52,7 +52,7 @@ environment that comes with Anaconda.
 
 If you are using Linux, like I am most of the time, it is
 probably easiest to just obtain Python using the system package
-manager. On Ubuntu, you would install the necessary packages with the following command:
+manager. On \index{Ubuntu}{Ubuntu}, you would install the necessary packages with the following command:
 \begin{lstlisting}[language=sh,caption=Installing Python on Ubuntu Linux,label=lst:linuxinstall]
 sudo apt-get install python3 python3-numpy python3-scipy python3-imageio python3-matplotlib ipython3
 \end{lstlisting}
@@ -82,23 +82,25 @@ you are all set. The output should look something like this:
 
 \newthought{Code examples} that are spread throughout these lecture
 notes can be downloaded from GitHub:
-\url{https://github.com/jvierine/signal_processing.git}. The easiest
+\url{https://github.com/jvierine/signal_processing_course}. The easiest
 way to access the code is to just visit this page with your web
 browser. In order to download the source code for the examples in
 these lecture notes, you can also use git on the command line:
 \begin{lstlisting}[language=sh,caption=Obtaining the source code for the programming examples with git,label=lst:download]
-git clone https://github.com/jvierine/signal_processing
+git clone https://github.com/jvierine/signal_processing_course
 \end{lstlisting}
 \begin{marginfigure}
   \includegraphics[width=\textwidth]{ch02/figures/downloadgit.png}
   \caption{If you are not familiar with git, you can easily download the code from the GitHub webpage as a zip file instead of using the git clone command.}
 \end{marginfigure}
+After obtaining the source code, you will have a repository that contains the source code for these lecture notes and all of the programming examples. The programming examples are under the \verb|code| subdirectory of the repository.
+
 If you are using Anaconda, you will have to install git (if you don't
 have it already) by typing in
-\begin{lstlisting}[language=sh,caption=Obtaining the source code for the programming examples with git,label=lst:download]
+\begin{lstlisting}[language=sh,caption=Obtaining the source code for the programming examples with git,label=lst:downloadgit]
   conda install -c anaconda git
 \end{lstlisting}
-Then you can proceed with the command shown above.
+Then you can proceed with the command in Listing \ref{lst:download}.
 
 \begin{marginfigure}
   \includegraphics[width=0.68\textwidth]{ch02/figures/gitlogo.png}

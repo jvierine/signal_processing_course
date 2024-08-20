@@ -7,9 +7,14 @@
 % - 
 %
 \newthought{There are two important elementary signals} which you will encounter
-throughout signal processing: the \emph{\index{unit impulse}{unit impulse}} $\delta(t)$
-and the \emph{\index{unit step}{unit step}} function $u(t)$. Both of these
-functions have continuous-time and discrete-time counterparts.
+throughout signal processing: the \emph{\index{unit impulse}{unit
+impulse}} $\delta(t)$ and the \emph{\index{unit step}{unit step}}
+function $u(t)$. These are important functions, as we can use these
+signals to represent any arbitrary signal. If we know how a linear
+time-invariant system modifes these functions, then we are able to
+model how arbitrary signals behave. The unit impulse and unit step
+function have both continuous-time and discrete-time versions.
+
 
 \newthought{The unit impulse function $\delta(t)$} is a special distribution
 function\footnote{The unit impulse function is also known as the
@@ -280,7 +285,7 @@ Figure \ref{fig:rect_fun} shows a plot of the rectangular
 function. This type of function appears, e.g., when dealing with
 ideal filters that only select spectral components that lie within a
 specific band of frequencies.
-\begin{marginfigure}[-5cm]
+\begin{marginfigure}[-0cm]
   \begin{center}
     \begin{tikzpicture}
       \begin{axis}[width=7cm,height=4cm,ymin=0,xmin=-1,ymax=1.3,xmax=2,

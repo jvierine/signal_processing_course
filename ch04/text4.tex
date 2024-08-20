@@ -212,9 +212,13 @@ I will try to occasionally give examples of signal processing with higher dimens
 \end{figure}
 
 \newthought{Digital signals} on a computer, are also quantized. 
-This means that there is only a finite number of possible values for the dependent value of a signal.
-This type of signal is called a \emph{\index{quantized}{quantized}} signal. 
-We will not discuss quantization in this course.
+This means that there is only a finite number of possible values for
+the dependent value of a signal.  This type of signal is called
+a \emph{\index{quantized}{quantized}} signal. The effects of
+quantization can often be treated as a random noise process that is
+added to the signal. When using suffciently good bit depth to
+represent the signal value, this quantization noise can typically be
+ignored. We will not discuss quantization in this course.
 
 
 \section{Systems}
@@ -314,7 +318,11 @@ the Fourier transform is a very useful tool when dealing with convolution equati
 \begin{equation}
    y(t) = \frac{d}{d t}x(t).
 \end{equation}
-The system definition is the time derivative operator $\frac{d}{dt}$.
+The system in this case is the time derivative operator
+$\frac{d}{dt}$. Later on, when we analyze the frequency response of
+systems, we will see that a derivative is a very basic high-pass
+filter, which reduces the magntitudes of low frequency components of a
+signal.
 
 \newthought{Systems are classified based on their mathematical properties}. 
 The most important two are: \emph{\index{linearity}{linearity}} and \emph{\index{time-invariance}{time-invariance}}. A
@@ -555,8 +563,9 @@ This system is time-invariant if:
       \label{def:timeinv}
    }
 \end{equation}
-In other words, it does not matter if the signal is delayed before or after 
-the system $\mathcal{T}\{\cdot\}$. To check time-invariance, we need to verify Equation \ref{def:timeinv}.
+In other words, it does not matter if the signal is delayed before or
+after the system $\mathcal{T}\{\cdot\}$ is applied to the signal. To
+check time-invariance, we need to verify Equation \ref{def:timeinv}.
 
 The test for time-invariance is illustrated as a block diagram in Figure \ref{fig:time_inv_block}.
 If you want, you could think of a time-invariant system as a system that satisfies:
@@ -573,12 +582,14 @@ absolute value of the input signal $y(t)=|x(t)|$. We can see this by evaluating:
 Time-invariance holds as the outputs are equal. It doesn't matter if a time-delay is 
 applied to the signal before or after obtaining the absolute value of the input signal.
 
-\newthought{An example of a case that is not time-invariant} is $y(t) = \mathcal{T}\{x(t)\} = t + x(t)$. 
-We can immediately see that the system directly depends on $t$, not only through, the input.
-The formal test also shows that time-invariance is not met:
+\newthought{An example of a case that is not time-invariant} is $y(t) = \mathcal{T}\{x(t)\} = \sin(t) + x(t)$. 
+We can immediately see that the system directly depends on $t$, not
+only through, the input $x(t)$, but also through the signal $\sin(t)$
+that is added to the output signal. The formal test also shows that
+time-invariance is not met:
 \begin{align}
-   \mathcal{T}\{\mathcal{D}\{x(t)\}\} & = \mathcal{T}\{x(t-\tau)\}=t+x(t-\tau)       \\
-   \mathcal{D}\{\mathcal{T}\{x(t)\}\} & = \mathcal{D}\{t + x(t)\}=(t-\tau)+x(t-\tau)
+   \mathcal{T}\{\mathcal{D}\{x(t)\}\} & = \mathcal{T}\{x(t-\tau)\}=\sin(t)+x(t-\tau)       \\
+   \mathcal{D}\{\mathcal{T}\{x(t)\}\} & = \mathcal{D}\{\sin(t) + x(t)\}=\sin(t-\tau)+x(t-\tau)
 \end{align}
 In this case, $\mathcal{T}\{\mathcal{D}\{x(t)\}\}\neq\mathcal{D}\{\mathcal{T}\{x(t)\}\}$ so the system is not time-invariant.
 
