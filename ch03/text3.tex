@@ -3,35 +3,53 @@
 \begin{marginfigure}
   \begin{center}
     \begin{tikzpicture}
-      \begin{axis}[axis equal, ymin=-0.5,xmin=-0.5,ymax=1.8,xmax=1.8,  ticks=none,
+      \begin{axis}[axis equal, ymin=-1.8,xmin=-0.2,ymax=1.8,xmax=1.8,  ticks=none,
           xlabel=$\mathrm{Re}$,
-          ylabel=$\mathrm{Im}$, axis lines = center, width=7cm, height=7cm]
+          ylabel=$\mathrm{Im}$, axis lines = center, width=7cm, height=10cm]
 
         \addplot [gray,domain=0:2*pi,samples=100]({1.5*cos(deg(x))},{1.5*sin(deg(x))});
 
         \addplot [black, mark = *] coordinates {( {1.5*cos(45)}, {1.5*sin(45)} )} {};
+        \addplot [blue, mark = *] coordinates {( {1.5*cos(-45)}, {1.5*sin(-45)} )} {};        
         %   \addplot [black, mark = *] coordinates {( {1.5*cos(-60)}, {1.5*sin(-60)} )} {};   
 
         \addplot [black] coordinates { (0,0) ( {1.5*cos(45)}, {1.5*sin(45)} ) };
 
+        \addplot [blue] coordinates { (0,0) ( {1.5*cos(-45)}, {1.5*sin(-45)} ) };
+
         \addplot [dashed,black] coordinates { ({1.5*cos(45)},0) ( {1.5*cos(45)}, {1.5*sin(45)} ) };
+
+        \addplot [dashed,blue] coordinates { ({1.5*cos(45)},0) ( {1.5*cos(45)}, {1.5*sin(-45)} ) };
 
         \addplot [dashed,black] coordinates { (0,{1.5*sin(45)}) ( {1.5*cos(45)}, {1.5*sin(45)} ) };
 
-        \draw[draw=black] (axis cs:0.2,0) arc [radius={transformdirectionx(0.2)},start angle=0,end angle=45]
+        \addplot [dashed,blue] coordinates { (0,{1.5*sin(-45)}) ( {1.5*cos(45)}, {1.5*sin(-45)} ) };
+
+        \draw[draw=black] (axis cs:0.2,0.00) arc [radius={transformdirectionx(0.2)},start angle=0,end angle=45]
         node[midway,right,inner sep=3pt,font={\footnotesize}]{$\theta=\angle z$};
 
+        \draw[draw=blue] (axis cs:0.2,0.00) arc [radius={transformdirectionx(0.2)},start angle=0,end angle=-45]
+        node[midway,right,inner sep=3pt,font={\footnotesize}]{{\color{blue}$-\theta=\angle z^*$}};
+
         \node at (axis cs:0.55,1.06) [above, font={\footnotesize}]{$x=\mathrm{Re}\{z\}$};
+        \node at (axis cs:0.55,1.26) [above, font={\footnotesize}]{$x=\cos(\theta)$};        
+        \node at (axis cs:0.55,-1.06) [above, font={\footnotesize}]{{\color{blue}$x=\mathrm{Re}\{z^*\}$}};
+        \node at (axis cs:0.55,-1.26) [above, font={\footnotesize}]{{\color{blue}$x=\cos(-\theta)$}};                
 
         \node at (axis cs:1.1,0.65) [right, font={\footnotesize}]{$y=\mathrm{Im}\{z\}$};
+        \node at (axis cs:1.1,0.45) [right, font={\footnotesize}]{$y=\sin(\theta)$};        
+        \node at (axis cs:1.1,-0.65) [right, color=blue, font={\footnotesize}]{$-y=\mathrm{Im}\{z^*\}$};
+        \node at (axis cs:1.1,-0.45) [right, color=blue, font={\footnotesize}]{$-y=\sin(-\theta)$};        
 
         \node at (axis cs:1.2,1.2) {$z$};
+        \node at (axis cs:1.2,-1.2) {{\color{blue}$z^*$}};        
 
         \node at (axis cs:0.5,0.5) [above,rotate=45,font={\footnotesize}]{$A=|z|$};
+        \node at (axis cs:0.5,-0.5) [above,rotate=-45,font={\footnotesize}]{{\color{blue}$A=|z^*|$}};        
       \end{axis}
     \end{tikzpicture}
   \end{center}
-  \caption{The polar representation of a complex number $z=x+iy =Ae^{i\theta}$.}
+  \caption{The polar representation of a complex number $z=x+iy =Ae^{i\theta}$ and its conjugate $z^* = x - iy = A e^{-i\theta}$}
   \label{fig:polar_euler}
 \end{marginfigure}
 
@@ -85,29 +103,57 @@
 \fi
 % complex numbers
 
-\newthought{\index{Euler's formula}{Euler's formula} relates an arbitrary complex
-  number $z \in \mathbb{C}$ to an exponential function of the natural
-  number $e$} as follows:
+\newthought{\index{Euler's formula}{Euler's formula} relates an arbitrary \index{complex
+  number}{complex
+  number} $z \in \mathbb{C}$ to an exponential function of the \index{natural
+  number}{natural
+  number} $e$} and the $\sin$ and $\cos$ trigonometric functions as follows:
 \begin{equation}
   \boxed{
     z = x + iy = A e^{i\theta} = A[\cos(\theta)+i\sin(\theta)]
   }\,\,.
   \label{eq:eulerintro}
 \end{equation}
-This formula is useful, as it provides a relationship between the Cartesian and \index{polar representation}{polar representation} of a \index{complex number}{complex number}.
+This formula is useful, as it provides a relationship between the Cartesian and \index{polar representation}{polar representation} of a \index{complex number}{complex number}\footnote{The \emph{\index{proof of Euler's formula}{proof of Euler's formula}} can be obtained in several different ways. We will use the derivative method demonstrated out by Youtuber MichaelPennMath. Consider the following function:
+\[
+f(\theta) = e^{-i\theta}[\cos(\theta)+i\sin(\theta)].
+\]
+We know that $f(0)=1$ just by relying on $e^0=0$, $\cos(0)=1$ and $\sin(0)=0$. The derivative of this function is zero everywhere:
+\begin{align*}
+\frac{df}{d\theta} =& e^{-i\theta}[-\sin(\theta)+i\cos(\theta)] \\
+&- i\theta e^{-i\theta}[\cos(\theta)+i\sin(\theta)] \\
+= & 0
+\end{align*}
+From this, we know that $f(\theta) = f(0) = 1$. The function is constant everywhere.
+
+With a little bit of algebra, we can see that because $f(\theta)=1$, then $e^{i\theta}=e^{i\theta} f(\theta)$, and thus
+\[
+e^{i\theta} = \cos(\theta) + i\sin(\theta).
+\]
+This proves Euler's formula.}.
+
+
 
 In this formula, $A = |z|=\sqrt{x^2 + y^2}$ is the absolute value of the complex number $z$. This is sometimes called the \emph{\index{magnitude}{magnitude}} or
 \emph{\index{modulus}{modulus}} of $z$.
 
 The angle $\theta$ can be obtained with simple geometry
-$\theta=\tan^{-1}(y/x)$. The angle is also sometimes called the argument of $z$. We'll use the following notation to denote the argument of a complex number: $\angle z = \theta = \tan^{-1}(y/x)$. It is worth pointing out here is that it is possible to add an integer multiple of $2\pi$ to $\theta$ and still get the same complex number:
+$\theta=\tan^{-1}(y/x)$. The angle is also sometimes called the \emph{\index{argument}{argument}} of $z$. We'll use the following notation to denote the argument of a complex number: $\angle z = \theta = \tan^{-1}(y/x)$. In some other texts you might run into the following notation: $\angle z = \mathrm{Arg\{z\}}$.
+
+It is worth pointing out here is that it is possible to add an integer
+multiple of $2\pi$ to $\theta$ and still get the same complex number:
 \begin{equation}
   A e^{i\theta} = A e^{i(\theta + 2\pi k)}
 \end{equation}
 This is due to the fact that $e^{i2\pi k} = 1$, where
-$k \in \mathbb{Z}$ is an arbitrary integer.
+$k \in \mathbb{Z}$ is an arbitrary integer. The fact that there are
+infinitely many different solutions to the argument of a complex
+number is an important property, which will be encountered often in
+signal processing. For example, the concept
+of \emph{\index{aliasing}{aliasing}} of discretized signals, which will
+encounter later on, occurs due to this this property.
 
-The term $i$ in Equation \ref{eq:eulerintro} is the imaginary number, which has the following properties: $i=\sqrt{-1}$ and $i^2 = -1$. In engineering and programming, the symbol $j$ is also often used for the imaginary number instead of $i$. I'll use $i$, but you can use whichever notation you prefer yourself.
+The term $i$ in Equation \ref{eq:eulerintro} is the imaginary number, which has the following properties: $i=\sqrt{-1}$ and $i^2 = -1$. In engineering and programming, the symbol $j$ is also often used for the imaginary number instead of $i$. The Python programming language uses the symbol $j$, and to denote e.g., $z=2+5i$ in Python, you would use the code snippet \verb|z=2+5j|.   % I'll use $i$, but you can use whichever notation you prefer yourself.
 
 The geometric representation of a complex number is shown in
 Figure \ref{fig:polar_euler}, which shows the real and imaginary
@@ -130,27 +176,56 @@ for all complex numbers $z_{1},z_{2}\in\mathbb{C}$, moreover $(e^{z_{1}})^{z_{2}
       & =A e^{-i\theta}\,\,.
 \end{align}
 The conjugation operation flips the sign of the imaginary
-component. The geometric interpretation of the complex conjugate is
+component. The geometric interpretation of the \index{complex conjugate}{complex conjugate} is
 shown in Figure \ref{fig:polar_euler}.  We'll use the superscript star notation to denote the conjugation operator.
 
-\newthought{The complex conjugate can be used to obtain the magnitude of the complex number}: $|z| = \sqrt{z z^*}$ as $zz^*=(x+iy)(x-iy)=x^2+y^2$
-or $zz^* = |z|e^{i\theta}|z|e^{-i\theta}=|z|^2$.
+\newthought{The complex conjugate can be used to obtain the magnitude of the complex number}:
+\begin{equation}
+\boxed{
+|z| = \sqrt{z z^*} = \sqrt{x^2 + y^2}.
+}
+\end{equation}
+%as $zz^*=(x+iy)(x-iy)=x^2+y^2$
+%or $zz^* = |z|e^{i\theta}|z|e^{-i\theta}=|z|^2$.
 
-\newthought{A complex conjugate can be used to select the real and imaginary
+\newthought{A complex conjugate can also be used to select the real and imaginary
   components of a complex number} as follows:
-\begin{align}
-  \Re{z} & = \frac{1}{2}(z+z^*)=x,  \label{eq_conj}       \\
-  \Im{z} & = \frac{1}{2i}(z-z^*)=y \,\,. \label{eq_conj2}
-\end{align}
-These formulas are often encountered when dealing with spectral representations of real-valued signals, which always come as conjugate symmetric pairs $z$ and $z^*$.
+\begin{equation}
+\boxed{
+  \Re{z}  = \frac{1}{2}(z+z^*)=x
+  \label{eq_conj}
+  }
+\end{equation}
+and 
+  \begin{equation}
+\boxed{
+  \Im{z}  = \frac{1}{2i}(z-z^*)=y
+  \label{eq_conj2}
+  }
+\end{equation}
+These formulas are often encountered when dealing with real-valued signals. It is often easier to algebraically to manipulate signals of the form $Ae^{i\theta}$, and after the calculations are done, it is simply a matter of using equation \ref{eq_conj} to extract the real component of the signal from its complex representation. 
 
 \newthought{The use of a sum of a complex number and it's conjugate can be used to relate the exponent function to a cosine and sine function}. Using Euler's formula for $z=e^{i\theta}$ and Equations \ref{eq_conj} and \ref{eq_conj2}, we can obtain:
-\begin{align}
-  \cos(\theta) & = \frac{1}{2}\left(e^{i\theta} + e^{-i\theta}\right) \label{inveul0}      \\
-  \sin(\theta) & = \frac{1}{2i}\left(e^{i\theta} - e^{-i\theta}\right)\,\,. \label{inveul}
-\end{align}
+\begin{equation}
+\boxed{
+  \cos(\theta)  = \frac{1}{2}\left(e^{i\theta} + e^{-i\theta}\right) \label{inveul0}
+  }
+  \end{equation}
+\begin{equation}
+\boxed{
+  \sin(\theta)  = \frac{1}{2i}\left(e^{i\theta} - e^{-i\theta}\right). \label{inveul}
+  }
+\end{equation}
 These relations are sometimes called the \emph{\index{inverse
     Euler}{inverse Euler}} relations. You'll encounter these formulas when converting a $\cos$ or $\sin$ function into two complex exponent functions. The first step of a signal processing related calculation involving real-valued signals is often making this conversion, as functions of the form $A e^{i\theta}$ are significantly easier to deal with.
+
+\begin{marginfigure}
+  \begin{center}
+\includegraphics[width=\textwidth]{ch03/figures/compmult.png}
+\end{center}
+  \caption{Multiplication of two complex numbers (TBD: cleanup figure)}
+  \label{fig:comp_mult}
+\end{marginfigure}
 
 \newthought{Complex multiplication can be viewed as multiplication of magnitudes and summation of phases}. Let's express two complex numbers in polar form as $z_1=A_1e^{i\theta_1}$ and $z_2=A_2e^{i\theta_2}$. We can now see that multiplication with complex numbers has an intuitive interpretation.
 \begin{equation}
@@ -158,7 +233,7 @@ These relations are sometimes called the \emph{\index{inverse
     A_2}_{A_3} \underbrace{e^{i(\theta_1 + \theta_2)}}_{e^{i\theta_3}} =
   A_3 e^{i\theta_3} \,\,.
 \end{equation}
-When multiplying two numbers, the resulting angle is a sum of the two angles $\theta_3=\theta_1 + \theta_2$, which can be also seen as a rotation of the point indicated by a complex number $z_1$ by angle $\theta_2$ on the complex plane. The new magnitude is the magnitudes of the two numbers multiplied together $A_3=A_1A_2$.
+When multiplying two numbers, the resulting angle is a sum of the two angles $\theta_3=\theta_1 + \theta_2$, which can be also seen as a rotation of the point indicated by a complex number $z_1$ by angle $\theta_2$ on the complex plane. The new magnitude is the magnitudes of the two numbers multiplied together $A_3=A_1A_2$. Figure \ref{fig:comp_mult} demonstrates multiplication geometrically on the complex plane.
 
 \begin{figure}
   \begin{center}
