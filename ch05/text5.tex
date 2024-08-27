@@ -10,9 +10,10 @@
 throughout signal processing: the \emph{\index{unit impulse}{unit
 impulse}} $\delta(t)$ and the \emph{\index{unit step}{unit step}}
 function $u(t)$. These are important functions, as we can use these
-signals to represent any arbitrary signal. If we know how a linear
-time-invariant system modifes these functions, then we are able to
-model how arbitrary signals behave. The unit impulse and unit step
+signals to represent any arbitrary signal. They play an \emph{especially
+important role in defining signals in time domain}. If we know how a
+linear time-invariant system modifes these functions, then we are able
+to model how arbitrary signals behave. The unit impulse and unit step
 function have both continuous-time and discrete-time versions.
 
 
@@ -23,12 +24,13 @@ function\footnote{The unit impulse function is also known as the
 which is infinitely narrow, non-zero valued only at $t=0$.
 And when you integrate over this function, the result will be 1.
 
-It is possible to define $\delta(t)$ in several ways as a limit of functions with a well-defined area and width $\sigma$.
-I'll use the Gaussian density function:
+It is possible to define $\delta(t)$ in several ways as a limit of
+functions with a well-defined area and width $\sigma$.  I'll use the
+Gaussian density function:
 \begin{equation}
   \delta_\sigma(t) = \frac{1}{\sqrt{2\pi \sigma^2}}e^{-\frac{t^2}{2\sigma^2}}\,\,.
 \end{equation}
-The Gaussian density function is shown in Figure \ref{fig:gauss_dens} for
+The \index{Gaussian density function}{Gaussian density function} is shown in Figure \ref{fig:gauss_dens} for
 two different standard deviations $\sigma_1$ and $\sigma_2$.
 The smaller the value of $\sigma$, the more narrow the function is.
 
@@ -95,20 +97,31 @@ function:
 \begin{equation}
   \int_{-\infty}^{\infty}\delta_\sigma(t)dt = 1 \,\,.
 \end{equation}
-The Dirac delta function $\delta(t)$ can be thought of as the limit when the standard deviation of this distribution approaches zero:
+The Dirac delta function $\delta(t)$ can be thought of as the limit
+when the standard deviation of this distribution approaches zero:
 \begin{equation}
   \lim_{\sigma\rightarrow 0}  \int_{-\infty}^{\infty} \delta_\sigma(t) dt = \int_{-\infty}^{\infty} \delta(t) dt = 1
 \end{equation}
-It is hopefully not difficult to convince yourself that the integral
-evaluates to unity even as $\sigma \rightarrow 0$. But what does the
-function $\delta(t)$ look like? It is infinitely narrow, with only one non-zero value at zero:
+For the sake of this course, we are not going to need to
+mathematically investigate the limit of this function. However, it is
+hopefully not difficult to convince yourself that the function becomes
+more and more narrow as $\sigma \rightarrow 0$, and that for all
+values of $\sigma$, the integral evaluates to unity.
+
+But what does the function $\delta(t)$ look like? It is infinitely
+narrow, with only one non-zero value at zero. The equation below is
+not strictly a rigorous mathematical definition, but it gives you an
+idea:
 \begin{equation}
   \delta(t) = \left\{ \begin{array}{ccc}
     \infty & \mathrm{when} & t=0     \\
     0      & \mathrm{when} & t \ne 0
   \end{array}\right.
 \end{equation}
-When plotting this function, it is customary to utilize an up arrow, as shown in Figure \ref{fig:uparrow}. The figure also demonstrates how it is possible to shift the location of the peak by subtracting a constant $\tau$ from the argument of the function.
+When plotting this function, it is customary to utilize an up arrow,
+as shown in Figure \ref{fig:uparrow}. The figure also demonstrates how
+it is possible to shift the location of the peak by subtracting a
+constant $\tau$ from the argument of the function.
 
 \begin{marginfigure}[0cm]
   \begin{center}
@@ -165,8 +178,9 @@ in the value it does, try thinking about it through the limit:
 \begin{equation}
   \lim_{\sigma\rightarrow 0}\int_{-\infty}^{\infty}x(t)\delta_{\sigma}(t-\tau) dt = x(\tau) = a\,\,.
 \end{equation}
-The Dirac delta function is for the most part, used in this course inside an integral, 
-so that dealing with a singularity ($\infty$) is avoided.
+The Dirac delta function is for the most part, used in this course
+inside an integral, and we will never need to deal with the
+singularity ($\infty$).
 
 \if 0
   \begin{equation}
@@ -217,14 +231,41 @@ so that dealing with a singularity ($\infty$) is avoided.
 \end{equation}
 The discrete-time unit impulse signal is shown in
 Figure \ref{fig:udensdisc}. In most cases, the discrete-time unit
-impulse serves a similar function as its continuous-time equivalent.
+impulse serves a similar function as its continuous-time
+equivalent. It is often theoretically advantageous to study linear
+systems by representing an arbitrary signal $x[n]$ as a sum of time
+shifted and scaled unit impulses:
+\begin{equation}
+x[n] = \sum_k x[k] \delta[n-k].
+\end{equation}
+This may seem like a unnecessarily complicated way of expressing a
+signal, but the advantage is that it simplifies the study of systems,
+allowing us to focus on analyzing what a linear system does to a time
+shifted unit impulse $\delta[n-k]$.
 
 %\newpage
 %\subsection{Unit step}
 
+
+\newthought{The unit step function} can be defined as
+follows\footnote{This function is also called the
+  \index{Heaviside-function}{Heaviside-function}, after Oliver
+  Heaviside, who used this function to model signals used in
+  telecommunications.}:
+\begin{equation}
+  u(t) = \left\{\begin{array}{cl}
+    0 & ~~~ t < 0   \\
+    1 & ~~~ t \ge 0 \\
+  \end{array}
+  \right. \,\,.
+\end{equation}
+It is a step-like function, which abruptly transitions to 1 at
+zero. The following figure depicts the unit step function. Notice
+that there is a discontinuity at $t=0$. %There are different variants
+%of the unit step function that treat this discontinuity differently.
 \tikzstyle{int}=[draw, minimum size=2em]
 \tikzstyle{init} = [pin edge={to-,thin,black}]
-\begin{marginfigure}[-3cm]
+\begin{marginfigure}[0cm]
   \begin{center}
 
     \begin{tikzpicture}
@@ -244,7 +285,7 @@ impulse serves a similar function as its continuous-time equivalent.
         \addplot[color=red] plot coordinates {(-3,0) (0.00001,0)};
         \addplot[color=red] plot coordinates {(0.0,1.0) (10,1.0)};
         \addplot+[only marks,mark=o,color=red] plot coordinates {(0,0) (0.0,1)};
-
+        \node at (axis cs:-1.8,1.3) [below, font={\footnotesize}]{a)};
 
         %\addplot[color=red] plot coordinates {(-3,0) (0.99,0) (1.0,1.0) (10,1.0) };
         %\addplot[color=red] plot coordinates {(-1,0) (-0.251,0.0) (-0.25,2.0)(0.25,2.0) (0.251,0.0) (1,0)};
@@ -253,38 +294,77 @@ impulse serves a similar function as its continuous-time equivalent.
 
       \end{axis}
     \end{tikzpicture}
+    \begin{tikzpicture}
+      \begin{axis}[width=7cm,height=4cm,ymin=0,xmin=-1,ymax=1.3,xmax=2,
+          ytick={0,1},
+          yticklabels={0,1},
+          xtick={0,1},
+          xticklabels={0,$L$},
+          ylabel=$u(t)-u(t-L)$,
+          xlabel=$t$,
+          axis y line=middle, axis x line=bottom]
+          
+        \node at (axis cs:-0.8,1.3) [below, font={\footnotesize}]{b)};
+        
+        \addplot[color=blue] plot coordinates {(-3,0) (0.00001,0) (0.0,1.0) (1.0,1) (1.0,0) (10,0.0)};
+        %\addplot+[only marks,mark=o,color=blue] plot coordinates {(0,0) (0.0,1)};
+        %\addplot[color=red] plot coordinates {(-1,0) (-0.251,0.0) (-0.25,2.0)(0.25,2.0) (0.251,0.0) (1,0)};
+      \end{axis}
+    \end{tikzpicture}    
   \end{center}
-  \caption{The unit step function $u(t)$ shown in blue transitions from 0 to 1 at the origin.}
+  \caption{a) The unit step function $u(t)$ shown in blue transitions from 0 to 1 at the origin. b) Rectangular function expressed using two unit step functions.}
+  \label{fig:rect_fun}
 \end{marginfigure}
 
 
-\newthought{The unit step function} can be defined as
-follows\footnote{This function is also called the
-  \index{Heaviside-function}{Heaviside-function}, after Oliver
-  Heaviside, who used this function to model signals used in
-  telecommunications.}:
-\begin{equation}
-  u(t) = \left\{\begin{array}{cl}
-    0 & ~~~ t < 0   \\
-    1 & ~~~ t \ge 0 \\
-  \end{array}
-  \right. \,\,.
-\end{equation}
-It is a step-like function, which abruptly transitions to 1 at
-zero. The following figure depicts the unit step function. Notice
-that there is a discontinuity at $t=0$. %There are different variants
-%of the unit step function that treat this discontinuity differently.
-
-The unit step function can be used to create a rectangular function of a
-certain length. Here are two ways that this can be done:
+The unit step function can be used to create a \index{rectangular function}{rectangular function}
+$\mu_L(t)$ of a certain length $L$. Here are two ways that this can be
+done:
 \begin{align*}
-  \mathrm{rect}(t,L) & = u(t)-u(t-L)       \\
-                     & = u(t) u(L-t) \,\,.
+  \mu_L(t) & = u(t)-u(t-L)       \\
+                    & = u(t) u(L-t) \,\,.
 \end{align*}
 Figure \ref{fig:rect_fun} shows a plot of the rectangular
-function. This type of function appears, e.g., when dealing with
-ideal filters that only select spectral components that lie within a
-specific band of frequencies.
+function. This type of function appears, e.g., when dealing with ideal
+filters that only select spectral components that lie within a
+specific band of frequencies. Rectangular function can also be used to
+model signal carrying radar or telecommunications signals, which have
+a constant value over a specific time period. Consider e.g., the
+following example, which happens to be the three bit Barker code used
+for radar pulse compression:
+\begin{equation}
+x(t) = \sum_{k=0}^{2} b_k \mu_L(t-kL)
+\end{equation}
+  \begin{figure}
+    \begin{center}
+      \begin{tikzpicture}
+        \begin{axis}[width=\textwidth,height=4cm,ymin=-1.3,xmin=-0.5,ymax=1.3,xmax=4.5,
+            ytick={-1,0,1},
+            yticklabels={-1,0,1},
+            xtick={0,1,2,3,4},
+            xticklabels={0,$L$,$2L$,$3L$,$4L$},
+            axis y line=middle,
+            axis x line=middle,
+            xlabel=$t$]
+
+          \addplot[color=blue] plot coordinates {(-3,0) (0,0.0) (0.0,1.0) (1,1.0) (1,0.0)};
+          \addplot[color=blue] plot coordinates { (1,0.0) (1.0,-1.0) (2,-1.0) (2,0)};
+          \addplot[color=blue] plot coordinates { (2,0) (2.0,-1.0) (3,-1.0) (3,0.0) (4,0)};
+
+          %\addplot[color=red] plot coordinates {(-1,0) (-0.251,0.0) (-0.25,2.0)(0.25,2.0) (0.251,0.0) (1,0)};
+
+          \node at (axis cs:0.5,1.0) [below, font={\footnotesize}]{$b_0=1$};
+          \node at (axis cs:1.5,1.0) [below, font={\footnotesize}]{$b_1=-1$};
+          \node at (axis cs:2.5,1.0) [below, font={\footnotesize}]{$b_2=-1$};          
+
+        \end{axis}
+      \end{tikzpicture}
+    \end{center}
+    \caption{A three-bit Barker code represented with the help of three rectangular functions.}
+      \label{fig:rectbarker}
+  \end{figure}
+
+\if 0
 \begin{marginfigure}[-0cm]
   \begin{center}
     \begin{tikzpicture}
@@ -306,7 +386,7 @@ specific band of frequencies.
   \caption{A rectangular function that is obtained using a unit step function $u(t)-u(t-L)$.}
   \label{fig:rect_fun}
 \end{marginfigure}
-
+\fi
 \if 0
   \newthought{It is possible to relate the unit step and the unit impulse functions}. 
    The unit step function can be thought of as an integral over the unit impulse over the interval $[-\infty,t]$:

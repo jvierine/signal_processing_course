@@ -136,11 +136,13 @@ base frequency $\omega \in \mathbb{R}_{\ge 0}$:
   \omega_k = \ell_k\omega \,\,.
   \label{eq:integer_multiple}
 \end{equation}
-The largest possible value $\omega$ for a set of frequencies $\{\omega_1,\omega_2,\cdots,\omega_N\}$
-is called the \emph{\index{fundamental angular frequency}{fundamental angular frequency}} of the signal.
+The largest possible value $\omega$ is called
+the \emph{\index{fundamental angular frequency}{fundamental angular
+frequency}} of the signal. 
 
-The \emph{\index{fundamental period}{fundamental period}} $T$ of the signal is related with the
-fundamental angular frequency $\omega$ as follows:
+The \emph{\index{fundamental period}{fundamental period}} $T$ of the
+signal is related with the fundamental angular frequency $\omega$ as
+follows:
 \begin{equation}
   \boxed{
     T = \frac{2\pi}{\omega}
@@ -154,13 +156,16 @@ The definition of periodicity for a function is that the following condition is 
     x(t) = x(t+T)
   } \,\,.
 \end{equation}
-It is relatively easy to show that periodicity follows from the definition of the Fourier series,
-by inspecting the periodicity of each frequency component separately:
+It is relatively easy to show that periodicity follows from the
+definition of the Fourier series, by inspecting the periodicity of
+each frequency component separately:
 \begin{equation}
   c_k e^{i \ell_k \omega t} = c_k e^{i \ell_k \omega (t+T)} = c_k e^{i (\ell_k \omega t+ 2\pi \ell_k )} = c_k e^{i \ell_k \omega t} \,\,.
 \end{equation}
-We have used the definition of $T$ in Equation \ref{eq:fundamental_period}. Because all frequency
-components are periodic signals with period $T$, it follows that the sum of all frequency components is periodic as well.
+We have used the definition of $T$ in
+Equation \ref{eq:fundamental_period}. Because all frequency components
+are periodic signals with period $T$, it follows that the sum of all
+frequency components is periodic as well.
 
 \begin{marginfigure}[0cm]
   \begin{center}
@@ -198,34 +203,37 @@ components are periodic signals with period $T$, it follows that the sum of all 
   \label{fig:ex_periodic}
 \end{marginfigure}
 
-A consequence of Equation \ref{eq:integer_multiple} is that the ratios of all pairs of angular
-frequencies $\omega_k$ and $\omega_{\ell}$
-in Equation \ref{eq:general_spectrum} need to be rational numbers. In other words, it must
-be possible to express them in the following form
+A consequence of Equation \ref{eq:integer_multiple} is that the ratios
+of all pairs of angular frequencies $\omega_k$ and $\omega_{\ell}$ in
+Equation \ref{eq:general_spectrum} need to be rational numbers. In
+other words, it must be possible to express them in the following form
 \begin{equation}
   \frac{\omega_k}{\omega_{\ell}} = \frac{n}{m} \in \mathbb{Q} \,\,
 \end{equation}
-in order for the signal to be periodic. Here $n$ and $m$ are arbitrary integers
-and $k$ and $\ell$ are all unique combinations of the frequency indices.
-If the ratio of two real numbers $\omega_1,\omega_2\in\mathbb{R}$ is a rational
-number $\omega_1/\omega_2 \in \mathbb{Q}$, the numbers $\omega_1$ and
+in order for the signal to be periodic. Here $n$ and $m$ are arbitrary
+integers and $k$ and $\ell$ are all unique combinations of the
+frequency indices.  If the ratio of two real numbers
+$\omega_1,\omega_2\in\mathbb{R}$ is a rational number
+$\omega_1/\omega_2 \in \mathbb{Q}$, the numbers $\omega_1$ and
 $\omega_2$ are called \emph{\index{commensurable}{commensurable}.}
-All angular frequencies for a Fourier series need to be commensurable relative
-to one another in order for the signal to be periodic.
+All angular frequencies for a Fourier series need to be commensurable
+relative to one another in order for the signal to be periodic.
 
-How does one determine the fundamental frequency $\omega$? It is possible to
-apply \emph{\index{Euclid's algorithm}{Euclid's algorithm}}\footnote{Note that
-this is sometimes referred to as the \emph{greatest common divisor}, but this is only defined for 
-integers.} $\omega$ for the set of frequencies $\omega_k$. This algorithm will
-only produce a result in a finite number of steps if the set of numbers $\{\omega_k\}$ are
-commensurable, so it cannot be easily used as a test of periodicity.
+How does one determine the fundamental frequency $\omega$? It is
+possible to apply \emph{\index{Euclid's algorithm}{Euclid's
+algorithm}}. This is sometimes referred to as
+the \emph{\index{greatest common divisor}{greatest common divisor}}
+for the set of frequencies $\omega_k$. Note that this algorithm will
+only produce a result in a finite number of steps if the set of
+numbers $\{\omega_k\}$ are commensurable!
 
 \newthought{Here is an example}. Let us assume that a signal is defined as
 \begin{equation}
-  x(t) = c_1 e^{i \omega_1 t} + c_2 e^{i \omega_2 t} = e^{i 2\pi 9t}
-  - e^{i 2\pi 15t} \,\,.
+  x(t) = c_1 e^{i \omega_1 t} + c_2 e^{i \omega_2 t} = e^{i 2\pi 9t} -
+  e^{i 2\pi 15t} \,\,.
 \end{equation}
-Is this signal periodic? If so, what is its fundamental frequency $\omega$ and fundamental period $T$?
+Is this signal periodic? If so, what is its fundamental frequency
+$\omega$ and fundamental period $T$?
 
 In order for this signal to be periodic, $\omega_1$ and $\omega_2$ must be commensurable.
 In other words, $\omega_1/\omega_2 \in \mathbb{Q}$. This is the case, as it is clear
