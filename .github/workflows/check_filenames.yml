@@ -1,0 +1,9 @@
+name: Check Filenames for illegal characters
+run-name: Checking filenames
+on: push
+jobs:
+  check_filename:
+    runs-on: ubuntu-latest
+    steps:
+      -run: find . -type f | grep ':\|\\\|<\|>\|*\|?\|\"\||' | wc -l
+
