@@ -6,8 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: pwd
-      - run: cd signal_processing_course
-      - run: pwd
       - run: ls -R 
       - run: find . -print
       - run: du -a signal_processing_course/
