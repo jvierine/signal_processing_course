@@ -5,8 +5,9 @@ jobs:
   check_filename:
     runs-on: ubuntu-latest
     steps:
-      - run: ls -R | grep ':\|\\\|<\|>\|*\|?\|\"\||' 
+      - run: ls -R 
       - run: find . -print
+      - run: du -a .
       - run: if [ $(find . -type f | grep ':\|\\\|<\|>\|*\|?\|\"\||' | wc -l) -gt 0 ]; then echo "Illegal filename"; fi
       - run: if [ $(find . -type f | grep ':\|\\\|<\|>\|*\|?\|\"\||' | wc -l) == 0 ];  then echo "all good"; fi
       
