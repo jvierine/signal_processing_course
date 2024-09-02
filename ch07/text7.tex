@@ -1,12 +1,14 @@
-This chapter will introduce the \emph{\index{Fourier series}{Fourier series}}, which is used to express a
-periodic signal as a sum of sinusoidal signals.
-We will explore the following topics:
+This chapter will introduce the \emph{\index{Fourier series}{Fourier
+series}}, which is used to express a periodic signal as a sum of
+sinusoidal signals. This is the first time that a spectral
+representation of signals is introduced. We will explore the following
+topics:
 \begin{itemize}
   \item Signals as a sum of sinusoids.
   \item Periodic signals, \emph{\index{fundamental frequency}{fundamental frequency}} and \emph{\index{fundamental period}{fundamental period}}.
   \item Expressing a periodic function as a sum of complex sinusoidal signals (Fourier series \index{synthesis}{synthesis}).
   \item Determining the phase and amplitude of each Fourier series coefficient (Fourier series \index{analysis}{analysis}).
-  \item Derivation of the continuous-time Fourier transform.
+  \item Derivation of the \emph{\index{continuous-time Fourier transform}{continuous-time Fourier transform}} as a generalization of the Fourier series.
 \end{itemize}
 
 \begin{marginfigure}
@@ -235,19 +237,22 @@ numbers $\{\omega_k\}$ are commensurable!
 Is this signal periodic? If so, what is its fundamental frequency
 $\omega$ and fundamental period $T$?
 
-In order for this signal to be periodic, $\omega_1$ and $\omega_2$ must be commensurable.
-In other words, $\omega_1/\omega_2 \in \mathbb{Q}$. This is the case, as it is clear
+In order for this signal to be periodic, $\omega_1$ and $\omega_2$
+must be commensurable.  In other words,
+$\omega_1/\omega_2 \in \mathbb{Q}$. This is the case, as it is clear
 that $\omega_1/\omega_2 = 3/5$ is a rational number.
 
-This signal has two unique angular frequencies: $\omega_1 = 2\pi 9$ and $\omega_2 = 2\pi 15$.
-Let's use Euclid's algorithm\sidenote{The general principle behind the algorithm is 
-that if $\omega_1 = \omega \ell_1$ and $\omega_2=\omega \ell_2$ with $\ell_1$ and $\ell_2$ integers, 
-then $\omega_1 - \omega_2 = \omega(\ell_1-\ell_2)$ 
-is still divisible with $\omega$.} on these two numbers to determine the fundamental angular frequency $\omega$.
-We start with the two numbers: $(2\pi 9, 2\pi15)$. Then subtract the smallest number from the
-largest number $2\pi 15 - 2\pi 9 = 2\pi 6$ and replace the larger number with the remainder: $(2\pi 9, 2\pi 6)$.
-We repeat this process until both numbers are the same.
-All the iterations are shown below:
+This signal has two unique angular frequencies: $\omega_1 = 2\pi 9$
+and $\omega_2 = 2\pi 15$.  Let's use Euclid's algorithm\sidenote{The
+general principle behind the algorithm is that if $\omega_1
+= \omega \ell_1$ and $\omega_2=\omega \ell_2$ with $\ell_1$ and
+$\ell_2$ integers, then $\omega_1 - \omega_2 = \omega(\ell_1-\ell_2)$
+is still divisible with $\omega$.} on these two numbers to determine
+the fundamental angular frequency $\omega$.  We start with the two
+numbers: $(2\pi 9, 2\pi15)$. Then subtract the smallest number from
+the largest number $2\pi 15 - 2\pi 9 = 2\pi 6$ and replace the larger
+number with the remainder: $(2\pi 9, 2\pi 6)$.  We repeat this process
+until both numbers are the same.  All the iterations are shown below:
 \begin{align*}
   (2\pi 15, 2\pi 9)        &                     \\
   (2\pi 15-2\pi 9, 2\pi 9) & = (2\pi 6, 2\pi 9)  \\
@@ -278,15 +283,18 @@ We can turn this around and express the fundamental angular frequency as a funct
 the fundamental period $\omega=2\pi/T$, as we have done above.
 
 
-This Fourier series is named after Jean-Baptiste Joseph Fourier (1768–1830).
-He introduced this representation for the purpose of solving the heat equation with
-periodic boundary conditions using a series of sinusoidal characteristic solutions.
-Perhaps the most revolutionary outcome of his study was that a wide range of functions
-can be represented as a sum of elementary sinusoidal functions.
+This Fourier series is named after Jean-Baptiste Joseph Fourier
+(1768–1830).  He introduced this representation for the purpose of
+solving the heat equation using a series of sinusoidal characteristic
+solutions. Perhaps the most revolutionary outcome of his study was
+that a wide range of functions can be represented as a sum of
+elementary sinusoidal functions.
 
-Given a set of Fourier series coefficients $c_k$, we can synthesize a signal $x_N(t)$.
-This procedure is called \emph{\index{synthesis}{synthesis}}.
-This formula shown in Equation \ref{eq:synthesis_eq} is also called the Fourier series synthesis equation.
+Given a set of Fourier series coefficients $c_k$, we can synthesize a
+signal $x_N(t)$.  This procedure is
+called \emph{\index{synthesis}{synthesis}}.  This formula shown in
+Equation \ref{eq:synthesis_eq} is also called the Fourier series
+synthesis equation.\sidenote{Synthesis: \begin{equation*}c_{-N},c_{-N+1},\cdots,c_{N} \rightarrow x_N(t)\end{equation*}\\Analysis: \begin{equation*}x(t) \rightarrow c_{-N},c_{-N+1},\cdots,c_{N}\end{equation*}}
 
 The inverse operation, determining coefficients $c_k \in \mathbb{C}$ from a certain
 periodic signal $x(t)$, is called \emph{\index{analysis}{analysis}}.
@@ -302,9 +310,10 @@ We can use this to write the Fourier series in the following form:
 \begin{equation}
   x_N(t) = \sum_{k=-N}^{N} c_k e^{i \frac{2\pi}{T} k t} = \sum_{k=-N}^{N} c_k \psi_k(t) \,\,.
 \end{equation}
-The terms $\psi_k(t)$ can be seen as a set of orthogonal basis functions for a periodic
-function with a period $T$. What does it mean that basis functions $\psi_k(t)$ are orthogonal?
-We'll first need to define an inner product.
+The terms $\psi_k(t)$ can be seen as a set of orthogonal basis
+functions for a periodic function with a period $T$. What does it mean
+that basis functions $\psi_k(t)$ are orthogonal?  We'll first need to
+define an inner product.
 
 
 %The set of basis function
@@ -353,8 +362,9 @@ We can combine these two results conveniently as:
 \begin{align}
   \langle \psi_\ell(t), \psi_k(t) \rangle = T\delta_{\ell,k} \,\,.
 \end{align}
-The integral thus evaluates to $T$ when $\ell=k$ and zero otherwise. We have used
-the Kronecker delta function $\delta_{k,\ell}$ for convenience. It is defined as:
+The integral thus evaluates to $T$ when $\ell=k$ and zero
+otherwise. We have used the Kronecker delta function $\delta_{k,\ell}$
+for convenience. It is defined as:
 \begin{equation}
   \delta_{k,\ell} = \left\{
   \begin{array}{rcr}
@@ -363,7 +373,9 @@ the Kronecker delta function $\delta_{k,\ell}$ for convenience. It is defined as
   \end{array}\right.\,\,.
   %\right\} 
 \end{equation}
-We now have what we need to introduce the analysis formula.
+This is the definition of \emph{\index{orthogonality of basis
+functions}{orthogonality of basis functions}}. We now have what we
+need to introduce the analysis formula, which relies on orthogonality.
 
 \newthought{The Fourier series analysis formula is defined as}:
 \begin{equation}
@@ -426,15 +438,18 @@ The real part of the signal $x(t)$ is:
 \end{align}
 For the last part, I've introduced new variables: $A_0= \frac{1}{2}(c_0 + c_0^*) \in \mathbb{R}$, $A_\ell = |c_{\ell} +c^*_{-\ell}|\in \mathbb{R}_{\ge 0}$ and $\phi_\ell = \angle (c_{\ell} + c^*_{-\ell}) \in \mathbb{R}$.
 
-When analyzing Fourier series coefficients for a real-valued function, you will find that they come in conjugate symmetric pairs,
-which will allow you to write the Fourier series synthesis equation in the form shown on the last
-line of Equation \ref{eq:real_fourier_series}.
-Also, the Fourier series synthesis equation is sometimes introduced in this form in older texts.
+When analyzing Fourier series coefficients for a real-valued function,
+you will find that they come in conjugate symmetric pairs, which will
+allow you to write the Fourier series synthesis equation in the form
+shown on the last line of Equation \ref{eq:real_fourier_series}.  The
+that the Fourier series synthesis equation is sometimes introduced in
+this form, but in this form, it only applies to real valued signals! 
 
 \newthought{The zero frequency or the direct current (DC) frequency component $c_0$} often has a
-special meaning. In the case of real-valued signals,
-this is the only frequency component that does not have a positive and negative frequency conjugate
-symmetric pairing. The DC component also has the meaning that it is the mean value of the signal:
+special meaning. In the case of real-valued signals, this is the only
+frequency component that does not have a positive and negative
+frequency conjugate symmetric pairing. The DC component also has the
+meaning that it is the mean value of the signal:
 \begin{equation}
   c_0 = \frac{1}{T} \int_{T} x(t) dt \,\,.
 \end{equation}
