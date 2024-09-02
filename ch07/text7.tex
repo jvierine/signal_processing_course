@@ -774,22 +774,26 @@ It is still a Fourier series, but with each Fourier coefficient modified in the 
   c_k^{(n)} := i^n \left(\frac{2\pi k}{T}\right)^n c_k \,\,.
   \label{eq:moddiff}
 \end{equation}
+One thing to ask yourself is how does differentiation adjust the
+amplitude of each Fourier coefficient?  When taking the $n$th time
+derivative, what happens to the complex amplitudes at low angular
+frequencies ($|2\pi k/T| < 1$)? What about high angular frequencies
+($|2\pi k/T| > 1$)?  Hint, inspect how the coefficients defined in
+Equation \ref{eq:moddiff} are scaled.
 
-Differentiation can be seen as a filtering operation on the signal. A filter is something
-that modifies the amplitude and phase of the Fourier series coefficients in some way.
-For example, a low-pass filtering operation would reduce the amplitudes of high frequency
-coefficients relative to the amplitudes of the low frequency coefficients.
-After a low-pass filtering operation, the ratio of low frequency coefficient amplitudes to
-the high frequency coefficient amplitudes would be increased. A high pass filter on the other hand would do the opposite.
-
-One thing to ask yourself is how does differentiation adjust the amplitude of each Fourier coefficient?
-When taking the $n$th time derivative, what happens to the complex amplitudes at low angular
-frequencies ($|2\pi k/T| < 1$)? What about high angular frequencies ($|2\pi k/T| > 1$)?
-Hint, inspect how the coefficients defined in Equation \ref{eq:moddiff} are scaled.
-
-The answer is that the magnitude of the low frequency Fourier coefficients are attenuated, and
-high frequency ones are amplified. The DC component is completely removed as $2\pi k/T = 0$ for $k=0$.
-Differentiation can therefore be viewed as a \emph{high-pass filtering} operation.
+The answer is that the magnitude of the low frequency Fourier
+coefficients are attenuated, and high frequency ones are
+amplified. The DC component is completely removed as $2\pi k/T = 0$
+for $k=0$.  Differentiation can be seen as a filtering operation on
+the signal. A filter is something that modifies the amplitude and
+phase of the Fourier series coefficients in some way.  For example, a
+\emph{\index{low-pass filtering}{low-pass filtering}} operation would reduce the amplitudes of high
+frequency coefficients relative to the amplitudes of the low frequency
+coefficients.  After a low-pass filtering operation, the ratio of low
+frequency coefficient amplitudes to the high frequency coefficient
+amplitudes would be increased. A high pass filter on the other hand
+would do the opposite. Differentiation can therefore be viewed as
+a \emph{high-pass filtering} operation.
 
 \newthought{The time shift operation $x(t-\tau)$ applied to a Fourier series representation} is also pretty handy.
 Let's recall how a time shift affects a complex sinusoidal signal:
