@@ -221,9 +221,45 @@ These relations are sometimes called the \emph{\index{inverse
 
 \begin{marginfigure}
   \begin{center}
-\includegraphics[width=\textwidth]{ch03/figures/compmult.png}
+  \begin{tikzpicture}
+  	\def\am1{1.5};
+  	\def\am2{2.0};
+  	\def\am1{\am1 * \am2};
+
+  	\def\t1{15};
+  	\def\t2{50};
+  	\def\t3{\t1 + \t2};
+  	
+   \begin{axis}[axis equal, ymin=-0.3,xmin=-0.3,ymax=1.8,xmax=1.8,  ticks=none,
+          xlabel=$\mathrm{Re}$,
+          ylabel=$\mathrm{Im}$, axis lines = center, width=7cm, height=7cm]
+
+        \addplot [black, mark = *] coordinates {( {1.5*cos(15)}, {1.5*sin(15)} )} node[anchor=south]{$z_1 = |z_1| e^{i \theta_1}$}; %pin=0:{$z$}] {};
+        \addplot [black] coordinates { (0,0) ( {1.5*cos(15)}, {1.5*sin(15)} ) };
+
+		\addplot [black, mark = *] coordinates {( {1*cos(50)}, {1*sin(50)} )}  node[anchor=south west]{$z_2 = |z_2| e^{i \theta_2}$};
+        \addplot [black] coordinates { (0,0) ( {1*cos(50)}, {1*sin(50)} ) };
+        
+        \addplot [black, mark = *] coordinates {( {1.5*cos(65)}, {1.5*sin(65)} )}  node[anchor=south west]{$z_3 = | z_1 | |z_2|  e^{i (\theta_1 + \theta_2)}$};
+        \addplot [black] coordinates { (0,0) ( {1.5*cos(65)}, {1.5*sin(65)} ) };
+      
+
+        \draw[draw=black] (axis cs:0.5,0.00) arc [radius={transformdirectionx(0.5)},start angle=0,end angle=15]
+        node[midway,right,inner sep=3pt,font={\footnotesize}]{$\theta_1$};
+        
+        \draw[draw=black] (axis cs:0.3,0.00) arc [radius={transformdirectionx(0.3)},start angle=0,end angle=50] {};
+        \draw[draw=black] (axis cs:0.31,0.00) arc [radius={transformdirectionx(0.31)},start angle=0,end angle=50]
+        node[pos=0.8,right,inner sep=3pt,font={\footnotesize}]{$\theta_2$};
+
+		\draw[draw=black] (axis cs:0.13,0.00) arc [radius={transformdirectionx(0.13)},start angle=0,end angle=65] {};						
+         \draw[draw=black] (axis cs:0.14,0.00) arc [radius={transformdirectionx(0.14)},start angle=0,end angle=65] {};
+         \draw[draw=black] (axis cs:0.15,0.00) arc [radius={transformdirectionx(0.15)},start angle=0,end angle=65] node[pos=0.8,font={\footnotesize}, pin=270:{$\qquad \qquad \quad \theta_3 = \theta_1 + \theta_2 \,$}] {};
+                        
+      \end{axis}
+  \end{tikzpicture}
+%\includegraphics[width=\textwidth]{ch03/figures/compmult.png}
 \end{center}
-  \caption{Multiplication of two complex numbers (TBD: cleanup figure)}
+  \caption{Multiplication of two complex numbers.}
   \label{fig:comp_mult}
 \end{marginfigure}
 
