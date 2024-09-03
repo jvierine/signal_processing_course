@@ -34,10 +34,11 @@ Fourier series analysis.
 \label{fig:cepheid_lightcurve}
 \end{marginfigure}
 
-Measurements of the intensity of a Cepheid variable star are made at
-periods of time when telescope time is available and astronomical
-seeing allows observations to be made. The time spacing between
-measurements is therefore by no means regular.
+Measurements of the intensity of a \emph{\index{Cepheid variable
+star}{Cepheid variable star}} are made at periods of time when
+telescope time is available and astronomical seeing allows
+observations to be made. The time spacing between measurements is
+therefore by no means regular.
 
 When analyzing the periodic waveform of this star, a search is made to
 determine the period $T$ of the intensity waveform, and the Fourier
@@ -47,11 +48,35 @@ synthesis equation:
 \begin{equation}
 I_N(t) = \sum_{k=-N}^N c_k e^{i\frac{2\pi}{T}kt} \,\,.
 \end{equation}
-The relationship between absolute brightness and the pulsation
-frequency (fundamental frequency) is thought to be relatively
-stable. This makes these types of variable stars useful for measuring
-the astronomical distances.
+The relationship between luminosity and the pulsation period is
+thought to follow a relatively well known relationship that can be
+linked to fundamental pulsation frequencies of rotating
+stars\cite{hindsley1989period}. Longer period Cepheids are brighter,
+as show in Figure \ref{fig:ceph_bright}. This makes these types of
+variable stars useful for measuring the astronomical distances.
 
+\begin{marginfigure}
+  \begin{center}
+    \begin{tikzpicture} \begin{axis}[width=6cm,height=4cm,ymin=-7,ymax=-3,xmin=0.6,xmax=1.6,
+          xlabel={Period $\log_{10} T$},
+          ylabel={Luminosity (absolute magnitude $M$)}]
+
+        \addplot[samples=400,mark=none,color=blue]{-3.11*(x-0.8)-4.03};
+
+      \end{axis}
+    \end{tikzpicture}
+  \end{center}
+  \caption{Relationship between Cepheid period and absolute magnitude, based on relationship published by Hindsley and Bell (1989).}
+  \label{fig:ceph_bright}
+\end{marginfigure}
+
+\if 0
+\begin{figure}
+\includegraphics[width=\textwidth]{Applications/figures/ceph_brightness.png}
+\caption{Relationship between Cepheid period and absolute magnitude. Figure credit: Vedran V, Wikipedia.}
+\label{fig:ceph_bright}
+\end{figure}
+\fi
 
 The Fourier series can be used to express periodic functions. One real
 life use case is estimating the functional form for a periodic star,

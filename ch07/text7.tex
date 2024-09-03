@@ -804,8 +804,9 @@ If we apply a delay by $\tau$ to this signal $y(t) = x(t-\tau)$, we obtain:
 \begin{align}
   y(t)  = c e^{i\omega (t-\tau)} =  e^{-i\omega \tau} c e^{i\omega t} = e^{-i\omega \tau} x(t) \,\,.
 \end{align}
-This means that a time delay by $\tau$ corresponds to a phase shift by $-\omega\tau$ for a complex sinusoidal signal.
-We can apply this to a Fourier series, which is a sum of complex sinusoidal signals.
+This means that a time delay by $\tau$ corresponds to a phase shift by
+$-\omega\tau$ for a complex sinusoidal signal.  We can apply this to a
+Fourier series, which is a sum of complex sinusoidal signals.
 
 If the Fourier series representation of a signal is:
 \begin{equation}
@@ -816,10 +817,19 @@ then the Fourier series representation of a time shifted signal is:
   x(t-\tau) & = \sum_{k=-\infty}^{\infty} \left(c_k e^{-i \frac{2\pi \tau}{T} k}\right) e^{i\frac{2\pi}{T}kt}\label{eq:time_shift_phasor} \\
             & =  \sum_{k=-\infty}^{\infty} c'_k e^{i\frac{2\pi}{T}kt}
 \end{align}
-where $c'_k$ is rotated on the complex plane in the clockwise direction by an angle of $2\pi k\tau/T$ with respect to $c_k$.
+where $c'_k$ is rotated on the complex plane in the clockwise
+direction by an angle of $2\pi k\tau/T$ with respect to $c_k$.
 
-This means that if you know the Fourier series representation of a signal, you can easily modify the
-complex amplitude $c_k$ of each Fourier coefficient to obtain the coefficients of the time shifted signal.
+This means that if you know the Fourier series representation of a
+signal, you can easily modify the complex amplitude $c_k$ of each
+Fourier coefficient to obtain the coefficients of the time shifted
+signal.
+
+The linear relationship between phase shift and time delay of
+frequency components of signals is used extensively throughout signal
+processing. For example, a network analyzer measures an accurate time
+delay in a cable by investigating how the phase in the cable changes
+as a function of frequency.
 
 \newthought{What if a signal is not periodic, can we still form a spectral representation for a signal?}
 Yes, we can. This investigation leads to the \emph{\index{continuous-time Fourier transform}{continuous-time Fourier transform}}.
