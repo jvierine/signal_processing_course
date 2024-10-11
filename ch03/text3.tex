@@ -118,7 +118,7 @@ This formula is useful, as it provides a relationship between the Cartesian and 
 \[
 f(\theta) = e^{-i\theta}[\cos(\theta)+i\sin(\theta)].
 \]
-We know that $f(0)=1$ just by relying on $e^0=0$, $\cos(0)=1$ and $\sin(0)=0$. The derivative of this function is zero everywhere:
+We know that $f(0)=1$ just by relying on $e^0=1$, $\cos(0)=1$ and $\sin(0)=0$. The derivative of this function is zero everywhere:
 \begin{align*}
 \frac{df}{d\theta} =& e^{-i\theta}[-\sin(\theta)+i\cos(\theta)] \\
 &- i e^{-i\theta}[\cos(\theta)+i\sin(\theta)] \\
@@ -230,7 +230,7 @@ These relations are sometimes called the \emph{\index{inverse
   	\def\t2{50};
   	\def\t3{\t1 + \t2};
   	
-   \begin{axis}[axis equal, ymin=-0.3,xmin=-0.3,ymax=1.8,xmax=1.8,  ticks=none,
+   \begin{axis}[axis equal, ymin=-0.3,xmin=-0.1,ymax=1.8,xmax=2.0,  ticks=none,
           xlabel=$\mathrm{Re}$,
           ylabel=$\mathrm{Im}$, axis lines = center, width=7cm, height=7cm]
 
@@ -240,7 +240,7 @@ These relations are sometimes called the \emph{\index{inverse
 		\addplot [black, mark = *] coordinates {( {1*cos(50)}, {1*sin(50)} )}  node[anchor=south west]{$z_2 = |z_2| e^{i \theta_2}$};
         \addplot [black] coordinates { (0,0) ( {1*cos(50)}, {1*sin(50)} ) };
         
-        \addplot [black, mark = *] coordinates {( {1.5*cos(65)}, {1.5*sin(65)} )}  node[anchor=south west]{$z_3 = | z_1 | |z_2|  e^{i (\theta_1 + \theta_2)}$};
+        \addplot [black, mark = *] coordinates {( {1.5*cos(65)}, {1.5*sin(65)} )}  node[anchor=south west]{$z_3 = z_1 z_2 = | z_1 | |z_2|  e^{i (\theta_1 + \theta_2)}$};
         \addplot [black] coordinates { (0,0) ( {1.5*cos(65)}, {1.5*sin(65)} ) };
       
 
@@ -257,9 +257,8 @@ These relations are sometimes called the \emph{\index{inverse
                         
       \end{axis}
   \end{tikzpicture}
-%\includegraphics[width=\textwidth]{ch03/figures/compmult.png}
 \end{center}
-  \caption{Multiplication of two complex numbers.}
+  \caption{Multiplication of two complex numbers can be thought of as scaling and rotation.}
   \label{fig:comp_mult}
 \end{marginfigure}
 

@@ -29,15 +29,7 @@ m = n.arange(pulse_length)
 # chirp rate = (22.1/dt) kHz/s
 chirp=n.array(0.8*(n.sin(n.pi*m/pulse_length)**2.0)*n.sin(n.mod(2.0*n.pi*(0.5*22.05e3/dt)*(tm*Ts)**2.0,2.0*n.pi)),dtype=n.float32)
 
-
 deco=n.array(0.8*(n.sin(-n.pi*m/pulse_length)**2.0)*n.sin(n.mod(2.0*n.pi*(0.5*22.05e3/dt)*(tmr*Ts)**2.0,2.0*n.pi)),dtype=n.float32)
-
-plt.subplot(211)
-plt.plot(deco)
-plt.subplot(212)
-plt.plot(chirp)
-plt.show()
-
 
 chirp_ipp[0:pulse_length]=chirp
 plt.plot(chirp)
@@ -58,5 +50,5 @@ plt.xlabel("Time (samples)")
 plt.ylabel("Autocorrelation function ($x[n]*x[-n]$)")
 plt.show()
 
-#chirp.tofile("chirp.bin")
-#chirp_ipp.tofile("chirp_ipp.bin")
+chirp.tofile("chirp.bin")
+chirp_ipp.tofile("chirp_ipp.bin")

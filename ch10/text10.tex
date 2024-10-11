@@ -486,10 +486,15 @@ sum of the signals fed into a single LTI system.
 
 \section{Example: Convolution animations}
 
-Animations of the convolution operation for various example systems
-can be found here: \url{http://kaira.uit.no/juha/fir_animation/}. The
-code for creating such animations can be obtained from GitHub:
-\url{https://github.com/jvierine/signal_processing/tree/master/017_fir_animation}.
+Animations of the convolution operation can be found
+under \verb|code/017_fir_animation|. The code for creating such
+animations is also included in the same directory.
+
+\begin{figure}
+\includegraphics[width=\textwidth]{ch10/figures/ex_animation.png}
+\caption{An example of the convolution operation for the 13-bit Barker code and the corresponding matched filter used often in radar and sonar applications to increase the effective power of the transmit pulse. The convolution of the matched filter $x^*[-n]$ and the transmit code $x[n]$ should be as close to a unit impulse $P\delta[n]$ as possible for a good radar transmit code. Here $P$ is a constant indicating how much power is contained within the pulse. This and other example animations of the convolution operation can be found under the \texttt{code/017\symbol{95}fir\symbol{95}animation} directory.}
+\label{fig:fir_animation_example}
+\end{figure}
 
 
 
