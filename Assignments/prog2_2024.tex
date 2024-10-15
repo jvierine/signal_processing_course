@@ -1,0 +1,232 @@
+\chapter{Programming Assignment 2}
+
+\begin{marginfigure}[5cm]
+  \begin{center}
+    \includegraphics[width=\textwidth]{Assignments/figures/bat.jpg}
+  \end{center}
+  \caption{Bats use chirp-like ultrasound signals to sense their surroundings. Image: David Dennis.}
+  \label{fig:bat_image}
+\end{marginfigure}
+
+This programming assignment deals with deconvolution of transmit
+signals for an \emph{acoustic sounder} or a \emph{sonar}. A sonar is
+a device that measures the amplitude of sound waves that are scattered
+from objects at different propagation distances between the acoustic
+wave transmitter and receiver. These devices are used, e.g., in cars to
+assist with parking, in ships to measure the water depth, and for
+non-invasive medical examinations. Sonars are also closely related
+with radars, as they share many of the same signal processing
+concepts. The main difference is that radars use electromagnetic waves
+instead of acoustic waves.
+
+In order to implement a simple sonar, I have used a loudspeaker and a
+microphone connected to a sound card to transmit and receive acoustic
+signals. The sampling rate of the audio recording is $f_s=44.1\cdot
+10^3$ hertz, which results in a sample-spacing of $T_s=2.2676\cdot
+10^{-5}$ s. The loudspeaker and the microphone are spaced apart by
+approximately 2 cm.
+ 
+If we ignore measurement errors, the acoustic signal can be modeled using
+a discrete-time convolution equation:
+\begin{equation}
+  m[n] = \sum_{r=0}^{R-1} h[r]x[n-r] = h[n] * x[n]
+  \label{eq:sonar_eq_pa}
+\end{equation}
+In this equation $m[n]$ is the signal measured with a microphone,
+$x[n]$ is the signal transmitted by the loudspeaker, and $h[n]$ is
+the amplitude of the scattered signal as a function of range. The
+signal $h[n]$ is also the impulse response of the space that the sonar
+is measuring. The convolution equation can be motivated with a
+range-time diagram that models the propagation of acoustic signals as
+a function of range and time. Such a diagram is shown in Figure
+\ref{fig:range_time_diagram_ex}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{Applications/figures/rd.pdf}
+\end{center}
+\caption{A range-time diagram depicting the relationship between a transmitted signal and a scattered signal.}
+\label{fig:range_time_diagram_ex}
+\end{figure}
+
+Modern sonars often use long waveforms in order to compress more
+energy into the transmitted pulse without increasing the amount of
+peak power. Longer waveforms also make it easier to separate multiple
+different transmitters from one another, reducing interference. 
+
+One of the main objectives of a sonar measurement is to recover the impulse
+response $h[n]$ from measurements $m[n]$. This is trivial when the
+transmit pulse is a unit impulse $x[n]=A\delta[n]$. With longer
+transmit signals, we need to deconvolve the transmitted signal. This
+is typically achieved by convolving the received signal $m[n]$ with a 
+deconvolution filter $\lambda[n]$:
+\begin{equation}
+  \lambda[n]*m[n] = \lambda[n] * x[n] * h[n].
+\end{equation}
+The deconvolution filter needs to have the following property:
+\begin{equation}
+  \lambda[n]*x[n] \approx A\delta[n],
+\end{equation}
+where $A$ is a constant. In the case of chirp-like signals, an often used 
+deconvolution filter is the time reversed chirp signal:
+\begin{equation}
+  \lambda[n] = x[-n].
+\end{equation}
+
+For this assignment, I have used an amplitude tapered chirp-like
+waveform with a linearly increasing frequency of the following form:
+\begin{equation}
+  x[n] = \left\{
+\begin{array}{ccc}
+  \sin^{0.5}\left(\frac{\pi n}{N}\right) \sin(2\pi \beta T_s^2 n^2) & \mathrm{when} & 0 \le n < N\\
+  0 & \mathrm{otherwise} & 
+  \end{array}\right.
+\end{equation}
+Here $N$ is the integer length of the chirp pulse in samples and
+$\beta = \frac{1}{2 N T_s}f_{\mathrm{max}}$ is the chirp-rate, which
+determines how fast the instantaneous frequency of the signal
+increases as a function of time, with $f_{\mathrm{max}}$ the maximum
+frequency used of the chirp (in hertz) at the end of the transmit
+pulse. Figure \ref{fig:tx_pulse_chirp} shows this waveform with
+$N=10000$ and $\beta = 33075 \text{s}^{-2}$.
+
+\begin{marginfigure}
+  \begin{center}
+    \includegraphics[width=\textwidth]{Assignments/figures/chirp_tx.png}
+  \end{center}
+  \caption{The first 2000 samples of the chirp transmit pulse signal
+    $x[n]$.}
+  \label{fig:tx_pulse_chirp}
+\end{marginfigure}
+
+You will need to download two data files for this task:
+\begin{itemize}
+  \item \url{https://github.com/jvierine/signal_processing_course/blob/main/code/027_sonar/chirp_2024.bin}
+  \item \url{https://github.com/jvierine/signal_processing_course/blob/main/code/027_sonar/chirp_rec_2024.bin}
+\end{itemize}
+The first one contains the transmitted chirp waveform $x[n]$ and the
+second one contains a microphone recording during a sonar experiment
+$m[n]$.
+
+You can read these signals into a
+computer as follows:
+\begin{lstlisting}[language=Python, numbers=none]
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Read chirp waveform.
+chirp = np.fromfile("chirp_2024.bin", dtype=np.float32)
+# Read microphone recording.
+m = np.fromfile("chirp_rec_2024.bin", dtype=n.float32)
+
+plt.plot(chirp)
+plt.xlabel("Time (samples)")
+plt.ylabel("Transmitted signal $x[n]$")
+plt.show()
+
+# Plot the first three interpulse periods.
+plt.plot(m[:30000])
+plt.xlabel("Time (samples)")
+plt.ylabel("Received signal $m[n]$")
+plt.show()
+\end{lstlisting}
+These acoustic signal in \verb|chirp_2024.bin| is transmitted every
+$M=10000$ samples. This means that the sonar is repeating a
+measurement of $h[n]$ every $10000$ samples and the transmitted signal
+actually looks like this:
+\begin{equation}
+  \epsilon[n] = \sum_{k=0}^{N_p-1} x[n - Mk]
+\end{equation}
+In this task, you should treat each segment of 10000 samples as an
+independent sonar measurement, which will allow you to study how the
+impulse response $h[n]$ evolves over time. The first 30000 samples of the sonar echo are shown in Figure \ref{fig:rx_chirp}.
+\begin{marginfigure}
+  \begin{center}
+    \includegraphics[width=\textwidth]{Assignments/figures/chirp_rec_2024.png}
+  \end{center}
+  \caption{The first 30000 samples of sonar echoes $m[n]$.}
+  \label{fig:rx_chirp}
+\end{marginfigure}
+
+For this assignment, you are to perform the following tasks. Write a
+short report describing what you did and what results you got. The
+report is otherwise free form, as long as it is in PDF format. Include
+your code and plots in the report. Please ensure that the report is
+\textbf{less than three pages long}. Submit your solution to Canvas by
+9.10. 12:00 if you want feedback. Keep a copy for submission at the
+end of the course.
+
+You will find a lot of help for this task in the lecture notes that
+discusses LTI systems, convolution and frequency response. You may
+help each other on Perusall. It is fine to give hints, but please try
+not to give away the \emph{exact solution}.
+
+\begin{enumerate}[a)]
+  
+\item What is the physical meaning of the signals $x[n]$ and $h[n]$ in
+  Equation \ref{eq:sonar_eq_pa}?
+  
+\item What is the physical meaning of $r$ in Equation
+  \ref{eq:sonar_eq_pa}?
+  
+\item How many meters of distance does an acoustic pulse travel during
+  10000 samples? Assume sound speed in a typical lecture room
+  at UiT (343 m/s).
+  
+\item How long is the transmitted sonar signal in seconds? The signal
+  is in the file \verb|chirp_2024.bin|.
+
+\item How long is the measurement in seconds? You can figure this out
+  by looking at the length of the signal \verb|chirp_rec_2024.bin| and
+  using the known sample-rate.
+    
+\item Why does the deconvolution filter $\lambda[n]$ need to have the
+  property: $\lambda[n]*x[n] \approx A\delta[n]$, where $A$ is a constant?
+   
+\item Evaluate the autocorrelation function of the transmitted signal
+  $c[n]=x[n]*x[-n]$. Use the signal that you read from
+  \verb|chirp_2024.bin|. You can time-reverse a signal in Python using
+  \verb|deconvolution_filter = x[::-1]|. Make a plot of $c[n]$ zooming
+  into the portion of the signal that has significantly non-zero
+  values. What are the implications of any deviations from a unit
+  impulse for $c[n]$? Note that the function
+  \verb|numpy.convolve(a,b,mode="same")| implements a convolution
+  between signals $a[n]$ and $b[n]$.
+
+%\item How close is $c[n]$ in your opinion to a scaled unit
+ % impulse $A\delta[n]$? How will deviations from the unit impulse
+ % affect deconvolution quality when using $\lambda[n]=x[-n]$ as a
+  %deconvolution filter?
+  
+\item Make a plot of the scattered power as a function of time and
+  range. Use one pulse for each column of the array that you are
+  plotting.  You should get something similar to the plot in Figure
+  \ref{fig:ex_rti_plot}. Use decibel scale for power. Use time in
+  seconds on the x-axis and total propagation distance in meters on
+  the y-axis. Total propagation distance means the total travelled
+  distance between the loudspeaker and the microphone. You can use,
+  e.g., the \verb|pcolormesh| command from Python's Matplotlib to
+  make this plot. You will also find the NumPy function
+  \verb|numpy.convolve(a,b,mode="same")| useful in this step.
+
+\item Identify the strongest scatterer that is first moving away from
+  the sonar, and then moving back towards the sonar. What is the
+  furthest distance that the scatterer goes to before starting to move
+  back towards the sonar in meters?
+  
+  \begin{figure}
+  \begin{center}
+    \includegraphics[width=\textwidth]{Assignments/figures/sonar_rti.png}
+  \end{center}
+  \caption{An example range-time intensity plot showing how much power
+    in decibel scale is scattered back from the surroundings of the
+    sonar system. The distance between the microphone and the
+    loudspeaker is about 30 cm, which can be seen as a constant
+    horizontal line at the propagation distance. The plot also shows
+    an acoustic scatterer that is first moving away and then moving
+    back towards the transmitter. Note that this is not the same plot
+    that you will obtain with your data!}
+  \label{fig:ex_rti_plot}
+\end{figure}
+
+\end{enumerate}
