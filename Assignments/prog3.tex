@@ -9,16 +9,15 @@
 
 In 2017, the Nobel Prize in physics was awarded to Rainer Weiss, Barry
 Barish and Kip Thorne for the discovery of gravitational waves. Only
-two years earlier, on September 14, $^{\mathrm{th}}$ 2015, 09:50:45 UTC,
-the two Laser Interferometer Gravitational-Wave Observatory (LIGO)
-instruments detected a gravitational wave for the first time in
-history. The existence of gravitational waves had been predicted by
-Einstein's general theory of relativity, but never before detected in
-situ.
+two years earlier, on September 14, 2015, 09:50:45 UTC, the two Laser
+Interferometer Gravitational-Wave Observatory (LIGO) instruments
+detected a gravitational wave for the first time in
+history. Gravitational waves were predicted by Einstein’s general
+theory of relativity but had never been detected in situ before.
 
 The first gravitational wave event detected by LIGO is thought to be
 created from a collision of two black holes, which sends out a
-localized chirp like pulse in the space-time. LIGO utilizes two
+localized chirp-like pulse in the space-time. LIGO utilizes two
 detectors, which are spaced 3000 km apart. These detectors measure
 \emph{strain} ($\Delta L/L$) as a function of time. Here $\Delta L$ is
 the variation in length and $L$ is the total length in which the
@@ -57,39 +56,54 @@ science. UiT does not have the resources for building a giant
 interferometer, and this course really isn't about solving Einstein's
 field equations, so we won't be able to reproduce all the
 results. However, we can verify the signal processing part. In this
-programming assignment, your task is to independently develop signal
-processing software to verify that you can also find the gravitational
-wave signature in the LIGO measurements.
+programming assignment, your task is to develop signal processing
+software to verify that you can detect the gravitational wave
+signature in the LIGO measurements.
+
 
 \section{Instructions}
 
 We expect you to complete the listed signal processing tasks. The
-submission form is a written report, which answers the questions given
+submission form is a written report that answers the questions given
 in each part of this assignment. The report should include the code
-with comments that indicate what each part of the program does.
+with comments that indicate what each part of the program
+does. \textbf{The report should have at most five pages}. You can
+return your report on Canvas by November 4th to receive feedback
+before the final portfolio submission on November 11th. The final
+portfolio submission including all three programming assignments will
+be on Wiseflow on November 11th.
+
+
 
 % In the first part, you have already completed sections 3-7. For this
 % second part of the assignment, you need to complete sections
 % 8-13. You may choose to continue your previous report, or to write a
 % new report that just covers sections 8-13.
 
-You will only need to know about signal processing concepts taught in
+You only need to know about signal processing concepts taught in
 FYS-2006. You do not need to know anything about gravitational waves
 or the LIGO instrument in order to complete the assignment. The
 lecture notes for the course contain several helpful signal processing
-examples. Take a look at lecture notes for Week 43 on \emph{spectral
-  analysis}, and \emph{arbitrary frequency response filters}.
+examples. Take a look at lecture notes on \emph{spectral analysis},
+and \emph{arbitrary frequency response filters}.
 
 
 \section{Instruction for reading the data}
 
 To begin, download the data files and a simple program that
 demonstrates reading these files from this location:
-\url{https://bit.ly/3bIcRlB}. These data files contain real
-measurements from LIGO starting at 2015-09-14T09:50:30 UTC. After
-downloading the files, the next step is to read the strain signal from
-the data files. In Python, this can be done using the 
-h5py module\sidenote{Make sure you have the h5py module installed on your computer!}.
+\url{code/029_ligo}. The data files are:
+\begin{verbatim}
+H-H1_LOSC_4_V2-1126259446-32.hdf5
+L-L1_LOSC_4_V2-1126259446-32.hdf5
+\end{verbatim}
+These data files contain real measurements from LIGO starting at
+2015-09-14T09:50:30 UTC.
+
+After downloading the files, the next step is to read the strain
+signal from the data files. In Python, this can be done using the h5py
+module\sidenote{Make sure you have the h5py module installed on your
+  computer!}.
 \begin{verbatim}
 import h5py
 h = h5py.File("file.hdf5","r")
@@ -102,22 +116,12 @@ of the Hanford signal and $x_L[n]$ for the Livingston signal.
 \section{1. Data}
 The sample rate of both of the signals is $f_s=4096$ Hz. The samples
 in both signals are synchronized in time, i.e., sample $n$ in signal
-$x_H[n]$ and $x_L[n]$ occur at the same time.
-
+$x_H[n]$ and $x_L[n]$ occur at the same time. Start by writing code to
+read the Hanford and Livingston signals from the data file.
 \begin{enumerate}[a)]
-
-  \item Write code to read the Hanford and Livingston signals from the data file.
-
   \item How many samples are in each of the signals: $x_H[n]$ and $x_L[n]$?
-
-  \item How many seconds of signal does each of the two data vectors $x_H[n]$ and $x_L[n]$ represent?
-
-  \item The gravitational wave signal is a one dimensional real-valued
-        signal that is spectrally confined to the frequency range $[-300, 300]$ Hz.
-        Is the signal sampled at a sufficiently high sample rate
-        to retain all the gravitational wave information?
-
-  \item What is the sample spacing in units of seconds?
+  \item How many seconds long is each signal $x_H[n]$ and $x_L[n]$ in
+    the dataset?
 \end{enumerate}
 
 \section{2. Plotting the data}
@@ -131,8 +135,6 @@ In order to see what the signals look like, you will need to plot the data.
         signals. Hint: you can use the \verb|plt.plot(t,signal)| command found
         in Matplotlib. Use an array \verb|t| to denote the seconds of each sample of the array \verb|signal|.
 
-  \item What are the minimum, maximum, and mean values of the $x_H[n]$ and $x_L[n]$ signals?
-
 \end{enumerate}
 
 \section{3. Selecting a tapered window function}
@@ -140,10 +142,11 @@ In order to see what the signals look like, you will need to plot the data.
 You will need to apply a discrete Fourier transform to analyze the
 spectral content of the signal. You will need to select a suitable
 tapered window function in order to obtain a good rejection of out of
-band signals. In this task, we'll use a synthetic narrowband signal to
-compare the performance of a discrete Fourier transform (DFT) based spectral
-analysis using a tapered window to spectral analysis done without a
-tapered window.
+band signals. This will be crucial for detecting the real LIGO signal
+later. In this task, we'll use a synthetic narrowband signal to
+compare the performance of a discrete Fourier transform (DFT) based
+spectral analysis using a tapered window to spectral analysis done
+without a tapered window.
 
 In order to calculate the magnitude spectrum of a signal $x[n]$ of length $N$, you need to evaluate a DFT on the signal:
 \begin{equation}
@@ -159,19 +162,24 @@ DFT. This function is available in Python as \verb|numpy.fft.fft|.
 
 
 \begin{enumerate}[a)]
-  \item Chose a tapered window function and implement it.
-        Hint: you can use window functions available in the \verb|scipy.signal| module.
+  \item Find Python functions in scipy that implement the Hann and
+    Hamming windows.  You can use tapering window functions available
+    in the \verb|scipy.signal| module.
 
-  \item In order to get an idea of how your window function behaves,
-        apply it to a sinusoidal signal
+  \item In order to get an idea of how the window functions behave,
+    apply it to a test signal consisting of two sinusoids. One with a
+    weak amplitude and one with a strong amplitide.
         \begin{equation}
-          x[n]=\cos(2\pi f  n/f_s)
+          x[n]=10^{-5}\cos(2\pi 31.5  n/f_s) + \cos(2*\pi*1234.56 n/f_s)
         \end{equation}
-        with frequency $f=31.5$ Hz, which is sampled at $f_s=4096$
-        Hz. Sample signal at $n\in[0,1,2,\cdots,4095]$. Make a plot of the
-        signal $x[n]$ and the windowed signal $w[n]x[n]$. Use a window of
-        the same length as your signal $N=4096$. Hint: You can use \verb|numpy.arange(N)|
-        to create a sequence of integers between $0$ and $N-1$.
+        Use a sample-rate of 4096 Hz. The frequencies of the sinusoids
+        are 31.5 Hz and 1234.56 Hz, and the amplitudes $10^{-5}$ and 1
+        as shown in the above equation.  Sample signal at sample
+        indices $n\in[0,1,2,\cdots,4095]$. Make a plot of the signal
+        $x[n]$ and the windowed signal $w[n]x[n]$. Use a window of the
+        same length as your signal $N=4096$. Hint: You can use
+        \verb|numpy.arange(N)| to create a sequence of integers
+        between $0$ and $N-1$.
 
   \item The FFT algorithm will evaluate $\hat{x}[k]$ at integer values of $k$ between $0$ and $N-1$.
         What frequencies $f_k$ in hertz do frequencies $\hat{\omega}_k = 2\pi k/N$ in radians per sample
@@ -179,26 +187,23 @@ DFT. This function is available in Python as \verb|numpy.fft.fft|.
 
   \item Which values of $k$ correspond to a frequency $f_k$ that is nearest to $31.5$ and $-31.5$ hertz?
 
-  \item Estimate the power spectrum of the windowed signal $w[n]x[n]$ (with tapering) and the
-        signal $x[n]$ (without tapering). Plot the power spectrum in decibel scale (power) for both.
-        Use frequency in Hz on the horizontal axis and magnitude squared
-        $10 \log_{10}(|\hat{x}[k]|^2)$ (decibels) on the vertical axis.  Plot both positive and
-        negative frequencies. Hint: You can use \verb|numpy.fft.fftfreq| and \verb|numpy.fft.fftshift|
-        to determine what frequency (in hertz) each FFT bin $k$ corresponds to, 
-        and to order the frequencies in ascending order.
+  \item Estimate the power spectrum of the windowed signal $w[n]x[n]$
+    (with tapering) and the signal $x[n]$ (without tapering). Plot the
+    power spectrum in decibel scale (power) for both.  Use frequency
+    in Hz on the horizontal axis and magnitude squared $10
+    \log_{10}(|\hat{x}[k]|^2)$ (decibels) on the vertical axis.  Plot
+    both the positive and negative frequencies. Hint: You can use
+    \verb|numpy.fft.fftfreq| and \verb|numpy.fft.fftshift| to
+    determine what frequency (in hertz) each FFT bin $k$ corresponds
+    to, and to order the frequencies in ascending order.
 
-  \item Mark the locations of 31.5 and -31.5 Hz on the plot of the power spectrum.
+      \item Mark the locations of 31.5 and 1234.56 Hz in the plot
 
-  \item The frequency corresponding to $\hat{\omega}=\pi$ radians per
-        second or $f=2048$ Hz is non-zero for both $\hat{x}[k]$ and $\hat{x}_w[k]$.
-        However, your test signal has a frequency of 31.5 Hz. Why is there a non-zero frequency
-        component anywhere else than at 31.5 Hz when you analyze the signal?
-
-  \item How many decibels is the frequency response better with the
-        tapered window function ($10\log_{10}(|\hat{x}_w[k]|^2)$) than without
-        ($10\log_{10}(|\hat{x}[k]|^2)$) at frequency $\hat{\omega}=\pi$ (radians per
-        second)?
-
+      \item Does the rectangular window (no tapering) allow you to detect the 31.5 Hz spectral line?
+        
+      \item Compare the Hann and Hamming windows. Which one allows you
+        to detect the weak signal better? Use the tapering window that
+        works best in the next section.
 \end{enumerate}
 
 \section{4. Estimating the spectrum of the LIGO signal}
@@ -217,9 +222,10 @@ DFT. This function is available in Python as \verb|numpy.fft.fft|.
         signal vector. Use the window function that you have chosen in the previous exercise,
         but make sure that use a window of length $N$, where $N$ is the LIGO data vector length. Hint: Use FFT.
 
-  \item Plot the results with frequency in Hz in the horizontal axis and
-        power using decibel scale on the vertical axis. Make one
-        plot for the Hanford and one plot for the Livingston. Plot only the positive frequencies.
+  \item Plot the results with frequency in Hz in the horizontal axis
+    and power using decibel scale on the vertical axis. Make separate
+    plots for the Hanford and data Livingston. Plot only the positive
+    frequencies.
 
   \item On what frequencies are there strong spectral components in the
         Hanford and Livingston power spectra? Use Hz as the unit of
@@ -251,8 +257,8 @@ magnitude of the output signal is unity: $|\hat{y}[k]|=1$. This can be  obtained
 \end{equation}
 \begin{enumerate}[a)]
 
-  \item Show that $\hat{h}[k]$ as defined in equation \ref{wfilt} will filter
-        signal $x[n]$ in such a way that $|\hat{y}[k]|=1$.
+%  \item Show that $\hat{h}[k]$ as defined in equation \ref{wfilt} will filter
+ %       signal $x[n]$ in such a way that $|\hat{y}[k]|=1$.
 
         %\item Will $\hat{h}[k]$ be the same for the Hanford and Livingston
         %  signals $x_H[n]$ and $x_L[n]$? Why?
@@ -268,20 +274,22 @@ magnitude of the output signal is unity: $|\hat{y}[k]|=1$. This can be  obtained
         Livingston and Hanford signals separately (obtaining $y_L[n]$ and
         $y_H[n]$).
 
-  \item Plot the whitened signals $y_H[n]$ and $y_L[n]$ for both Hanford
-        and Livingston. Use x-axis for time in seconds
-        ($t\in[0,t_{\mathrm{max}}]$) and y-axis for whitened strain
-        $y[n]$. The gravitational wave signal is in the middle of the
-        signal, between 16.2 and 16.5 seconds. If you've done everything
-        correctly, you should see the gravitational wave signal. It looks
-        like a chirp (see plot in Figure \ref{fig:ligo_result_plot}).
-        However, because we are not done yet, the signal will look noisy.
+  \item Plot the whitened signals $y_H[n]$ and $y_L[n]$ for both
+    Hanford and Livingston. Use x-axis for time in seconds
+    ($t\in[0,t_{\mathrm{max}}]$) and y-axis for whitened strain
+    $y[n]$. The gravitational wave signal is in the middle of the
+    signal, between 16.2 and 16.5 seconds. If you've done everything
+    correctly, you should see the gravitational wave signal. It looks
+    like a chirp (see plot in Figure \ref{fig:ligo_result_plot}).
+    However, because we are not done yet, the signal will look a lot
+    noisier than the Figure \ref{fig:ligo_result_plot}.
 
 \end{enumerate}
 
 \section{6. Low-pass filtering}
 
-The gravitational wave signal is at frequencies below 300 Hz. Design a simple running mean averaging low-pass filter
+The gravitational wave signal is at frequencies below 300 Hz. Design a
+simple running mean averaging low-pass filter
 \begin{equation}
   y[n] = \frac{1}{L} \sum_{k=0}^{L-1}x[n-k]
 \end{equation}
