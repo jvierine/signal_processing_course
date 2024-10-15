@@ -3,6 +3,7 @@
 *.log
 *.out
 *.toc
+*.synctex.gz
 
 # bibtex files
 *.bbl
@@ -12,3 +13,6 @@
 *.idx
 *.ilg
 *.ind
+
+# mac related
+*.DS_Store
