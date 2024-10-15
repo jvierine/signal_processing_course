@@ -30,7 +30,7 @@ w=ss.hann(fftlen)
 S=n.zeros([n_window,fftlen])
 time_vec=n.zeros(n_window)
 for i in range(n_window):
-    S[i,:]=n.fft.fftshift(n.abs(n.fft.fft(w*clip[i*(fftlen/2)+n.arange(fftlen)]))**2.0)
+    S[i,:]=n.fft.fftshift(n.abs(n.fft.fft(w*clip[i*(int(fftlen/2))+n.arange(fftlen)]))**2.0)
     time_vec[i]=(i*fftlen/2.0)/sr
     
 fvec=n.fft.fftshift(n.fft.fftfreq(fftlen,d=1.0/sr))

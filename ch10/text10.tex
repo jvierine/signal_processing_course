@@ -310,17 +310,17 @@ Linearity can be extended even further into a continuous linear combination:
 \begin{equation}
   \mathcal{T}\left\{\int_{-\infty}^{\infty} x(\tau)\delta(t-\tau)d\tau\right\} = \int_{-\infty}^{\infty} x(\tau) \mathcal{T}\{\delta(t-\tau)\} d\tau\,\,.
 \end{equation}
-We can simplify the right-hand side and get:
+We can simplify the left-hand side and get:
 \begin{equation}
-  \int_{-\infty}^{\infty} x(\tau) \mathcal{T}\{\delta(t-\tau)\} d\tau = \mathcal{T}\left\{x(t)\right\}\,\,.
+  \mathcal{T}\left\{\int_{-\infty}^{\infty} x(\tau)\delta(t-\tau)d\tau\right\} = \mathcal{T}\left\{x(t)\right\}\,\,.
 \end{equation}
-In order to simplify the left-hand side, we have to rely on the property of \emph{time-invariance}. That is:
+In order to simplify the right-hand side, we have to rely on the property of \emph{time-invariance}. That is:
 \begin{equation}
   h(t) = \mathcal{T}\{\delta(t)\} \Rightarrow h(t-\tau) = \mathcal{T}\{\delta(t-\tau)\}\,\,.
 \end{equation}
 This now completes our proof:
 \begin{equation}
-  y(t)=\int_{-\infty}^{\infty} x(\tau) h(t-\tau) d\tau = \mathcal{T}\left\{x(t)\right\}\qed\,\,.
+  y(t) = \mathcal{T}\left\{x(t)\right\} = \int_{-\infty}^{\infty} x(\tau) h(t-\tau) d\tau \qed\,\,.
 \end{equation}
 The output of a linear time-invariant system $y(t)=\mathcal{T}\{x(t)\}$ is a convolution of the system's
 impulse response $h(t)=\mathcal{T}\{\delta(t)\}$ with the input signal $x(t)$ fed into the system.
