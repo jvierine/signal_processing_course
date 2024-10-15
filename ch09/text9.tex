@@ -12,7 +12,7 @@
         \addplot[samples=200]{-0.5+sin(deg(x))+0.5*sin(2*deg(0.5*x)-0.0)+0.7*sin(3*deg(x)-0.6)+0.3*sin(4*deg(x)+1.6)};
         \node at (axis cs:0.9+0.45,1.1) [above, font={\footnotesize}]{$T_s$};
         \addplot [dimen,black]plot coordinates {(0.9,1.1) (2.0*0.9,1.1)};
-      \end{axis}\
+      \end{axis}
     \end{tikzpicture}
   \end{center}
   \caption{A continuous-time signal $x(t)$, and a discrete-time signal
@@ -20,9 +20,10 @@
     $T_s = 1/f_s$.}
 
 \end{marginfigure}
-In this chapter, we introduce discrete-time signals. These are the
-type of signals that are used for digital signal processing. We'll
-cover the following topics:
+
+This chapter introduces discrete-time signals. These are the type of
+signals that are used in digital signal processing. We'll cover the
+following topics:
 \begin{itemize}
   \item Discretization
   \item Aliasing
@@ -30,8 +31,12 @@ cover the following topics:
   \item Reconstruction
   \item Shannon-Nyquist sampling theorem
 \end{itemize}
-We'll need to know about complex sinusoidal signals and the frequency
-domain representation of signals (the Fourier transform).
+In order to understand aliasing, it is important to know the
+properties of complex exponential signals, as they are the natural
+building blocks of signals when representing signals with the Fourier
+transform. Once you understand what happens to a complex sinusoid, it
+is easy to generalize what happens to all spectral components of a
+signal when discretized.
 
 \section{Sampling}
 \begin{marginfigure}
@@ -55,31 +60,39 @@ domain representation of signals (the Fourier transform).
   \caption{An ideal continuous-time to Discrete-time (C-to-D) converter.}
 \end{marginfigure}
 
-
 A continuous-time signal can be converted into a discrete-time signal
-by sampling it. This can be idealized as a system that performs the following operation:
+by sampling it. This can be seen as a operation that selects evenly
+space values of a continuous-time signal:
 \begin{equation}
   \boxed{
     x[n] = x(n T_s)
   }\,\,.
 \end{equation}
-In this process, a continuous function $x(t) \in \mathbb{C}$ is converted into an ordered 
-sequence of numbers $x[n] \in \mathbb{C}$, where $n\in\mathbb{Z}$ indicates the order of the numbers.
+In this process, a continuous function $x(t) \in \mathbb{C}$ is
+converted into an ordered sequence of numbers $x[n] \in \mathbb{C}$,
+where $n\in\mathbb{Z}$ indicates the order of the numbers.
 
-The reason why we consider complex-valued signals in addition to real-valued signals is 
-that there are many applications where the signals are naturally complex-valued. 
-Radio signal processing is one example.
+The reason why we consider complex-valued signals in addition to
+real-valued signals is that there are many applications where the
+signals are naturally complex-valued.  Radio signal processing is one
+example. Real valued signals are a subset of complex valued signals,
+and thus, the theory also applies to such signals as well.
 
-The \index{sample-spacing}{sample-spacing} $T_s$ determines how densely samples of the 
-continuous-time signal are taken. Sample-spacing is related with the \index{sample-rate}{sample-rate} 
-or \index{sampling-rate}{sampling-rate} $f_s$ as follows:
+The \index{sample-spacing}{sample-spacing} $T_s$ determines how
+densely samples of the continuous-time signal are
+taken. Sample-spacing is related with the
+\index{sample-rate}{sample-rate} or
+\index{sampling-rate}{sampling-rate} $f_s$ as follows:
 \begin{equation}
   \boxed{
     f_s = \frac{1}{T_s}
   }\,\,.
 \end{equation}
-Sample-rate typically is given in units of samples per second or hertz, but other units are also used in various applications.
-For example, the resolution of a digital image is often given in units of dots per inch (DPI).
+Sample-rate typically is given in units of samples per second or
+\emph{\index{hertz}{hertz}} when the independent variable is time. In
+other cases, many other possibilities also exist. For example, the
+resolution of a digital image is often given in units of dots per inch
+(DPI).
 
 \if 0 You can think of sampling as a convolution operation between a
   time-shifted unit impulse $\delta(t-nT_s)$ and the continuous-time
@@ -91,28 +104,32 @@ For example, the resolution of a digital image is often given in units of dots p
 \fi
 
 \subsection{Sampling a complex sinusoidal signal}
-In order to understand sampling, you need to understand how sampling affects a complex sinusoidal signal:
+
+The key to understanding the concept of aliasing when discretizing signals is to study how a complex sinusoidal signal behaves when it is discretized:
 \begin{equation}
   x(t)=A e^{i\phi} e^{i\omega_0 t}\,\,.
 \end{equation}
-Because we can use the Fourier transform to represent signals as a superposition of complex 
-sinusoidal signals, knowledge of what happens to a fixed frequency signal will tell us how 
-discretization affect signals more generally.
+Because we can use the Fourier transform to represent continuous-time
+signals as sums of complex sinusoidal signals, knowledge of what
+happens to a single complex sinusoidal signal can be generalized to
+arbitrary signals, by studying what happens to each spectral component
+of a signal.
 
 \begin{marginfigure}
   \begin{center}
     \begin{tikzpicture}
       \begin{axis}[width=7cm,height=6cm,ymin=0,xmin=-3,ymax=1.5,xmax=3,  yticklabels={,,},
           xtick={1.0},
-          ylabel={$\hat{x}(\omega)$},
+          ylabel={$\hat{x}(\omega)=Ae^{i\phi}\delta(\omega-\omega_0)$},
           xticklabels={$\omega_0$},
           xlabel=$\omega$, axis lines = center]
-
-        \addplot + [ycomb] plot coordinates {(1,1)};
-        \node at (axis cs:1,1.1) [above, font={\footnotesize}]{$Ae^{i\phi}$};
+%+[dirac]
+        \addplot + [dirac] plot coordinates {(1,1)};
+%        \node at (axis cs:1,1.1) [above, font={\footnotesize}]{$Ae^{i\phi}\delta(\omega-\omega_0)$};
       \end{axis}
     \end{tikzpicture}
   \end{center}
+  \caption{The Fourier transform representation of a complex sinusoidal signal.}
 \end{marginfigure}
 
 So what happens to a complex sinusoidal signal when we sample it?
@@ -128,13 +145,16 @@ What happens is that we get a discrete-time complex sinusoidal signal. This sign
   }\,\,.
 \end{equation}
 
-The angular frequency $\hat{\omega}_0$ is called a \emph{\index{discrete-time angular frequency}{discrete-time angular frequency}}.
-It indicates how many \emph{\index{radians per sample}{radians per sample}} the phase of 
-the complex sinusoidal signal advances. With a discrete-time signal, time is only 
-implied from the sample spacing that was used to discretize the signal, which is 
-why no time unit is attached to $\hat{\omega}_0$. There's a hat on $\hat{\omega}_0$ 
-to signify that this is not the same kind of frequency as the continuous-time angular 
-frequency $\omega$, which has units of radians per second.
+The angular frequency $\hat{\omega}_0$ is called a
+\emph{\index{discrete-time angular frequency}{discrete-time angular
+  frequency}}.  It indicates how many \emph{\index{radians per
+  sample}{radians per sample}} the phase of the complex sinusoidal
+signal advances. With a discrete-time signal, time is only implied
+from the sample spacing that was used to discretize the signal, which
+is why no time unit is attached to $\hat{\omega}_0$. There's a hat on
+$\hat{\omega}_0$ to signify that this is not the same kind of
+frequency as the continuous-time angular frequency $\omega$, which has
+units of radians per second.
 
 Figure \ref{fig:rotating_dt_phasor} shows an example of how the values of the discrete-time complex 
 sinusoidal signal behave with increasing sample index, obtaining values on a circle of 
@@ -195,13 +215,16 @@ each sample on the circle is given by the discrete-time angular frequency $\hat{
 \end{marginfigure}
 
 \subsection{Frequency aliases}
-What happens if $\hat{\omega}$ gets larger? What if it is so large that the phasor rotates 
-around the circle on the complex plane one or more times every sample? 
-This phenomenon is called aliasing.
 
-Here's a more formal way of defining aliasing. The complex sinusoidal
-signal $e^{i\hat{\omega}_0 n}$ is not unique. There are infinitely
-many possible frequency increments that result in the same signal:
+What happens if $\hat{\omega}$ is larger than $2\pi$? In this case,
+the phasor rotates around the circle on the complex plane more than
+once for times every sample. It is easy to convince yourself that this
+can lead to ambiguity. There are infinitely many values of
+$\hat{\omega}$ that describe an identical complex sinusoidal
+sginal. This phenomenon is called aliasing.
+
+Aliases of a signal mean all the possible values of $\hat{omega}$ that
+result in an identical complex sinusoidal signal:
 \begin{align}
   x[n] & =Ae^{i\phi} e^{i(\hat{\omega}_0 + 2\pi k) n} \\
        & =Ae^{i\phi} e^{i \hat{\omega}_0  n}
@@ -214,10 +237,9 @@ of the discrete-time angular frequencies:
   }\,\,.
 \end{equation}
 and our discrete-time complex sinusoidal signal will be
-identical. There is no way of telling just from the signal itself what
-the true discrete-time angular frequency is. Frequencies
-$\hat{\omega}_k$ are called \emph{\index{aliases}{aliases}}. There are
-infinitely many such aliases.
+identical. These discrete-time angular frequencies $\hat{\omega}_k$
+are called \emph{\index{aliases}{aliases}}.
+
 
 \begin{marginfigure}[5cm]
   \begin{center}
@@ -235,7 +257,7 @@ infinitely many such aliases.
           xlabel=$f$,
           ylabel=$\hat{x}(f)$,
           axis lines = center]
-        \addplot+[ycomb] plot coordinates {((-3.6,1) (-1.6,1) (0.4,1) (2.4,1)};
+        \addplot+[dirac] plot coordinates {((-3.6,1) (-1.6,1) (0.4,1) (2.4,1)};
       \end{axis}
     \end{tikzpicture}
   \end{center}
@@ -246,9 +268,11 @@ infinitely many such aliases.
   per second) instead of radians per second.}
 \end{marginfigure}
 
-What continuous-time frequencies do these aliases correspond to? We
-can work this out by looking at the continuous-time signal of
-frequency $\omega_0$:
+Using just the discrete-time signal complex sinusoid, there is no way
+of telling what is the true continuous-time angular frequency that
+produced our discrete-time signal. What continuous-time frequencies do
+these aliases correspond to? We can work this out by looking at the
+continuous-time complex sinusoidal signal of frequency $\omega_0$:
 \begin{equation}
   x(t) = A e^{i\phi} e^{i\omega_0 t}\,\,.
 \end{equation}
@@ -281,13 +305,13 @@ second)\footnote{remember that angular frequency (radians per second)
     f_k = f_0 + k f_s
   }\,\,.
 \end{equation}
-The phenomena of aliasing is problematic. We cannot uniquely distinguish
-a discrete-time complex sinusoidal signal $x[n]=Ae^{i\hat{\omega}n}$
-which continuous-time signal it corresponds to. Conversely,
-there are infinitely many continuous-time sinusoidal signals
-$x(t)=Ae^{i\omega t}$ that will result in the same discrete-time
-signal. In order to rule out the wrong solutions, we need a priori
-information about the spectral occupancy of the continuous-time
+The phenomena of aliasing is problematic. We cannot uniquely
+distinguish a discrete-time complex sinusoidal signal
+$x[n]=Ae^{i\hat{\omega}n}$ which continuous-time signal it corresponds
+to. Conversely, there are infinitely many continuous-time sinusoidal
+signals $x(t)=Ae^{i\omega t}$ that will result in the same
+discrete-time signal. In order to resolve this ambiguity, we need a
+priori information about the spectral occupancy of the continuous-time
 signal.
 
 \begin{marginfigure}
@@ -339,25 +363,28 @@ Solving the problem of aliasing, by ensuring that there is a uniquely one-to-one
 between continuous-time and discrete-time frequencies for all the spectral components 
 of a signal, leads to the Shannon-Nyquist sampling theorem, which is introduced at the end of this chapter.
 
-\subsection{Real-valued signals}
-The concept of aliasing of complex sinusoidal signals allows us to inspect aliasing of 
-real-valued sinusoidal signals, which come in pairs of positive and negative frequency 
-spectral components. Understanding aliasing for real-valued signals is slightly more 
-complicated than understanding complex-valued signals, because of the symmetric 
-pairing of the positive and negative frequency components.
+\subsection{Real-valued sinusoids}
 
-The Fourier transform of a real-valued signal $x(t)\in\mathbb{R}$ is conjugate symmetric
+With knowledge of how a complex sinusoidal signal is aliased, we can
+inspect how real-valued sinusoidal signals behave when discretized. We
+know using Euler's formula that real valued sinusoidal signals are a
+sum of two complex exponential signals. This is only slightly more
+complicated than the previous case.
+
+\if 0
+The Fourier transform of a real-valued signal $x(t)\in\mathbb{R}$ is
+conjugate symmetric
 \begin{equation}
   \hat{x}(\omega) = \hat{x}^*(-\omega)\,\,.
 \end{equation}
-This means that real-valued signals are composed of conjugate
-symmetric pairs of positive and negative frequency spectral
-components:
+\fi 
+Recall that:
 \begin{equation}
   A \cos(\omega t + \phi) = \frac{A}{2}(e^{i\phi}e^{i\omega t} + e^{-i\phi}e^{-i\omega t})\,\,.
 \end{equation}
-In order to understand how aliasing affects real-valued signals, we
-need to investigate how pairs of positive and negative frequency spectral components are affected.
+In order to understand how aliasing affects real-valued sinusoids, we
+need to investigate how pairs of positive and negative frequency
+spectral components are affected.
 \begin{marginfigure}
   \begin{center}
     \begin{tikzpicture}
@@ -379,25 +406,27 @@ need to investigate how pairs of positive and negative frequency spectral compon
   \caption{A real-valued signal consists of a positive and negative frequency spectral component, 
   which are conjugate symmetric.}
 \end{marginfigure}
-A conjugate symmetric pairing of positive and negative frequencies means that there is no 
-distinction between a positive and a negative frequency signal\footnote{For complex 
-sinusoidal signals $e^{-i \omega t}$ and $e^{i \omega t}$ are two unique signals.}.
-For example, let's say we have a signal with angular frequency $\omega = -0.1$:
+A conjugate symmetric pairing of positive and negative frequencies
+means that there is no distinction between a positive and a negative
+frequency signal\footnote{For complex sinusoidal signals $e^{-i \omega
+  t}$ and $e^{i \omega t}$ are two unique signals.}.  For example,
+let's say we have a signal with angular frequency $\omega = -0.1$:
 \begin{equation}
   A \cos(-0.1 t + \phi) = \frac{A}{2}(e^{i\phi}e^{-i0.1  t} + e^{-i\phi}e^{i0.1 t})\,\,.
 \end{equation}
-This is the same thing as a cosine signal with frequency $0.1$, but a sign flipped phase:
+This is the same thing as a cosine signal with frequency $0.1$, but a
+sign flipped phase:
 \begin{align}
   \frac{A}{2}(e^{-i\phi}e^{i 0.1 t} + e^{i\phi}e^{-i 0.1 t}) & = A \cos(0.1 t - \phi)       \\
                                                              & = A \cos(-0.1 t + \phi)\,\,.
 \end{align}
-This means that you can always represent a real-valued sinusoidal signal using only 
-positive valued frequencies, but it does not apply for complex-valued signals.
+This means that you can always represent a real-valued sinusoidal
+signal using only positive valued frequencies. This results in more
+complicated aliasing behaviour!
 
-In the case of real-valued signals, the frequency alias corresponding to a negative 
-frequency is called a \emph{\index{folded alias}{folded alias}}. For complex sinusoidal 
-signals, a folded alias does not exist, as positive and negative frequency 
-components are not necessarily paired.
+In the case of real-valued sinusoids, the frequency alias
+corresponding to a negative frequency is called a \emph{\index{folded
+  alias}{folded alias}}.
 
 \subsection{Example: Sinusoidal signal with $f_0=1$ Hz and $f_s=10$ Hz}
 \begin{marginfigure}
@@ -531,14 +560,18 @@ This region of the spectrums contains the smallest discrete-time angular frequen
   \label{fig:dt_spec_ex}
 \end{figure}
 
-How could we be able to determine which one of the frequencies $f_k$ is the true sinusoidal 
-frequency component represented by the discrete-time signal? We can only do this if we know 
-that the continuous-time frequencies of the spectral components of the signal lie within a certain range.
+How could we be able to determine which one of the frequencies $f_k$
+is the true sinusoidal frequency component represented by the
+discrete-time signal? We can only do this if we know that the
+continuous-time frequencies of the spectral components of the signal
+lie within a certain range.
 
-For example, if we knew that there are no spectral components with frequencies higher than 5 
-Hz present in the continuous-time signal ($|f| < 5$) Hz, then we could determine that the discrete-time 
-signal is due to a 1 Hz continuous-time signal, because this is the only possible mapping between a 
-discrete-time frequency and a continuous-time frequency.
+For example, if we knew that there are no spectral components with
+frequencies higher than 5 Hz present in the continuous-time signal
+($|f| < 5$) Hz, then we could determine that the discrete-time signal
+is due to a 1 Hz continuous-time signal, because this is the only
+possible mapping between a discrete-time frequency and a
+continuous-time frequency.
 
 \subsection{Principal spectrum}
 The \emph{\index{principal spectrum}{principal spectrum}} (also called normalized angular frequency) 
@@ -546,25 +579,29 @@ is the range of discrete-time angular frequencies between:
 \begin{equation}
   \boxed{-\pi < \hat{\omega} < \pi}\,\,.
 \end{equation}
-It is the region for the lowest frequency discrete-time angular frequency representation for 
-discrete-time spectral components that the signal consists of. 
-Unaliased continuous-time frequencies between
+It is the region for the lowest frequency discrete-time angular
+frequency representation for discrete-time spectral components that
+the signal consists of.  Unaliased continuous-time frequencies between
 \begin{equation}
   -f_s/2 < f < f_s/2
 \end{equation}
-in units of hertz are mapped to this range of discrete-time angular frequencies.
+in units of hertz are mapped to this range of discrete-time angular
+frequencies.
 
-By finding a suitable value for $k$, it is possible to find an alias of any discrete-time angular frequency $\hat{\omega}$,
-which lands in the range $-\pi< \hat{\omega}+2\pi k < \pi$. This is called the \emph{\index{principal alias}{principal alias}}.
-Every spectral component of a signal has an alias in the principal spectrum.
+By finding a suitable value for $k$, it is possible to find an alias
+of any discrete-time angular frequency $\hat{\omega}$, which lands in
+the range $-\pi< \hat{\omega}+2\pi k < \pi$. This is called the
+\emph{\index{principal alias}{principal alias}}.  Every spectral
+component of a signal has an alias in the principal spectrum.
 
 \newthought{For example}, consider a signal of frequency $f=123$ Hz:
 \begin{equation}
   x(t) =\cos( 2\pi f t) = \frac{1}{2}(e^{i 2\pi f t}+e^{-i 2\pi f t})\,\,,
 \end{equation}
-which is sampled using a sample-rate of $f_s=100$. The discrete-time angular frequency is 
-$\hat{\omega} = \pm 2\pi \cdot 123 \cdot\frac{1}{100} = \pm 2.46\pi$. 
-This is outside the principal spectrum. If we shift this by $\mp 2\pi$, we obtain principal aliases:
+which is sampled using a sample-rate of $f_s=100$. The discrete-time
+angular frequency is $\hat{\omega} = \pm 2\pi \cdot 123
+\cdot\frac{1}{100} = \pm 2.46\pi$.  This is outside the principal
+spectrum. If we shift this by $\mp 2\pi$, we obtain principal aliases:
 $\hat{\omega} = \pm 0.46 \pi$.
 
 \subsection{Folding}
@@ -579,9 +616,11 @@ which nicely describes the concept of folding of spectral components.
   \label{fig:ti_folding}
 \end{marginfigure}
 
-Folding implies that at frequencies between $[f_s/2+k f_s,f_s + kf_s]$ with $k=0,1,2,\ldots$, 
-the order of the spectral components are flipped. Note that this only occurs if the signal is real-valued,
-as folding relies on a pairing of positive and negative frequency spectral components.
+Folding implies that at frequencies between $[f_s/2+k f_s,f_s + kf_s]$
+with $k=0,1,2,\ldots$, the order of the spectral components are
+flipped. Note that this only occurs if the signal is real-valued, as
+folding relies on a pairing of positive and negative frequency
+spectral components.
 
 \newthought{The following example demonstrates folding using three real-valued sinusoidal signals}. 
 Let us consider three sinusoidal signals:
@@ -1037,7 +1076,7 @@ discretized in such a way that the high spatial frequency brick
 pattern on the side of the building becomes undersampled, and a low
 frequency alias is seen.
 
-
+\if 0 
 \subsection{Reconstruction}
 \begin{marginfigure}
   \tikzstyle{int}=[draw, minimum size=2em]
@@ -1212,6 +1251,7 @@ reconstruction filter is:
 \end{align}
 This filter is infinitely long, which implies that all samples need to be used in order for the 
 reconstructed signal to be mathematically perfect.
+\fi
 
 \if 0
   Similar reconstruction filters exists for other Nyquist zones, which allow perfect 
@@ -1485,6 +1525,7 @@ is just one possible solution, which assumes that the spectral components within
 original signal $\hat{x}(\omega)$ are confined to $|f| < f_s/2$. As we discussed above, 
 complex-valued signals and under sampled signals result in different sampling criteria.
 
+
 \subsection{Reconstruction}
 This reconstruction strategy only applies to a real-valued signal $x(t) \in \mathbb{R}$ 
 within the principal spectrum.
@@ -1598,3 +1639,4 @@ samples $x[n]$, provided that $\omega_s \ge 2\omega_{\mathrm{max}}$.
 
 For an undersampled real-valued signal, or a complex-valued band limited signal, the ideal reconstruction 
 filter would be different. In this case, it would correspond to the impulse response of an ideal band-pass filter.
+
