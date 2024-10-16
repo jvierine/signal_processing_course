@@ -33,7 +33,7 @@ l1_name,l1_start_time,l1_strain=read_data(join(path, "L-L1_LOSC_4_V2-1126259446-
 
 # This example code snippet calculates a Hann windowed FFT of the Hanford data.
 # fftshift is also used here to correct the frequency range to be 
-# between -pi..pi instead of 0..2pi as it comes out of numpy.fft.fft
+# between -pi..pi (rad/sample) instead of 0..2pi (rad/sample) as it comes out of numpy.fft.fft
 # 
 # x_hat= n.fft.fftshift(n.fft.fft(s.hann(len(h1_strain))*h1_strain))
 # 
