@@ -23,7 +23,7 @@ f_hertz = omhat/(2.0*n.pi*T_s)
 # calculate frequency response
 N_freqs=len(omhat)
 # frequency response 
-freq_resp = n.zeros(N_freqs,dtype=n.complex)
+freq_resp = n.zeros(N_freqs,dtype=n.complex64)
 
 # let's use
 # L is length of filter
