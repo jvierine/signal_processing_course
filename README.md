@@ -12,6 +12,10 @@ The course was developed for the Department of Physics and Technology students a
 
 The book is free for everyone to use. We have licensed it with the CC BY-NC 4.0. We invite students and educators to help us to develop this material further, as together we can do accomplish something that is better.
 
+# Cheat Sheet
+
+<img width="1676" alt="Screenshot 2024-11-23 at 11 39 39" src="https://github.com/user-attachments/assets/3ae68422-0cd2-4e09-a8d8-f8338526a3af">
+
 ## Getting started
 
 The easiest way to get started is to simply download the file signal_processing.pdf. It is the compiled book in pdf format, containing all the chapters, exercises, and programming tasks. The programming exercises can be found in the subdirectory: code. 
