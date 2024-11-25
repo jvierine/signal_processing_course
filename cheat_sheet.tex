@@ -205,6 +205,7 @@ Important transforms:
 \end{align*}
 \subsubsection*{Discrete Fourier Transform}
 Forward:
+\vspace{-1em}
 \begin{align*}
 \hat{x}[k] = \textstyle\sum_{n=0}^{N-1}x[n]e^{-i\frac{2\pi}{N}kn}
 \end{align*}
@@ -256,14 +257,17 @@ DFT matrix $\bm{\hat{x}}=\bm{F}\bm{x}$:
 here $\phi=e^{-i 2\pi/N}$
 \subsubsection*{Ideal discrete-time filters}
 Low-pass filter:
+\vspace{-0.2em}
 \begin{align*}
     \frac{\sin(\hat{\omega}_0 n)}{\pi n}  &\xleftrightarrow{\mathcal{F}}  = u(\hat{\omega}+\hat{\omega}_0)-u(\hat{\omega}-\hat{\omega}_0)
 \end{align*}
 High-pass:
+\vspace{-0.2em}
 \begin{align*}
 \delta[n] - \frac{\sin(\hat{\omega}_0 n)}{\pi n} &\xleftrightarrow{\mathcal{F}}  1-[u(\hat{\omega}+\omega_0)-u(\hat{\omega}-\omega_0)] 
 \end{align*}
 Point-frequency:
+\vspace{-0.8em}
 \begin{align*}
     (2\pi)^{-1} e^{i\hat{\omega}_0 n} &\xleftrightarrow{\mathcal{F}}  \delta(\hat{\omega}-\hat{\omega}_0)
 \end{align*}
@@ -286,26 +290,31 @@ The width of a function in time domain ($\Delta t$) is inversely proportional to
 where $\gamma$ is a constant that depends on definition of width. E.g. diffraction limit of an optical system: $\theta \propto \lambda/D$, or frequency resolution of a filter: $\Delta f \propto 1/\Delta t$.
 \subsubsection*{Linear Time-Invariant Systems}
 Linearity
+\vspace{-0.5em}
 \begin{align*}
 \mathcal{T}\{ c_1 x_1[n] + c_2 x_2[n]\}=c_1\mathcal{T}\{ x_1[n] \} + c_2 \mathcal{T}\{ x_2[n] \}
 \end{align*}
 Time-invariance
+\vspace{-0.5em}
 \begin{align*}
 \mathcal{D}\{\mathcal{T}\{ x[n] \} = \mathcal{T}\{\mathcal{D}\{ x[n] \} 
 \end{align*}
 Here $\mathcal{D}$ is time-shift: $\mathcal{D}\{x(t)\}=x(t-\tau)$.
 
-LTI system eigenfunction: 
+LTI system eigenfunction:
+\vspace{-0.5em}
 \begin{align*}
 \mathcal{T}\{A e^{i\phi} e^{i\omega t}\}=A' e^{i\phi'}e^{i\omega t}
 \end{align*}
 Impulse response fully characterizes:
+\vspace{-0.5em}
 \begin{align*}
 &h(t) = \mathcal{T}\{\delta(t)\} \hspace{3em} h[n]  = \mathcal{T}\{\delta[n]\} \\
 &y(t) = \mathcal{T}\{x(t)\} = h(t)*x(t) \\
 &y[n]  = \mathcal{T}\{x[n]\} = h[n]*x[n]
 \end{align*}
 Frequency response:
+\vspace{-1em}
 \begin{align*}
   \mathcal{H}(\omega) &= \textstyle\int_{-\infty}^{\infty} h(\tau) e^{-i \omega \tau} d\tau \\
     \mathcal{H}(\hat{\omega}) &= \textstyle\sum_{n=-\infty}^{\infty} h[n] e^{-i \hat{\omega} n} \\
