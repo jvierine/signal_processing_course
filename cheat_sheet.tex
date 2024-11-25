@@ -1,15 +1,10 @@
 \documentclass[6pt,landscape,a4paper]{article}
 \usepackage[utf8]{inputenc}
-%\usepackage[ngerman]{babel}
 \usepackage[T1]{fontenc}
-%\usepackage[LY1,T1]{fontenc}
-%\usepackage{frutigernext}
-%\usepackage[lf,minionint]{MinionPro}
 \usepackage{tikz}
 \usetikzlibrary{shapes,positioning,arrows,fit,calc,graphs,graphs.standard}
 \usepackage{lipsum}
 \usepackage[nosf]{kpfonts}
-%\usepackage[t1]{sourcesanspro}
 \usepackage{multicol}
 \usepackage{wrapfig}
 \usepackage[top=1mm,bottom=6mm,left=3mm,right=3mm]{geometry}
@@ -25,17 +20,11 @@
 \usepackage{pgfplots}
 \let\bar\overline
 \usepackage[skip=0pt, indent=0pt]{parskip}
-%\include{inhalt/def}
 \usepackage{titlesec}
 \titlespacing*{\section}{0pt}{0.001\baselineskip}{0.001\baselineskip}
 \titlespacing*{\subsubsection}{0pt}{0.2\baselineskip}{0.1\baselineskip}
 
 \begin{document}
-%\setlength{\abovedisplayskip}{0pt}
-%\setlength{\belowdisplayskip}{0pt}
-%\setlength{\abovedisplayshortskip}{0pt}
-%\setlength{\belowdisplayshortskip}{0pt}
-
 
 \footnotesize
 \AddToShipoutPictureBG*{
@@ -70,7 +59,7 @@ $\hat{\omega}$ (rad/sample), $\omega$ (rad/s), $f_s$ sample-rate (sample/s), $\h
 
         \node at (axis cs:3.14,-1.5) {$\textstyle{T=2\pi/\omega}$};
         \addplot [dimen] plot coordinates {(1.57,-1.1) (4.71,-1.1)};
-        \legend{$\mathrm{Re}(e^{i\omega t})=\cos(\omega t))$,$\mathrm{Im}(e^{i\omega t})=\sin(\omega t)$}
+        \legend{$\mathrm{Re}(e^{i\omega t})=\cos(\omega t)$,$\mathrm{Im}(e^{i\omega t})=\sin(\omega t)$}
       \end{axis}
     \end{tikzpicture}
 
