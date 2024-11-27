@@ -14,7 +14,7 @@ The book is free for everyone to use. We have licensed it with the CC BY-NC 4.0.
 
 # Cheat Sheet
 
-![Screenshot from 2024-11-25 12-21-41](https://github.com/user-attachments/assets/468899eb-1b7e-4fdf-b332-e21f12587fe5)
+<img width="1569" alt="Screenshot 2024-11-27 at 10 01 00" src="https://github.com/user-attachments/assets/c4d81f64-c381-436c-8a2c-6b1a13b05dc1">
 
 
 ## Getting started
