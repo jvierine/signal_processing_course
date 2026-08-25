@@ -34,8 +34,8 @@ a { color: inherit; }
 main { width: min(1050px, calc(100% - 32px)); margin: 0 auto; padding: 22px 0 20px; }
 .intro h1 { margin: 0; font: 500 clamp(2.2rem, 4vw, 3.7rem)/0.98 Georgia, "Times New Roman", serif; letter-spacing: -0.045em; }
 .title-row { display: flex; align-items: center; gap: 22px; }
-.demo-qr { flex: 0 0 auto; padding: 5px; border: 1px solid var(--line); border-radius: 6px; line-height: 0; }
-.demo-qr img { width: 74px; height: 74px; display: block; }
+.demo-qr { flex: 0 0 auto; line-height: 0; }
+.demo-qr img { width: 112px; height: 112px; display: block; }
 .book-reference { margin-top: 8px; display: inline-block; }
 .equation { margin-top: 14px; padding: 8px 18px; border: 1px solid var(--line); border-radius: 8px; overflow-x: auto; }
 
@@ -51,7 +51,7 @@ input:focus-visible, a:focus-visible { outline: 3px solid var(--focus); outline-
 .plot-heading { min-height: 35px; display: flex; align-items: baseline; justify-content: space-between; gap: 18px; }
 .plot-heading h2 { margin: 0; font: 500 1.4rem Georgia, "Times New Roman", serif; }
 .plot-heading > output { color: var(--muted); font: italic 0.82rem Georgia, "Times New Roman", serif; font-variant-numeric: tabular-nums; }
-.canvas-wrap { width: min(100%, calc(100vh - 550px), 430px); margin: 6px auto 0; position: relative; aspect-ratio: 1 / 1; }
+.canvas-wrap { width: min(100%, calc(100vh - 588px), 430px); margin: 6px auto 0; position: relative; aspect-ratio: 1 / 1; }
 canvas { width: 100%; height: 100%; display: block; border: 1px solid var(--line); }
 .axes { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
 .axes line { stroke: var(--ink); stroke-width: 0.35; }
