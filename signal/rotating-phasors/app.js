@@ -121,6 +121,7 @@ const els = {
   imagOutput: document.querySelector('#imag-output'),
   equation: document.querySelector('#live-equation'),
   phasorLabel: document.querySelector('#phasor-label'),
+  phasorTimeLabel: document.querySelector('#phasor-time-label'),
   timeMarkerLabel: document.querySelector('#time-marker-label'),
   periodLabel: document.querySelector('#period-label'),
 };
@@ -288,6 +289,7 @@ function updateUI(includeEquation = true) {
   els.realOutput.textContent = signed(real, 3);
   els.imagOutput.textContent = signed(imaginary, 3);
   els.timeMarkerLabel.textContent = `t = ${state.time.toFixed(2)} s`;
+  els.phasorTimeLabel.textContent = `t = ${state.time.toFixed(1)} s`;
 
   drawPhasor();
   drawSignal();

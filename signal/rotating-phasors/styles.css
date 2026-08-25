@@ -151,6 +151,7 @@ canvas { width: 100%; height: 100%; display: block; }
 .signal-y { left: 1px; top: 3%; transform: rotate(-90deg) translateX(-100%); transform-origin: 0 0; }
 .signal-x { right: 2%; bottom: 0; }
 .phasor-label { position: absolute; padding: 3px 6px; color: var(--teal-dark); background: rgba(255, 253, 248, 0.88); border-radius: 4px; font: italic 0.82rem Georgia, serif; pointer-events: none; transform: translate(8px, -22px); }
+.phasor-time-label { position: absolute; left: 7px; top: 7px; padding: 3px 6px; color: var(--ink); background: rgba(255, 255, 255, 0.9); border-radius: 4px; font-size: 0.68rem; font-weight: 700; font-variant-numeric: tabular-nums; pointer-events: none; }
 .time-marker-label { position: absolute; top: 8px; padding: 4px 7px; color: var(--ink); background: rgba(255, 253, 248, 0.92); border: 1px solid var(--line); border-radius: 5px; font-size: 0.68rem; font-weight: 700; white-space: nowrap; pointer-events: none; transform: translateX(-50%); }
 .period-label { position: absolute; top: 34px; padding: 3px 6px; color: var(--ink); background: rgba(255, 255, 255, 0.92); border-radius: 4px; font-size: 0.68rem; font-weight: 700; white-space: nowrap; pointer-events: none; transform: translateX(-50%); }
 
