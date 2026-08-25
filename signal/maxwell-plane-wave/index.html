@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Animate the electromagnetic plane-wave solution derived from Maxwell's equations." />
+    <title>Maxwell plane wave · Signal Processing Course</title>
+    <link rel="stylesheet" href="./styles.css?v=20260825-3" />
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['\\(', '\\)']] },
+        chtml: { scale: 1 },
+        options: { enableMenu: false }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script type="module" src="./app.js?v=20260825-3"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="course-title" href="/signal/">
+        <span>Signal Processing Course</span>
+        <small>Juha Vierinen</small>
+      </a>
+      <nav class="top-actions" aria-label="Course links">
+        <a class="top-link" href="/signal/">Index</a>
+        <a class="top-link" href="/signal/signal_processing_course.pdf" target="_blank" rel="noopener">PDF</a>
+        <a class="top-link" href="https://github.com/jvierine/signal_processing_course" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div class="title-row">
+          <h1 id="page-title">Maxwell plane wave</h1>
+          <a class="demo-qr" href="https://juha.no/signal/maxwell-plane-wave/" aria-label="Open Maxwell plane wave on a phone">
+            <img src="./qr.png" alt="QR code for this demonstration" />
+          </a>
+        </div>
+        <a class="book-reference" href="/signal/signal_processing_course.pdf#page=64" target="_blank">Course book · Section 6 · Figure 6.6 ↗</a>
+      </section>
+
+      <section class="equation" aria-label="Plane-wave equation">
+        \[\operatorname{Re}\{E(x,t)\}=E_0\cos(\omega t-kx),\qquad \omega^2=c^2k^2\]
+      </section>
+
+      <section class="transport" aria-label="Animation controls">
+        <button class="play-button" id="play-button" type="button" aria-label="Play animation" aria-pressed="false">
+          <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+          <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zm6 0h4v14h-4z" /></svg>
+        </button>
+        <div class="time-readout">
+          <span>Time</span>
+          <output id="time-output">0.000 ns</output>
+        </div>
+        <div class="time-control">
+          <input id="time-slider" type="range" min="0" max="1" step="0.001" value="0" aria-label="Time in nanoseconds" />
+          <div class="range-ends" aria-hidden="true"><span>0</span><span>0.5 ns</span><span>1 ns</span></div>
+        </div>
+        <div class="parameter-control omega-control">
+          <label for="omega-slider"><span>\(\omega\)</span><output id="omega-output">+15.08 rad/ns</output></label>
+          <input id="omega-slider" type="range" min="-30" max="30" step="0.01" value="15.08" />
+        </div>
+        <div class="parameter-control k-control">
+          <label for="k-slider"><span>\(k\)</span><output id="k-output">+50.30 rad/m</output></label>
+          <input id="k-slider" type="range" min="-100.07" max="100.07" step="0.01" value="50.30" />
+        </div>
+        <label class="dispersion-control" for="lock-dispersion">
+          <span><input id="lock-dispersion" type="checkbox" checked /> Lock \(|k|=|\omega|/c\)</span>
+          <output id="wave-status">Propagation: +x</output>
+        </label>
+      </section>
+
+      <section class="visual-grid" aria-label="Animated electromagnetic plane wave">
+        <article class="plot-card">
+          <div class="plot-heading">
+            <h2>Space–time field</h2>
+            <span>Figure 6.6</span>
+          </div>
+          <div class="canvas-wrap field-wrap">
+            <canvas id="field-canvas" aria-label="Color mesh of electric field over position and time"></canvas>
+            <svg class="field-axes" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <marker id="field-axis-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                  <path d="M 0 0 L 10 5 L 0 10 z" />
+                </marker>
+              </defs>
+              <line x1="7" y1="93" x2="96" y2="93" marker-end="url(#field-axis-arrow)" />
+              <line x1="7" y1="93" x2="7" y2="4" marker-end="url(#field-axis-arrow)" />
+            </svg>
+            <span class="axis-label field-y">Position, \(x\) (cm)</span>
+            <span class="axis-label field-x">Time, \(t\) (ns)</span>
+            <span class="current-time-line" id="current-time-line"></span>
+            <span class="current-time-label" id="current-time-label">0.000 ns</span>
+          </div>
+          <div class="color-scale" aria-label="Electric field color scale">
+            <span>−1</span><i></i><span>0</span><b></b><span>+1 V/m</span>
+          </div>
+        </article>
+
+        <article class="plot-card">
+          <div class="plot-heading">
+            <h2>Instantaneous field</h2>
+            <output id="slice-time">t = 0.000 ns</output>
+          </div>
+          <div class="canvas-wrap slice-wrap">
+            <canvas id="slice-canvas" aria-label="Electric field as a function of position at the selected time"></canvas>
+            <span class="axis-label slice-y">Electric field, \(E\) (V/m)</span>
+            <span class="axis-label slice-x">Position, \(x\) (cm)</span>
+          </div>
+          <div class="slice-legend"><i></i><span>\(E(x,t)=E_0\cos(\omega t-kx)\)</span><output id="wave-values">f = 2.40 GHz · λ = 12.49 cm</output></div>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">© Juha Vierinen, 2016–2026</footer>
+  </body>
+</html>

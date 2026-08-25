@@ -21,7 +21,7 @@ a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 
 main { width: min(1050px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 22px; }
 h1 { margin: 0; font: 500 clamp(2.8rem, 6vw, 5rem)/0.98 Georgia, "Times New Roman", serif; letter-spacing: -0.045em; }
-.demo-grid { margin-top: 24px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.demo-grid { margin-top: 24px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .demo-card { min-height: 210px; padding: 22px; display: flex; flex-direction: column; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 8px; text-decoration: none; transition: border-color 150ms ease, transform 150ms ease; }
 .demo-card:hover { border-color: var(--teal); transform: translateY(-2px); }
 .demo-number { color: var(--teal); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; }
@@ -38,4 +38,5 @@ h1 { margin: 0; font: 500 clamp(2.8rem, 6vw, 5rem)/0.98 Georgia, "Times New Roma
   .demo-grid { margin-top: 30px; grid-template-columns: 1fr; }
   .demo-card { min-height: 210px; }
 }
+@media (max-width: 900px) and (min-width: 651px) { .demo-grid { grid-template-columns: 1fr 1fr; } }
 @media (prefers-reduced-motion: reduce) { .demo-card { transition: none; } }
