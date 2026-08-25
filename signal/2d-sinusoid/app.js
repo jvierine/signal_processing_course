@@ -22,9 +22,9 @@ const fragmentSource = `
   uniform float u_k;
   uniform float u_l;
 
-  vec3 negativeColor = vec3(0.176, 0.400, 0.533);
+  vec3 negativeColor = vec3(0.0, 0.447, 0.698);
   vec3 zeroColor = vec3(1.0, 1.0, 1.0);
-  vec3 positiveColor = vec3(0.847, 0.388, 0.271);
+  vec3 positiveColor = vec3(0.835, 0.369, 0.0);
 
   void main() {
     float x = v_position.x * 3.14159265;

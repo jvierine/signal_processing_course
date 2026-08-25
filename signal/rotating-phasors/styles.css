@@ -6,12 +6,12 @@
   --card: #ffffff;
   --line: #d9ddd7;
   --grid: #e8e9e4;
-  --teal: #0a766e;
-  --teal-dark: #075a55;
-  --teal-soft: #dcefeb;
-  --coral: #d86345;
-  --gold: #d9a22e;
-  --focus: #255bc4;
+  --teal: #0072b2;
+  --teal-dark: #005a8c;
+  --teal-soft: #d9edf7;
+  --coral: #d55e00;
+  --gold: #e69f00;
+  --focus: #0072b2;
 }
 
 * { box-sizing: border-box; }

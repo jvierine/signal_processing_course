@@ -3,10 +3,10 @@
   --ink: #182724;
   --muted: #66736f;
   --line: #d9ddd7;
-  --teal: #0a766e;
-  --teal-dark: #075a55;
-  --coral: #d86345;
-  --focus: #255bc4;
+  --teal: #0072b2;
+  --teal-dark: #005a8c;
+  --coral: #d55e00;
+  --focus: #0072b2;
 }
 
 * { box-sizing: border-box; }
@@ -58,7 +58,7 @@ canvas { width: 100%; height: 100%; display: block; border: 1px solid var(--line
 .axes marker path { fill: var(--ink); }
 .axes text { fill: var(--ink); font: italic 4px Georgia, serif; }
 .scale { width: min(100%, 720px); margin: 12px auto 0; display: grid; grid-template-columns: auto 1fr auto 1fr auto; gap: 8px; align-items: center; color: var(--muted); font-size: 0.7rem; font-variant-numeric: tabular-nums; }
-.scale span:first-of-type { height: 5px; background: linear-gradient(90deg, #2d6688, #fff); border: 1px solid var(--line); }
+.scale span:first-of-type { height: 5px; background: linear-gradient(90deg, #0072b2, #fff); border: 1px solid var(--line); }
 .scale span:last-of-type { height: 5px; background: linear-gradient(90deg, #fff, var(--coral)); border: 1px solid var(--line); }
 .site-footer { padding: 0 20px 14px; color: var(--muted); font-size: 0.72rem; text-align: center; }
 
