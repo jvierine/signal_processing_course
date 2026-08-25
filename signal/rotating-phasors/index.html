@@ -14,7 +14,7 @@
       };
     </script>
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-    <script type="module" src="./app.js"></script>
+    <script type="module" src="./app.js?v=20260825-2"></script>
   </head>
   <body>
     <header class="site-header">
@@ -65,13 +65,13 @@
         </div>
 
         <div class="slider-control frequency-control">
-          <label for="frequency-slider">
-            <span>Angular frequency</span>
+          <div class="control-label">
+            <label for="frequency-slider">Angular frequency</label>
             <span class="frequency-actions">
               <output id="frequency-output">+2.00 rad/s</output>
-              <button id="flip-frequency" type="button">Flip sign</button>
+              <button id="flip-frequency" type="button" aria-label="Flip angular frequency sign">Flip sign</button>
             </span>
-          </label>
+          </div>
           <input id="frequency-slider" type="range" min="-20" max="20" step="0.1" value="2" />
           <div class="range-ends" aria-hidden="true"><span>−20</span><span>0</span><span>+20 rad/s</span></div>
         </div>

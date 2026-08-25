@@ -316,8 +316,10 @@ function animate(now) {
 }
 
 playButton.addEventListener('click', () => setPlaying(!state.playing));
-flipFrequencyButton.addEventListener('click', () => {
-  state.omega = -state.omega;
+flipFrequencyButton.addEventListener('click', (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  state.omega = state.omega === 0 ? -2 : -state.omega;
   frequencySlider.value = String(state.omega);
   updateUI();
 });

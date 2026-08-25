@@ -124,8 +124,9 @@ h1 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp
 output { font-variant-numeric: tabular-nums; }
 .time-readout output { font-weight: 800; }
 .slider-control { min-width: 0; }
-.slider-control label { margin-bottom: 11px; display: flex; justify-content: space-between; gap: 14px; font-size: 0.84rem; font-weight: 700; }
-.slider-control label output { color: var(--teal-dark); white-space: nowrap; }
+.slider-control label, .slider-control .control-label { margin-bottom: 11px; display: flex; justify-content: space-between; gap: 14px; font-size: 0.84rem; font-weight: 700; }
+.slider-control .control-label label { margin: 0; display: inline; }
+.slider-control label output, .slider-control .control-label output { color: var(--teal-dark); white-space: nowrap; }
 .frequency-actions { display: inline-flex; align-items: center; gap: 9px; }
 .frequency-actions button { padding: 5px 8px; color: var(--ink); background: #e5e7eb; border: 0; border-radius: 6px; font-family: inherit; font-size: 0.68rem; font-weight: 700; white-space: nowrap; cursor: pointer; }
 .frequency-actions button:hover { background: #d1d5db; }
@@ -189,7 +190,8 @@ canvas { width: 100%; height: 100%; display: block; }
   .frequency-control { grid-column: 1 / -1 !important; }
   .transport { grid-row: 1; }
   .transport .control-name { display: none; }
-  .slider-control label { margin-bottom: 3px; font-size: 0.7rem; }
+  .slider-control label, .slider-control .control-label { margin-bottom: 3px; font-size: 0.7rem; }
+  .slider-control .control-label label { margin: 0; }
   .range-ends { display: none; }
   .period-control { grid-column: 2 / -1; font-size: 0.68rem; }
   .period-control output { display: none; }
