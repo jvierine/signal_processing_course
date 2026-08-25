@@ -74,18 +74,31 @@ class LineRenderer {
     this.gl.clear(this.gl.COLOR_BUFFER_BIT);
   }
 
-  draw(vertices, color, mode = this.gl.LINE_STRIP, pointSize = 1) {
+  draw(vertices, color, mode = this.gl.LINE_STRIP, pointSize = 1, thickness = 1) {
     if (!vertices.length) return;
     const gl = this.gl;
     gl.useProgram(this.program);
     gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.DYNAMIC_DRAW);
     gl.enableVertexAttribArray(this.positionLocation);
     gl.vertexAttribPointer(this.positionLocation, 2, gl.FLOAT, false, 0, 0);
     gl.uniform4fv(this.colorLocation, color);
     gl.uniform1f(this.pointSizeLocation, pointSize);
     gl.uniform1i(this.roundPointLocation, mode === gl.POINTS ? 1 : 0);
-    gl.drawArrays(mode, 0, vertices.length / 2);
+
+    const isLine = mode === gl.LINE_STRIP || mode === gl.LINES;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const radius = isLine && thickness > 1 ? Math.max(1, Math.round((thickness * dpr - 1) / 2)) : 0;
+    const offsets = radius
+      ? [[0, 0], [-radius, 0], [radius, 0], [0, -radius], [0, radius], [-radius, -radius], [radius, -radius], [-radius, radius], [radius, radius]]
+      : [[0, 0]];
+
+    for (const [dx, dy] of offsets) {
+      const shifted = (dx || dy)
+        ? vertices.map((value, index) => value + (index % 2 === 0 ? 2 * dx / this.canvas.width : 2 * dy / this.canvas.height))
+        : vertices;
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(shifted), gl.DYNAMIC_DRAW);
+      gl.drawArrays(mode, 0, vertices.length / 2);
+    }
   }
 }
 
@@ -171,21 +184,21 @@ function drawPhasor() {
     const a = i / 160 * Math.PI * 2;
     circle.push(...map(radius * Math.cos(a), radius * Math.sin(a)));
   }
-  phasorRenderer.draw(circle, COLORS.softTeal);
+  phasorRenderer.draw(circle, COLORS.softTeal, gl.LINE_STRIP, 1, 2);
 
   const initial = map(radius * Math.cos(state.phase), radius * Math.sin(state.phase));
-  phasorRenderer.draw([0, 0, ...initial], COLORS.gold, gl.LINES);
+  phasorRenderer.draw([0, 0, ...initial], COLORS.gold, gl.LINES, 1, 2);
 
   const theta = state.omega * state.time + state.phase;
   const x = radius * Math.cos(theta);
   const y = radius * Math.sin(theta);
   const end = map(x, y);
-  phasorRenderer.draw([0, 0, ...end], COLORS.teal, gl.LINES);
+  phasorRenderer.draw([0, 0, ...end], COLORS.teal, gl.LINES, 1, 3);
 
   const arrowSize = Math.min(0.09, Math.max(0.035, radius * 0.12));
   const left = map(x - arrowSize * Math.cos(theta - 0.55), y - arrowSize * Math.sin(theta - 0.55));
   const right = map(x - arrowSize * Math.cos(theta + 0.55), y - arrowSize * Math.sin(theta + 0.55));
-  phasorRenderer.draw([...left, ...end, ...right], COLORS.teal);
+  phasorRenderer.draw([...left, ...end, ...right], COLORS.teal, gl.LINE_STRIP, 1, 3);
   phasorRenderer.draw(initial, COLORS.gold, gl.POINTS, 8 * Math.min(window.devicePixelRatio || 1, 2));
   phasorRenderer.draw(end, COLORS.teal, gl.POINTS, 11 * Math.min(window.devicePixelRatio || 1, 2));
 
@@ -230,8 +243,8 @@ function drawSignal() {
     real.push(x, clipY(state.amplitude * Math.cos(theta), -2.4, 2.4, bottom, top));
     imaginary.push(x, clipY(state.amplitude * Math.sin(theta), -2.4, 2.4, bottom, top));
   }
-  signalRenderer.draw(real, COLORS.teal);
-  signalRenderer.draw(imaginary, COLORS.coral);
+  signalRenderer.draw(real, COLORS.teal, gl.LINE_STRIP, 1, 3);
+  signalRenderer.draw(imaginary, COLORS.coral, gl.LINE_STRIP, 1, 3);
 
   const markerX = clipX(state.time, 0, 10, left, right);
   const theta = state.omega * state.time + state.phase;
@@ -261,7 +274,7 @@ function drawSignal() {
       ...line(startX, bracketY - 0.04, startX, bracketY + 0.04),
       ...line(startX, bracketY, endX, bracketY),
       ...line(endX, bracketY - 0.04, endX, bracketY + 0.04),
-    ], COLORS.gold, gl.LINES);
+    ], COLORS.gold, gl.LINES, 1, 2);
   }
 }
 

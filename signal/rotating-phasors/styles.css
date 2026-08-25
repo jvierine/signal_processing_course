@@ -162,7 +162,7 @@ canvas { width: 100%; height: 100%; display: block; }
 .plot-footer > span { display: inline-flex; gap: 7px; align-items: center; }
 .legend-dot { width: 8px; height: 8px; display: inline-block; border-radius: 50%; }
 .current-dot { background: var(--teal); }
-.legend-line { width: 19px; height: 2px; display: inline-block; }
+.legend-line { width: 19px; height: 3px; display: inline-block; }
 .start-line { background: repeating-linear-gradient(90deg, var(--gold) 0 4px, transparent 4px 7px); }
 .real-line { background: var(--teal); }
 .imaginary-line { background: var(--coral); }
