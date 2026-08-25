@@ -18,23 +18,31 @@
   </head>
   <body>
     <header class="site-header">
-      <a class="course-title" href="/signal/">Signal Processing Course</a>
+      <a class="course-title" href="/signal/">
+        <span>Signal Processing Course</span>
+        <small>Juha Vierinen</small>
+      </a>
       <nav class="top-actions" aria-label="Course links">
         <a class="top-link" href="/signal/">Index</a>
-        <a class="top-link" href="https://zenodo.org/records/20632886/files/signal_processing.pdf?download=1" target="_blank" rel="noopener">PDF</a>
+        <a class="top-link" href="/signal/signal_processing_course.pdf" target="_blank" rel="noopener">PDF</a>
         <a class="top-link" href="https://github.com/jvierine/signal_processing_course" target="_blank" rel="noopener">GitHub</a>
       </nav>
     </header>
 
     <main>
       <section class="intro" aria-labelledby="page-title">
-        <h1 id="page-title">Rotating phasors</h1>
-        <a class="book-reference" href="https://zenodo.org/records/20632886/files/signal_processing.pdf?download=1#page=55">Signal Processing, Section 6 · Figure 6.2 ↗</a>
+        <div class="title-row">
+          <h1 id="page-title">Rotating phasors</h1>
+          <a class="demo-qr" href="https://juha.no/signal/rotating-phasors/" aria-label="Open Rotating phasors on a phone">
+            <img src="./qr.svg" alt="QR code for this demonstration" />
+          </a>
+        </div>
+        <a class="book-reference" href="/signal/signal_processing_course.pdf#page=55" target="_blank">Course book · Section 6 · Figure 6.2 ↗</a>
       </section>
 
       <section class="equation-card" aria-label="Complex sinusoid equation">
         <div class="equation-main">
-          \[z(t)=A e^{i(\omega t+\phi)}=A\big[\cos(\omega t+\phi)+i\sin(\omega t+\phi)\big]\]
+          \[X=Ae^{i\phi},\qquad z(t)=Xe^{i\omega t}=A e^{i(\omega t+\phi)}\]
         </div>
         <div class="equation-live" id="live-equation" aria-live="polite"></div>
       </section>
@@ -56,7 +64,7 @@
           <div class="range-ends" aria-hidden="true"><span>0 s</span><span>10 s</span></div>
         </div>
 
-        <div class="slider-control">
+        <div class="slider-control frequency-control">
           <label for="frequency-slider">
             <span>Angular frequency</span>
             <span class="frequency-actions">
@@ -76,6 +84,21 @@
           <input id="phase-slider" type="range" min="-3.14159" max="3.14159" step="0.01" value="0.7854" />
           <div class="range-ends" aria-hidden="true"><span>−π</span><span>0</span><span>+π</span></div>
         </div>
+
+        <div class="slider-control">
+          <label for="amplitude-slider">
+            <span>Amplitude</span>
+            <output id="amplitude-output">1.00</output>
+          </label>
+          <input id="amplitude-slider" type="range" min="0" max="2" step="0.01" value="1" />
+          <div class="range-ends" aria-hidden="true"><span>0</span><span>2</span></div>
+        </div>
+
+        <label class="period-control" for="show-period">
+          <input id="show-period" type="checkbox" />
+          <span>Show fundamental period (T)</span>
+          <output id="period-output" hidden>T = 3.14 s</output>
+        </label>
       </section>
 
       <section class="visual-grid" aria-label="Linked phasor and signal plots">
@@ -89,7 +112,7 @@
             <canvas id="phasor-canvas" aria-label="Complex plane showing the rotating phasor"></canvas>
             <span class="axis-label axis-real">Re</span>
             <span class="axis-label axis-imaginary">Im</span>
-            <span class="phasor-label" id="phasor-label">z(t)</span>
+            <span class="phasor-label" id="phasor-label">\(Xe^{i\omega t}\)</span>
           </div>
           <div class="plot-footer">
             <span><i class="legend-dot current-dot"></i>Current phasor</span>
@@ -112,6 +135,7 @@
             <span class="axis-label signal-y">Amplitude</span>
             <span class="axis-label signal-x">Time, t (s)</span>
             <span class="time-marker-label" id="time-marker-label">t = 0.00 s</span>
+            <span class="period-label" id="period-label" hidden>T = 3.14 s</span>
           </div>
           <div class="plot-footer signal-legend">
             <span><i class="legend-line real-line"></i>\(\mathrm{Re}\{z(t)\}=A\cos(\omega t+\phi)\)</span>
@@ -121,6 +145,8 @@
       </section>
 
     </main>
+
+    <footer class="site-footer">© Juha Vierinen, 2016–2026</footer>
 
   </body>
 </html>
