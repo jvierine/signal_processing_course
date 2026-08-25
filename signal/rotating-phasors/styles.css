@@ -132,7 +132,18 @@ output { font-variant-numeric: tabular-nums; }
 .frequency-actions button:hover { background: #d1d5db; }
 input[type="range"] { width: 100%; margin: 0; accent-color: var(--teal); cursor: pointer; }
 .range-ends { margin-top: 5px; display: flex; justify-content: space-between; color: var(--muted); font-size: 0.68rem; }
-.period-control { grid-column: 2 / -1; display: flex; gap: 9px; align-items: center; color: var(--ink); font-size: 0.8rem; font-weight: 700; cursor: pointer; }
+.option-row { grid-column: 1 / -1; display: flex; gap: 22px; align-items: center; justify-content: space-between; }
+.view-control { min-width: 0; margin: 0; padding: 0; display: flex; align-items: center; border: 0; }
+.view-control legend { float: left; margin-right: 10px; color: var(--muted); font-size: 0.7rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+.view-control label { cursor: pointer; }
+.view-control input { position: absolute; opacity: 0; pointer-events: none; }
+.view-control span { min-width: 68px; padding: 6px 12px; display: block; color: var(--muted); background: #f2f4f3; border: 1px solid var(--line); font-size: 0.75rem; font-weight: 750; text-align: center; }
+.view-control label:first-of-type span { border-radius: 6px 0 0 6px; }
+.view-control label:last-child span { border-radius: 0 6px 6px 0; }
+.view-control label + label span { border-left: 0; }
+.view-control input:checked + span { color: white; background: var(--teal); border-color: var(--teal); }
+.view-control input:focus-visible + span { position: relative; z-index: 1; outline: 3px solid var(--focus); outline-offset: 2px; }
+.period-control { display: flex; gap: 9px; align-items: center; color: var(--ink); font-size: 0.8rem; font-weight: 700; cursor: pointer; }
 .period-control input { width: 17px; height: 17px; accent-color: var(--teal); }
 .period-control output { margin-left: auto; color: var(--teal-dark); }
 
@@ -151,6 +162,8 @@ canvas { width: 100%; height: 100%; display: block; }
 .signal-y { left: 1px; top: 3%; transform: rotate(-90deg) translateX(-100%); transform-origin: 0 0; }
 .signal-x { right: 2%; bottom: 0; }
 .phasor-label { position: absolute; padding: 3px 6px; color: var(--teal-dark); background: rgba(255, 253, 248, 0.88); border-radius: 4px; font: italic 0.82rem Georgia, serif; pointer-events: none; transform: translate(8px, -22px); }
+.conjugate-label { color: var(--coral); }
+.result-label { color: #8a5e00; font-weight: 700; }
 .phasor-time-label { position: absolute; left: 7px; top: 7px; padding: 3px 6px; color: var(--ink); background: rgba(255, 255, 255, 0.9); border-radius: 4px; font-size: 0.68rem; font-weight: 700; font-variant-numeric: tabular-nums; pointer-events: none; }
 .time-marker-label { position: absolute; top: 8px; padding: 4px 7px; color: var(--ink); background: rgba(255, 253, 248, 0.92); border: 1px solid var(--line); border-radius: 5px; font-size: 0.68rem; font-weight: 700; white-space: nowrap; pointer-events: none; transform: translateX(-50%); }
 .period-label { position: absolute; top: 34px; padding: 3px 6px; color: var(--ink); background: rgba(255, 255, 255, 0.92); border-radius: 4px; font-size: 0.68rem; font-weight: 700; white-space: nowrap; pointer-events: none; transform: translateX(-50%); }
@@ -160,6 +173,8 @@ canvas { width: 100%; height: 100%; display: block; }
 .sample-values strong { margin-left: 3px; color: var(--ink); font-variant-numeric: tabular-nums; }
 .plot-footer { min-height: 26px; margin-top: 9px; display: flex; flex-wrap: wrap; gap: 14px 20px; align-items: center; color: var(--muted); font-size: 0.73rem; }
 .plot-footer > span { display: inline-flex; gap: 7px; align-items: center; }
+.phasor-legend { gap: 8px 12px; }
+.plot-footer .cancellation-note { margin-left: auto; color: var(--ink); font-size: 0.68rem; font-weight: 650; font-variant-numeric: tabular-nums; }
 .legend-dot { width: 8px; height: 8px; display: inline-block; border-radius: 50%; }
 .current-dot { background: var(--teal); }
 .legend-line { width: 19px; height: 3px; display: inline-block; }
@@ -172,7 +187,7 @@ canvas { width: 100%; height: 100%; display: block; }
   .control-panel { grid-template-columns: auto 1fr 1fr; }
   .time-control { grid-column: 2 / 4; grid-row: 1; }
   .transport { grid-row: 1; }
-  .period-control { grid-column: 1 / -1; }
+  .option-row { grid-column: 1 / -1; }
   .visual-grid { grid-template-columns: minmax(220px, 0.8fr) minmax(330px, 1.2fr); }
 }
 
@@ -194,7 +209,10 @@ canvas { width: 100%; height: 100%; display: block; }
   .slider-control label, .slider-control .control-label { margin-bottom: 3px; font-size: 0.7rem; }
   .slider-control .control-label label { margin: 0; }
   .range-ends { display: none; }
-  .period-control { grid-column: 2 / -1; font-size: 0.68rem; }
+  .option-row { gap: 8px; }
+  .view-control legend { display: none; }
+  .view-control span { min-width: 42px; padding: 5px 7px; font-size: 0.68rem; }
+  .period-control { font-size: 0.68rem; }
   .period-control output { display: none; }
   .frequency-actions { gap: 6px; }
   .frequency-actions button { padding: 3px 5px; }

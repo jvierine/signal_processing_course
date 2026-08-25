@@ -108,6 +108,7 @@ const state = {
   phase: Math.PI / 4,
   amplitude: 1,
   showPeriod: false,
+  view: 'complex',
   playing: false,
   lastFrame: 0,
 };
@@ -117,6 +118,7 @@ const frequencySlider = document.querySelector('#frequency-slider');
 const phaseSlider = document.querySelector('#phase-slider');
 const amplitudeSlider = document.querySelector('#amplitude-slider');
 const showPeriodCheckbox = document.querySelector('#show-period');
+const viewControls = document.querySelectorAll('input[name="phasor-view"]');
 const playButton = document.querySelector('#play-button');
 const flipFrequencyButton = document.querySelector('#flip-frequency');
 const phasorCanvas = document.querySelector('#phasor-canvas');
@@ -133,7 +135,14 @@ const els = {
   realOutput: document.querySelector('#real-output'),
   imagOutput: document.querySelector('#imag-output'),
   equation: document.querySelector('#live-equation'),
+  mainEquation: document.querySelector('#main-equation'),
   phasorLabel: document.querySelector('#phasor-label'),
+  conjugateLabel: document.querySelector('#conjugate-label'),
+  resultLabel: document.querySelector('#result-label'),
+  phasorHeading: document.querySelector('#phasor-heading'),
+  primaryLegend: document.querySelector('#primary-legend'),
+  secondaryLegend: document.querySelector('#secondary-legend'),
+  cancellationNote: document.querySelector('#cancellation-note'),
   phasorTimeLabel: document.querySelector('#phasor-time-label'),
   timeMarkerLabel: document.querySelector('#time-marker-label'),
   periodLabel: document.querySelector('#period-label'),
@@ -154,6 +163,12 @@ function clipY(value, min, max, bottom = -1, top = 1) {
 }
 
 function line(x1, y1, x2, y2) { return [x1, y1, x2, y2]; }
+
+function positionLabel(element, point, offset = 'translate(8px, -22px)') {
+  element.style.left = `${(point[0] + 1) * 50}%`;
+  element.style.top = `${(1 - point[1]) * 50}%`;
+  element.style.transform = offset;
+}
 
 function drawPhasor() {
   const { width, height } = phasorRenderer.resize();
@@ -186,24 +201,56 @@ function drawPhasor() {
   }
   phasorRenderer.draw(circle, COLORS.softTeal, gl.LINE_STRIP, 1, 2);
 
-  const initial = map(radius * Math.cos(state.phase), radius * Math.sin(state.phase));
-  phasorRenderer.draw([0, 0, ...initial], COLORS.gold, gl.LINES, 1, 2);
-
   const theta = state.omega * state.time + state.phase;
-  const x = radius * Math.cos(theta);
-  const y = radius * Math.sin(theta);
-  const end = map(x, y);
-  phasorRenderer.draw([0, 0, ...end], COLORS.teal, gl.LINES, 1, 3);
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-  const arrowSize = Math.min(0.09, Math.max(0.035, radius * 0.12));
-  const left = map(x - arrowSize * Math.cos(theta - 0.55), y - arrowSize * Math.sin(theta - 0.55));
-  const right = map(x - arrowSize * Math.cos(theta + 0.55), y - arrowSize * Math.sin(theta + 0.55));
-  phasorRenderer.draw([...left, ...end, ...right], COLORS.teal, gl.LINE_STRIP, 1, 3);
-  phasorRenderer.draw(initial, COLORS.gold, gl.POINTS, 8 * Math.min(window.devicePixelRatio || 1, 2));
-  phasorRenderer.draw(end, COLORS.teal, gl.POINTS, 11 * Math.min(window.devicePixelRatio || 1, 2));
+  const drawArrow = (x, y, angle, color, thickness = 3) => {
+    const end = map(x, y);
+    const arrowSize = Math.min(0.09, Math.max(0.035, Math.hypot(x, y) * 0.12));
+    const left = map(x - arrowSize * Math.cos(angle - 0.55), y - arrowSize * Math.sin(angle - 0.55));
+    const right = map(x - arrowSize * Math.cos(angle + 0.55), y - arrowSize * Math.sin(angle + 0.55));
+    phasorRenderer.draw([0, 0, ...end], color, gl.LINES, 1, thickness);
+    phasorRenderer.draw([...left, ...end, ...right], color, gl.LINE_STRIP, 1, thickness);
+    phasorRenderer.draw(end, color, gl.POINTS, 10 * dpr);
+    return end;
+  };
 
-  els.phasorLabel.style.left = `${(end[0] + 1) * 50}%`;
-  els.phasorLabel.style.top = `${(1 - end[1]) * 50}%`;
+  if (state.view === 'complex') {
+    const initial = map(radius * Math.cos(state.phase), radius * Math.sin(state.phase));
+    phasorRenderer.draw([0, 0, ...initial], COLORS.gold, gl.LINES, 1, 2);
+    const end = drawArrow(radius * Math.cos(theta), radius * Math.sin(theta), theta, COLORS.teal);
+    phasorRenderer.draw(initial, COLORS.gold, gl.POINTS, 8 * dpr);
+    positionLabel(els.phasorLabel, end);
+    return;
+  }
+
+  const halfRadius = radius / 2;
+  const first = {
+    x: halfRadius * Math.cos(theta),
+    y: halfRadius * Math.sin(theta),
+    angle: theta,
+  };
+  const secondAngle = state.view === 'real' ? -theta : Math.PI - theta;
+  const second = {
+    x: halfRadius * Math.cos(secondAngle),
+    y: halfRadius * Math.sin(secondAngle),
+    angle: secondAngle,
+  };
+  const firstEnd = drawArrow(first.x, first.y, first.angle, COLORS.teal);
+  const secondEnd = drawArrow(second.x, second.y, second.angle, COLORS.coral);
+  const sum = { x: first.x + second.x, y: first.y + second.y };
+  const sumAngle = Math.atan2(sum.y, sum.x);
+  const sumEnd = drawArrow(sum.x, sum.y, sumAngle, COLORS.gold, 4);
+
+  // Complete the vector parallelogram so the cancellation is visible geometrically.
+  phasorRenderer.draw([
+    ...firstEnd, ...sumEnd,
+    ...secondEnd, ...sumEnd,
+  ], COLORS.muted, gl.LINES, 1, 1);
+
+  positionLabel(els.phasorLabel, firstEnd);
+  positionLabel(els.conjugateLabel, secondEnd, 'translate(8px, 5px)');
+  positionLabel(els.resultLabel, sumEnd, 'translate(8px, -22px)');
 }
 
 function drawSignal() {
@@ -281,11 +328,53 @@ function drawSignal() {
 let equationTimer;
 function updateEquation() {
   const theta = state.omega * state.time + state.phase;
-  els.equation.innerHTML = `\\(A=${state.amplitude.toFixed(2)},\\quad \\theta=${signed(state.omega)}(${state.time.toFixed(2)})${signed(state.phase)}=${signed(theta)}\\text{ rad}\\)`;
+  const real = state.amplitude * Math.cos(theta);
+  const imaginary = state.amplitude * Math.sin(theta);
+  if (state.view === 'real') {
+    els.mainEquation.innerHTML = '\\[\\operatorname{Re}\\{z(t)\\}=\\tfrac12\\left[Xe^{i\\omega t}+X^*e^{-i\\omega t}\\right]=A\\cos(\\omega t+\\phi)\\]';
+    els.equation.innerHTML = `\\(\\tfrac12(z+z^*)=(${signed(real)},+0.00i)\\)`;
+  } else if (state.view === 'imaginary') {
+    els.mainEquation.innerHTML = '\\[\\operatorname{Im}\\{z(t)\\}=\\tfrac1{2i}\\left[Xe^{i\\omega t}-X^*e^{-i\\omega t}\\right]=A\\sin(\\omega t+\\phi)\\]';
+    els.equation.innerHTML = `\\(\\tfrac12(z-z^*)=(+0.00,${signed(imaginary)}i)=i\\operatorname{Im}\\{z\\}\\)`;
+  } else {
+    els.mainEquation.innerHTML = '\\[X=Ae^{i\\phi},\\qquad z(t)=Xe^{i\\omega t}=A e^{i(\\omega t+\\phi)}\\]';
+    els.equation.innerHTML = `\\(A=${state.amplitude.toFixed(2)},\\quad \\theta=${signed(state.omega)}(${state.time.toFixed(2)})${signed(state.phase)}=${signed(theta)}\\text{ rad}\\)`;
+  }
   clearTimeout(equationTimer);
   equationTimer = setTimeout(() => {
-    if (window.MathJax?.typesetPromise) window.MathJax.typesetPromise([els.equation]).catch(() => {});
+    if (window.MathJax?.typesetPromise) window.MathJax.typesetPromise([els.mainEquation, els.equation]).catch(() => {});
   }, 50);
+}
+
+function updateViewLabels(real, imaginary) {
+  const isComplex = state.view === 'complex';
+  els.conjugateLabel.hidden = isComplex;
+  els.resultLabel.hidden = isComplex;
+  els.cancellationNote.hidden = isComplex;
+
+  if (isComplex) {
+    els.phasorHeading.textContent = 'Phasor position';
+    els.phasorLabel.textContent = 'Xeⁱᵠᵗ';
+    els.primaryLegend.innerHTML = '<i class="legend-dot current-dot"></i>Current phasor';
+    els.secondaryLegend.innerHTML = '<i class="legend-line start-line"></i>Initial phase φ';
+    return;
+  }
+
+  els.phasorLabel.textContent = '½ Xeⁱᵠᵗ';
+  els.primaryLegend.innerHTML = '<i class="legend-line real-line"></i>½ Xeⁱᵠᵗ';
+  if (state.view === 'real') {
+    els.phasorHeading.textContent = 'Real part from conjugates';
+    els.conjugateLabel.textContent = '½ X*e⁻ⁱᵠᵗ';
+    els.resultLabel.textContent = 'Re{z}';
+    els.secondaryLegend.innerHTML = '<i class="legend-line imaginary-line"></i>½ X*e⁻ⁱᵠᵗ';
+    els.cancellationNote.textContent = `Im cancels: ${signed(imaginary / 2, 3)} ${signed(-imaginary / 2, 3)} = 0`;
+  } else {
+    els.phasorHeading.textContent = 'Imaginary part from conjugates';
+    els.conjugateLabel.textContent = '−½ X*e⁻ⁱᵠᵗ';
+    els.resultLabel.textContent = 'i Im{z}';
+    els.secondaryLegend.innerHTML = '<i class="legend-line imaginary-line"></i>−½ X*e⁻ⁱᵠᵗ';
+    els.cancellationNote.textContent = `Re cancels: ${signed(real / 2, 3)} ${signed(-real / 2, 3)} = 0`;
+  }
 }
 
 function updateUI(includeEquation = true) {
@@ -303,6 +392,7 @@ function updateUI(includeEquation = true) {
   els.imagOutput.textContent = signed(imaginary, 3);
   els.timeMarkerLabel.textContent = `t = ${state.time.toFixed(2)} s`;
   els.phasorTimeLabel.textContent = `t = ${state.time.toFixed(1)} s`;
+  updateViewLabels(real, imaginary);
 
   drawPhasor();
   drawSignal();
@@ -358,6 +448,10 @@ showPeriodCheckbox.addEventListener('change', (event) => {
   state.showPeriod = event.target.checked;
   updateUI(false);
 });
+viewControls.forEach((control) => control.addEventListener('change', (event) => {
+  state.view = event.target.value;
+  updateUI();
+}));
 window.addEventListener('resize', () => updateUI(false));
 window.addEventListener('load', updateEquation);
 document.addEventListener('visibilitychange', () => {

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Explore rotating phasors, complex sinusoids, phase, and positive and negative angular frequency." />
     <title>Rotating phasors · Signal processing lab</title>
-    <link rel="stylesheet" href="./styles.css?v=20260825-4" />
+    <link rel="stylesheet" href="./styles.css?v=20260825-5" />
     <script>
       window.MathJax = {
         tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] },
@@ -14,7 +14,7 @@
       };
     </script>
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-    <script type="module" src="./app.js?v=20260825-5"></script>
+    <script type="module" src="./app.js?v=20260825-6"></script>
   </head>
   <body>
     <header class="site-header">
@@ -41,7 +41,7 @@
       </section>
 
       <section class="equation-card" aria-label="Complex sinusoid equation">
-        <div class="equation-main">
+        <div class="equation-main" id="main-equation">
           \[X=Ae^{i\phi},\qquad z(t)=Xe^{i\omega t}=A e^{i(\omega t+\phi)}\]
         </div>
         <div class="equation-live" id="live-equation" aria-live="polite"></div>
@@ -94,18 +94,27 @@
           <div class="range-ends" aria-hidden="true"><span>0</span><span>2</span></div>
         </div>
 
-        <label class="period-control" for="show-period">
-          <input id="show-period" type="checkbox" />
-          <span>Show fundamental period (T)</span>
-          <output id="period-output" hidden>T = 3.14 s</output>
-        </label>
+        <div class="option-row">
+          <fieldset class="view-control">
+            <legend>Phasor view</legend>
+            <label><input type="radio" name="phasor-view" value="complex" checked /><span>Complex</span></label>
+            <label><input type="radio" name="phasor-view" value="real" /><span>Re</span></label>
+            <label><input type="radio" name="phasor-view" value="imaginary" /><span>Im</span></label>
+          </fieldset>
+
+          <label class="period-control" for="show-period">
+            <input id="show-period" type="checkbox" />
+            <span>Show fundamental period (T)</span>
+            <output id="period-output" hidden>T = 3.14 s</output>
+          </label>
+        </div>
       </section>
 
       <section class="visual-grid" aria-label="Linked phasor and signal plots">
         <article class="plot-card phasor-card">
           <div class="plot-heading">
             <div>
-              <h2>Phasor position</h2>
+              <h2 id="phasor-heading">Phasor position</h2>
             </div>
           </div>
           <div class="canvas-wrap phasor-wrap">
@@ -114,10 +123,13 @@
             <span class="axis-label axis-real">Re</span>
             <span class="axis-label axis-imaginary">Im</span>
             <span class="phasor-label" id="phasor-label">\(Xe^{i\omega t}\)</span>
+            <span class="phasor-label conjugate-label" id="conjugate-label" hidden></span>
+            <span class="phasor-label result-label" id="result-label" hidden></span>
           </div>
-          <div class="plot-footer">
-            <span><i class="legend-dot current-dot"></i>Current phasor</span>
-            <span><i class="legend-line start-line"></i>Initial phase \(\phi\)</span>
+          <div class="plot-footer phasor-legend">
+            <span id="primary-legend"><i class="legend-dot current-dot"></i>Current phasor</span>
+            <span id="secondary-legend"><i class="legend-line start-line"></i>Initial phase \(\phi\)</span>
+            <span class="cancellation-note" id="cancellation-note" hidden></span>
           </div>
         </article>
 
