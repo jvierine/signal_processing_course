@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Explore rotating phasors, complex sinusoids, phase, and positive and negative angular frequency." />
+    <title>Rotating phasors · Signal processing lab</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] },
+        chtml: { scale: 1 },
+        options: { enableMenu: false }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="course-title" href="/signal/">Signal Processing Course</a>
+      <nav class="top-actions" aria-label="Course links">
+        <a class="top-link" href="/signal/">Index</a>
+        <a class="top-link" href="https://zenodo.org/records/20632886/files/signal_processing.pdf?download=1" target="_blank" rel="noopener">PDF</a>
+        <a class="top-link" href="https://github.com/jvierine/signal_processing_course" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <h1 id="page-title">Rotating phasors</h1>
+        <a class="book-reference" href="https://zenodo.org/records/20632886/files/signal_processing.pdf?download=1#page=55">Signal Processing, Section 6 · Figure 6.2 ↗</a>
+      </section>
+
+      <section class="equation-card" aria-label="Complex sinusoid equation">
+        <div class="equation-main">
+          \[z(t)=A e^{i(\omega t+\phi)}=A\big[\cos(\omega t+\phi)+i\sin(\omega t+\phi)\big]\]
+        </div>
+        <div class="equation-live" id="live-equation" aria-live="polite"></div>
+      </section>
+
+      <section class="control-panel" aria-label="Visualization controls">
+        <div class="transport">
+          <button class="play-button" id="play-button" type="button" aria-label="Play animation" aria-pressed="false">
+            <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+            <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zm6 0h4v14h-4z" /></svg>
+          </button>
+          <div class="time-readout">
+            <span class="control-name">Time</span>
+            <output id="time-output" for="time-slider">0.00 s</output>
+          </div>
+        </div>
+
+        <div class="slider-control time-control">
+          <input id="time-slider" type="range" min="0" max="10" step="0.001" value="0" aria-label="Time in seconds" />
+          <div class="range-ends" aria-hidden="true"><span>0 s</span><span>10 s</span></div>
+        </div>
+
+        <div class="slider-control">
+          <label for="frequency-slider">
+            <span>Angular frequency</span>
+            <span class="frequency-actions">
+              <output id="frequency-output">+2.00 rad/s</output>
+              <button id="flip-frequency" type="button">Flip sign</button>
+            </span>
+          </label>
+          <input id="frequency-slider" type="range" min="-20" max="20" step="0.1" value="2" />
+          <div class="range-ends" aria-hidden="true"><span>−20</span><span>0</span><span>+20 rad/s</span></div>
+        </div>
+
+        <div class="slider-control">
+          <label for="phase-slider">
+            <span>Initial phase</span>
+            <output id="phase-output">+0.25π rad</output>
+          </label>
+          <input id="phase-slider" type="range" min="-3.14159" max="3.14159" step="0.01" value="0.7854" />
+          <div class="range-ends" aria-hidden="true"><span>−π</span><span>0</span><span>+π</span></div>
+        </div>
+      </section>
+
+      <section class="visual-grid" aria-label="Linked phasor and signal plots">
+        <article class="plot-card phasor-card">
+          <div class="plot-heading">
+            <div>
+              <h2>Phasor position</h2>
+            </div>
+          </div>
+          <div class="canvas-wrap phasor-wrap">
+            <canvas id="phasor-canvas" aria-label="Complex plane showing the rotating phasor"></canvas>
+            <span class="axis-label axis-real">Re</span>
+            <span class="axis-label axis-imaginary">Im</span>
+            <span class="phasor-label" id="phasor-label">z(t)</span>
+          </div>
+          <div class="plot-footer">
+            <span><i class="legend-dot current-dot"></i>Current phasor</span>
+            <span><i class="legend-line start-line"></i>Initial phase \(\phi\)</span>
+          </div>
+        </article>
+
+        <article class="plot-card signal-card">
+          <div class="plot-heading">
+            <div>
+              <h2>Signal components</h2>
+            </div>
+            <div class="sample-values" aria-live="polite">
+              <span>Re <strong id="real-output">+0.707</strong></span>
+              <span>Im <strong id="imag-output">+0.707</strong></span>
+            </div>
+          </div>
+          <div class="canvas-wrap signal-wrap">
+            <canvas id="signal-canvas" aria-label="Real and imaginary signal components over time"></canvas>
+            <span class="axis-label signal-y">Amplitude</span>
+            <span class="axis-label signal-x">Time, t (s)</span>
+            <span class="time-marker-label" id="time-marker-label">t = 0.00 s</span>
+          </div>
+          <div class="plot-footer signal-legend">
+            <span><i class="legend-line real-line"></i>\(\mathrm{Re}\{z(t)\}=A\cos(\omega t+\phi)\)</span>
+            <span><i class="legend-line imaginary-line"></i>\(\mathrm{Im}\{z(t)\}=A\sin(\omega t+\phi)\)</span>
+          </div>
+        </article>
+      </section>
+
+    </main>
+
+  </body>
+</html>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Interactive visualization of a two-dimensional complex sinusoid." />
+    <title>Two-dimensional sinusoid · Signal processing lab</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['\\(', '\\)']] },
+        chtml: { scale: 1 },
+        options: { enableMenu: false }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="course-title" href="/signal/">Signal Processing Course</a>
+      <nav class="top-actions" aria-label="Course links">
+        <a class="top-link" href="/signal/">Index</a>
+        <a class="top-link" href="https://zenodo.org/records/20632886/files/signal_processing.pdf?download=1" target="_blank" rel="noopener">PDF</a>
+        <a class="top-link" href="https://github.com/jvierine/signal_processing_course" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <h1 id="page-title">Two-dimensional sinusoid</h1>
+        <a class="book-reference" href="https://zenodo.org/records/20632886/files/signal_processing.pdf?download=1#page=59">Signal Processing, Section 6 ↗</a>
+      </section>
+
+      <section class="equation" aria-label="Two-dimensional sinusoid equation">
+        \[\operatorname{Re}\!\left\{A e^{i\phi}e^{ikx}e^{i\ell y}\right\}
+        =A\cos(kx+\ell y+\phi)\]
+      </section>
+
+      <section class="controls" aria-label="Sinusoid controls">
+        <div class="control">
+          <label for="amplitude"><span>Amplitude, \(A\)</span><output id="amplitude-output">1.00</output></label>
+          <input id="amplitude" type="range" min="0" max="2" step="0.01" value="1" />
+          <div class="range"><span>0</span><span>2</span></div>
+        </div>
+        <div class="control">
+          <label for="phase"><span>Phase, \(\phi\)</span><output id="phase-output">0.00π</output></label>
+          <input id="phase" type="range" min="-3.14" max="3.14" step="0.01" value="0" />
+          <div class="range"><span>−π</span><span>+π</span></div>
+        </div>
+        <div class="control">
+          <label for="kx"><span>Frequency, \(k\)</span><output id="kx-output">+2.00 rad/u</output></label>
+          <input id="kx" type="range" min="-20" max="20" step="0.1" value="2" />
+          <div class="range"><span>−20</span><span>+20 rad/u</span></div>
+        </div>
+        <div class="control">
+          <label for="ly"><span>Frequency, \(\ell\)</span><output id="ly-output">+1.00 rad/u</output></label>
+          <input id="ly" type="range" min="-20" max="20" step="0.1" value="1" />
+          <div class="range"><span>−20</span><span>+20 rad/u</span></div>
+        </div>
+      </section>
+
+      <section class="plot-card" aria-label="Two-dimensional sinusoidal field">
+        <div class="plot-heading">
+          <h2>\(\operatorname{Re}\{z(x,y)\}\)</h2>
+          <output id="formula-output">cos(2.00x + 1.00y)</output>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="field" aria-label="Color plot of the real part of the two-dimensional complex sinusoid"></canvas>
+          <svg class="axes" viewBox="0 0 100 100" aria-hidden="true">
+            <defs>
+              <marker id="axis-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" />
+              </marker>
+            </defs>
+            <line x1="7" y1="93" x2="96" y2="93" marker-end="url(#axis-arrow)" />
+            <line x1="7" y1="93" x2="7" y2="4" marker-end="url(#axis-arrow)" />
+            <text x="94" y="89">x</text>
+            <text x="11" y="8">y</text>
+          </svg>
+        </div>
+        <div class="scale" aria-label="Amplitude color scale">
+          <output id="scale-min">−1.00</output>
+          <span></span>
+          <output>0</output>
+          <span></span>
+          <output id="scale-max">+1.00</output>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
