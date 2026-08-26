@@ -143,11 +143,11 @@ export function mountPythonHighlighting(textarea) {
 export function pythonErrorFeedback(message) {
   const text = String(message || "Python execution failed");
   const line = Number(text.match(/File "<exec>", line (\d+)/)?.[1] ?? text.match(/line (\d+)/i)?.[1]) || null;
-  const syntax = text.match(/(?:^|\n)(IndentationError|SyntaxError):\s*([^\n]*)/) ?? text.match(/(IndentationError|SyntaxError):\s*([^\n]*)/);
-  if (!syntax) return { line, message: text };
+  const exception = [...text.matchAll(/(?:^|\n)([A-Za-z_][\w.]*(?:Error|Exception)):\s*([^\n]*)/g)].at(-1);
+  if (!exception) return { line, message: line ? `Python error on line ${line}` : "Python execution failed" };
   return {
     line,
-    message: `${syntax[1]}${line ? ` on line ${line}` : ""}: ${syntax[2] || "check the highlighted code"}`,
+    message: `${exception[1]}${line ? ` on line ${line}` : ""}: ${exception[2] || "check the highlighted code"}`,
   };
 }
 

@@ -32,6 +32,9 @@ button:disabled { cursor:default; opacity:.45; }
 .card-heading h2,.plot-heading h2 { margin:0; font:500 1.05rem Georgia,"Times New Roman",serif; }
 .card-heading span,.plot-heading span { color:var(--muted); font-size:.64rem; }
 textarea { width:100%; flex:1; min-height:0; padding:10px; resize:none; color:#dfe7e4; background:#17211f; border:0; border-radius:5px; font:500 .71rem/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; tab-size:4; }
+.editor-error { margin:0 0 6px; padding:6px 8px; color:#7a2800; background:#fff1e8; border-left:4px solid var(--orange); border-radius:4px; font:.7rem/1.3 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+.editor-error[hidden] { display:none; }
+.code-card.has-error textarea { outline:3px solid var(--orange); outline-offset:-3px; }
 .plot-grid { min-width:0; min-height:0; display:grid; grid-template-rows:1fr 1fr; gap:7px; }
 .plot-card { padding:8px; display:flex; flex-direction:column; }
 canvas { width:100%; flex:1; min-height:0; display:block; background:#fff; }
@@ -61,6 +64,7 @@ button:focus-visible,textarea:focus-visible,a:focus-visible { outline:3px solid 
   .card-heading h2,.plot-heading h2 { font-size:.78rem; }
   .card-heading span { display:none; }
   textarea { padding:6px; font-size:.64rem; line-height:1.35; }
+  .editor-error { margin-bottom:4px; padding:4px 6px; font-size:.61rem; }
   .plot-grid { gap:5px; }
   .plot-card { padding:4px; }
   .plot-heading span { font-size:.52rem; }

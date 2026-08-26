@@ -12,4 +12,9 @@ assert.deepEqual(pythonErrorFeedback('File "<exec>", line 7\n    return +\n     
   line: 7,
   message: "SyntaxError on line 7: invalid syntax",
 });
+
+assert.deepEqual(pythonErrorFeedback('Traceback (most recent call last):\n  File "<exec>", line 12, in <module>\nNameError: name \'omega\' is not defined'), {
+  line: 12,
+  message: "NameError on line 12: name 'omega' is not defined",
+});
 console.log("Python syntax highlighting tests passed");

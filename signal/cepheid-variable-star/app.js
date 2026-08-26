@@ -1,4 +1,4 @@
-import { mountPythonHighlighting, showPythonError } from "../python-highlight.js?v=20260826-1";
+import { pythonErrorFeedback, showPythonError } from "../python-highlight.js?v=20260826-2";
 
 const STARTER_CODE = `import numpy as np
 
@@ -40,9 +40,8 @@ model_time_bytes = np.asarray(model_t, dtype=np.float32).tobytes()
 model_value_bytes = np.asarray(model.real, dtype=np.float32).tobytes()`;
 
 const els = {
-  code:document.querySelector("#python-code"), run:document.querySelector("#run-button"), reset:document.querySelector("#reset-button"), stop:document.querySelector("#stop-button"), status:document.querySelector("#runtime-status"), raw:document.querySelector("#raw-canvas"), model:document.querySelector("#model-canvas"), period:document.querySelector("#period-value"), coefficients:document.querySelector("#coefficient-value"), rmse:document.querySelector("#rmse-value"), runTime:document.querySelector("#run-time")
+  card:document.querySelector(".code-card"), code:document.querySelector("#python-code"), error:document.querySelector("#editor-error"), run:document.querySelector("#run-button"), reset:document.querySelector("#reset-button"), stop:document.querySelector("#stop-button"), status:document.querySelector("#runtime-status"), raw:document.querySelector("#raw-canvas"), model:document.querySelector("#model-canvas"), period:document.querySelector("#period-value"), coefficients:document.querySelector("#coefficient-value"), rmse:document.querySelector("#rmse-value"), runTime:document.querySelector("#run-time")
 };
-const syncPythonHighlighting = mountPythonHighlighting(els.code);
 const COLORS = { ink:"#182724", muted:"#66736f", grid:"#e8e9e4", blue:"#0072b2", orange:"#d55e00" };
 let worker;
 let ready = false;
@@ -52,6 +51,9 @@ let latestResult;
 function floatArray(bytes) { return new Float32Array(bytes.buffer, bytes.byteOffset, bytes.byteLength / 4); }
 function setStatus(text, kind="") { els.status.value=text; els.status.className=kind; }
 function setRunning(value) { running=value; els.run.disabled=value || !ready; els.stop.disabled=!value; els.run.textContent=value ? "Running…" : "Run code"; }
+function clearPythonError(){els.card.classList.remove("has-error");els.error.hidden=true;els.error.textContent="";}
+function displayPythonError(message){const feedback=pythonErrorFeedback(message);els.card.classList.add("has-error");els.error.hidden=false;els.error.textContent=feedback.message;showPythonError(els.code,message);setStatus(feedback.line?`Fix highlighted line ${feedback.line}.`:"Fix the Python error shown in starter.py.","is-error");}
+function codeEdited(){clearPythonError();if(ready&&!running)setStatus("Edited code ready to run.");}
 
 function drawPlot(canvas, x, y, options={}) {
   const dpr=Math.min(devicePixelRatio || 1,2); const width=Math.max(1,Math.round(canvas.clientWidth*dpr)); const height=Math.max(1,Math.round(canvas.clientHeight*dpr));
@@ -72,6 +74,6 @@ function drawPlot(canvas, x, y, options={}) {
 
 function render(result){latestResult=result;const raw=floatArray(result.rawTime),phase=floatArray(result.phaseTime),mag=floatArray(result.magnitude),modelT=floatArray(result.modelTime),modelV=floatArray(result.modelValue);drawPlot(els.raw,raw,mag,{xDigits:0,xLabel:"Observation time (days)"});drawPlot(els.model,phase,mag,{xMin:0,xMax:result.period,xDigits:1,xLabel:"Phase time (days)",lineX:modelT,lineY:modelV,yMin:-.35,yMax:.6});els.period.textContent=`${result.period.toFixed(3)} days`;els.coefficients.textContent=String(result.coefficientCount);els.rmse.textContent=result.rmse.toFixed(3);els.runTime.textContent=`Python ${result.milliseconds.toFixed(0)} ms`;setStatus(result.rmse<.05?"Task complete · the Fourier model matches the data":"Complete the TODO line and run again",result.rmse<.05?"is-success":"");}
 
-function startWorker(){ready=false;setRunning(false);setStatus("Starting local Python WebAssembly…");worker=new Worker("./worker.js?v=20260826-1",{type:"module"});worker.addEventListener("message",event=>{if(event.data.type==="ready"){ready=true;setRunning(false);setStatus(`Python ready · ${(event.data.milliseconds/1000).toFixed(1)} s initial load`);runCode();return;}if(event.data.type==="result"){render(event.data);setRunning(false);return;}if(event.data.type==="error"){setStatus(showPythonError(els.code,event.data.message),"is-error");setRunning(false);}});worker.addEventListener("error",event=>{setStatus(event.message || "Python worker failed to start","is-error");setRunning(false);});}
-function runCode(){if(!ready || running)return;setRunning(true);setStatus("Running Fourier-series fit…");worker.postMessage({type:"run",code:els.code.value});}
-els.code.value=STARTER_CODE;syncPythonHighlighting();els.run.addEventListener("click",runCode);els.reset.addEventListener("click",()=>{els.code.value=STARTER_CODE;syncPythonHighlighting();runCode();});els.stop.addEventListener("click",()=>{worker.terminate();setStatus("Python stopped · restarting…");startWorker();});window.addEventListener("resize",()=>{if(latestResult)render(latestResult);});startWorker();
+function startWorker(){ready=false;setRunning(false);setStatus("Starting local Python WebAssembly…");worker=new Worker("./worker.js?v=20260826-2",{type:"module"});worker.addEventListener("message",event=>{if(event.data.type==="ready"){ready=true;setRunning(false);setStatus(`Python ready · ${(event.data.milliseconds/1000).toFixed(1)} s initial load`);runCode();return;}if(event.data.type==="result"){clearPythonError();render(event.data);setRunning(false);return;}if(event.data.type==="error"){event.data.scope==="python"?displayPythonError(event.data.message):setStatus(event.data.message,"is-error");setRunning(false);}});worker.addEventListener("error",event=>{setStatus(event.message || "Python worker failed to start","is-error");setRunning(false);});}
+function runCode(){if(!ready || running)return;clearPythonError();setRunning(true);setStatus("Running Fourier-series fit…");worker.postMessage({type:"run",code:els.code.value});}
+els.code.value=STARTER_CODE;els.code.addEventListener("input",codeEdited);els.run.addEventListener("click",runCode);els.reset.addEventListener("click",()=>{els.code.value=STARTER_CODE;clearPythonError();runCode();});els.stop.addEventListener("click",()=>{worker.terminate();clearPythonError();setStatus("Python stopped · restarting…");startWorker();});window.addEventListener("resize",()=>{if(latestResult)render(latestResult);});startWorker();

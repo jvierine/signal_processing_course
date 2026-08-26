@@ -12,7 +12,7 @@ const ready = (async () => {
   await pyodide.loadPackage("numpy");
   pyodide.FS.writeFile("/tmp/lcb1.dat", data);
   postMessage({ type: "ready", milliseconds: performance.now() - started });
-})().catch((error) => postMessage({ type: "error", message: error.message || String(error) }));
+})().catch((error) => postMessage({ type: "error", scope: "startup", message: error.message || String(error) }));
 
 function bytes(name) {
   const value = pyodide.globals.get(name);
@@ -38,6 +38,6 @@ self.addEventListener("message", async (event) => {
     const coefficientCount = Number(pyodide.globals.get("coefficient_count"));
     postMessage({ type:"result", rawTime, phaseTime, magnitude, modelTime, modelValue, rmse, period, coefficientCount, milliseconds:performance.now()-started }, [rawTime.buffer, phaseTime.buffer, magnitude.buffer, modelTime.buffer, modelValue.buffer]);
   } catch (error) {
-    postMessage({ type:"error", message:error.message || String(error) });
+    postMessage({ type:"error", scope:"python", message:error.message || String(error) });
   }
 });
