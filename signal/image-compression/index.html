@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Run the course's two-dimensional FFT image-compression example in Python WebAssembly." />
+    <title>2D FFT image compression · Signal Processing Course</title>
+    <link rel="stylesheet" href="./styles.css?v=20260826-2" />
+    <script type="module" src="./app.js?v=20260826-1"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="course-title" href="/signal/">
+        <span>Signal Processing Course</span>
+        <small>Juha Vierinen</small>
+      </a>
+      <nav class="top-actions" aria-label="Course links">
+        <a class="top-link" href="/signal/">Index</a>
+        <a class="top-link" href="/signal/signal_processing_course.pdf" target="_blank" rel="noopener">PDF</a>
+        <a class="top-link" href="https://github.com/jvierine/signal_processing_course" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <h1 id="page-title">2D FFT image compression</h1>
+          <a class="book-reference" href="/signal/signal_processing_course.pdf#page=101" target="_blank">Course book · Image Compression Example · page 101 ↗</a>
+        </div>
+        <a class="demo-qr" href="https://juha.no/signal/image-compression/" aria-label="Open image compression demo on a phone">
+          <img src="./qr.png" alt="QR code for this demonstration" />
+        </a>
+      </section>
+
+      <section class="controls" aria-label="Compression controls">
+        <label for="compression-slider">
+          <span>Components removed</span>
+          <output id="compression-output">95%</output>
+        </label>
+        <input id="compression-slider" type="range" min="0" max="99" step="1" value="95" />
+        <button id="run-button" type="button" disabled>Loading Python…</button>
+        <button id="stop-button" type="button" disabled>Stop</button>
+        <output id="runtime-status" class="runtime-status" aria-live="polite">Starting local Python WebAssembly…</output>
+      </section>
+
+      <section class="workspace">
+        <article class="code-card">
+          <div class="card-heading">
+            <h2>Python</h2>
+            <span>Pyodide + NumPy · runs locally</span>
+          </div>
+          <textarea id="python-code" wrap="off" spellcheck="false" aria-label="Editable Python compression code"></textarea>
+        </article>
+
+        <section class="plot-grid" aria-label="Image compression results">
+          <article class="plot-card">
+            <h2>Original</h2>
+            <canvas id="original-canvas" aria-label="Original grayscale husky image"></canvas>
+          </article>
+          <article class="plot-card">
+            <h2>Original 2D FFT</h2>
+            <canvas id="original-spectrum" aria-label="Magnitude spectrum of the original image"></canvas>
+          </article>
+          <article class="plot-card">
+            <h2 id="compressed-title">95% removed</h2>
+            <canvas id="compressed-canvas" aria-label="Image reconstructed from retained Fourier components"></canvas>
+          </article>
+          <article class="plot-card">
+            <h2>Retained 2D FFT</h2>
+            <canvas id="compressed-spectrum" aria-label="Retained Fourier components"></canvas>
+          </article>
+        </section>
+      </section>
+
+      <div class="metrics" aria-live="polite">
+        <span><b id="kept-value">—</b> coefficients retained</span>
+        <span>RMSE <b id="rmse-value">—</b></span>
+        <span id="run-time">—</span>
+      </div>
+    </main>
+
+    <footer class="site-footer">© Juha Vierinen, 2016–2026</footer>
+  </body>
+</html>
