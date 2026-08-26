@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Fit a Fourier-series model to irregular Cepheid variable-star observations in Python WebAssembly." />
+    <title>Cepheid variable star · Signal Processing Course</title>
+    <link rel="stylesheet" href="./styles.css?v=20260826-1" />
+    <script type="module" src="./app.js?v=20260826-1"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="course-title" href="/signal/">
+        <span>Signal Processing Course</span>
+        <small>Juha Vierinen</small>
+      </a>
+      <nav class="top-actions" aria-label="Course links">
+        <a class="top-link" href="/signal/">Index</a>
+        <a class="top-link" href="/signal/signal_processing_course.pdf" target="_blank" rel="noopener">PDF</a>
+        <a class="top-link" href="https://github.com/jvierine/signal_processing_course" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <span class="task-label">Programming task 1</span>
+          <h1 id="page-title">Cepheid variable star</h1>
+          <a class="book-reference" href="/signal/signal_processing_course.pdf#page=104" target="_blank">Course book · Variable star lightcurve fitting · page 104 ↗</a>
+        </div>
+        <a class="demo-qr" href="https://juha.no/signal/cepheid-variable-star/" aria-label="Open Cepheid programming task on a phone">
+          <img src="./qr.png" alt="QR code for this programming task" />
+        </a>
+      </section>
+
+      <section class="task-bar" aria-label="Programming task controls">
+        <p>Complete the Fourier synthesis line marked <b>TODO</b>.</p>
+        <button id="run-button" type="button" disabled>Loading Python…</button>
+        <button id="reset-button" type="button">Reset</button>
+        <button id="stop-button" type="button" disabled>Stop</button>
+        <output id="runtime-status" aria-live="polite">Starting local Python WebAssembly…</output>
+      </section>
+
+      <section class="workspace">
+        <article class="code-card">
+          <div class="card-heading">
+            <h2>starter.py</h2>
+            <span>Editable Python · NumPy</span>
+          </div>
+          <textarea id="python-code" wrap="off" spellcheck="false" aria-label="Editable Cepheid Python starter code"></textarea>
+        </article>
+
+        <section class="plot-grid" aria-label="Cepheid observations and model">
+          <article class="plot-card">
+            <div class="plot-heading">
+              <h2>Irregular observations</h2>
+              <span>telescope time</span>
+            </div>
+            <canvas id="raw-canvas" aria-label="Cepheid magnitude observations at irregular times"></canvas>
+          </article>
+          <article class="plot-card">
+            <div class="plot-heading">
+              <h2>Phase-folded light curve</h2>
+              <span><i class="measurement-key"></i> data <i class="model-key"></i> model</span>
+            </div>
+            <canvas id="model-canvas" aria-label="Phase-folded measurements and Fourier-series model"></canvas>
+          </article>
+        </section>
+      </section>
+
+      <div class="metrics" aria-live="polite">
+        <span>Period <b id="period-value">13.124 days</b></span>
+        <span><b id="coefficient-value">21</b> coefficients</span>
+        <span>Fit RMSE <b id="rmse-value">—</b></span>
+        <span id="run-time">—</span>
+      </div>
+    </main>
+
+    <footer class="site-footer">© Juha Vierinen, 2016–2026</footer>
+  </body>
+</html>
