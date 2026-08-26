@@ -27,7 +27,7 @@ h1 { margin: 0; font: 500 clamp(2rem, 3.6vw, 3.5rem)/0.98 Georgia, "Times New Ro
 .demo-qr { flex: 0 0 auto; line-height: 0; }
 .demo-qr img { width: 96px; height: 96px; display: block; }
 
-.controls { margin-top: 8px; padding: 8px 12px; display: grid; grid-template-columns: 180px minmax(180px, 1fr) auto auto minmax(190px, auto); gap: 10px; align-items: center; border: 1px solid var(--line); border-radius: 8px; }
+.controls { margin-top: 8px; padding: 8px 12px; display: grid; grid-template-columns: 180px minmax(180px, 1fr) auto auto auto minmax(190px, auto); gap: 10px; align-items: center; border: 1px solid var(--line); border-radius: 8px; }
 .controls label { display: flex; justify-content: space-between; gap: 8px; font-size: 0.76rem; font-weight: 750; }
 .controls label output { color: var(--blue-dark); font-variant-numeric: tabular-nums; }
 input[type="range"] { width: 100%; accent-color: var(--blue); cursor: pointer; }
@@ -35,6 +35,9 @@ button { min-height: 36px; padding: 0 14px; color: #fff; background: var(--blue)
 button:hover:not(:disabled) { background: var(--blue-dark); }
 button:disabled { cursor: default; opacity: 0.45; }
 #stop-button { color: var(--ink); background: #e5e7eb; }
+.image-upload { min-height:36px; padding:0 13px; display:grid !important; place-items:center; color:#fff; background:var(--blue); border-radius:6px; font-size:.76rem !important; font-weight:750; cursor:pointer; white-space:nowrap; }
+.image-upload:hover { background:var(--blue-dark); }
+.image-upload input { position:absolute; width:1px; height:1px; overflow:hidden; opacity:0; }
 .runtime-status { color: var(--muted); font-size: 0.69rem; text-align: right; white-space: nowrap; }
 .runtime-status.is-error { color: #9c2f00; }
 
@@ -49,10 +52,21 @@ textarea { width: 100%; flex: 1; min-height: 0; padding: 10px; resize: none; col
 .plot-card { padding: 8px; display: flex; flex-direction: column; }
 .plot-card h2 { min-height: 24px; }
 canvas { width: 100%; flex: 1; min-height: 0; display: block; background: var(--soft); object-fit: contain; }
+.plot-image-button { width:100%; flex:1; min-height:0; padding:0; overflow:hidden; color:inherit; background:var(--soft); border-radius:0; cursor:zoom-in; }
+.plot-image-button:hover:not(:disabled) { background:var(--soft); box-shadow:inset 0 0 0 3px var(--blue); }
+.plot-image-button:disabled { opacity:1; cursor:default; }
+.plot-image-button canvas { height:100%; }
 .metrics { min-height: 30px; padding: 7px 12px 0; display: flex; justify-content: flex-end; gap: 24px; color: var(--muted); font-size: 0.7rem; font-variant-numeric: tabular-nums; }
 .metrics b { color: var(--ink); }
 .site-footer { padding: 0 20px 8px; color: var(--muted); font-size: 0.7rem; text-align: center; }
 button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.image-lightbox[hidden] { display:none; }
+.image-lightbox { position:fixed; z-index:20; inset:0; display:grid; grid-template-rows:auto minmax(0,1fr) auto; place-items:center; padding:22px; color:#fff; background:rgba(8,15,14,.96); }
+.image-lightbox h2 { margin:0 64px 12px; font:500 clamp(1.2rem,3vw,2rem) Georgia,"Times New Roman",serif; }
+.image-lightbox canvas { width:100%; height:100%; max-width:100%; max-height:100%; background:transparent; object-fit:contain; }
+.image-lightbox p { margin:12px 0 0; color:#b8c3c0; font-size:.75rem; }
+.close-lightbox { position:absolute; top:max(14px,env(safe-area-inset-top)); right:max(14px,env(safe-area-inset-right)); width:46px; height:46px; padding:0; color:#fff; background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.24); border-radius:50%; font-size:2rem; line-height:1; }
+body.lightbox-open { overflow:hidden; }
 
 @media (max-width: 720px) {
   .site-header { height: auto; padding: 10px 12px; align-items: flex-start; flex-direction: column; gap: 8px; }
@@ -62,11 +76,12 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visib
   h1 { font-size: 1.9rem; }
   .demo-qr { display: none; }
   .book-reference { margin-top: 3px; font-size: 0.66rem; }
-  .controls { margin-top: 5px; padding: 6px; grid-template-columns: 1fr 1fr auto auto; gap: 6px; }
+  .controls { margin-top: 5px; padding: 6px; grid-template-columns: 1fr 1fr auto auto auto; gap: 6px; }
   .controls label { grid-column: 1; font-size: 0.66rem; }
-  .controls input { grid-column: 2 / 5; }
+  .controls input[type="range"] { grid-column: 2 / 6; }
+  .controls .image-upload { grid-column:auto; min-height:32px; padding:0 9px; }
   .controls button { min-height: 32px; padding: 0 10px; }
-  .runtime-status { grid-column: 1 / 5; text-align: left; }
+  .runtime-status { grid-column: 1 / 6; text-align: left; }
   .workspace { height: 505px; margin-top: 5px; grid-template-columns: 1fr; grid-template-rows: 180px 320px; gap: 5px; }
   .code-card { padding: 5px; }
   .card-heading { min-height: 22px; }
@@ -77,4 +92,6 @@ button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visib
   .plot-card { padding: 4px; }
   .plot-card h2 { min-height: 18px; }
   .metrics { min-height: 24px; padding: 5px 4px 0; justify-content: space-between; gap: 4px; font-size: 0.56rem; }
+  #source-name { display:none; }
+  .image-lightbox { padding:10px; }
 }

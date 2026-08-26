@@ -1,0 +1,18 @@
+.python-editor { position:relative; width:100%; flex:1; min-height:0; overflow:hidden; background:#17211f; border-radius:5px; }
+.python-editor textarea,.python-highlight { position:absolute; inset:0; width:100%; height:100%; margin:0; padding:10px; overflow:auto; border:0; border-radius:5px; white-space:pre; overflow-wrap:normal; word-break:normal; font:500 .72rem/1.42 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; tab-size:4; }
+.python-highlight { z-index:1; color:#dfe7e4; background:#17211f; pointer-events:none; scrollbar-width:none; }
+.python-highlight::-webkit-scrollbar { display:none; }
+.python-highlight code { font:inherit; }
+.python-editor textarea { z-index:2; resize:none; color:transparent; background:transparent; caret-color:#fff; -webkit-text-fill-color:transparent; }
+.python-editor textarea::selection { color:transparent; background:rgba(0,114,178,.48); -webkit-text-fill-color:transparent; }
+.python-token-keyword { color:#ff7ab2; font-weight:700; }
+.python-token-builtin { color:#82d2ff; }
+.python-token-definition { color:#a8e063; font-weight:700; }
+.python-token-number { color:#f6c177; }
+.python-token-string { color:#a8e063; }
+.python-token-comment { color:#8c9b97; font-style:italic; }
+.python-token-operator { color:#82d2ff; }
+
+@media (max-width:720px) {
+  .python-editor textarea,.python-highlight { padding:6px; font-size:.64rem; line-height:1.35; }
+}
