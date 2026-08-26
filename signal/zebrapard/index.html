@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Swap the Fourier magnitudes and phases of two images using editable Python and NumPy." />
+    <title>Zebrapard phase swap · Signal Processing Course</title>
+    <link rel="stylesheet" href="./styles.css?v=20260826-1" />
+    <link rel="stylesheet" href="../python-highlight.css?v=20260826-1" />
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [['\\(', '\\)'], ['$', '$']] },
+        chtml: { scale: 0.92 },
+        options: { enableMenu: false }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script type="module" src="./app.js?v=20260826-1"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="course-title" href="/signal/">
+        <span>Signal Processing Course</span>
+        <small>Juha Vierinen</small>
+      </a>
+      <nav class="top-actions" aria-label="Course links">
+        <a class="top-link" href="/signal/">Index</a>
+        <a class="top-link" href="/signal/signal_processing_course.pdf" target="_blank" rel="noopener">PDF</a>
+        <a class="top-link" href="https://github.com/jvierine/signal_processing_course" target="_blank" rel="noopener">GitHub</a>
+        <a class="top-link" href="/scaler/?view=store&amp;design=maxwell">Merch</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <h1 id="page-title">Zebrapard phase swap</h1>
+          <p>Which matters more for recognizable structure: Fourier magnitude or phase?</p>
+        </div>
+      </section>
+
+      <section class="equations" aria-label="Phase swap equations">
+        <div>\(I_j(k,\ell)=\mathcal{F}\{i_j(x,y)\}=|I_j(k,\ell)|e^{i\phi_j(k,\ell)}\)</div>
+        <div>\(i_{12}(x,y)=\mathcal{F}^{-1}\!\left\{|I_1(k,\ell)|e^{i\angle I_2(k,\ell)}\right\}\)</div>
+        <div>\(i_{21}(x,y)=\mathcal{F}^{-1}\!\left\{|I_2(k,\ell)|e^{i\angle I_1(k,\ell)}\right\}\)</div>
+      </section>
+
+      <section class="controls" aria-label="Image and Python controls">
+        <label class="image-upload" for="image-1-upload"><input id="image-1-upload" type="file" accept="image/*" /><span>Choose image 1</span></label>
+        <label class="image-upload" for="image-2-upload"><input id="image-2-upload" type="file" accept="image/*" /><span>Choose image 2</span></label>
+        <button id="restore-button" class="secondary-button" type="button">Restore zebra + leopard</button>
+        <button id="run-button" type="button" disabled>Loading Python…</button>
+        <button id="stop-button" class="secondary-button" type="button" disabled>Stop</button>
+        <output id="runtime-status" class="runtime-status" aria-live="polite">Starting local Python WebAssembly…</output>
+      </section>
+
+      <section class="workspace">
+        <article class="code-card">
+          <div class="card-heading">
+            <h2>Python</h2>
+            <span>Pyodide + NumPy · runs locally</span>
+          </div>
+          <textarea id="python-code" wrap="off" spellcheck="false" aria-label="Editable Python phase-swap code"></textarea>
+        </article>
+
+        <section class="image-grid" aria-label="Input images and phase-swap results">
+          <article class="image-card">
+            <h2 id="image-1-title">Image 1 · Zebra</h2>
+            <button id="expand-image-1" class="image-button" type="button" disabled aria-label="Expand image 1"><canvas id="image-1-canvas" aria-label="First grayscale source image"></canvas></button>
+          </article>
+          <article class="image-card">
+            <h2 id="image-2-title">Image 2 · Leopard</h2>
+            <button id="expand-image-2" class="image-button" type="button" disabled aria-label="Expand image 2"><canvas id="image-2-canvas" aria-label="Second grayscale source image"></canvas></button>
+          </article>
+          <article class="image-card result-card">
+            <h2>\(i_{12}\) · magnitude 1 + phase 2</h2>
+            <button id="expand-image-12" class="image-button" type="button" disabled aria-label="Expand magnitude 1 and phase 2 result"><canvas id="image-12-canvas" aria-label="Image reconstructed with image 1 magnitude and image 2 phase"></canvas></button>
+          </article>
+          <article class="image-card result-card">
+            <h2>\(i_{21}\) · magnitude 2 + phase 1</h2>
+            <button id="expand-image-21" class="image-button" type="button" disabled aria-label="Expand magnitude 2 and phase 1 result"><canvas id="image-21-canvas" aria-label="Image reconstructed with image 2 magnitude and image 1 phase"></canvas></button>
+          </article>
+        </section>
+      </section>
+
+      <div class="metrics" aria-live="polite">
+        <span id="source-summary">Zebra + Leopard · 384×384 grayscale</span>
+        <span>Phase controls spatial structure; magnitude controls spectral strength.</span>
+        <span id="run-time">—</span>
+      </div>
+    </main>
+
+    <div id="image-lightbox" class="image-lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" hidden>
+      <button id="close-lightbox" class="close-lightbox" type="button" aria-label="Close full-screen image">×</button>
+      <h2 id="lightbox-title">Image preview</h2>
+      <canvas id="expanded-canvas"></canvas>
+      <p>Press Esc or × to return</p>
+    </div>
+
+    <footer class="site-footer">© Juha Vierinen, 2016–2026</footer>
+  </body>
+</html>
