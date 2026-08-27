@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Listen to sparse Fourier audio compression running locally in Python WebAssembly." />
+    <title>Audio FFT compression · Signal Processing Course</title>
+    <link rel="stylesheet" href="./styles.css?v=20260827-1" />
+    <link rel="stylesheet" href="../python-highlight.css?v=20260826-1" />
+    <script type="module" src="./app.js?v=20260827-1"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="course-title" href="/signal/">
+        <span>Signal Processing Course</span>
+        <small>Juha Vierinen</small>
+      </a>
+      <nav class="top-actions" aria-label="Course links">
+        <a class="top-link" href="/signal/">Index</a>
+        <a class="top-link" href="/signal/signal_processing_course.pdf" target="_blank" rel="noopener">PDF</a>
+        <a class="top-link" href="https://github.com/jvierine/signal_processing_course" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <h1 id="page-title">Audio FFT compression</h1>
+          <a class="book-reference" href="/signal/signal_processing_course.pdf#page=98" target="_blank">Course book · Audio Compression Example · page 98 ↗</a>
+        </div>
+        <a class="demo-qr" href="https://juha.no/signal/audio-compression/" aria-label="Open audio compression demo on a phone">
+          <img src="./qr.png" alt="QR code for this demonstration" />
+        </a>
+      </section>
+
+      <section class="controls" aria-label="Compression controls">
+        <label for="compression-slider">
+          <span>Components removed</span>
+          <output id="compression-output">90%</output>
+        </label>
+        <input id="compression-slider" type="range" min="0" max="5" step="1" value="2" list="compression-steps" />
+        <datalist id="compression-steps"><option value="0" label="50%"></option><option value="1" label="75%"></option><option value="2" label="90%"></option><option value="3" label="95%"></option><option value="4" label="97.5%"></option><option value="5" label="99%"></option></datalist>
+        <label class="audio-upload" for="source-audio"><input id="source-audio" type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.ogg,.oga,.flac,.webm" /><span>Choose audio</span></label>
+        <button id="run-button" type="button" disabled>Loading Python…</button>
+        <button id="stop-button" type="button" disabled>Cancel</button>
+        <output id="runtime-status" class="runtime-status" aria-live="polite">Starting local Python WebAssembly…</output>
+      </section>
+
+      <section class="workspace">
+        <article class="code-card">
+          <div class="card-heading">
+            <h2>Python</h2>
+            <span>Pyodide + NumPy · runs locally</span>
+          </div>
+          <textarea id="python-code" wrap="off" spellcheck="false" aria-label="Editable Python audio-compression code"></textarea>
+        </article>
+
+        <section class="plot-grid" aria-label="Audio compression results">
+          <article class="plot-card audio-card">
+            <div class="plot-heading">
+              <h2>Original waveform</h2>
+              <span class="waveform-range">Full waveform</span>
+              <button class="waveform-reset" type="button" disabled>Reset</button>
+            </div>
+            <canvas id="original-waveform" class="waveform-canvas" tabindex="0" aria-label="Zoomable waveform of the original audio. Use the mouse wheel or pinch to zoom, drag to pan, and double-click to reset."></canvas>
+            <audio id="original-player" controls preload="metadata" aria-label="Play original audio"></audio>
+          </article>
+          <article class="plot-card">
+            <h2>Original spectrum</h2>
+            <canvas id="original-spectrum" aria-label="Magnitude spectrum of the original audio"></canvas>
+          </article>
+          <article class="plot-card audio-card">
+            <div class="plot-heading">
+              <h2 id="compressed-title">90% removed</h2>
+              <span class="waveform-range">Full waveform</span>
+              <button class="waveform-reset" type="button" disabled>Reset</button>
+            </div>
+            <canvas id="compressed-waveform" class="waveform-canvas" tabindex="0" aria-label="Zoomable waveform reconstructed from retained Fourier components. Use the mouse wheel or pinch to zoom, drag to pan, and double-click to reset."></canvas>
+            <audio id="compressed-player" controls preload="metadata" aria-label="Play reconstructed audio"></audio>
+          </article>
+          <article class="plot-card">
+            <h2>Retained spectrum</h2>
+            <canvas id="compressed-spectrum" aria-label="Retained Fourier components"></canvas>
+          </article>
+        </section>
+      </section>
+
+      <div class="metrics" aria-live="polite">
+        <span id="source-name">Built-in ts2.wav · 20 s excerpt</span>
+        <span><b id="kept-value">—</b> coefficients retained</span>
+        <span>Estimated reduction <b id="reduction-value">—</b></span>
+        <span>SNR <b id="snr-value">—</b></span>
+        <span id="run-time">—</span>
+      </div>
+    </main>
+
+    <footer class="site-footer">© Juha Vierinen, 2016–2026</footer>
+  </body>
+</html>
