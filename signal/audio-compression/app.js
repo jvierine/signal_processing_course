@@ -441,9 +441,9 @@ async function decodeAudio(data, label) {
 }
 
 async function loadDefault() {
-  const response = await fetch("./ts2.wav");
-  if (!response.ok) throw new Error("Unable to load ts2.wav.");
-  await decodeAudio(await response.arrayBuffer(), "Built-in ts2.wav");
+  const response = await fetch("./fur-elise.wav");
+  if (!response.ok) throw new Error("Unable to load Für Elise.");
+  await decodeAudio(await response.arrayBuffer(), "Für Elise");
 }
 
 async function loadUpload(file) {
