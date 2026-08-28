@@ -124,16 +124,12 @@ Note that there is symmetry within the frequency components. The pairing of freq
 The complex constants are also conjugate symmetric $c_{-1} = c_{1}^*$. We'll later on see
 that this type of conjugate symmetry exists for the frequency components of all real-valued signals.
 
-\newthought{A Fourier series is a spectral representation of a signal where each frequency
-  is a multiple of some common base frequency $\omega$}:
+\newthought{A Fourier series represents a periodic signal in the frequency domain as a sum of complex sinusoids}. How do we ensure that the resulting signal is periodic? We do so by construction: every sinusoidal component is chosen to repeat after the same period $T$. Equivalently, every angular frequency is an integer multiple of a common base angular frequency $\omega$:
 \begin{equation}
   x(t) = \sum_{k=1}^N c_k e^{i \omega_k t} = \sum_{k=1}^N c_k e^{i \ell_k \omega t} \,\,.
   \label{eq:fourier_series_0}
 \end{equation}
-Here $\ell_k \in \mathbb{Z}$ is integer valued. If we compare Equation \ref{eq:fourier_series_0} with
-the first definition of a spectral representation in Equation \ref{eq:general_spectrum}, we can see
-that all angular frequencies are integer multiples of a positive valued angular
-base frequency $\omega \in \mathbb{R}_{\ge 0}$:
+Here $\ell_k \in \mathbb{Z}$ is integer valued, so each angular frequency is an integer multiple of the positive angular base frequency $\omega \in \mathbb{R}_{>0}$:
 \begin{equation}
   \omega_k = \ell_k\omega \,\,.
   \label{eq:integer_multiple}
@@ -584,7 +580,8 @@ the spikes will become sharper and sharper.
     \end{tikzpicture}
   \end{center}
   \caption{A Fourier series representation $x_{7}(t)=\frac{1}{T}\sum_{k=-7}^{7} e^{i\frac{2\pi}{T}k t}$ of a Dirac comb signal $x(t)=\sum_{k=-\infty}^{\infty}\delta(t-k T)$
-    with a period $T$. Two periods of the signal are shown. The Fourier series representation of the signal is made using seven sinusoidal signals.}
+    with a period $T$. Two periods of the signal are shown. The Fourier series representation of the signal is made using seven sinusoidal signals.
+    \href{https://juha.no/signal/dirac-comb/}{Interactive demonstration.}}
   \label{fig:fs_fig0}
 \end{marginfigure}
 
@@ -747,6 +744,45 @@ Listing \ref{lst:fourier_square_code}. The output of this program is shown in Fi
     \end{tikzpicture}
   \end{center}
 \fi
+
+\newthought{A truncated Fourier series oscillates near a discontinuity}. Consider the periodic extension of a unit step,
+\begin{equation}
+  u_T(t)=
+  \begin{cases}
+    0, & -T/2<t<0,\\
+    1, & 0<t<T/2,
+  \end{cases}
+  \qquad u_T(t+T)=u_T(t) \,\,.
+\end{equation}
+The untapered Fourier series coefficients are
+\begin{equation}
+  c_k=
+  \begin{cases}
+    \dfrac{1}{2}, & k=0,\\[4pt]
+    \dfrac{1-(-1)^k}{i2\pi k}, & k\ne 0.
+  \end{cases}
+  \label{eq:gibbs-untapered-coefficients}
+\end{equation}
+If $N$ odd harmonics are retained and $K=2N-1$, the partial sum is
+\begin{equation}
+  x_N(t)=\sum_{k=-K}^{K}c_k e^{i2\pi kt/T}
+  =\frac{1}{2}+\frac{2}{\pi}\sum_{m=0}^{N-1}
+  \frac{\sin\!\left((2m+1)2\pi t/T\right)}{2m+1} \,\,.
+  \label{eq:gibbs-step-series}
+\end{equation}
+At the discontinuity the series converges to the midpoint of the jump. Adding more harmonics makes the oscillating region narrower, but the overshoot approaches $8.95\%$ of the jump. This is the \emph{Gibbs phenomenon}: convergence is pointwise but not uniform, and analogous ringing occurs near sharp transitions in time or frequency.
+
+The phenomenon was first analyzed by Wilbraham in 1848 and later brought to wider attention by Gibbs in two \emph{Nature} letters prompted by Michelson's harmonic-analyzer observations \cite{wilbraham1848periodic,michelson1898fourier,gibbs1898fourier,gibbs1899fourier}.
+
+The Fourier coefficients can be tapered to suppress the oscillations. A continuous interpolation between untapered coefficients and Fej\'er weighting is
+\begin{align}
+  \widetilde{c}_k^{(\alpha)} &= w_{k,\alpha}c_k \,\,,\label{eq:gibbs-tapered-coefficients}\\
+  w_{k,\alpha} &= (1-\alpha)+\alpha\left(1-\frac{|k|}{K+1}\right),
+  \qquad |k|\le K,\quad 0\le\alpha\le 1 \,\,.
+\end{align}
+Here $\alpha=0$ gives the ordinary untapered coefficients, while $\alpha=1$ gives full Fej\'er tapering \cite{fejer1900fonctions}. Increasing the taper suppresses the oscillations, but also makes the transition across the step wider.
+
+The same Fourier trade-off appears in radio antennas. The far-field radiation pattern is a spatial Fourier transform of the current distribution across an aperture. Tapering the aperture or array coefficients reduces sidelobes, but widens the main beam \cite{dolph1946current,taylor1955line}. \href{https://juha.no/signal/gibbs-phenomenon/}{The interactive demonstration} shows the tapered and untapered partial sums.
 
 \newthought{The time derivative operator $\frac{d}{dt}$ has a very simple form for a Fourier series representation of a signal}.
 
