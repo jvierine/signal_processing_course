@@ -446,12 +446,17 @@ later on in your life, there is a good chance that you will find the FFT algorit
 
 \newpage
 
-Spectral methods are also central to the analysis of differential equations,
-where they can turn differentiation into algebraic multiplication. Similar
-frequency-selective spatial filters have been found in the mammalian visual
-cortex.
+When an unknown function is expressed as a sum of harmonic basis functions,
+differential operators can be applied to the individual terms. For a Fourier
+basis, differentiation simply multiplies each coefficient by a frequency
+factor. Spectral methods use this idea, and related global basis expansions, to
+turn many differential equations into systems of algebraic equations, making
+them easier to work with and often allowing efficient algorithms such as the
+FFT to be used when solving the equations
+\citep{boyd2001spectral}.
 
-These neural responses select localized patterns with particular
+Similar frequency-selective spatial filters have been found in the mammalian
+visual cortex. These neural responses select localized patterns with particular
 orientations and spatial frequencies
 \citep{jones1987spatial,ringach2002spatial}. Related filters arise in sparse
 representations learned from natural images \citep{olshausen1996emergence}.
