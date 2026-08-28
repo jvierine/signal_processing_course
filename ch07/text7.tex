@@ -173,22 +173,20 @@ frequency components is periodic as well.
           %	title={Discrete-time signal},
           axis x line=center,
           axis y line=middle,
-          xmax=0.8,
+          xmax=4.5,
           xlabel=$t$,
           xticklabels={,,},
           yticklabels={,,},
           ymax=3.0,
           ylabel=$x(t)$]
 
-        \addplot[domain=-0:0.666666667,samples=200,color=blue] {cos( deg(2*3.1415*9*x))-
-          cos( deg(2*3.1415*15*x))};
-        \addplot[domain=-0:0.666666667,samples=200,color=red] {sin( deg(2*3.1415*9*x))-
-          sin( deg(2*3.1415*15*x))};
+        \addplot[domain=0:4.18879,samples=600,color=blue] {cos(deg(9*x))-cos(deg(15*x))};
+        \addplot[domain=0:4.18879,samples=600,color=red] {sin(deg(9*x))-sin(deg(15*x))};
 
-        \node at (axis cs:0.16666667,2.5) {$\displaystyle{T}$};
-        \addplot [dimen] plot coordinates {(0,2.3) (0.33333,2.3)};
-        \node at (axis cs:0.33333333+0.16666667,2.5) {$\displaystyle{T}$};
-        \addplot [dimen] plot coordinates {(0.33333,2.3) (0.6666667,2.3)};
+        \node at (axis cs:1.0472,2.5) {$\displaystyle{T}$};
+        \addplot [dimen] plot coordinates {(0,2.3) (2.0944,2.3)};
+        \node at (axis cs:3.14159,2.5) {$\displaystyle{T}$};
+        \addplot [dimen] plot coordinates {(2.0944,2.3) (4.18879,2.3)};
 
       \end{axis}
       %\end{pgfinterruptboundingbox}
@@ -196,7 +194,7 @@ frequency components is periodic as well.
       %    rectangle ([xshift=0cm,yshift=0cm]current axis.north east);
     \end{tikzpicture}
   \end{center}
-  \caption{Periodic function $e^{i 2\pi 9t} - e^{i 2\pi 15t}$. 
+  \caption{Periodic function $e^{i9t} - e^{i15t}$.
   Blue denotes the real and red denotes the imaginary component of the signal.}
   \label{fig:ex_periodic}
 \end{marginfigure}
@@ -227,8 +225,7 @@ numbers $\{\omega_k\}$ are commensurable!
 
 \newthought{Here is an example}. Let us assume that a signal is defined as
 \begin{equation}
-  x(t) = c_1 e^{i \omega_1 t} + c_2 e^{i \omega_2 t} = e^{i 2\pi 9t} -
-  e^{i 2\pi 15t} \,\,.
+  x(t) = c_1 e^{i \omega_1 t} + c_2 e^{i \omega_2 t} = e^{i9t} - e^{i15t} \,\,.
 \end{equation}
 Is this signal periodic? If so, what is its fundamental frequency
 $\omega$ and fundamental period $T$?
@@ -238,25 +235,33 @@ must be commensurable.  In other words,
 $\omega_1/\omega_2 \in \mathbb{Q}$. This is the case, as it is clear
 that $\omega_1/\omega_2 = 3/5$ is a rational number.
 
-This signal has two unique angular frequencies: $\omega_1 = 2\pi 9$
-and $\omega_2 = 2\pi 15$.  Let's use Euclid's algorithm\sidenote{The
+This signal has two unique angular frequencies: $\omega_1 = 9$
+and $\omega_2 = 15$.  Let's use Euclid's algorithm\sidenote{The
 general principle behind the algorithm is that if $\omega_1
 = \omega \ell_1$ and $\omega_2=\omega \ell_2$ with $\ell_1$ and
 $\ell_2$ integers, then $\omega_1 - \omega_2 = \omega(\ell_1-\ell_2)$
 is still divisible with $\omega$.} on these two numbers to determine
 the fundamental angular frequency $\omega$.  We start with the two
-numbers: $(2\pi 9, 2\pi15)$. Then subtract the smallest number from
-the largest number $2\pi 15 - 2\pi 9 = 2\pi 6$ and replace the larger
-number with the remainder: $(2\pi 9, 2\pi 6)$.  We repeat this process
+numbers: $(9,15)$. Then subtract the smallest number from
+the largest number $15-9=6$ and replace the larger
+number with the remainder: $(9,6)$.  We repeat this process
 until both numbers are the same.  All the iterations are shown below:
 \begin{align*}
-  (2\pi 15, 2\pi 9)        &                     \\
-  (2\pi 15-2\pi 9, 2\pi 9) & = (2\pi 6, 2\pi 9)  \\
-  (2\pi 6, 2\pi 9-2\pi 6)  & = (2\pi 6, 2\pi 3)  \\
-  (2\pi 6-2\pi 3, 2\pi 3)  & = (2\pi 3, 2\pi 3).
+  (15,9)     &         \\
+  (15-9,9)   & = (6,9) \\
+  (6,9-6)    & = (6,3) \\
+  (6-3,3)    & = (3,3).
 \end{align*}
-And we thus find that the fundamental frequency is $\omega=2\pi 3$ and, using
-Equation \ref{eq:fundamental_period}, we find that $T = 1/3$.
+And we thus find that the fundamental angular frequency is $\omega=3$ and, using
+Equation \ref{eq:fundamental_period}, we find that $T = 2\pi/3$.
+
+For more than two angular frequencies, Euclid's algorithm is applied recursively:
+\begin{equation}
+  \gcd(\omega_1,\omega_2,\ldots,\omega_N)
+  = \gcd\!\left(\gcd(\omega_1,\omega_2),\omega_3,\ldots,\omega_N\right) \,\,.
+\end{equation}
+If, at any point, a pair of frequencies is not commensurable, we can stop:
+the signal is not periodic.
 
 \begin{marginfigure}[1cm]
   \begin{center}
