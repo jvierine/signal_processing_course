@@ -133,7 +133,7 @@ are greatly simplified.
 					axis x line=none,
 					axis y line=none
 				]
-				\addplot[domain=-100:100,samples=200] {27+
+				\addplot[domain=-100:100,samples=300] {34+
 					cos( deg(2*3.1415*0.01*0.5*x))+
 					cos( deg(2*3.1415*0.01*0.5*2*x) )+
 					cos( deg(2*3.1415*0.01*0.5*3*x) )+
@@ -141,30 +141,27 @@ are greatly simplified.
 					cos( deg(2*3.1415*0.01*0.5*5*x) )+
 					cos( deg(2*3.1415*0.01*0.5*6*x) )+
 					cos( deg(2*3.1415*0.01*0.5*7*x) )+
-					cos( deg(2*3.1415*0.01*0.5*8*x) ) };
+					cos( deg(2*3.1415*0.01*0.5*8*x) )+
+					cos( deg(2*3.1415*0.01*0.5*9*x) )+
+					cos( deg(2*3.1415*0.01*0.5*10*x) )+
+					cos( deg(2*3.1415*0.01*0.5*11*x) )+
+					cos( deg(2*3.1415*0.01*0.5*12*x) )+
+					cos( deg(2*3.1415*0.01*0.5*13*x) )+
+					cos( deg(2*3.1415*0.01*0.5*14*x) )+
+					cos( deg(2*3.1415*0.01*0.5*15*x) ) };
 
-				\node at (axis cs:0,22) {$=$};
-				\node at (axis cs:0,15) {$+$};
-				\node at (axis cs:0,9) {$+$};
-				\node at (axis cs:0,3) {$+$};
-				\node at (axis cs:0,-3) {$+$};
-				\node at (axis cs:0,-9) {$+$};
-				\node at (axis cs:0,-15) {$+$};
-
-				\addplot[domain=-100:100,samples=200] {-18+cos( deg(2*3.1415*0.01*0.5*x) ) };
-				\addplot[domain=-100:100,samples=200] {-12+cos( deg(2*3.1415*0.01*0.5*2*x) ) };
-				\addplot[domain=-100:100,samples=200] {-6+cos( deg(2*3.1415*0.01*0.5*3*x) ) };
-				\addplot[domain=-100:100,samples=200] {0+cos( deg(2*3.1415*0.01*0.5*4*x) ) };
-				\addplot[domain=-100:100,samples=200] {6+cos( deg(2*3.1415*0.01*0.5*5*x) ) };
-				\addplot[domain=-100:100,samples=200] {12+cos( deg(2*3.1415*0.01*0.5*6*x) ) };
-				\addplot[domain=-100:100,samples=200] {18+cos( deg(2*3.1415*0.01*0.5*7*x) ) };
+				\node at (axis cs:0,30) {$=$};
+				\pgfplotsinvokeforeach{24,20,...,-28}{\node at (axis cs:0,#1) {$+$};}
+				\pgfplotsinvokeforeach{15,14,...,1}{
+					\addplot[domain=-100:100,samples=300] {(4*#1-34)+cos( deg(2*3.1415*0.01*0.5*#1*x) ) };
+				}
 			\end{axis}
 			%\end{pgfinterruptboundingbox}
 			%\draw[use as bounding box] ([xshift=0cm,yshift=0cm]current axis.south west) 
 			%    rectangle ([xshift=0cm,yshift=0cm]current axis.north east);
 		\end{tikzpicture}
 	\end{center}
-	\caption{Spectral decomposition of a narrow pulse that consists of seven sinusoidal signals.}
+	\caption{Spectral decomposition of a narrow pulse that consists of fifteen sinusoidal signals.}
 	\label{fig:dtfig0}
 \end{marginfigure}
 
@@ -196,11 +193,11 @@ each spectral component of the signal, assuming that it consists of
 infinitely many sinusoidal components.
 
 Figure \ref{fig:dtfig0} shows a sketch of the basic idea behind the
-Fourier decomposition of signals. By adding together the seven
+Fourier decomposition of signals. By adding together the fifteen
 individual sinusoidal signals on the bottom of the figure, we obtain
 the more pulse-like signal shown on the top of the figure. Conversely,
 the pulse-like signal on the top can therefore be decomposed into
-seven sinusoidal signals. This is in essence the idea behind the
+fifteen sinusoidal signals. This is in essence the idea behind the
 forward and reverse Fourier transform. Had we continued to sum
 together higher and higher frequency sinusoidal signals in the same
 manner, we would have ended up with an infinitely narrow spike
@@ -439,6 +436,38 @@ basic concepts of signal processing. The FFT algorithm can be used e.g., for spe
 evaluation of a convolution operation, to efficiently solve certain types of matrix operations,
 or to solve differential equations. Any time when processing signals
 later on in your life, there is a good chance that you will find the FFT algorithm to be highly useful.
+
+\begin{marginfigure}[-4cm]
+	\begin{center}
+		\includegraphics[width=0.72\textwidth]{ch01/figures/ringach_macaque_gabor_fits.png}
+	\end{center}
+	\caption{Measured receptive fields of simple cells in macaque V1 (left), their two-dimensional Gabor fits (middle), and the residuals (right). Figure adapted from \citet[Fig.~2]{ringach2002spatial}.}
+	\label{fig:ringach_macaque_gabor_fits}
+\end{marginfigure}
+
+\newpage
+
+Spectral methods are also central to the analysis of differential equations,
+where they can turn differentiation into algebraic multiplication. Similar
+frequency-selective spatial filters have been found in the mammalian visual
+cortex. These neural responses select localized patterns with particular
+orientations and spatial frequencies
+\citep{jones1987spatial,ringach2002spatial}. Related filters arise in sparse
+representations learned from natural images \citep{olshausen1996emergence}.
+Similar orientation- and spatial-frequency-selective filters also emerge in
+the first layers of deep convolutional neural networks trained to classify
+images \citep{krizhevsky2012imagenet}. The same basic pattern therefore appears
+in physical modeling, biological vision, and machine learning.
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=\textwidth]{ch01/figures/alexnet_first_layer_filters.png}
+	\end{center}
+	\caption{The 96 learned $11\times11\times3$ kernels in the first convolutional layer of
+		AlexNet. Many act as oriented, spatial-frequency-selective filters, while others are
+		color-opponent. Figure from \citet{krizhevsky2012imagenet}.}
+	\label{fig:alexnet_first_layer_filters}
+\end{figure}
 
 \begin{marginfigure}[1cm]
 	\begin{center}
